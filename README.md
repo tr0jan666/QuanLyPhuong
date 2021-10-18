@@ -1,2 +1,2 @@
 # QuanLyPhuong
-<h1> Quan ly ho khaum nhan khau </h1>
+<h1> Quan ly ho khau nhan khau </h1>
