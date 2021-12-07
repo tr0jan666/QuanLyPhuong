@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Quan ly phuong - branch 2021Dec07_loginUI");
+        stage.setTitle("Quan ly phuong - branch 2021Dec07_loginUI version 2");
         stage.setScene(scene);
         stage.show();
     }
