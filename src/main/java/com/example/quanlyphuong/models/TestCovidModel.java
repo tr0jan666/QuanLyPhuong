@@ -1,13 +1,15 @@
 package com.example.quanlyphuong.models;
 
+import java.util.Date;
+
 public class TestCovidModel {
     private int IDTest;
     private int idNhanKhau;
-    private String thoiDiemTest;
+    private Date thoiDiemTest;
     private String hinhThucTest;
     private String ketQua;
 
-    public TestCovidModel(int IDTest, int idNhanKhau, String thoiDiemTest, String hinhThucTest, String ketQua) {
+    public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, String ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;
         this.thoiDiemTest = thoiDiemTest;
@@ -31,11 +33,11 @@ public class TestCovidModel {
         this.idNhanKhau = idNhanKhau;
     }
 
-    public String getThoiDiemTest() {
+    public Date getThoiDiemTest() {
         return thoiDiemTest;
     }
 
-    public void setThoiDiemTest(String thoiDiemTest) {
+    public void setThoiDiemTest(Date thoiDiemTest) {
         this.thoiDiemTest = thoiDiemTest;
     }
 
