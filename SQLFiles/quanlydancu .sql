@@ -27,8 +27,8 @@ CREATE TABLE `cach_ly` (
                            `idNhankhau` int NOT NULL,
                            `diaDiemCachLy` varchar(100) NOT NULL,
                            `thoiGianBatDau` datetime NOT NULL,
-                           `muDoCachLy` int NOT NULL,
-                           `hetBenh` bit(2) NOT NULL,
+                           `mucDoCachLy` int NOT NULL,
+                           `hetBenh` int NOT NULL,
                            PRIMARY KEY (`idCachLy`),
                            KEY `id_NhanKhau_idx` (`idNhankhau`),
                            CONSTRAINT `id_NhanKhau` FOREIGN KEY (`idNhankhau`) REFERENCES `test` (`idNhankhau`)
