@@ -14,7 +14,6 @@ public class NhanKhauModel {
     private String tonGiao;
     private String quocTich;
     private String noiThuongTru;
-    private String soHoChieu; //chưa có trong database
     private String diaChiHienNay;
     private String trinhDoHocVan;
     private String ngheNghiep;
@@ -45,7 +44,6 @@ public class NhanKhauModel {
         this.tonGiao = tonGiao;
         this.quocTich = quocTich;
         this.noiThuongTru = noiThuongTru;
-        this.soHoChieu = soHoChieu;
         this.diaChiHienNay = diaChiHienNay;
         this.trinhDoHocVan = trinhDoHocVan;
         this.ngheNghiep = ngheNghiep;
@@ -150,14 +148,6 @@ public class NhanKhauModel {
 
     public void setNoiThuongTru(String noiThuongTru) {
         this.noiThuongTru = noiThuongTru;
-    }
-
-    public String getSoHoChieu() {
-        return soHoChieu;
-    }
-
-    public void setSoHoChieu(String soHoChieu) {
-        this.soHoChieu = soHoChieu;
     }
 
     public String getDiaChiHienNay() {
