@@ -1,18 +1,18 @@
 package com.example.quanlyphuong.models;
 
-public class KhaiBaoCachLyModels {
+public class CachLyModel {
     private int ID;
     private String hoTen;
     private String thoiGianBatDau;
     private String thoiGianKetThuc;
-    private String mucDo;
+    private int mucDo;
     private String diaDiemCachLy;
-    private Boolean hetBenh;
+    private int hetBenh;
 
-    public KhaiBaoCachLyModels(){
+    public CachLyModel() {
     }
 
-    public KhaiBaoCachLyModels(int ID, String hoTen, String thoiGianBatDau, String thoiGianKetThuc, String mucDo, String diaDiemCachLy, Boolean hetBenh) {
+    public CachLyModel(int ID, String hoTen, String thoiGianBatDau, String thoiGianKetThuc, int mucDo, String diaDiemCachLy, int hetBenh) {
         this.ID = ID;
         this.hoTen = hoTen;
         this.thoiGianBatDau = thoiGianBatDau;
@@ -54,11 +54,11 @@ public class KhaiBaoCachLyModels {
         this.thoiGianKetThuc = thoiGianKetThuc;
     }
 
-    public String getMucDo() {
+    public int getMucDo() {
         return mucDo;
     }
 
-    public void setMucDo(String mucDo) {
+    public void setMucDo(int mucDo) {
         this.mucDo = mucDo;
     }
 
@@ -70,11 +70,11 @@ public class KhaiBaoCachLyModels {
         this.diaDiemCachLy = diaDiemCachLy;
     }
 
-    public Boolean getHetBenh() {
+    public int getHetBenh() {
         return hetBenh;
     }
 
-    public void setHetBenh(Boolean hetBenh) {
+    public void setHetBenh(int hetBenh) {
         this.hetBenh = hetBenh;
     }
 }
