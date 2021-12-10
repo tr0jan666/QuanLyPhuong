@@ -7,9 +7,9 @@ public class TestCovidModel {
     private int idNhanKhau;
     private Date thoiDiemTest;
     private String hinhThucTest;
-    private String ketQua;
+    private boolean ketQua;
 
-    public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, String ketQua) {
+    public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, boolean ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;
         this.thoiDiemTest = thoiDiemTest;
@@ -49,11 +49,11 @@ public class TestCovidModel {
         this.hinhThucTest = hinhThucTest;
     }
 
-    public String getKetQua() {
+    public boolean getKetQua() {
         return ketQua;
     }
 
-    public void setKetQua(String ketQua) {
+    public void setKetQua(boolean ketQua) {
         this.ketQua = ketQua;
     }
 }
