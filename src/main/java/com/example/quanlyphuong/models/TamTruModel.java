@@ -6,11 +6,11 @@ public class TamTruModel {
     private int ID;
     private int idNhanKhau;
     private String maGiayTamTru;
-    private String soDienThoaiNguoiDangKy;
     private Date tuNgay;
     private Date denNgay;
     private String lyDo;
 
+    //getter, setter
     public int getID() {
         return ID;
     }
@@ -35,13 +35,6 @@ public class TamTruModel {
         this.maGiayTamTru = maGiayTamTru;
     }
 
-    public String getSoDienThoaiNguoiDangKy() {
-        return soDienThoaiNguoiDangKy;
-    }
-
-    public void setSoDienThoaiNguoiDangKy(String soDienThoaiNguoiDangKy) {
-        this.soDienThoaiNguoiDangKy = soDienThoaiNguoiDangKy;
-    }
 
     public Date getTuNgay() {
         return tuNgay;
@@ -67,10 +60,11 @@ public class TamTruModel {
         this.lyDo = lyDo;
     }
 
-    public TamTruModel(int idNhanKhau, String maGiayTamTru, String soDienThoaiNguoiDangKy, Date tuNgay, Date denNgay, String lyDo) {
+
+    //constructor
+    public TamTruModel(int idNhanKhau, String maGiayTamTru, Date tuNgay, Date denNgay, String lyDo) {
         this.idNhanKhau = idNhanKhau;
         this.maGiayTamTru = maGiayTamTru;
-        this.soDienThoaiNguoiDangKy = soDienThoaiNguoiDangKy;
         this.tuNgay = tuNgay;
         this.denNgay = denNgay;
         this.lyDo = lyDo;
