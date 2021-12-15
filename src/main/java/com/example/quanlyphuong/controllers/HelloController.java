@@ -1,4 +1,4 @@
-package com.example.quanlyphuong.controller;
+package com.example.quanlyphuong.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

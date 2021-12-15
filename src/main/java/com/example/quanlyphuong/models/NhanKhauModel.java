@@ -1,8 +1,9 @@
 
 package com.example.quanlyphuong.models;
-import java.util.Date;
-public class NhanKhauModel {
 
+import java.util.Date;
+
+public class NhanKhauModel {
     private int ID;
     private String maNhanKhau;
     private String Ho_ten;
@@ -31,6 +32,9 @@ public class NhanKhauModel {
     private int idNguoiXoa;
     private String lyDoXoa;
     private String ghiChu;
+
+    private TiemChungModel thongTinTiemChung;
+    private CachLyModel thongTinCachLy;
 
     //construtor
     public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu) {
@@ -63,6 +67,7 @@ public class NhanKhauModel {
         this.lyDoXoa = lyDoXoa;
         this.ghiChu = ghiChu;
     }
+
     // Get + Set
     public int getID() {
         return ID;
@@ -286,6 +291,22 @@ public class NhanKhauModel {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+    public TiemChungModel getThongTinTiemChung() {
+        return thongTinTiemChung;
+    }
+
+    public void setThongTinTiemChung(TiemChungModel thongTinTiemChung) {
+        this.thongTinTiemChung = thongTinTiemChung;
+    }
+
+    public CachLyModel getThongTinCachLy() {
+        return thongTinCachLy;
+    }
+
+    public void setThongTinCachLy(CachLyModel thongTinCachLy) {
+        this.thongTinCachLy = thongTinCachLy;
     }
 }
 

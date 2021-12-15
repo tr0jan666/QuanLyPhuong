@@ -1,4 +1,4 @@
-package com.example.quanlyphuong.helper.constant;
+package com.example.quanlyphuong.helper.constants;
 
 public class KetQuaTestConstant {
     public static final int DUONG_TINH = 1;

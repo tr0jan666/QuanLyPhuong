@@ -1,5 +1,6 @@
 package com.example.quanlyphuong.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class HoKhauModel {
@@ -12,6 +13,7 @@ public class HoKhauModel {
     private Date ngayChuyDi;
     private String lyDoChuyen;
     private int nguoiThucHien;
+    private ArrayList<NhanKhauModel> listNhanKhau;
 
     public int getID() {
         return ID;
@@ -85,4 +87,11 @@ public class HoKhauModel {
         this.nguoiThucHien = nguoiThucHien;
     }
 
+    public ArrayList<NhanKhauModel> getListNhanKhau() {
+        return listNhanKhau;
+    }
+
+    public void setListNhanKhau(ArrayList<NhanKhauModel> listNhanKhau) {
+        this.listNhanKhau = listNhanKhau;
+    }
 }

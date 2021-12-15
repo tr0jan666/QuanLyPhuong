@@ -1,4 +1,4 @@
-package com.example.quanlyphuong.helper.constant;
+package com.example.quanlyphuong.helper.constants;
 
 public class MucDoCachLyConstant {
     public static final int F0 = 0;

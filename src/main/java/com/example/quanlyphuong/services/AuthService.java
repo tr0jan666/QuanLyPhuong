@@ -1,4 +1,4 @@
-package com.example.quanlyphuong.service;
+package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.models.SimpleResult;
 

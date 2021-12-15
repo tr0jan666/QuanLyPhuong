@@ -1,7 +1,7 @@
-package com.example.quanlyphuong.controller;
+package com.example.quanlyphuong.controllers;
 
 import com.example.quanlyphuong.models.SimpleResult;
-import com.example.quanlyphuong.service.AuthService;
+import com.example.quanlyphuong.services.AuthService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
