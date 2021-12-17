@@ -13,7 +13,6 @@ public class MySQLConnector {
         try {
 //            Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
-            System.out.println("connect successfully!");
         } catch (Exception ex) {
             System.out.println("connect failure!");
             ex.printStackTrace();

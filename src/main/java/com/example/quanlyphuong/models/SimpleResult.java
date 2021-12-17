@@ -1,20 +1,24 @@
 package com.example.quanlyphuong.models;
 
 public class SimpleResult {
-    private  boolean result;
+    public static String DEFAULT_SUCCESS_MESSAGE = "Thành công!";
+    public static String DEFAULT_FAILED_MESSAGE = "Thất bại! Vui lòng thử lại sau.";
+
+    private  boolean success;
     private String message;
 
-    public SimpleResult(boolean result, String message) {
-        this.result = result;
+    public SimpleResult(boolean success, String message) {
+        this.success = success;
         this.message = message;
     }
+    public SimpleResult() {};
 
-    public boolean isResult() {
-        return result;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public String getMessage() {
