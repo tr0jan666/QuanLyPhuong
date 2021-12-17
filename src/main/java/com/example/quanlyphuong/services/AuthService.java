@@ -7,6 +7,7 @@ import com.example.quanlyphuong.models.UserMoldel;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AuthService {
     public AuthService() {
@@ -14,20 +15,26 @@ public class AuthService {
     }
 
     public SimpleResult login(String userName, String password) {
-        String selectUserScript = "select * from users where userName = %s".formatted(userName);
+        String selectUserScript = "select * from users where userName = ?";
         try (Connection connection = MySQLConnector.getConnection()) {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(selectUserScript);
+            PreparedStatement selectUserSM = connection.prepareStatement(selectUserScript);
+            selectUserSM.setString(1, userName);
+            ResultSet selectUserRS = selectUserSM.executeQuery();
+            if (selectUserRS.next()) {
+                //db co user
+                String dbPassword = selectUserRS.getString(2);
 
-            //1. check db khong co user
-            //
-            // 2. check db, thay co user nhung sai pass
-            //3. cr
+                if (Objects.equals(dbPassword, password))
+                    return new SimpleResult(true, SimpleResult.DEFAULT_SUCCESS_MESSAGE);
+                else return new SimpleResult(false, "Sai mật khẩu");
+            } else {
+                //db ko co user
+                return new SimpleResult(false, "Tài khoản không tồn tại trên hệ thống");
+            }
         } catch (SQLException ex) {
-
+            ex.printStackTrace();
+            return new SimpleResult(false, ex.getMessage());
         }
-
-        return null;
     }
 
     public SimpleResult register(String userName, String password) {

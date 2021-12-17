@@ -42,14 +42,10 @@ public class LoginController {
     void onLogin(ActionEvent event) {
         SimpleResult simpleResult = authService.login(tftUser.getText(), tftPassword.getText());
         if (simpleResult.isSuccess()) {
-            System.out.println("chuyen trang o day nhung ko co trang nao de chuyen");
+            UIHelper.navigateNew("menu-view.fxml", "Chọn chức năng");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, simpleResult.getMessage(), ButtonType.CLOSE);
             alert.showAndWait();
-//
-//            if (alert.getResult() == ButtonType.YES) {
-//                //do stuff
-//            }
         }
     }
 
