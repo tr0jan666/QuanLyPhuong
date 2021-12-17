@@ -1,5 +1,6 @@
 package com.example.quanlyphuong;
 
+import com.example.quanlyphuong.helper.MySQLConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
