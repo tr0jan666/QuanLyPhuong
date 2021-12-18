@@ -2,13 +2,16 @@ package com.example.quanlyphuong.controllers;
 
 import com.example.quanlyphuong.QuanLyNhanKhauApplication;
 import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.models.AppScreen;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.AuthService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -30,7 +33,6 @@ public class LoginController {
     @FXML
     private Text txtRegister;
 
-
     @FXML
     void onCancel(ActionEvent event) {
 
@@ -40,18 +42,16 @@ public class LoginController {
 
     @FXML
     void onLogin(ActionEvent event) {
-        SimpleResult simpleResult = authService.login(tftUser.getText(), tftPassword.getText());
+        SimpleResult simpleResult = authService.login(tftUser.getText(), tftPassword.getText(), cbAdmin.isSelected());
         if (simpleResult.isSuccess()) {
-            UIHelper.navigateNew("menu-view.fxml", "Chọn chức năng");
+            AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null);
+            MenuController menuController = (MenuController) menuChucNangScreen.getController();
+            menuController.getTxtRegister().setVisible(cbAdmin.isSelected());
+            ((Node) event.getSource()).getScene().getWindow().hide();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, simpleResult.getMessage(), ButtonType.CLOSE);
             alert.showAndWait();
         }
-    }
-
-    public void onRegisterClicked(MouseEvent mouseEvent) {
-        UIHelper.navigateNew("register-view.fxml", "Register");
-        txtRegister.getScene().getWindow().hide();
     }
 
 

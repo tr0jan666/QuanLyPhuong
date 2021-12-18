@@ -14,5 +14,7 @@ module com.example.quanlyphuong {
     opens com.example.quanlyphuong to javafx.fxml;
     exports com.example.quanlyphuong;
     exports com.example.quanlyphuong.controllers;
+    exports com.example.quanlyphuong.controllers.dich_te;
+    exports com.example.quanlyphuong.controllers.nhan_khau;
     opens com.example.quanlyphuong.controllers to javafx.fxml;
 }
