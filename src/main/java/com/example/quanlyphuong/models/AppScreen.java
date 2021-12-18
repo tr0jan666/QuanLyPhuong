@@ -2,12 +2,12 @@ package com.example.quanlyphuong.models;
 
 import javafx.scene.Scene;
 
-public class AppScreen<T> {
+public class AppScreen {
     private String fxmlPath;
     private Scene scene;
-    private T controller;
+    private Object controller;
 
-    public AppScreen(String fxmlPath, Scene scene, T controller) {
+    public AppScreen(String fxmlPath, Scene scene, Object controller) {
         this.fxmlPath = fxmlPath;
         this.scene = scene;
         this.controller = controller;
@@ -32,11 +32,11 @@ public class AppScreen<T> {
         this.scene = scene;
     }
 
-    public T getController() {
-        return controller;
+    public <T> T getController() {
+        return (T) this.controller;
     }
 
-    public void setController(T controller) {
+    public void setController(Object controller) {
         this.controller = controller;
     }
 }

@@ -45,8 +45,8 @@ public class LoginController {
         SimpleResult simpleResult = authService.login(tftUser.getText(), tftPassword.getText(), cbAdmin.isSelected());
         if (simpleResult.isSuccess()) {
             AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null);
-            MenuController menuController = (MenuController) menuChucNangScreen.getController();
-            menuController.getTxtRegister().setVisible(cbAdmin.isSelected());
+            assert menuChucNangScreen != null;
+            menuChucNangScreen.<MenuController>getController().getTxtRegister().setVisible(cbAdmin.isSelected());
             ((Node) event.getSource()).getScene().getWindow().hide();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, simpleResult.getMessage(), ButtonType.CLOSE);
