@@ -2,16 +2,16 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.helper.enums.NhanKhauFilterEnum;
+import com.example.quanlyphuong.models.CachLyModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.SimpleResult;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.example.quanlyphuong.models.TiemChungModel;
+
+import java.util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class NhanKhauService {
     public NhanKhauModel getDetail(int idNhanKhau) {
@@ -27,18 +27,68 @@ public class NhanKhauService {
         return null;
     }
 
-    public SimpleResult taoNhanKhau(int idNhanKhau) {
+    public SimpleResult taoNhanKhau(NhanKhauModel nhanKhauMoi) {
 
-        return null;
+        // lay thong tin input
+        int ID = nhanKhauMoi.getID();
+        String maNhanKhau = nhanKhauMoi.getMaNhanKhau();
+        String Ho_ten = nhanKhauMoi.getHo_ten();
+        Date namSinh = nhanKhauMoi.getNamSinh();
+        String gioiTinh = nhanKhauMoi.getGioiTinh();
+        String noiSinh = nhanKhauMoi.getNoiSinh();
+        String nguyenQuan = nhanKhauMoi.getNguyenQuan();
+        String danToc = nhanKhauMoi.getDanToc();
+        String tonGiao = nhanKhauMoi.getTonGiao();
+        String quocTich= nhanKhauMoi.getQuocTich();
+        String noiThuongTru= nhanKhauMoi.getNoiThuongTru();
+        String soHoChieu= nhanKhauMoi.getSoHoChieu();
+        String diaChiHienNay= nhanKhauMoi.getDiaChiHienNay();
+        String trinhDoHocVan= nhanKhauMoi.getTrinhDoHocVan();
+        String ngheNghiep= nhanKhauMoi.getNgheNghiep();
+        String noiLamViec= nhanKhauMoi.getNoiLamViec();
+        String tienAn= nhanKhauMoi.getTienAn();
+        Date ngayChuyenDen= nhanKhauMoi.getNgayChuyenDen();
+        String lyDoChuyenDen= nhanKhauMoi.getLyDoChuyenDen();
+        Date ngayChuyenDi= nhanKhauMoi.getNgayChuyenDi();
+        String lyDoChuyenDi= nhanKhauMoi.getLyDoChuyenDi();
+        String diaChiMoi= nhanKhauMoi.getDiaChiMoi();
+        Date ngayTao= nhanKhauMoi.getNgayTao();
+        int idNguoiTao= nhanKhauMoi.getIdNguoiTao();
+        Date ngayXoa= nhanKhauMoi.getNgayXoa();
+        int idNguoiXoa= nhanKhauMoi.getIdNguoiXoa();
+        String lyDoXoa= nhanKhauMoi.getLyDoXoa();
+        String ghiChu= nhanKhauMoi.getGhiChu();
+        TiemChungModel thongTinTiemChung= nhanKhauMoi.getThongTinTiemChung();
+        CachLyModel thongTinCachLy= nhanKhauMoi.getThongTinCachLy();
+
+        try{
+            Connection connection = MySQLConnector.getConnection();
+            String query = " ";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException ex) {// thong bao loi
+            ex.printStackTrace();
+            return new SimpleResult(false, ex.getMessage());
+        }
     }
 
     public SimpleResult suaNhanKhau(int idNhanKhau) {
-        return null;
+        try{
+            Connection connection = MySQLConnector.getConnection();
+            String query = " ";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException ex) {// thong bao loi
+            ex.printStackTrace();
+            return new SimpleResult(false, ex.getMessage());
+        }
     }
 
     public ArrayList<NhanKhauModel> timKiemNhanKhau(String keyword, NhanKhauFilterEnum filterType) {
 
-        //extract_info
+        // lay thong tin input
         Map<Integer, String> map = new HashMap<Integer, String>();
             map.put(1, "maNhanKhau");
             map.put(2, "Ho_ten");
@@ -82,7 +132,16 @@ public class NhanKhauService {
     }
 
     public ArrayList<NhanKhauModel> filterNhanKhau(Map<NhanKhauFilterEnum, String> filterOptions) {
-        return null;
+        try{
+            Connection connection = MySQLConnector.getConnection();
+            String query = " ";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException ex) {// thong bao loi
+            ex.printStackTrace();
+            return new SimpleResult(false, ex.getMessage());
+        }
     }
 
     public String countTiLeTiem1Vacxin() {
