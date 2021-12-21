@@ -2,10 +2,7 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.helper.enums.NhanKhauFilterEnum;
-import com.example.quanlyphuong.models.CachLyModel;
-import com.example.quanlyphuong.models.NhanKhauModel;
-import com.example.quanlyphuong.models.SimpleResult;
-import com.example.quanlyphuong.models.TiemChungModel;
+import com.example.quanlyphuong.models.*;
 
 import java.util.*;
 import java.sql.Connection;
@@ -130,7 +127,7 @@ public class NhanKhauService {
         String lyDoChuyenDi= nhanKhauMoi.getLyDoChuyenDi();
         String diaChiMoi= nhanKhauMoi.getDiaChiMoi();
         Date ngayTao= nhanKhauMoi.getNgayTao();
-        int idNguoiTao= nhanKhauMoi.getIdNguoiTao();
+        int idNguoiTao = 1;
         Date ngayXoa= nhanKhauMoi.getNgayXoa();
         int idNguoiXoa= nhanKhauMoi.getIdNguoiXoa();
         String lyDoXoa= nhanKhauMoi.getLyDoXoa();
@@ -189,46 +186,69 @@ public class NhanKhauService {
             map.put(6, "noiLamViec");
 
         String column = map.get(filterType);
-        String query = "SELECT * FROM nhan_khau WHERE " + column +" LIKE '%" + keyword + "%'";
 
-        // truy van tren database
+        // truy van id trong tabel nhan_khau
+        Connection connection = MySQLConnector.getConnection();
         try {
-
-            Connection connection = MySQLConnector.getConnection();
+            String query = "SELECT * FROM ((nhan_khau "
+                    + "INNER JOIN thanh_vien_cua_ho ON nhan_khau.maNhanKhau = thanh_vien_cua_ho.idNhanKhau ) "
+                    + "INNER JOIN ho_khau ON thanh_vien_cua_ho.idHoKhau = ho_khau.maHoKhau ) "
+                    + "WHERE " + column +" LIKE '%" + keyword + "%'";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
-
-            ArrayList<NhanKhauModel> list = new ArrayList<>();
+            ArrayList<NhanKhauModel> list_nhanKhau = new ArrayList<>();
 
             while (rs.next()) {
-
                 NhanKhauModel nhanKhau = new NhanKhauModel();
+                HoKhauModel hoKhau = new HoKhauModel();
 
-                nhanKhau.setMaNhanKhau(rs.getInt("maNhanKhau"));
                 nhanKhau.setHo_ten(rs.getString("Ho_ten"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
-                nhanKhau.setNgheNghiep(rs.getInt("ngheNghiep"));
-                nhanKhau.setNoiLamViec(rs.getString("noiLamViec"));
+                hoKhau.setIdChuHo(rs.getInt("idChuHo"));
+                hoKhau.setMaHoKhau(rs.getString("maHoKhau"));
+                nhanKhau.setThongTinHoKhau(hoKhau);
 
-                list.add(nhanKhau);
+                list_nhanKhau.add(nhanKhau);
             }
             preparedStatement.close();
-            return list;
+            return list_nhanKhau;
         } catch (SQLException ex) {// thong bao loi
             ex.printStackTrace();
             return new ArrayList<>();
         }
-
     }
 
     public ArrayList<NhanKhauModel> filterNhanKhau(Map<NhanKhauFilterEnum, String> filterOptions) {
+
+        // Lay du lieu input
+        String columns = new String();
+        for (Map.Entry<Integer, String> option : filterOptions.entrySet()){
+            columns = columns + ',' +option
+        }
+
         try{
             Connection connection = MySQLConnector.getConnection();
-            String query = " ";
+            String query = "SELECT "+columns+" FROM nhan_khau";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<NhanKhauModel> list_nhanKhau = new ArrayList<>();
+
+            while (rs.next()) {
+                NhanKhauModel nhanKhau = new NhanKhauModel();
+                HoKhauModel hoKhau = new HoKhauModel();
+
+                nhanKhau.setHo_ten(rs.getString("Ho_ten"));
+                nhanKhau.setNamSinh(rs.getDate("namSinh"));
+                nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+                hoKhau.setIdChuHo(rs.getInt("idChuHo"));
+                hoKhau.setMaHoKhau(rs.getString("maHoKhau"));
+                nhanKhau.setThongTinHoKhau(hoKhau);
+
+                list_nhanKhau.add(nhanKhau);
+            }
             preparedStatement.close();
+            return list_nhanKhau;
         } catch (SQLException ex) {// thong bao loi
             ex.printStackTrace();
             return new SimpleResult(false, ex.getMessage());
