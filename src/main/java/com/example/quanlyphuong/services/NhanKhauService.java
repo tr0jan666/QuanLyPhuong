@@ -229,7 +229,9 @@ public class NhanKhauService {
 
         try{
             Connection connection = MySQLConnector.getConnection();
-            String query = "SELECT "+columns+" FROM nhan_khau";
+            String query = "SELECT "+columns+" FROM ((nhan_khau"
+                    + "INNER JOIN thanh_vien_cua_ho ON nhan_khau.maNhanKhau = thanh_vien_cua_ho.idNhanKhau ) "
+                    + "INNER JOIN ho_khau ON thanh_vien_cua_ho.idHoKhau = ho_khau.maHoKhau ) ";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<NhanKhauModel> list_nhanKhau = new ArrayList<>();
