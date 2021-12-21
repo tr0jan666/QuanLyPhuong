@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.controllers;
 
 import com.example.quanlyphuong.QuanLyNhanKhauApplication;
+import com.example.quanlyphuong.controllers.MenuController;
 import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.models.AppScreen;
 import com.example.quanlyphuong.models.SimpleResult;
