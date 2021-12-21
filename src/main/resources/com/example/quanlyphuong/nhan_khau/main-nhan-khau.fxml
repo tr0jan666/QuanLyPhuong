@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="676.0" prefWidth="850.0" stylesheets="@menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.MainNhanKhauController">
+    <children>
+        <AnchorPane layoutX="150.0" layoutY="49.0" prefHeight="107.0" prefWidth="693.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <Label layoutX="14.0" layoutY="10.0" text="Nhân khẩu có trên địa bàn :" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="tongNhanKhauLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="39.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <AnchorPane layoutX="150.0" layoutY="499.0" prefHeight="107.0" prefWidth="711.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <Label layoutX="14.0" layoutY="13.0" text="Nhân khẩu tạm vắng :" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nhanKhauTamVangLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="39.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="16.0" layoutY="499.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="20.0">
+            <children>
+                <ImageView fitHeight="76.0" fitWidth="72.0" layoutX="5.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                    <image>
+                        <Image url="@../icon/hotel.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="150.0" layoutY="364.0" prefHeight="107.0" prefWidth="711.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <Label layoutX="14.0" layoutY="13.0" text="Nhân khẩu tạm trú :" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nhanKhauTamTruLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="39.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="214.0" layoutY="326.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="20.0">
+            <children>
+                <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="5.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icon/check-in.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="20.0" layoutY="37.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="49.0">
+            <children>
+                <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="5.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                    <image>
+                        <Image url="@../icon/network.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="150.0" layoutY="205.0" prefHeight="107.0" prefWidth="711.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <Label layoutX="14.0" layoutY="10.0" text="Hộ khẩu có trên địa bàn :" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="tongHoKhauLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="39.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="214.0" layoutY="180.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" stylesheets="@menu-nhan-khau.css" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="205.0">
+            <children>
+                <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="5.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                    <image>
+                        <Image url="@../icon/house.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

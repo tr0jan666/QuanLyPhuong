@@ -32,7 +32,7 @@ CREATE TABLE `cach_ly` (
                            PRIMARY KEY (`idCachLy`),
                            KEY `id_NhanKhau_idx` (`idNhankhau`),
                            CONSTRAINT `id_NhanKhau` FOREIGN KEY (`idNhankhau`) REFERENCES `test` (`idNhankhau`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,7 +60,7 @@ CREATE TABLE `khai_bao` (
                             PRIMARY KEY (`idKhaiBao`),
                             KEY `id_nhankhau_kb_fk_idx` (`idNhanKhau`),
                             CONSTRAINT `id_nhankhau_kb_fk` FOREIGN KEY (`idNhanKhau`) REFERENCES `quan_ly_nhan_khau`.`nhan_khau` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

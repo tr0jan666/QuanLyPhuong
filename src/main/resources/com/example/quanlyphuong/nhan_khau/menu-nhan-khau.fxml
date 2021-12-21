@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.quanlyphuong.controllers.nhan_khau.MainNhanKhauController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="678.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.MenuNhanKhauController">
+    <children>
+        <HBox prefHeight="678.0" prefWidth="1075.0" stylesheets="@menu-nhan-khau.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox fillWidth="false" prefHeight="628.0" prefWidth="225.0" spacing="55.0" styleClass="pane" stylesheets="@menu-nhan-khau.css">
+                    <children>
+                        <Button fx:id="trangChu" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setTrangChu" prefHeight="80.0" prefWidth="223.0" styleClass="button3" stylesheets="@menu-nhan-khau.css" text="Trang chủ" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="23.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <graphic>
+                                <FontAwesomeIconView fill="#1b74e4" glyphName="HOME" size="32" wrappingWidth="194.0" />
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnNhanKhau" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="20.0" layoutY="185.0" mnemonicParsing="false" onAction="#setNhanKhau" prefHeight="60.0" prefWidth="225.0" styleClass="button3" stylesheets="@menu-nhan-khau.css" text="Nhân khẩu" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="20.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="1.0" right="1.0" />
+                            </VBox.margin>
+                            <graphic>
+                                <FontAwesomeIconView fill="#1b74e4" glyphName="USER" size="22" wrappingWidth="170.0" />
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnHoKhau" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#setHoKhau" prefHeight="60.0" prefWidth="224.0" styleClass="button3" stylesheets="@menu-nhan-khau.css" text="Hộ khẩu" textFill="WHITE">
+                            <VBox.margin>
+                                <Insets left="1.0" right="1.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="#1b74e4" glyphName="USERS" size="22" wrappingWidth="170.0" />
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnThongKe" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="20.0" layoutY="321.0" mnemonicParsing="false" onAction="#setThongKe" prefHeight="60.0" prefWidth="225.0" styleClass="button3" stylesheets="@menu-nhan-khau.css" text="Thống kê" textFill="WHITE">
+                            <VBox.margin>
+                                <Insets left="1.0" right="1.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="#1b74e4" glyphName="SIGNAL" size="22" wrappingWidth="170.0" />
+                            </graphic>
+                        </Button>
+                  <Button fx:id="btnQuayLai" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setQuayLai" prefHeight="60.0" prefWidth="225.0" styleClass="button3" stylesheets="@menu-nhan-khau.css" text="Quay Lại">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#1b74e4" glyphName="ARROW_CIRCLE_LEFT" size="22" wrappingWidth="170.0" />
+                     </graphic>
+                  </Button>
+                        <Label alignment="CENTER" graphicTextGap="8.0" prefHeight="55.0" prefWidth="212.0" text="Copyright by nhóm 15" textAlignment="CENTER">
+                            <font>
+                                <Font name="Arial Italic" size="17.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView glyphName="COPYRIGHT" size="22" textAlignment="CENTER" />
+                            </graphic>
+                        </Label>
+                    </children>
+                </VBox>
+                <BorderPane fx:id="borderPane" prefHeight="678.0" prefWidth="850.0" styleClass="button3" />
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>
