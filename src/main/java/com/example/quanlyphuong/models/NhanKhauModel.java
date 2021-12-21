@@ -32,7 +32,6 @@ public class NhanKhauModel {
     private int idNguoiXoa;
     private String lyDoXoa;
     private String ghiChu;
-
     private TiemChungModel thongTinTiemChung;
     private CachLyModel thongTinCachLy;
 
