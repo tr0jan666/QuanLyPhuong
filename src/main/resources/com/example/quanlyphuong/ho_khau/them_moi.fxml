@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cnpm.team.quanlynhankhau.fxml.quanlynhankhau.Ho-khau.ThemMoi">
+   <children>
+      <Label layoutX="20.0" layoutY="20.0" text="Thông tin hộ khẩu">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="70.0" text="Mã hộ khẩu:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="110.0" text="Mã khu vực:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="150.0" text="Địa chỉ:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="190.0" text="Chủ hộ:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="230.0" text="Ngày sinh chủ hộ:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="270.0" text="Số CMT chủ hộ:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfMaKhuVuc" layoutX="220.0" layoutY="107.0" prefHeight="34.0" prefWidth="575.0" />
+      <TextField fx:id="tfDiaChi" layoutX="220.0" layoutY="148.0" prefHeight="34.0" prefWidth="575.0" />
+      <TextField fx:id="tfTenChuHo" layoutX="220.0" layoutY="189.0" prefHeight="34.0" prefWidth="575.0" />
+      <TextField fx:id="tfNgaySinhChuHo" layoutX="220.0" layoutY="230.0" prefHeight="34.0" prefWidth="575.0" />
+      <TextField fx:id="tfCMTChuHo" layoutX="220.0" layoutY="271.0" prefHeight="34.0" prefWidth="575.0" />
+      <Label layoutX="800.0" layoutY="109.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="152.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="193.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="230.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="274.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="330.0" text="Thành viên của hộ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnThemThanhVien" layoutX="50.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Thêm">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnXoaThanhVien" layoutX="190.0" layoutY="360.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Xóa thành viên đã chọn">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tbvThanhVienCuaHo" layoutX="20.0" layoutY="410.0" prefHeight="273.0" prefWidth="772.0">
+         <columns>
+            <TableColumn prefWidth="225.3333282470703" text="Họ tên" />
+            <TableColumn prefWidth="258.3333435058594" text="Ngày sinh " />
+            <TableColumn prefWidth="288.6666564941406" text="Quan hệ với chủ hộ" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnHuy" layoutX="840.0" layoutY="590.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Hủy">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnLuu" layoutX="840.0" layoutY="645.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Lưu">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="220.0" layoutY="70.0" prefHeight="29.0" prefWidth="244.0" />
+      <Button fx:id="btnChonChuHo" layoutX="100.0" layoutY="185.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" text="Chọn" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

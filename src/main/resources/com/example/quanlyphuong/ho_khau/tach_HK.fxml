@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cnpm.team.quanlynhankhau.fxml.quanlynhankhau.Ho-khau.TachHK">
+   <children>
+      <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="169.0" text="Chọn hộ cần tách">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbvHoCanTach" layoutX="20.0" layoutY="60.0" prefHeight="286.0" prefWidth="405.0">
+        <columns>
+          <TableColumn prefWidth="136.3333282470703" text="Mã hộ khẩu" />
+          <TableColumn prefWidth="132.6666717529297" text="Họ tên chủ hộ" />
+            <TableColumn prefWidth="135.0" text="Địa chỉ" />
+        </columns>
+      </TableView>
+      <Label layoutX="20.0" layoutY="360.0" prefHeight="30.0" prefWidth="219.0" text="Chọn người sang hộ mới">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbvNguoiSangHoMoi" layoutX="20.0" layoutY="390.0" prefHeight="258.0" prefWidth="430.0">
+        <columns>
+          <TableColumn prefWidth="135.0" text="Họ tên" />
+          <TableColumn prefWidth="132.33334350585938" text="Ngày sinh" />
+            <TableColumn prefWidth="141.66665649414062" text="Quan hệ với chủ hộ" />
+        </columns>
+      </TableView>
+      <Label layoutX="450.0" layoutY="60.0" text="Chủ hộ hiện tại">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="160.0" text="Mã khu vực">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="210.0" text="Địa chỉ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="260.0" text="Mã hộ khẩu mới">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="310.0" text="Chủ hộ mới">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfChuHoHienTai" layoutX="610.0" layoutY="60.0" prefHeight="35.0" prefWidth="355.0" />
+      <TextField fx:id="tfMaKhuVuc" layoutX="610.0" layoutY="160.0" prefHeight="35.0" prefWidth="355.0" />
+      <TextField fx:id="tfDiaChi" layoutX="610.0" layoutY="210.0" prefHeight="35.0" prefWidth="355.0" />
+      <TextField fx:id="tfMaHoKhauMoi" layoutX="610.0" layoutY="260.0" prefHeight="35.0" prefWidth="355.0" />
+      <TextField fx:id="tfChuHoMoi" layoutX="610.0" layoutY="310.0" prefHeight="35.0" prefWidth="355.0" />
+      <Button fx:id="btnChuyenSang" layoutX="467.0" layoutY="440.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="&gt;&gt;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnChuyenVe" layoutX="467.0" layoutY="480.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="&lt;&lt;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="535.0" layoutY="360.0" text="Những người ở hộ mới">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="965.0" layoutY="60.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="965.0" layoutY="160.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="965.0" layoutY="210.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="965.0" layoutY="260.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="965.0" layoutY="310.0" text="(*)" textFill="#f20303">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnHuy" layoutX="750.0" layoutY="655.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" text="Hủy">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnXacNhan" layoutX="850.0" layoutY="655.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Xác nhận">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnChonChuHoMoi" layoutX="554.0" layoutY="312.0" mnemonicParsing="false" text="Chọn" />
+      <Label layoutX="450.0" layoutY="110.0" prefHeight="30.0" prefWidth="256.0" text="Nhập thông tin hộ mới:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbvNguoiHoMoi" layoutX="535.0" layoutY="390.0" prefHeight="258.0" prefWidth="440.0">
+         <columns>
+            <TableColumn prefWidth="135.0" text="Họ tên" />
+            <TableColumn prefWidth="132.33334350585938" text="Ngày sinh" />
+            <TableColumn prefWidth="141.66665649414062" text="Quan hệ với chủ hộ" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
