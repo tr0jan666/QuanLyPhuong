@@ -15,7 +15,7 @@ public class NhanKhauModel {
     private String tonGiao;
     private String quocTich;
     private String noiThuongTru;
-    private String soHoChieu; //chưa có trong database
+    private String soHoChieu;
     private String diaChiHienNay;
     private String trinhDoHocVan;
     private String ngheNghiep;
