@@ -34,6 +34,8 @@ public class NhanKhauModel {
     private String ghiChu;
     private TiemChungModel thongTinTiemChung;
     private CachLyModel thongTinCachLy;
+    private HoKhauModel thongTinHoKhau;
+
 
     public NhanKhauModel(){};
 
@@ -308,6 +310,14 @@ public class NhanKhauModel {
 
     public void setThongTinCachLy(CachLyModel thongTinCachLy) {
         this.thongTinCachLy = thongTinCachLy;
+    }
+
+    public HoKhauModel getThongTinHoKhau() {
+        return thongTinHoKhau;
+    }
+
+    public void setThongTinHoKhau(HoKhauModel thongTinHoKhau) {
+        this.thongTinHoKhau = thongTinHoKhau;
     }
 }
 
