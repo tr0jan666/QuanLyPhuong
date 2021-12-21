@@ -2,19 +2,25 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.models.SimpleResult;
-import com.example.quanlyphuong.models.UserMoldel;
-
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class AuthService {
+    private static String USER_ADMIN = "admin";
+    private static String PWD_ADMIN = "admin";
     public AuthService() {
 
     }
 
-    public SimpleResult login(String userName, String password) {
+    public SimpleResult login(String userName, String password, boolean isAdmin) {
+        //check administrator
+        if(isAdmin) {
+            if(userName.equals(USER_ADMIN) && password.equals(PWD_ADMIN)){
+                return new SimpleResult(true, SimpleResult.DEFAULT_SUCCESS_MESSAGE);
+            }else {
+                return new SimpleResult(false, "Tài khoản administrator không chính xác!");
+            }
+        }
         String selectUserScript = "select * from users where userName = ?";
         try (Connection connection = MySQLConnector.getConnection()) {
             PreparedStatement selectUserSM = connection.prepareStatement(selectUserScript);
