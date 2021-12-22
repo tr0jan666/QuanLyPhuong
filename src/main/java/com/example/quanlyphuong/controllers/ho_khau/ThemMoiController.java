@@ -1,5 +1,7 @@
 package com.example.quanlyphuong.controllers.ho_khau;
 
+import com.example.quanlyphuong.helper.UIHelper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -39,5 +41,10 @@ public class ThemMoiController {
 
     @FXML
     private TextField tfTenChuHo;
+    @FXML
+    void chonChuHo(ActionEvent event) {
+        UIHelper.navigateNew("ho_khau/chon_chu_ho.fxml", "chon_chu_ho", null);
+
+    }
 
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cnpm.team.quanlynhankhau.fxml.quanlynhankhau.Ho-khau.TachHK">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.ho_khau.TachHoKhauController">
    <children>
       <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="169.0" text="Chọn hộ cần tách">
          <font>
@@ -64,12 +64,12 @@
       <TextField fx:id="tfDiaChi" layoutX="610.0" layoutY="210.0" prefHeight="35.0" prefWidth="355.0" />
       <TextField fx:id="tfMaHoKhauMoi" layoutX="610.0" layoutY="260.0" prefHeight="35.0" prefWidth="355.0" />
       <TextField fx:id="tfChuHoMoi" layoutX="610.0" layoutY="310.0" prefHeight="35.0" prefWidth="355.0" />
-      <Button fx:id="btnChuyenSang" layoutX="467.0" layoutY="440.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="&gt;&gt;">
+      <Button fx:id="btnChuyenSang" layoutX="467.0" layoutY="440.0" mnemonicParsing="false" onAction="#chuyenSang" prefHeight="30.0" prefWidth="50.0" text="&gt;&gt;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnChuyenVe" layoutX="467.0" layoutY="480.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="&lt;&lt;">
+      <Button fx:id="btnChuyenVe" layoutX="467.0" layoutY="480.0" mnemonicParsing="false" onAction="#chuyenVe" prefHeight="30.0" prefWidth="50.0" text="&lt;&lt;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -104,17 +104,17 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnHuy" layoutX="750.0" layoutY="655.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" text="Hủy">
+      <Button fx:id="btnHuy" layoutX="750.0" layoutY="655.0" mnemonicParsing="false" onAction="#huyTachHoKhau" prefHeight="35.0" prefWidth="60.0" text="Hủy">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnXacNhan" layoutX="850.0" layoutY="655.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Xác nhận">
+      <Button fx:id="btnXacNhan" layoutX="850.0" layoutY="655.0" mnemonicParsing="false" onAction="#xacNhanTachHoKHau" prefHeight="35.0" prefWidth="90.0" text="Xác nhận">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnChonChuHoMoi" layoutX="554.0" layoutY="312.0" mnemonicParsing="false" text="Chọn" />
+      <Button fx:id="btnChonChuHoMoi" layoutX="554.0" layoutY="312.0" mnemonicParsing="false" onAction="#chonChuHo" text="Chọn" />
       <Label layoutX="450.0" layoutY="110.0" prefHeight="30.0" prefWidth="256.0" text="Nhập thông tin hộ mới:">
          <font>
             <Font name="System Bold" size="18.0" />

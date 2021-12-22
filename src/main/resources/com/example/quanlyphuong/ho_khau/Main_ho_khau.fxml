@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cnpm.team.quanlynhankhau.controller.nhankhau.MenuNhanKhauController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController">
     <children>
       <TableView fx:id="tbvBangThongKe" layoutX="20.0" layoutY="160.0" prefHeight="630.0" prefWidth="820.0">
          <columns>
@@ -17,12 +17,12 @@
             <TableColumn prefWidth="390.33331298828125" text="Địa chỉ" />
          </columns>
       </TableView>
-      <Button fx:id="btnThemMoi" layoutX="860.0" layoutY="160.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Thêm mới">
+      <Button fx:id="btnThemMoi" layoutX="860.0" layoutY="160.0" mnemonicParsing="false" onAction="#changeSceneThemMoi" prefHeight="40.0" prefWidth="120.0" text="Thêm mới">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnTachHoKhau" layoutX="860.0" layoutY="210.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Tách hộ khẩu">
+      <Button fx:id="btnTachHoKhau" layoutX="860.0" layoutY="210.0" mnemonicParsing="false" onAction="#changeSceneTachHoKhau" prefHeight="40.0" prefWidth="120.0" text="Tách hộ khẩu">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

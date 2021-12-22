@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cnpm.team.quanlynhankhau.fxml.quanlynhankhau.Ho-khau.ThemMoi">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.ho_khau.ThemMoiController">
    <children>
       <Label layoutX="20.0" layoutY="20.0" text="Thông tin hộ khẩu">
          <font>
@@ -108,7 +108,7 @@
          </font>
       </Button>
       <Label layoutX="220.0" layoutY="70.0" prefHeight="29.0" prefWidth="244.0" />
-      <Button fx:id="btnChonChuHo" layoutX="100.0" layoutY="185.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" text="Chọn" textAlignment="CENTER">
+      <Button fx:id="btnChonChuHo" layoutX="100.0" layoutY="185.0" mnemonicParsing="false" onAction="#chonChuHo" prefHeight="35.0" prefWidth="60.0" text="Chọn" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
