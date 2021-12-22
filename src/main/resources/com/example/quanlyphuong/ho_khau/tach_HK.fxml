@@ -17,9 +17,9 @@
       </Label>
       <TableView fx:id="tbvHoCanTach" layoutX="20.0" layoutY="60.0" prefHeight="286.0" prefWidth="405.0">
         <columns>
-          <TableColumn prefWidth="136.3333282470703" text="Mã hộ khẩu" />
-          <TableColumn prefWidth="132.6666717529297" text="Họ tên chủ hộ" />
-            <TableColumn prefWidth="135.0" text="Địa chỉ" />
+          <TableColumn fx:id="maHoKhauChuHo" prefWidth="136.3333282470703" text="Mã hộ khẩu" />
+          <TableColumn fx:id="hoTenChuHo" prefWidth="132.6666717529297" text="Họ tên chủ hộ" />
+            <TableColumn fx:id="diaChiChuHo" prefWidth="135.0" text="Địa chỉ" />
         </columns>
       </TableView>
       <Label layoutX="20.0" layoutY="360.0" prefHeight="30.0" prefWidth="219.0" text="Chọn người sang hộ mới">
@@ -29,9 +29,9 @@
       </Label>
       <TableView fx:id="tbvNguoiSangHoMoi" layoutX="20.0" layoutY="390.0" prefHeight="258.0" prefWidth="430.0">
         <columns>
-          <TableColumn prefWidth="135.0" text="Họ tên" />
-          <TableColumn prefWidth="132.33334350585938" text="Ngày sinh" />
-            <TableColumn prefWidth="141.66665649414062" text="Quan hệ với chủ hộ" />
+          <TableColumn fx:id="hoTenNhanKhauCu" prefWidth="135.0" text="Họ tên" />
+          <TableColumn fx:id="ngaySinhNhanKhauCu" prefWidth="132.33334350585938" text="Ngày sinh" />
+            <TableColumn fx:id="quanHeCu" prefWidth="141.66665649414062" text="Quan hệ với chủ hộ" />
         </columns>
       </TableView>
       <Label layoutX="450.0" layoutY="60.0" text="Chủ hộ hiện tại">
@@ -122,9 +122,9 @@
       </Label>
       <TableView fx:id="tbvNguoiHoMoi" layoutX="535.0" layoutY="390.0" prefHeight="258.0" prefWidth="440.0">
          <columns>
-            <TableColumn prefWidth="135.0" text="Họ tên" />
-            <TableColumn prefWidth="132.33334350585938" text="Ngày sinh" />
-            <TableColumn prefWidth="141.66665649414062" text="Quan hệ với chủ hộ" />
+            <TableColumn fx:id="hoTenNhanKhauMoi" prefWidth="135.0" text="Họ tên" />
+            <TableColumn fx:id="ngaySinhMoi" prefWidth="132.33334350585938" text="Ngày sinh" />
+            <TableColumn fx:id="quanHeMoi" prefWidth="141.66665649414062" text="Quan hệ với chủ hộ" />
          </columns>
       </TableView>
    </children>

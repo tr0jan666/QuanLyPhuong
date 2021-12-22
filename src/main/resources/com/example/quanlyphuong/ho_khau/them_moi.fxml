@@ -80,29 +80,29 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnThemThanhVien" layoutX="50.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Thêm">
+      <Button fx:id="btnThemThanhVien" layoutX="50.0" layoutY="360.0" mnemonicParsing="false" onAction="#themThanhVien" prefHeight="30.0" prefWidth="100.0" text="Thêm">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnXoaThanhVien" layoutX="190.0" layoutY="360.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Xóa thành viên đã chọn">
+      <Button fx:id="btnXoaThanhVien" layoutX="190.0" layoutY="360.0" mnemonicParsing="false" onAction="#xoaThanhVienDaChon" prefHeight="39.0" prefWidth="239.0" text="Xóa thành viên đã chọn">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <TableView fx:id="tbvThanhVienCuaHo" layoutX="20.0" layoutY="410.0" prefHeight="273.0" prefWidth="772.0">
          <columns>
-            <TableColumn prefWidth="225.3333282470703" text="Họ tên" />
-            <TableColumn prefWidth="258.3333435058594" text="Ngày sinh " />
-            <TableColumn prefWidth="288.6666564941406" text="Quan hệ với chủ hộ" />
+            <TableColumn fx:id="hoTenThanhVien" prefWidth="225.3333282470703" text="Họ tên" />
+            <TableColumn fx:id="ngaySinhThanhVien" prefWidth="258.3333435058594" text="Ngày sinh " />
+            <TableColumn fx:id="quanHeVoiChuHo" prefWidth="288.6666564941406" text="Quan hệ với chủ hộ" />
          </columns>
       </TableView>
-      <Button fx:id="btnHuy" layoutX="840.0" layoutY="590.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Hủy">
+      <Button fx:id="btnHuy" layoutX="840.0" layoutY="590.0" mnemonicParsing="false" onAction="#huy" prefHeight="30.0" prefWidth="100.0" text="Hủy">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnLuu" layoutX="840.0" layoutY="645.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Lưu">
+      <Button fx:id="btnLuu" layoutX="840.0" layoutY="645.0" mnemonicParsing="false" onAction="#luu" prefHeight="30.0" prefWidth="100.0" text="Lưu">
          <font>
             <Font size="18.0" />
          </font>

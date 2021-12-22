@@ -2,10 +2,12 @@ package com.example.quanlyphuong.controllers.ho_khau;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class ChonChuHoController {
 
@@ -36,8 +38,9 @@ public class ChonChuHoController {
     }
 
     @FXML
-    void huy(ActionEvent event) {
-
+    public void huy(ActionEvent event){
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
     }
 
 }

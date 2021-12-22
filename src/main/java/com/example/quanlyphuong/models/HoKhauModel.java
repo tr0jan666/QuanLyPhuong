@@ -14,6 +14,24 @@ public class HoKhauModel {
     private String lyDoChuyen;
     private int nguoiThucHien;
     private ArrayList<NhanKhauModel> listNhanKhau;
+    private ArrayList<ThanhVienCuaHoModel> thanhVienCuaHoModelArrayList;
+    private String hoTenChuHo;
+
+    public void setHoTenChuHo(String hoTenChuHo) {
+        this.hoTenChuHo = hoTenChuHo;
+    }
+
+    public String getHoTenChuHo() {
+        return hoTenChuHo;
+    }
+
+    public void setThanhVienCuaHoModelArrayList(ArrayList<ThanhVienCuaHoModel> thanhVienCuaHoModelArrayList) {
+        this.thanhVienCuaHoModelArrayList = thanhVienCuaHoModelArrayList;
+    }
+
+    public ArrayList<ThanhVienCuaHoModel> getThanhVienCuaHoModelArrayList() {
+        return thanhVienCuaHoModelArrayList;
+    }
 
     public int getID() {
         return ID;

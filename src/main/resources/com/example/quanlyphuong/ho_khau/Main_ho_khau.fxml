@@ -12,9 +12,9 @@
     <children>
       <TableView fx:id="tbvBangThongKe" layoutX="20.0" layoutY="160.0" prefHeight="630.0" prefWidth="820.0">
          <columns>
-            <TableColumn prefWidth="160.0" text="Mã hộ khẩu" />
-            <TableColumn minWidth="0.0" prefWidth="274.66668701171875" text="Họ tên chủ hộ" />
-            <TableColumn prefWidth="390.33331298828125" text="Địa chỉ" />
+            <TableColumn fx:id="maHoKhau" prefWidth="160.0" text="Mã hộ khẩu" />
+            <TableColumn fx:id="hoTenChuHo" minWidth="0.0" prefWidth="274.66668701171875" text="Họ tên chủ hộ" />
+            <TableColumn fx:id="diaChi" prefWidth="390.33331298828125" text="Địa chỉ" />
          </columns>
       </TableView>
       <Button fx:id="btnThemMoi" layoutX="860.0" layoutY="160.0" mnemonicParsing="false" onAction="#changeSceneThemMoi" prefHeight="40.0" prefWidth="120.0" text="Thêm mới">
@@ -38,7 +38,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnHoanTac" layoutX="860.0" layoutY="700.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" text="Hoàn tác">
+      <Button fx:id="btnHoanTac" layoutX="860.0" layoutY="700.0" mnemonicParsing="false" onAction="#huy" prefHeight="30.0" prefWidth="98.0" text="Hủy">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
