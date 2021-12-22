@@ -4,6 +4,8 @@ import com.example.quanlyphuong.controllers.LoginController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.quanlyphuong.controllers.MenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
