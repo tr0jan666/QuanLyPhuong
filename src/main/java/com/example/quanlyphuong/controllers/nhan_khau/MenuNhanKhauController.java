@@ -15,13 +15,14 @@ import javafx.scene.layout.Pane;
 public class MenuNhanKhauController implements Initializable {
     @FXML
     private BorderPane borderPane;
-
+ @FXML
     public void setTrangChu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/views/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main-nhan-khau.fxml"));
         Pane trangchuPane = (Pane) loader.load();
         borderPane.setCenter(trangchuPane);
 
     }
+    @FXML
     public void setNhanKhau(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/views/NhanKhau1.fxml"));
         Pane nhankhauPane = (Pane) loader.load();
@@ -37,7 +38,7 @@ public class MenuNhanKhauController implements Initializable {
 
 
     public void setThongKe(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/views/ThongKe.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/ThongKe.fxml"));
         Pane thongkePane = (Pane) loader.load();
         borderPane.setCenter(thongkePane);
 
@@ -56,7 +57,6 @@ public class MenuNhanKhauController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
-
 
             Pane login = FXMLLoader.load(getClass().getResource("main-nhan-khau.fxml"));
             borderPane.setCenter(login);
