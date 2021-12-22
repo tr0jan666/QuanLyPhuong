@@ -1,5 +1,6 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
+import com.example.quanlyphuong.QuanLyNhanKhauApplication;
 import com.example.quanlyphuong.controllers.LoginController;
 import java.io.IOException;
 import java.net.URL;
@@ -19,20 +20,20 @@ public class MenuNhanKhauController implements Initializable {
     private BorderPane borderPane;
  @FXML
     public void setTrangChu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main-nhan-khau.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("nhan_khau/main-dich-te.fxml"));
         Pane trangchuPane = (Pane) loader.load();
         borderPane.setCenter(trangchuPane);
 
     }
     @FXML
     public void setNhanKhau(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/views/NhanKhau1.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("nhan_khau/NhanKhau1.fxml"));
         Pane nhankhauPane = (Pane) loader.load();
         borderPane.setCenter(nhankhauPane);
     }
 
     public void setHoKhau(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/views/HoKhau.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("nhan_khau/hokhau.fxml"));
         Pane hokhauPane = (Pane) loader.load();
         borderPane.setCenter(hokhauPane);
 
@@ -40,7 +41,7 @@ public class MenuNhanKhauController implements Initializable {
 
 
     public void setThongKe(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/ThongKe.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("nhan_khau/thongKe.fxml"));
         Pane thongkePane = (Pane) loader.load();
         borderPane.setCenter(thongkePane);
 
@@ -53,14 +54,11 @@ public class MenuNhanKhauController implements Initializable {
     }
 
 
-
-
-
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
 
-            Pane login = FXMLLoader.load(getClass().getResource("main-nhan-khau.fxml"));
+            Pane login = FXMLLoader.load(QuanLyNhanKhauApplication.class.getResource("nhan_khau/main-dich-te.fxml"));
             borderPane.setCenter(login);
 
 
