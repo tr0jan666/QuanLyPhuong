@@ -23,7 +23,7 @@ public class MenuNhanKhauController implements Initializable {
 
     }
     public void setNhanKhau(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/views/NhanKhau.fxml"));
+        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/views/NhanKhau1.fxml"));
         Pane nhankhauPane = (Pane) loader.load();
         borderPane.setCenter(nhankhauPane);
     }
@@ -58,7 +58,7 @@ public class MenuNhanKhauController implements Initializable {
         try {
 
 
-            Pane login = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+            Pane login = FXMLLoader.load(getClass().getResource("main-nhan-khau.fxml"));
             borderPane.setCenter(login);
 
 

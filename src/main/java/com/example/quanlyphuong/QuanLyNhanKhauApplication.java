@@ -10,8 +10,9 @@ import java.io.IOException;
 public class QuanLyNhanKhauApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
+    //  FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("controllers/nhan_khau/menu-nhan-khau.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1075, 678);
         stage.setTitle("Quản lý nhân khẩu");
         stage.setResizable(false);
         stage.setScene(scene);

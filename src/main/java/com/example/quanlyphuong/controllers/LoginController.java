@@ -1,7 +1,5 @@
 package com.example.quanlyphuong.controllers;
 
-import com.example.quanlyphuong.QuanLyNhanKhauApplication;
-import com.example.quanlyphuong.controllers.MenuController;
 import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.models.AppScreen;
 import com.example.quanlyphuong.models.SimpleResult;
@@ -10,9 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class LoginController {
 

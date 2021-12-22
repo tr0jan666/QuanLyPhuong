@@ -2,9 +2,7 @@ package com.example.quanlyphuong.helper;
 
 import com.example.quanlyphuong.QuanLyNhanKhauApplication;
 import com.example.quanlyphuong.models.AppScreen;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
