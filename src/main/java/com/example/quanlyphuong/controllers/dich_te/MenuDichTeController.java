@@ -1,10 +1,13 @@
 package com.example.quanlyphuong.controllers.dich_te;
 
 import com.example.quanlyphuong.QuanLyNhanKhauApplication;
+import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.models.AppScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -57,7 +60,9 @@ public class MenuDichTeController implements Initializable {
 
     @FXML
     void setQuayLai(ActionEvent event) throws IOException {
-
+        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null);
+        assert menuChucNangScreen != null ;
+        ((Node) event.getSource()).getScene().getWindow().hide();
 
     }
 
@@ -97,8 +102,8 @@ public class MenuDichTeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
 
-            Pane login = FXMLLoader.load(QuanLyNhanKhauApplication.class.getResource("dich_te/main-dich-te.fxml"));
-            borderPane.setCenter(login);
+            Pane mainDichTe = FXMLLoader.load(QuanLyNhanKhauApplication.class.getResource("dich_te/main-dich-te.fxml"));
+            borderPane.setCenter(mainDichTe);
 
 
         } catch (IOException e) {

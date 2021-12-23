@@ -11,9 +11,9 @@ public class QuanLyNhanKhauApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("login-view.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("nhan_khau/menu-nhan-khau.fxml"));
+
         Scene scene = new Scene(fxmlLoader.load(), 1000, 630);
-        stage.setTitle("Quản lý nhân khẩu");
+        stage.setTitle("Quản lý dân cư");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
