@@ -1,4 +1,11 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.leftPaneLogin{
+    -fx-background-image: url("3dlogin.png");
+}
+
+
+
 .icon{
     -fx-fill: #1b74e4;
 }
@@ -14,18 +21,18 @@
 
 .button1
 {
-    -fx-background-color : #4227b8;
-    -fx-background-radius :  30 0 0 30;
+    -fx-background-color : #ef3575;
+    -fx-background-radius : 10;
 }
 .button1:hover
 {
     -fx-background-color : #524A7B ;
-    -fx-background-radius :  30 0 0 30;
+    -fx-background-radius :  10;
 }
 .button1:pressed
 {
     -fx-background-color : #2F2B43 ;
-    -fx-background-radius :  30 0 0 30;
+    -fx-background-radius :  10;
 }
 
 .button2
