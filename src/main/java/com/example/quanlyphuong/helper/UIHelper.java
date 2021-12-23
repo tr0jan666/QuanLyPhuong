@@ -16,6 +16,7 @@ public class UIHelper {
 
     public static AppScreen navigateNew(String fxmlPath, String title, Object userData) {
         FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource(fxmlPath));
+        System.out.println((QuanLyNhanKhauApplication.class.getResource(fxmlPath)));
         try {
             Scene scene = new Scene(fxmlLoader.load(), DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
             Stage stage = new Stage();
