@@ -1,9 +1,12 @@
 package com.example.quanlyphuong.controllers;
 
+import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.models.AppScreen;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.AuthService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -46,6 +49,13 @@ public class RegisterController {
             errAlert.setContentText(validateResult.getMessage());
             errAlert.show();
         }
+
+    }
+    @FXML
+    void setQuayLai(ActionEvent event) {
+        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,600,400);
+        assert menuChucNangScreen != null ;
+        ((Node) event.getSource()).getScene().getWindow().hide();
 
     }
 

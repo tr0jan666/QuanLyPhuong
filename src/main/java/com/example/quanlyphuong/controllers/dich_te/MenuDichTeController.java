@@ -60,7 +60,7 @@ public class MenuDichTeController implements Initializable {
 
     @FXML
     void setQuayLai(ActionEvent event) throws IOException {
-        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null);
+        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,600,400);
         assert menuChucNangScreen != null ;
         ((Node) event.getSource()).getScene().getWindow().hide();
 
