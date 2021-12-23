@@ -5,22 +5,51 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.LoginController">
-   <children>
-      <Label layoutX="163.0" layoutY="153.0" text="User" />
-      <Label layoutX="141.0" layoutY="186.0" text="Password" />
-      <TextField fx:id="tftUser" layoutX="200.0" layoutY="149.0" promptText="eg: john_" />
-      <Label layoutX="248.0" layoutY="51.0" text="ỨNG DỤNG QUẢN LÝ NHÂN KHẨU - DỊCH TỄ">
-         <font>
-            <Font size="36.0" />
-         </font></Label>
-      <CheckBox fx:id="cbAdmin" layoutX="206.0" layoutY="221.0" mnemonicParsing="false" text="Login as admintrastor" />
-      <PasswordField fx:id="tftPassword" layoutX="200.0" layoutY="182.0" />
-      <Button fx:id="btnCancel" layoutX="248.0" layoutY="290.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-      <Button fx:id="btnLogin" layoutX="248.0" layoutY="250.0" mnemonicParsing="false" onAction="#onLogin" text="Login" />
-<!--      <Text fx:id="txtRegister" fill="#1053e4" layoutX="181.0" layoutY="349.0" onMouseClicked="#onRegisterClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />-->
-   </children>
+<AnchorPane prefHeight="371.0" prefWidth="600.0" styleClass="leftPaneLogin" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.LoginController">
+    <children>
+      <AnchorPane layoutX="241.0" prefHeight="372.0" prefWidth="359.0" styleClass="right__pane__login" stylesheets="@login.css">
+         <children>
+            <CheckBox fx:id="cbAdmin" layoutX="153.0" layoutY="228.0" mnemonicParsing="false" text="Login as adminstrator" textFill="#ececee" />
+              <Button fx:id="btnLogin" layoutX="158.0" layoutY="264.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="25.0" prefWidth="66.0" text="Login" />
+            <Button fx:id="btnCancel" layoutX="251.0" layoutY="264.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="66.0" text="Cancel" />
+              <Label layoutX="167.0" layoutY="81.0" prefHeight="43.0" prefWidth="97.0" text="  LOGIN" textFill="WHITE">
+                  <font>
+                      <Font size="21.0" />
+                  </font>
+              </Label>
+            <Text fx:id="txtRegister" fill="#03135b" layoutX="137.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />
+         </children></AnchorPane>
+      <AnchorPane prefHeight="372.0" prefWidth="312.0" styleClass="leftPaneLogin" stylesheets="@login.css">
+         <children>
+            <Text fill="#d93d1c" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PHẦN MỀM QUẢN LÝ NHÂN KHÂU, HỘ KHÂU VÀ DỊCH TỄ " wrappingWidth="326.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+              <Label layoutX="274.0" layoutY="198.0" text="Password:" textFill="WHITE">
+                  <font>
+                      <Font size="15.0" />
+                  </font>
+              </Label>
+              <ImageView fitHeight="254.0" fitWidth="303.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../icons/login.png" />
+               </image>
+              </ImageView>
+         </children>
+      </AnchorPane>
+        <Label layoutX="264.0" layoutY="146.0" text="User Name:" textFill="WHITE">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="tftUser" layoutX="367.0" layoutY="143.0" prefHeight="26.0" prefWidth="201.0" />
+        <PasswordField fx:id="tftPassword" layoutX="367.0" layoutY="193.0" prefHeight="26.0" prefWidth="201.0" />
+    </children>
 </AnchorPane>
