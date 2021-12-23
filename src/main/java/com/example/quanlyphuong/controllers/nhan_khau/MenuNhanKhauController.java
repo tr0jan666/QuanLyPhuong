@@ -52,7 +52,7 @@ public class MenuNhanKhauController implements Initializable {
 
     @FXML
     public void setQuayLai(ActionEvent event) {
-        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null);
+        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,600,400);
         assert menuChucNangScreen != null ;
         ((Node) event.getSource()).getScene().getWindow().hide();
     }

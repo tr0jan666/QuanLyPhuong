@@ -5,22 +5,55 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.LoginController">
+<AnchorPane prefHeight="530.0" prefWidth="800.0" styleClass="leftPaneLogin" stylesheets="@nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.LoginController">
    <children>
-      <Label layoutX="163.0" layoutY="153.0" text="User" />
-      <Label layoutX="141.0" layoutY="186.0" text="Password" />
-      <TextField fx:id="tftUser" layoutX="200.0" layoutY="149.0" promptText="eg: john_" />
-      <Label layoutX="248.0" layoutY="51.0" text="ỨNG DỤNG QUẢN LÝ NHÂN KHẨU - DỊCH TỄ">
-         <font>
-            <Font size="36.0" />
-         </font></Label>
-      <CheckBox fx:id="cbAdmin" layoutX="206.0" layoutY="221.0" mnemonicParsing="false" text="Login as admintrastor" />
-      <PasswordField fx:id="tftPassword" layoutX="200.0" layoutY="182.0" />
-      <Button fx:id="btnCancel" layoutX="248.0" layoutY="290.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-      <Button fx:id="btnLogin" layoutX="248.0" layoutY="250.0" mnemonicParsing="false" onAction="#onLogin" text="Login" />
-<!--      <Text fx:id="txtRegister" fill="#1053e4" layoutX="181.0" layoutY="349.0" onMouseClicked="#onRegisterClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />-->
+      <AnchorPane layoutX="242.0" layoutY="-2.0" prefHeight="530.0" prefWidth="400.0" styleClass="right__pane__login" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="122.0" layoutY="83.0" prefHeight="43.0" prefWidth="200.0" text="Quản Lý Dân Cư" AnchorPane.leftAnchor="100.0">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tftUser" layoutX="140.0" layoutY="186.0" prefHeight="34.0" prefWidth="202.0" />
+            <PasswordField fx:id="tftPassword" layoutX="140.0" layoutY="244.0" prefHeight="34.0" prefWidth="202.0" />
+            <CheckBox fx:id="cbAdmin" layoutX="141.0" layoutY="300.0" mnemonicParsing="false" text="Login as adminstrator">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></CheckBox>
+            <Button fx:id="btnLogin" layoutX="125.0" layoutY="355.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="34.0" prefWidth="100.0" styleClass="button2" text="Đăng nhập" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="btnCancel" layoutX="273.0" layoutY="355.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="34.0" prefWidth="100.0" styleClass="button2" text="Thoát" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Text fx:id="txtRegister" fill="#03135b" layoutX="132.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />
+            <Label layoutX="35.0" layoutY="194.0" text="User Name:">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="256.0" text="Password:">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane prefHeight="530.0" prefWidth="400.0" style="-fx-background-color: #3b3b3b;" styleClass="leftPaneLogin" AnchorPane.rightAnchor="400.0">
+         <children>
+            <ImageView fitHeight="100.0" layoutX="150.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="238.39999999999998" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="192.0">
+               <image>
+                  <Image url="@icon/login.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

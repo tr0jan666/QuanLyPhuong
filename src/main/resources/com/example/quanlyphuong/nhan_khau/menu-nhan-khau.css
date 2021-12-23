@@ -30,18 +30,18 @@
 
 .button2
 {
-    -fx-background-color :  #4227b8;
-    -fx-background-radius : 20;
+    -fx-background-color :  #1877f2;
+    -fx-background-radius : 10;
 }
 .button2:hover
 {
-    -fx-background-color : #524A7B ;
-    -fx-background-radius :  20;
+    -fx-background-color :  #4227b8 ;
+    -fx-background-radius :  10;
 }
 .button2:pressed
 {
     -fx-background-color : #2F2B43 ;
-    -fx-background-radius :  20;
+    -fx-background-radius :  10;
 }
 .huy1{
     -fx-background-color: #f0f2f5;

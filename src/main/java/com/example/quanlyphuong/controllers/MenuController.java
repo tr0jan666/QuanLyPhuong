@@ -42,7 +42,7 @@ public class MenuController implements Initializable {
 
 
     public void goToRegister(MouseEvent mouseEvent) {
-        UIHelper.navigateNew("register-view.fxml", "Đăng ký tài khoản cho cán bộ", null);
+        UIHelper.navigateNew("register-view.fxml", "Đăng ký tài khoản cho cán bộ",null,800,530);
         txtRegister.getScene().getWindow().hide();
     }
 
