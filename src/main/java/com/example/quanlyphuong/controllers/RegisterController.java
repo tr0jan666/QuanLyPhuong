@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.controllers;
 
 import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.helper.constants.ScreenSizeConstant;
 import com.example.quanlyphuong.models.AppScreen;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.AuthService;
@@ -28,20 +29,20 @@ public class RegisterController {
 
     @FXML
     void onRegister(ActionEvent event) {
-        AuthService authService = new AuthService();
+        AuthService authService = AuthService.getInstance();
         Alert errAlert = new Alert(Alert.AlertType.ERROR);
         errAlert.setResult(ButtonType.OK);
         SimpleResult validateResult = validateRegisterForm();
-        if(validateResult.isSuccess())
-        {
+        if (validateResult.isSuccess()) {
             SimpleResult registerResult = authService.register(tfUserName.getText(), tfPwd.getText());
-            if(registerResult.isSuccess()) {
+            if (registerResult.isSuccess()) {
                 // demo code
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION, registerResult.getMessage(), ButtonType.OK);
-                successAlert.show();
+                successAlert.showAndWait();
                 // xử lý chuyển màn hình ở đây
-
-            }else {
+                UIHelper.navigateNew("login-view.fxml", "Đăng nhập", ScreenSizeConstant.LOGIN_WIDTH, ScreenSizeConstant.LOGIN_HEIGHT);
+                tfUserName.getScene().getWindow().hide();
+            } else {
                 errAlert.setContentText(registerResult.getMessage());
                 errAlert.show();
             }
@@ -51,16 +52,17 @@ public class RegisterController {
         }
 
     }
+
     @FXML
     void setQuayLai(ActionEvent event) {
-        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,600,400);
-        assert menuChucNangScreen != null ;
+        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null, 600, 400);
+        menuChucNangScreen.<MenuController>getController().getTxtRegister().setVisible(AuthService.getInstance().getCurrentUser().isAdministrator());
         ((Node) event.getSource()).getScene().getWindow().hide();
 
     }
 
     SimpleResult validateRegisterForm() {
-        if(tfUserName.getText().length() < 5) return new SimpleResult(false, "Tài khoản có độ dài > 5 kí tự");
+        if (tfUserName.getText().length() < 5) return new SimpleResult(false, "Tài khoản có độ dài > 5 kí tự");
         // viết thêm code validate vào đây
         // đây chỉ là phương thức demo
 

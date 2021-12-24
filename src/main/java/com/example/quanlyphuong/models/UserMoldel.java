@@ -4,6 +4,17 @@ public class UserMoldel {
     private String userName;
     private String passwd;
 
+    private boolean administrator;
+
+    public UserMoldel(int ID, String userName, String passwd) {
+        this.ID = ID;
+        this.userName = userName;
+        this.passwd = passwd;
+    }
+
+    public UserMoldel() {
+    }
+
     public int getID() {
         return ID;
     }
@@ -26,6 +37,14 @@ public class UserMoldel {
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
+    }
+
+    public boolean isAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(boolean administrator) {
+        this.administrator = administrator;
     }
 }
 

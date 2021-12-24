@@ -15,7 +15,9 @@ public class UIHelper {
     public static AppScreen navigateNew(String fxmlPath, String title) {
         return navigateNew(fxmlPath, title, null);
     }
-
+    public static AppScreen navigateNew(String fxmlPath, String title, double width, double height) {
+        return navigateNew(fxmlPath, title, null, width, height);
+    }
     public static AppScreen navigateNew(String fxmlPath, String title, Object userData) {
         return navigateNew(fxmlPath, title, userData, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
     }

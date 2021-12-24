@@ -35,15 +35,14 @@ public class LoginController {
 
     }
 
-    AuthService authService = new AuthService();
+    AuthService authService = AuthService.getInstance();
 
     @FXML
     void onLogin(ActionEvent event) {
         SimpleResult simpleResult = authService.login(tftUser.getText(), tftPassword.getText(), cbAdmin.isSelected());
         if (simpleResult.isSuccess()) {
             AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,600,400);
-            assert menuChucNangScreen != null;
-            menuChucNangScreen.<MenuController>getController().getTxtRegister().setVisible(cbAdmin.isSelected());
+            menuChucNangScreen.<MenuController>getController().getTxtRegister().setVisible(AuthService.getInstance().getCurrentUser().isAdministrator());
             ((Node) event.getSource()).getScene().getWindow().hide();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, simpleResult.getMessage(), ButtonType.CLOSE);

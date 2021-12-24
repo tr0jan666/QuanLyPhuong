@@ -2,22 +2,34 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.models.SimpleResult;
+import com.example.quanlyphuong.models.UserMoldel;
+
 import java.sql.*;
 import java.util.Objects;
 
 public class AuthService {
     private static String USER_ADMIN = "admin";
     private static String PWD_ADMIN = "admin";
-    public AuthService() {
+    private static int ID_ADMIN = 0;
+    private static final AuthService INSTANCE = new AuthService();
+    private UserMoldel currentUser; // currentUser be always set value after login
 
+    private AuthService() {
+
+    }
+
+    public static AuthService getInstance() {
+        return INSTANCE;
     }
 
     public SimpleResult login(String userName, String password, boolean isAdmin) {
         //check administrator
-        if(isAdmin) {
-            if(userName.equals(USER_ADMIN) && password.equals(PWD_ADMIN)){
+        if (isAdmin) {
+            if (userName.equals(USER_ADMIN) && password.equals(PWD_ADMIN)) {
+                currentUser = new UserMoldel(ID_ADMIN, USER_ADMIN, PWD_ADMIN);
+                currentUser.setAdministrator(true);
                 return new SimpleResult(true, SimpleResult.DEFAULT_SUCCESS_MESSAGE);
-            }else {
+            } else {
                 return new SimpleResult(false, "Tài khoản administrator không chính xác!");
             }
         }
@@ -28,11 +40,13 @@ public class AuthService {
             ResultSet selectUserRS = selectUserSM.executeQuery();
             if (selectUserRS.next()) {
                 //db co user
+                int id = selectUserRS.getInt(1);
                 String dbPassword = selectUserRS.getString(2);
 
-                if (Objects.equals(dbPassword, password))
+                if (Objects.equals(dbPassword, password)) {
+                    this.currentUser = new UserMoldel(id, userName, password);
                     return new SimpleResult(true, SimpleResult.DEFAULT_SUCCESS_MESSAGE);
-                else return new SimpleResult(false, "Sai mật khẩu");
+                } else return new SimpleResult(false, "Sai mật khẩu");
             } else {
                 //db ko co user
                 return new SimpleResult(false, "Tài khoản không tồn tại trên hệ thống");
@@ -57,8 +71,8 @@ public class AuthService {
                 PreparedStatement insertUserStatement = connection.prepareStatement(insertUserScript);
                 insertUserStatement.setString(1, userName);
                 insertUserStatement.setString(2, password);
-                boolean resultInsert = insertUserStatement.execute();
-                if (resultInsert)
+                int countRowUpdated = insertUserStatement.executeUpdate();
+                if (countRowUpdated > 0)
                     return new SimpleResult(true, "Dang ky thanh cong!");
                 else
                     return new SimpleResult(false, "Dang ky that bai! Vui long thu lai sau");
@@ -69,5 +83,13 @@ public class AuthService {
             ex.printStackTrace();
             return new SimpleResult(false, ex.getMessage());
         }
+    }
+
+    public UserMoldel getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(UserMoldel currentUser) {
+        this.currentUser = currentUser;
     }
 }
