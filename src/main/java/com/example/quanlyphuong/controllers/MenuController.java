@@ -32,7 +32,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void goToNhanKhauScreen(ActionEvent event) {
-        UIHelper.navigateNew("nhan_khau/menu-nhan-khau.fxml", "Quản lý nhân khẩu", null);
+        UIHelper.navigateNew("nhan_khau/main-nhan-khau.fxml", "Quản lý nhân khẩu", null);
         btnNhanKhau.getScene().getWindow().hide();
     }
 

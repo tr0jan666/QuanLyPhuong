@@ -299,7 +299,7 @@ CREATE TABLE `nhan_khau` (
                              `quocTich` varchar(100) DEFAULT 'null',
                              `noiThuongTru` varchar(100) DEFAULT 'null',
                              `diaChiHienNay` varchar(100) DEFAULT 'null',
-                             `tinhDoHocVan` varchar(100) DEFAULT 'null',
+                             `trinhDoHocVan` varchar(100) DEFAULT 'null',
                              `ngheNghiep` varchar(100) DEFAULT 'null',
                              `noiLamViec` varchar(100) DEFAULT 'null',
                              `tienAn` varchar(100) DEFAULT 'null',
