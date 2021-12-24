@@ -1,8 +1,10 @@
 package com.example.quanlyphuong.controllers.dich_te;
 
 import com.example.quanlyphuong.QuanLyNhanKhauApplication;
+import com.example.quanlyphuong.controllers.MenuController;
 import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.models.AppScreen;
+import com.example.quanlyphuong.services.AuthService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +63,7 @@ public class MenuDichTeController implements Initializable {
     @FXML
     void setQuayLai(ActionEvent event) throws IOException {
         AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,600,400);
-        assert menuChucNangScreen != null ;
+        menuChucNangScreen.<MenuController>getController().getTxtRegister().setVisible(AuthService.getInstance().getCurrentUser().isAdministrator());
         ((Node) event.getSource()).getScene().getWindow().hide();
 
     }
