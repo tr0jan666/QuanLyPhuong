@@ -15,7 +15,8 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="tbvHoCanTach" layoutX="20.0" layoutY="60.0" prefHeight="286.0" prefWidth="405.0">
+      <TableView fx:id="tbvHoCanTach" layoutX="20.0" layoutY="60.0" prefHeight="286.0" prefWidth="405.0"
+                 onMouseClicked="#chonHoCanTach">
         <columns>
           <TableColumn fx:id="maHoKhauChuHo" prefWidth="136.3333282470703" text="Mã hộ khẩu" />
           <TableColumn fx:id="hoTenChuHo" prefWidth="132.6666717529297" text="Họ tên chủ hộ" />

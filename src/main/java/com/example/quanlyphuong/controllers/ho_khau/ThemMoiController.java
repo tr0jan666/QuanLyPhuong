@@ -68,6 +68,7 @@ public class ThemMoiController {
 
     @FXML
     void themThanhVien(ActionEvent event) {
+        UIHelper.navigateNew("ho_khau/Sua.fxml", "them thanh vien", null);
 
     }
 

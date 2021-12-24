@@ -1,40 +1,45 @@
 package com.example.quanlyphuong.services;
 
+import com.example.quanlyphuong.beans.HoKhauBean;
 import com.example.quanlyphuong.helper.enums.HoKhauFilterEnum;
 import com.example.quanlyphuong.models.HoKhauModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.models.ThanhVienCuaHoModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HoKhauService {
 
-    public ArrayList<HoKhauModel> getListHoKhau() {
-        ArrayList<HoKhauModel> list = new ArrayList<>();
+
+    public ArrayList<HoKhauBean> getListHoKhau() {
+        ArrayList<HoKhauBean> list = new ArrayList<>();
 
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
-            String query = "SELECT * FROM ho_khau INNER JOIN nhan_khau ON ho_khau.idChuHo = nhan_khau.ID ORDER BY ngayTao DESC";
-            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
+            String query = "SELECT * FROM ho_khau INNER JOIN nhan_khau ON ho_khau.idChuHo = nhan_khau.ID ";
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                HoKhauBean temp = new HoKhauBean();
 
-            while (rs.next()) {
                 HoKhauModel hoKhauModel = new HoKhauModel();
+
                 hoKhauModel.setID(rs.getInt("ID"));
                 hoKhauModel.setIdChuHo(rs.getInt("idCHuHo"));
                 hoKhauModel.setMaHoKhau(rs.getString("maHoKhau"));
                 hoKhauModel.setMaKhuVuc(rs.getString("maKhuVuc"));
                 hoKhauModel.setNgayLap(rs.getDate("ngayLap"));
-                hoKhauModel.setLyDoChuyen(rs.getString("lyDoChuyen"));
                 hoKhauModel.setDiaChi(rs.getString("diaChi"));
-
-
+                NhanKhauModel chuHo = new NhanKhauModel();
+                chuHo.setID(rs.getInt("ID"));
+                chuHo.setHo_ten(rs.getString("hoTen"));
+                chuHo.setGioiTinh(rs.getString("gioiTinh"));
+                chuHo.setNamSinh(rs.getDate("namSinh"));
+                chuHo.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+                temp.setChuHo(chuHo);
                 try {
                     String sql = "SELECT * FROM nhan_khau INNER JOIN thanh_vien_cua_ho ON nhan_khau.ID = thanh_vien_cua_ho.idNhanKhau "
                             + "WHERE thanh_vien_cua_ho.idHoKhau = "
@@ -58,30 +63,28 @@ public class HoKhauService {
                         nhanKhauModel.setNoiThuongTru(rs_1.getString("noiThuongTru"));
                         nhanKhauModel.setDiaChiHienNay(rs_1.getString("diaChiHienNay"));
 
-                        if(nhanKhauModel.getID() == hoKhauModel.getIdChuHo()){
-                            hoKhauModel.setHoTenChuHo(nhanKhauModel.getHo_ten());
-                        }
                         thanhVienCuaHoModel.setIdHoKhau(rs_1.getInt("idHoKhau"));
                         thanhVienCuaHoModel.setIdNhanKhau(rs_1.getInt("idNhanKhau"));
                         thanhVienCuaHoModel.setQuanHeVoiChuHo(rs_1.getString("quanHeVoiChuHo"));
                         listNhanKhau.add(nhanKhauModel);
                         listThanhVienCuaHo.add(thanhVienCuaHoModel);
                     }
-                    hoKhauModel.setThanhVienCuaHoModelArrayList(listThanhVienCuaHo);
-                    hoKhauModel.setListNhanKhau(listNhanKhau);
 
-                } catch (SQLException e) {
+                    temp.setListNhanKhauModels(listNhanKhau);
+                    temp.setListThanhVienCuaHo(listThanhVienCuaHo);
+                } catch (Exception e) {
                     System.out.println("services.HoKhauService.getListHoKhau()");
                     System.out.println(e.getMessage());
                 }
-                list.add(hoKhauModel);
+                temp.setHoKhauModel(hoKhauModel);
+                list.add(temp);
             }
             preparedStatement.close();
             connection.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        return  list;
+        return list;
     }
 
 
@@ -108,6 +111,7 @@ public class HoKhauService {
     public SimpleResult tachHoKhau(ArrayList<NhanKhauModel> nhanKhauMoi, int idChuHoMoi) {
         return null;
     }
-
-
+    public ArrayList<NhanKhauModel> listNhanKhauCuaHoTruChuHo(HoKhauModel hoKhau){
+        return hoKhau.getListNhanKhau();
+    }
 }
