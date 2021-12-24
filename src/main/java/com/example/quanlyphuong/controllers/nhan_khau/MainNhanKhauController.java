@@ -1,6 +1,6 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
-import com.example.quanlyphuong.helper.MySQLConnector;
+import com.example.quanlyphuong.helper.MySQLConnector ;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

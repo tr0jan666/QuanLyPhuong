@@ -9,9 +9,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.MenuController">
    <children>
-      <Button fx:id="btnNhanKhau" layoutX="204.0" layoutY="90.0" minHeight="72.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToNhanKhauScreen" text="Quản lý nhân khẩu" />
-      <Button fx:id="btnDichTe" layoutX="204.0" layoutY="210.0" minHeight="72.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToDichTeScreen" text="Quản lý dịch tễ" />
-      <Text fx:id="txtRegister" fill="#184ff5" layoutX="100.0" layoutY="320.0" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng ký tài khoản cho cán bộ quản lý (chỉ dành riêng adminstrator)" textAlignment="CENTER" underline="true">
+      <Button fx:id="btnNhanKhau" focusTraversable="false" layoutX="204.0" layoutY="69.0" minHeight="54.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToNhanKhauScreen" prefHeight="54.0" prefWidth="150.0" text="Quản Lý Nhân Khẩu" />
+      <Button fx:id="btnDichTe" focusTraversable="false" layoutX="204.0" layoutY="210.0" minHeight="54.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToDichTeScreen" prefHeight="54.0" prefWidth="150.0" text="Quản Lý Dịch Tễ" />
+      <Text fx:id="txtRegister" fill="#184ff5" layoutX="107.0" layoutY="336.0" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng ký tài khoản cho cán bộ quản lý (chỉ dành riêng adminstrator)" textAlignment="CENTER" underline="true">
          <stroke>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>

@@ -4,9 +4,12 @@ import com.example.quanlyphuong.helper.UIHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,19 +29,20 @@ public class MenuController implements Initializable {
 
     @FXML
     void goToDichTeScreen(ActionEvent event) {
-        UIHelper.navigateNew("dich_te/menu-dich-te.fxml", "Quản lý dịch tễ", null);
+        UIHelper.navigateNew("dich_te/menu-dich-te.fxml", "Quản lý dịch tễ", null,1000,630);
         btnDichTe.getScene().getWindow().hide();
     }
 
     @FXML
     void goToNhanKhauScreen(ActionEvent event) {
-        UIHelper.navigateNew("nhan_khau/menu-nhan-khau.fxml", "Quản lý nhân khẩu", null);
+        UIHelper.navigateNew("nhan_khau/menu-nhan-khau.fxml", "Quản lý nhân khẩu", null,1000,630);
         btnNhanKhau.getScene().getWindow().hide();
+
     }
 
 
     public void goToRegister(MouseEvent mouseEvent) {
-        UIHelper.navigateNew("register-view.fxml", "Đăng ký tài khoản cho cán bộ", null);
+        UIHelper.navigateNew("register-view.fxml", "Đăng ký tài khoản cho cán bộ",null,800,530);
         txtRegister.getScene().getWindow().hide();
     }
 
