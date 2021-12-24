@@ -1,7 +1,7 @@
 
 package com.example.quanlyphuong.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class NhanKhauModel {
     private int ID;
@@ -36,6 +36,8 @@ public class NhanKhauModel {
     private CachLyModel thongTinCachLy;
     private HoKhauModel thongTinHoKhau;
 
+    public NhanKhauModel() {
+    }
 
     public NhanKhauModel(){};
 
@@ -70,6 +72,7 @@ public class NhanKhauModel {
         this.lyDoXoa = lyDoXoa;
         this.ghiChu = ghiChu;
     }
+
 
     // Get + Set
     public int getID() {
