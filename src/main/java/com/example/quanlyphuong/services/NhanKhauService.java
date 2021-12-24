@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 
 public class NhanKhauService {
     public NhanKhauModel getDetail(int idNhanKhau) {
@@ -56,15 +57,14 @@ public class NhanKhauService {
         String lyDoXoa= nhanKhauMoi.getLyDoXoa();
         String ghiChu= nhanKhauMoi.getGhiChu();
 
-        try{
+        try(Connection connection = MySQLConnector.getConnection()){
             // ket noi voi data_base
-            Connection connection = MySQLConnector.getConnection();
             String query = "INSERT INTO nhan_khau VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             // cai dat gia tri
             preparedStatement.setInt(1, ID);
-            preparedStatement.setInt(2, maNhanKhau);
+            preparedStatement.setString(2, maNhanKhau);
             preparedStatement.setString(3, Ho_ten);
             preparedStatement.setDate(4, namSinh);
             preparedStatement.setString(5, gioiTinh);
@@ -93,8 +93,10 @@ public class NhanKhauService {
             preparedStatement.setString(28, ghiChu);
 
             // dong co so du lieu
-            preparedStatement.executeUpdate();
             preparedStatement.close();
+            connection.close();
+
+            return new SimpleResult(true, "Tao thong tin thanh cong");
         } catch (SQLException ex) {// thong bao loi
             ex.printStackTrace();
             return new SimpleResult(false, ex.getMessage());
@@ -133,8 +135,7 @@ public class NhanKhauService {
         String lyDoXoa= nhanKhauMoi.getLyDoXoa();
         String ghiChu= nhanKhauMoi.getGhiChu();
 
-        try{
-            Connection connection = MySQLConnector.getConnection();
+        try(Connection connection = MySQLConnector.getConnection()){
             String query = "UPDATE nhan_khau SET "
                     + "maNhanKhau = " + maNhanKhau
                     + "Ho_ten = " + Ho_ten
@@ -166,8 +167,12 @@ public class NhanKhauService {
                     + "WHERE ID =" + ID;
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            connection.close();
+
+            return new SimpleResult(true, "Sua thong tin thanh cong");
         } catch (SQLException ex) {// thong bao loi
             ex.printStackTrace();
             return new SimpleResult(false, ex.getMessage());
@@ -188,8 +193,7 @@ public class NhanKhauService {
         String column = map.get(filterType);
 
         // truy van id trong tabel nhan_khau
-        Connection connection = MySQLConnector.getConnection();
-        try {
+        try (Connection connection = MySQLConnector.getConnection()){
             String query = "SELECT * FROM ((nhan_khau "
                     + "INNER JOIN thanh_vien_cua_ho ON nhan_khau.maNhanKhau = thanh_vien_cua_ho.idNhanKhau ) "
                     + "INNER JOIN ho_khau ON thanh_vien_cua_ho.idHoKhau = ho_khau.maHoKhau ) "
@@ -211,7 +215,11 @@ public class NhanKhauService {
 
                 list_nhanKhau.add(nhanKhau);
             }
+
+            // dong co so du lieu
             preparedStatement.close();
+            connection.close();
+
             return list_nhanKhau;
         } catch (SQLException ex) {// thong bao loi
             ex.printStackTrace();
@@ -222,13 +230,12 @@ public class NhanKhauService {
     public ArrayList<NhanKhauModel> filterNhanKhau(Map<NhanKhauFilterEnum, String> filterOptions) {
 
         // Lay du lieu input
-        String columns = new String();
-        for (Map.Entry<Integer, String> option : filterOptions.entrySet()){
-            columns = columns + ',' +option
+        String columns = "";
+        for (Map.Entry<NhanKhauFilterEnum, String> option : filterOptions.entrySet()){
+            columns = columns + ',' +option;
         }
 
-        try{
-            Connection connection = MySQLConnector.getConnection();
+        try(Connection connection = MySQLConnector.getConnection()){
             String query = "SELECT "+columns+" FROM ((nhan_khau"
                     + "INNER JOIN thanh_vien_cua_ho ON nhan_khau.maNhanKhau = thanh_vien_cua_ho.idNhanKhau ) "
                     + "INNER JOIN ho_khau ON thanh_vien_cua_ho.idHoKhau = ho_khau.maHoKhau ) ";
@@ -249,11 +256,15 @@ public class NhanKhauService {
 
                 list_nhanKhau.add(nhanKhau);
             }
+
+            // dong co so du lieu
             preparedStatement.close();
+            connection.close();
+
             return list_nhanKhau;
         } catch (SQLException ex) {// thong bao loi
             ex.printStackTrace();
-            return new SimpleResult(false, ex.getMessage());
+            return new ArrayList<>();
         }
     }
 
