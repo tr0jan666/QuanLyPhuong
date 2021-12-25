@@ -1,5 +1,6 @@
 package com.example.quanlyphuong.controllers;
 
+import com.example.quanlyphuong.QuanLyNhanKhauApplication;
 import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.models.AppScreen;
 import com.example.quanlyphuong.models.SimpleResult;
@@ -30,10 +31,7 @@ public class LoginController {
     @FXML
     private Text txtRegister;
 
-    @FXML
-    void onCancel(ActionEvent event) {
 
-    }
 
     AuthService authService = new AuthService();
 
@@ -50,6 +48,8 @@ public class LoginController {
             alert.showAndWait();
         }
     }
+
+
 
 
 }
