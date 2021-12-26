@@ -232,6 +232,8 @@ CREATE TABLE `nhan_khau` (
   `idNguoiXoa` int NOT NULL,
   `lyDoXoa` varchar(100) DEFAULT NULL,
   `ghiChu` varchar(100) DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `lastUpdate` date DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_nhan_khau_users1_idx` (`idNguoiTao`),
   KEY `fk_nhan_khau_users2_idx` (`idNguoiXoa`),
@@ -347,10 +349,11 @@ CREATE TABLE `thanh_vien_cua_ho` (
   `idNhanKhau` int NOT NULL,
   `idHoKhau` int NOT NULL,
   `quanHeVoiChuHo` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`idNhanKhau`,`idHoKhau`),
-  KEY `fk_thanh_vien_cua_ho_nhan_khau1_idx` (`idHoKhau`),
-  CONSTRAINT `fk_thanh_vien_cua_ho_ho_khau1` FOREIGN KEY (`idNhanKhau`) REFERENCES `ho_khau` (`ID`),
-  CONSTRAINT `fk_thanh_vien_cua_ho_nhan_khau1` FOREIGN KEY (`idHoKhau`) REFERENCES `nhan_khau` (`ID`)
+  PRIMARY KEY (`idHoKhau`,`idNhanKhau`),
+  KEY `fk_thanh_vien_cua_ho_nhan_khau1_idx` (`idNhanKhau`),
+  KEY `fk_thanh_vien_cua_ho_ho_khau1_idx` (`idHoKhau`),
+  CONSTRAINT `fk_thanh_vien_cua_ho_ho_khau1` FOREIGN KEY (`idHoKhau`) REFERENCES `ho_khau` (`ID`),
+  CONSTRAINT `fk_thanh_vien_cua_ho_nhan_khau1` FOREIGN KEY (`idNhanKhau`) REFERENCES `nhan_khau` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -403,7 +406,7 @@ CREATE TABLE `users` (
   `userName` varchar(100) NOT NULL,
   `passwd` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -424,4 +427,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-16  0:21:14
+-- Dump completed on 2021-12-26 22:32:53
