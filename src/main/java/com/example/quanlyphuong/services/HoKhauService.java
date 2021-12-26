@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.HoKhauBean;
+import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.helper.enums.HoKhauFilterEnum;
 import com.example.quanlyphuong.models.HoKhauModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
@@ -10,6 +11,8 @@ import com.example.quanlyphuong.models.ThanhVienCuaHoModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HoKhauService {
 
@@ -18,7 +21,7 @@ public class HoKhauService {
         ArrayList<HoKhauBean> list = new ArrayList<>();
 
         try {
-            Connection connection = MysqlConnection.getMysqlConnection();
+            Connection connection = MySQLConnector.getConnection();
             String query = "SELECT * FROM ho_khau INNER JOIN nhan_khau ON ho_khau.idChuHo = nhan_khau.ID ";
             PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
@@ -108,10 +111,82 @@ public class HoKhauService {
         return null;
     }
 
-    public SimpleResult tachHoKhau(ArrayList<NhanKhauModel> nhanKhauMoi, int idChuHoMoi) {
-        return null;
-    }
     public ArrayList<NhanKhauModel> listNhanKhauCuaHoTruChuHo(HoKhauModel hoKhau){
         return hoKhau.getListNhanKhau();
+    }
+
+    public boolean addNew(HoKhauBean hoKhauBean) throws ClassNotFoundException, SQLException{
+        Connection connection = MySQLConnector.getConnection();
+        String query = "INSERT INTO ho_khau(maHoKhau, idChuHo, maKhuVuc, diaChi, ngayLap,nguoiThucHien)"
+                + " values (?, ?, ?, ?, NOW(), 1)";
+        System.out.println(hoKhauBean.getHoKhauModel().getMaHoKhau());
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setString(1, hoKhauBean.getHoKhauModel().getMaHoKhau());
+        preparedStatement.setInt(2, hoKhauBean.getChuHo().getID());
+        preparedStatement.setString(3, hoKhauBean.getHoKhauModel().getMaKhuVuc());
+        preparedStatement.setString(4, hoKhauBean.getHoKhauModel().getDiaChi());
+
+        preparedStatement.executeUpdate();
+        ResultSet rs = preparedStatement.getGeneratedKeys();
+        if (rs.next()) {
+            int genID = rs.getInt(1);
+            String sql = "INSERT INTO thanh_vien_cua_ho(idNhanKhau, idHoKhau, quanHeVoiChuHo)"
+                    + " values (?, ?, ?)";
+            hoKhauBean.getListThanhVienCuaHo().forEach((ThanhVienCuaHoModel thanhVien) -> {
+                try {
+                    PreparedStatement preStatement = connection.prepareStatement(sql);
+                    preStatement.setInt(1, thanhVien.getIdNhanKhau());
+                    preStatement.setInt(2, genID);
+                    preStatement.setString(3, thanhVien.getQuanHeVoiChuHo());
+                    preStatement.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(HoKhauService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            });
+        }
+        preparedStatement.close();
+        connection.close();
+        return true;
+    }
+
+    public void tachHoKhau(HoKhauBean hoKhauBean) {
+        /**
+         * xoa cac thanh vien co trong moi ra khoi bang thanh_vien_cua_ho
+         */
+
+        // xoa chu ho
+//        String query = "DELETE FROM thanh_vien_cua_ho WHERE idNhanKhau = " + hoKhauBean.getChuHo().getID();
+//        try {
+//            Connection connection = MysqlConnection.getMysqlConnection();
+//            PreparedStatement preparedStatement = connection.prepareStatement(query);
+//            int rs = preparedStatement.executeUpdate();
+//            System.out.println("xoa thanh cong");
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+        // xoa cac thanh vien
+
+        hoKhauBean.getListThanhVienCuaHo().forEach((ThanhVienCuaHoModel item) -> {
+            String sql = "DELETE FROM thanh_vien_cua_ho WHERE idNhanKhau = " + item.getIdNhanKhau();
+            try {
+                Connection connection = MySQLConnector.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                int rs = preparedStatement.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        });
+
+        /**
+         * tao ho khau moi voi hoKhauBean
+         */
+        try {
+            this.addNew(hoKhauBean);
+//            JOptionPane.showMessageDialog(null, "Thêm thành công!");
+        } catch (Exception e) {
+            System.out.println("services.HoKhauService.tachHoKhau()");
+        }
     }
 }

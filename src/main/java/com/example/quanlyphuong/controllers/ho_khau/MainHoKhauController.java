@@ -71,6 +71,15 @@ public class MainHoKhauController implements Initializable {
     @FXML
     void changeSceneTachHoKhau(ActionEvent event) {
         UIHelper.navigateNew("ho_khau/tach_hk.fxml", "Tách  hộ khẩu", null);
+//        hoKhauService = new HoKhauService();
+//        listHoKhauBeans = hoKhauService.getListHoKhau();
+//
+//        observableListHoKhauBeans = FXCollections.observableList(listHoKhauBeans);
+//        maHoKhau.setCellValueFactory(hoKhauBean -> new ReadOnlyObjectWrapper<>(hoKhauBean.getValue().getHoKhauModel().getMaHoKhau()));
+//        diaChi.setCellValueFactory(hoKhauBean -> new ReadOnlyObjectWrapper<>(hoKhauBean.getValue().getHoKhauModel().getDiaChi()));
+//
+//        hoTenChuHo.setCellValueFactory(hoKhau -> new ReadOnlyObjectWrapper<>(hoKhau.getValue().getChuHo().getHo_ten()));
+//        tbvBangThongKe.setItems(observableListHoKhauBeans);
     }
 
 
@@ -86,8 +95,9 @@ public class MainHoKhauController implements Initializable {
         hoTenChuHo.setCellValueFactory(hoKhau -> new ReadOnlyObjectWrapper<>(hoKhau.getValue().getChuHo().getHo_ten()));
         tbvBangThongKe.setItems(observableListHoKhauBeans);
 
-
     }
+
+
 
     @FXML
     void huy(ActionEvent event) {
