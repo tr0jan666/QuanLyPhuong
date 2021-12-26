@@ -90,7 +90,7 @@ public class NhanKhauService {
         int ID = nhanKhauMoi.getID();
         String maNhanKhau = nhanKhauMoi.getMaNhanKhau();
         String Ho_ten = nhanKhauMoi.getHo_ten();
-        Date namSinh = nhanKhauMoi.getNamSinh();
+        Date namSinh =  new java.sql.Date(nhanKhauMoi.getNamSinh().getTime());
         String gioiTinh = nhanKhauMoi.getGioiTinh();
         String noiSinh = nhanKhauMoi.getNoiSinh();
         String nguyenQuan = nhanKhauMoi.getNguyenQuan();
@@ -125,7 +125,7 @@ public class NhanKhauService {
             preparedStatement.setInt(1, ID);
             preparedStatement.setString(2, maNhanKhau);
             preparedStatement.setString(3, Ho_ten);
-            preparedStatement.setDate(4, namSinh);
+            preparedStatement.setDate(4, (java.sql.Date) namSinh);
             preparedStatement.setString(5, gioiTinh);
             preparedStatement.setString(6, noiSinh );
             preparedStatement.setString(7, nguyenQuan);
@@ -139,14 +139,14 @@ public class NhanKhauService {
             preparedStatement.setString(15, ngheNghiep );
             preparedStatement.setString(16, noiLamViec);
             preparedStatement.setString(17, tienAn );
-            preparedStatement.setDate(18, ngayChuyenDen);
+            preparedStatement.setDate(18, (java.sql.Date) ngayChuyenDen);
             preparedStatement.setString(19, lyDoChuyenDen );
-            preparedStatement.setDate(20, ngayChuyenDi);
+            preparedStatement.setDate(20, (java.sql.Date) ngayChuyenDi);
             preparedStatement.setString(21, lyDoChuyenDi);
             preparedStatement.setString(22, diaChiMoi );
-            preparedStatement.setDate(23, ngayTao);
+            preparedStatement.setDate(23, (java.sql.Date) ngayTao);
             preparedStatement.setInt(24, idNguoiTao);
-            preparedStatement.setDate(25, ngayXoa);
+            preparedStatement.setDate(25, (java.sql.Date) ngayXoa);
             preparedStatement.setInt(26, idNguoiXoa);
             preparedStatement.setString(27, lyDoXoa);
             preparedStatement.setString(28, ghiChu);
