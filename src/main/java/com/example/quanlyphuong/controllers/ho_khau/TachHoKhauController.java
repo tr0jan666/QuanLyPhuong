@@ -238,7 +238,7 @@ public class TachHoKhauController implements Initializable {
     @FXML
     void huyTachHoKhau(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        MainHoKhauController.frame.listHoKhauBeans = new ArrayList<>();
+        MainHoKhauController.frame.refreshScreen();
         stage.hide();
 
     }

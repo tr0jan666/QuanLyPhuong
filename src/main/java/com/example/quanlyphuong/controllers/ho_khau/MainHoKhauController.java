@@ -36,6 +36,7 @@ public class MainHoKhauController implements Initializable {
     public static MainHoKhauController frame;
 
     public MainHoKhauController() {
+        hoKhauService = new HoKhauService();
         if (frame == null) {
             frame = this;
         } else {
@@ -97,15 +98,7 @@ public class MainHoKhauController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        hoKhauService = new HoKhauService();
-        listHoKhauBeans = hoKhauService.getListHoKhau();
-
-        observableListHoKhauBeans = FXCollections.observableList(listHoKhauBeans);
-        maHoKhau.setCellValueFactory(hoKhauBean -> new ReadOnlyObjectWrapper<>(hoKhauBean.getValue().getHoKhauModel().getMaHoKhau()));
-        diaChi.setCellValueFactory(hoKhauBean -> new ReadOnlyObjectWrapper<>(hoKhauBean.getValue().getHoKhauModel().getDiaChi()));
-
-        hoTenChuHo.setCellValueFactory(hoKhau -> new ReadOnlyObjectWrapper<>(hoKhau.getValue().getChuHo().getHo_ten()));
-        tbvBangThongKe.setItems(observableListHoKhauBeans);
+        refreshScreen();
 
     }
 
@@ -114,5 +107,16 @@ public class MainHoKhauController implements Initializable {
     void huy(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
+    }
+
+    protected void refreshScreen() {
+        listHoKhauBeans = hoKhauService.getListHoKhau();
+
+        observableListHoKhauBeans = FXCollections.observableList(listHoKhauBeans);
+        maHoKhau.setCellValueFactory(hoKhauBean -> new ReadOnlyObjectWrapper<>(hoKhauBean.getValue().getHoKhauModel().getMaHoKhau()));
+        diaChi.setCellValueFactory(hoKhauBean -> new ReadOnlyObjectWrapper<>(hoKhauBean.getValue().getHoKhauModel().getDiaChi()));
+
+        hoTenChuHo.setCellValueFactory(hoKhau -> new ReadOnlyObjectWrapper<>(hoKhau.getValue().getChuHo().getHo_ten()));
+        tbvBangThongKe.setItems(observableListHoKhauBeans);
     }
 }
