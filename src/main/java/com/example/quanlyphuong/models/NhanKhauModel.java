@@ -1,7 +1,7 @@
 
 package com.example.quanlyphuong.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class NhanKhauModel {
     private int ID;
