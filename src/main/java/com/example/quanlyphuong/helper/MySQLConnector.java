@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class MySQLConnector {
-    private static String DB_URL = "jdbc:mysql://localhost:3306/quan_ly_nhan_khau_new";
+    private static String DB_URL = "jdbc:mysql://localhost:3306/quan_ly_nhan_khau";
     private static String USER_NAME = "root";
     private static String PASSWORD = "root";
 

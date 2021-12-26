@@ -33,6 +33,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainHoKhauController implements Initializable {
+    public static MainHoKhauController frame;
+
+    public MainHoKhauController() {
+        if (frame == null) {
+            frame = this;
+        } else {
+            throw new RuntimeException("Singleton FXML");
+        }
+    }
+
+
     HoKhauService hoKhauService;
     List<HoKhauBean> listHoKhauBeans;
     ObservableList<HoKhauBean> observableListHoKhauBeans;
@@ -68,6 +79,7 @@ public class MainHoKhauController implements Initializable {
     void changeSceneThemMoi(ActionEvent event) throws IOException {
         UIHelper.navigateNew("ho_khau/them_moi.fxml", "Thêm mới hộ khẩu", null);
     }
+
     @FXML
     void changeSceneTachHoKhau(ActionEvent event) {
         UIHelper.navigateNew("ho_khau/tach_hk.fxml", "Tách  hộ khẩu", null);
@@ -96,7 +108,6 @@ public class MainHoKhauController implements Initializable {
         tbvBangThongKe.setItems(observableListHoKhauBeans);
 
     }
-
 
 
     @FXML
