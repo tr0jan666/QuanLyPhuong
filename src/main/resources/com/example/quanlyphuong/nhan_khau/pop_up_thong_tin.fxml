@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" >
+<VBox prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="686.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
             <children>
                 <Button id="btn_Luu" layoutX="587.0" layoutY="644.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Lưu" />
-                <Button id="btn_ThemNhanKhau" layoutX="273.0" layoutY="644.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Thêm Nhân Khẩu" />
-                <Label id="lb_ThongTin" layoutX="319.0" layoutY="14.0" prefHeight="106.0" prefWidth="338.0" text="Thông tin" textFill="#29adff">
+                <Button id="btn_ThemNhanKhau" layoutX="250.0" layoutY="644.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="155.0" text="Thêm Nhân Khẩu" />
+                <Label id="lb_ThongTin" layoutX="319.0" layoutY="14.0" prefHeight="106.0" prefWidth="403.0" text="Thông tin" textFill="#29adff">
                     <font>
                         <Font name="System Bold" size="72.0" />
                     </font>
