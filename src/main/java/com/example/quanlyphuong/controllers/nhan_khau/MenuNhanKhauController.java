@@ -48,7 +48,6 @@ public class MenuNhanKhauController implements Initializable {
         FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("nhan_khau/thongKe.fxml"));
         Pane thongkePane = (Pane) loader.load();
         borderPane.setCenter(thongkePane);
-
     }
 
     @FXML

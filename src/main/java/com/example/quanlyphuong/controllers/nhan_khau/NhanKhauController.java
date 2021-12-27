@@ -4,13 +4,14 @@ import com.example.quanlyphuong.helper.UIHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class NhanKhauController {
     private Stage stage;
@@ -19,7 +20,80 @@ public class NhanKhauController {
     private Scene scene;
 
     @FXML
-    Button btn_ThemNhanKhau;
+    private Button btn_ThemNhanKhau;
+
+    @FXML
+    private Button btn_Xoa;
+
+    @FXML
+    private Button btn_chiTiet;
+
+    @FXML
+    private Button btn_khaiTu;
+
+    @FXML
+    private Button btn_tamTru;
+
+    @FXML
+    private Button btn_tamVang;
+
+    @FXML
+    private Button btn_timKiem;
+
+    @FXML
+    private TableColumn<?, ?> col_cmt;
+
+    @FXML
+    private TableColumn<?, ?> col_gioiTinh;
+
+    @FXML
+    private TableColumn<?, ?> col_hoVaTen;
+
+    @FXML
+    private TableColumn<?, ?> col_tuoi;
+
+    @FXML
+    void khaiTuNhanKhau(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tamTruNhanKhau(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tamVangNhanKhau(ActionEvent event) {
+
+    }
+
+    @FXML
+    void themNhanKhau(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage popUpStage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/nhan_khau/pop_up_them_nhan_khau.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        popUpStage.initModality(Modality.APPLICATION_MODAL);
+        popUpStage.initOwner(stage);
+        popUpStage.setTitle("Thêm mới nhân khẩu");
+        popUpStage.setScene(scene);
+        popUpStage.centerOnScreen();
+        popUpStage.showAndWait();
+//        setDataTable();
+    }
+
+    @FXML
+    void xemChiTietNhanKhau(ActionEvent event) {
+
+    }
+
+    @FXML
+    void xoaNhanKhau(ActionEvent event) {
+
+    }
+
 
     public void chooseOption(ActionEvent event){
         Dialog<String> dialog = new Dialog<String>();
