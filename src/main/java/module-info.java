@@ -19,4 +19,6 @@ module com.example.quanlyphuong {
     opens com.example.quanlyphuong.controllers to javafx.fxml;
     opens com.example.quanlyphuong.controllers.nhan_khau to javafx.fxml ;
     opens com.example.quanlyphuong.controllers.dich_te to javafx.fxml ;
+//    opens com.example.quanlyphuong.controllers.nhan_khau.ThongKeController to javafx.fxml;
+    opens com.example.quanlyphuong.models to javafx.base;
 }
