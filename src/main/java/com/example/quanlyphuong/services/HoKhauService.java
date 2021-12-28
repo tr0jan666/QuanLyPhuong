@@ -16,6 +16,14 @@ import java.util.logging.Logger;
 
 public class HoKhauService {
 
+    private static final HoKhauService INSTANCE = new HoKhauService();
+
+    private HoKhauService () {
+
+    }
+    public static HoKhauService getInstance() {
+        return INSTANCE;
+    }
 
     public ArrayList<HoKhauBean> getListHoKhau() {
         ArrayList<HoKhauBean> list = new ArrayList<>();
@@ -104,7 +112,31 @@ public class HoKhauService {
     }
 
     public SimpleResult xoaHoKhau(int idHoKhau) {
-        return null;
+        String xoaHoKhauQuery = "delete from ho_khau where Id = ?";
+        String xoaThanhVienHoQuery = "delete from thanh_vien_cua_ho where idHoKhau = ?";
+
+        try (Connection connection = MySQLConnector.getConnection()) {
+            PreparedStatement xoaHoKhauStatement = connection.prepareStatement(xoaHoKhauQuery);
+            PreparedStatement xoaThanhVienHoStatement = connection.prepareStatement(xoaThanhVienHoQuery);
+
+            xoaHoKhauStatement.setInt(1, idHoKhau);
+            xoaThanhVienHoStatement.setInt(1, idHoKhau);
+
+            int countDeleteThanhVienHo = xoaThanhVienHoStatement.executeUpdate();
+            if(countDeleteThanhVienHo > 0) {
+                int countDeleteHoKhau = xoaHoKhauStatement.executeUpdate();
+                if(countDeleteHoKhau > 0) {
+                    return new SimpleResult(true, SimpleResult.DEFAULT_SUCCESS_MESSAGE);
+                }else {
+                    return  new SimpleResult(false, SimpleResult.DEFAULT_FAILED_MESSAGE);
+                }
+            }else {
+                return  new SimpleResult(false, SimpleResult.DEFAULT_FAILED_MESSAGE);
+            }
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+            return new SimpleResult(false, exception.getMessage());
+        }
     }
 
     public SimpleResult suaHoKhau(HoKhauModel hoKhau) {
@@ -189,4 +221,5 @@ public class HoKhauService {
             System.out.println("services.HoKhauService.tachHoKhau()");
         }
     }
+
 }
