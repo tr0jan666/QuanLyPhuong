@@ -32,6 +32,9 @@ public class NhanKhauModel {
     private int idNguoiXoa;
     private String lyDoXoa;
     private String ghiChu;
+    private String status;
+    private String lastUpdate;
+
     private TiemChungModel thongTinTiemChung;
     private CachLyModel thongTinCachLy;
     private HoKhauModel thongTinHoKhau;
@@ -39,8 +42,7 @@ public class NhanKhauModel {
     public NhanKhauModel() {
     }
 
-    //construtor
-    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu) {
+    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu, String status, String lastUpdate, TiemChungModel thongTinTiemChung, CachLyModel thongTinCachLy, HoKhauModel thongTinHoKhau) {
         this.ID = ID;
         this.maNhanKhau = maNhanKhau;
         Ho_ten = ho_ten;
@@ -69,10 +71,13 @@ public class NhanKhauModel {
         this.idNguoiXoa = idNguoiXoa;
         this.lyDoXoa = lyDoXoa;
         this.ghiChu = ghiChu;
+        this.status = status;
+        this.lastUpdate = lastUpdate;
+        this.thongTinTiemChung = thongTinTiemChung;
+        this.thongTinCachLy = thongTinCachLy;
+        this.thongTinHoKhau = thongTinHoKhau;
     }
 
-
-    // Get + Set
     public int getID() {
         return ID;
     }
@@ -295,6 +300,22 @@ public class NhanKhauModel {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public TiemChungModel getThongTinTiemChung() {
