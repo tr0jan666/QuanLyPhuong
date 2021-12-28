@@ -254,7 +254,7 @@ public class TachHoKhauController implements Initializable {
         this.quanHeChuHoList.add("ChuHo");
 
 
-        hoKhauService = new HoKhauService();
+        hoKhauService = HoKhauService.getInstance();
         listHoKhauBeans = hoKhauService.getListHoKhau();
 
         ObservableList observableListHoKhau = FXCollections.observableList(listHoKhauBeans);
