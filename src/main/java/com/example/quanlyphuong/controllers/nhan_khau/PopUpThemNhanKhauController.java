@@ -100,6 +100,7 @@ public class PopUpThemNhanKhauController implements Initializable {
         nhanKhau.setNoiLamViec(tf_noiLamViec.getText());
         nhanKhau.setNoiThuongTru(tf_thuongTru.getText());
         nhanKhau.setIdNguoiTao(AuthService.getInstance().getCurrentUser().getID());
+        nhanKhau.setMaNhanKhau(tf_maNhanKhau.getText());
 
         cmt.setSoCMT(tf_cmt.getText());
         cmt.setIdNhanKhau(Integer.parseInt(tf_maNhanKhau.getText()));
