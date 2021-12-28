@@ -14,8 +14,8 @@ public class NhanKhauModel {
     private String danToc;
     private String tonGiao;
     private String quocTich;
-    private String noiThuongTru;
     private String soHoChieu;
+    private String noiThuongTru;
     private String diaChiHienNay;
     private String trinhDoHocVan;
     private String ngheNghiep;
@@ -32,6 +32,9 @@ public class NhanKhauModel {
     private int idNguoiXoa;
     private String lyDoXoa;
     private String ghiChu;
+    private int status;
+    private int lastUpadate;
+
     private TiemChungModel thongTinTiemChung;
     private CachLyModel thongTinCachLy;
     private HoKhauModel thongTinHoKhau;
@@ -40,7 +43,7 @@ public class NhanKhauModel {
     }
 
     //construtor
-    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu) {
+    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String soHoChieu, String noiThuongTru, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu, int status, int lastUpadate, TiemChungModel thongTinTiemChung, CachLyModel thongTinCachLy, HoKhauModel thongTinHoKhau) {
         this.ID = ID;
         this.maNhanKhau = maNhanKhau;
         Ho_ten = ho_ten;
@@ -51,8 +54,8 @@ public class NhanKhauModel {
         this.danToc = danToc;
         this.tonGiao = tonGiao;
         this.quocTich = quocTich;
-        this.noiThuongTru = noiThuongTru;
         this.soHoChieu = soHoChieu;
+        this.noiThuongTru = noiThuongTru;
         this.diaChiHienNay = diaChiHienNay;
         this.trinhDoHocVan = trinhDoHocVan;
         this.ngheNghiep = ngheNghiep;
@@ -69,10 +72,15 @@ public class NhanKhauModel {
         this.idNguoiXoa = idNguoiXoa;
         this.lyDoXoa = lyDoXoa;
         this.ghiChu = ghiChu;
+        this.status = status;
+        this.lastUpadate = lastUpadate;
+        this.thongTinTiemChung = thongTinTiemChung;
+        this.thongTinCachLy = thongTinCachLy;
+        this.thongTinHoKhau = thongTinHoKhau;
     }
 
-
     // Get + Set
+
     public int getID() {
         return ID;
     }
@@ -153,20 +161,20 @@ public class NhanKhauModel {
         this.quocTich = quocTich;
     }
 
-    public String getNoiThuongTru() {
-        return noiThuongTru;
-    }
-
-    public void setNoiThuongTru(String noiThuongTru) {
-        this.noiThuongTru = noiThuongTru;
-    }
-
     public String getSoHoChieu() {
         return soHoChieu;
     }
 
     public void setSoHoChieu(String soHoChieu) {
         this.soHoChieu = soHoChieu;
+    }
+
+    public String getNoiThuongTru() {
+        return noiThuongTru;
+    }
+
+    public void setNoiThuongTru(String noiThuongTru) {
+        this.noiThuongTru = noiThuongTru;
     }
 
     public String getDiaChiHienNay() {
@@ -295,6 +303,22 @@ public class NhanKhauModel {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getLastUpadate() {
+        return lastUpadate;
+    }
+
+    public void setLastUpadate(int lastUpadate) {
+        this.lastUpadate = lastUpadate;
     }
 
     public TiemChungModel getThongTinTiemChung() {
