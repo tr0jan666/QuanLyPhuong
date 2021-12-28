@@ -62,21 +62,6 @@
                                 </Group>
                             </graphic>
                         </Button>
-                        <Button fx:id="btnThongKe" alignment="TOP_LEFT" graphicTextGap="35.0" mnemonicParsing="false" onAction="#setThongKe" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Thống kê" textFill="WHITE">
-                            <VBox.margin>
-                                <Insets left="1.0" right="1.0" />
-                            </VBox.margin>
-                            <font>
-                                <Font name="Arial Bold" size="18.0" />
-                            </font>
-                            <graphic>
-                                <Group styleClass="icon">
-                                    <children>
-                                        <SVGPath content="M216 288h-48c-8.84 0-16 7.16-16 16v192c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V304c0-8.84-7.16-16-16-16zM88 384H40c-8.84 0-16 7.16-16 16v96c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16v-96c0-8.84-7.16-16-16-16zm256-192h-48c-8.84 0-16 7.16-16 16v288c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V208c0-8.84-7.16-16-16-16zm128-96h-48c-8.84 0-16 7.16-16 16v384c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V112c0-8.84-7.16-16-16-16zM600 0h-48c-8.84 0-16 7.16-16 16v480c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V16c0-8.84-7.16-16-16-16z" scaleX="0.04" scaleY="0.04" styleClass="icon" />
-                                    </children>
-                                </Group>
-                            </graphic>
-                        </Button>
                   <Button fx:id="btnTiemChung" graphicTextGap="33.0" mnemonicParsing="false" onAction="#setTiemChung" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Tiêm chủng">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -101,6 +86,21 @@
                         </Group>
                      </graphic>
                   </Button>
+                        <Button fx:id="btnThongKe" alignment="TOP_LEFT" graphicTextGap="35.0" mnemonicParsing="false" onAction="#setThongKe" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Thống kê" textFill="WHITE">
+                            <VBox.margin>
+                                <Insets left="1.0" right="1.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="18.0" />
+                            </font>
+                            <graphic>
+                                <Group styleClass="icon">
+                                    <children>
+                                        <SVGPath content="M216 288h-48c-8.84 0-16 7.16-16 16v192c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V304c0-8.84-7.16-16-16-16zM88 384H40c-8.84 0-16 7.16-16 16v96c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16v-96c0-8.84-7.16-16-16-16zm256-192h-48c-8.84 0-16 7.16-16 16v288c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V208c0-8.84-7.16-16-16-16zm128-96h-48c-8.84 0-16 7.16-16 16v384c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V112c0-8.84-7.16-16-16-16zM600 0h-48c-8.84 0-16 7.16-16 16v480c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V16c0-8.84-7.16-16-16-16z" scaleX="0.04" scaleY="0.04" styleClass="icon" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                        </Button>
                         <Button fx:id="btnQuayLai" alignment="TOP_LEFT" graphicTextGap="38.0" mnemonicParsing="false" onAction="#setQuayLai" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Quay Lại">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />

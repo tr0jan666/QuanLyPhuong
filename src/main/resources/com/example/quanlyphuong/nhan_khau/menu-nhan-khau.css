@@ -3,15 +3,17 @@
 .leftPaneLogin{
     -fx-background-image: url("3dlogin.png");
 }
-
-
-
+.anChorpane {
+    -fx-background-color: #38466b  ;
+    -fx-background-radius: 10 ;
+}
+/*#38466b*/
 .icon{
     -fx-fill: #1b74e4;
 }
 .pane {
     -fx-background-color : #f0f2f5;
-    -fx-background-radius: 8;
+    -fx-background-radius: 8px;
 }
 .vbox2ben{
     -fx-background-image: url("hinh-nen-anime-4k-dep-15.jpg") ;
@@ -69,7 +71,10 @@
 {
     -fx-background-color : #d8d9dc ;
 }
-
+.button3:focused
+{
+    -fx-background-color: #d8d9dc;
+}
 .button4
 {
     -fx-background-color :linear-gradient(to top left, #41951C, #D4CEE3);
@@ -87,6 +92,7 @@
 }
 .info__pane{
     -fx-background-color: #666666;
+    -fx-background-radius: 8px;
 }
 
 .trang__chu__button{
