@@ -2,7 +2,9 @@ package com.example.quanlyphuong.controllers.nhan_khau;
 
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
+import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.AuthService;
+import com.example.quanlyphuong.services.ChungMinhThuService;
 import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -152,6 +154,17 @@ public class PopUpThemNhanKhauController implements Initializable {
 
 
 
+    }
+
+    public void checkCMT(ActionEvent actionEvent) {
+        SimpleResult result = ChungMinhThuService.getInstance().checkCMTTonTai(tf_cmt.getText());
+        Alert alert;
+        if(result.isSuccess()){
+            alert = new Alert(Alert.AlertType.CONFIRMATION, result.getMessage(), ButtonType.CLOSE);
+        }      else {
+            alert = new Alert(Alert.AlertType.ERROR, result.getMessage(), ButtonType.CLOSE);
+        }
+        alert.showAndWait();
     }
 }
 

@@ -125,7 +125,7 @@ public class NhanKhauService {
 
         try(Connection connection = MySQLConnector.getConnection()){
             // ket noi voi data_base
-            String query = "INSERT INTO `quan_ly_nhan_khau_new`.`nhan_khau` (`maNhanKhau`, `hoTen`, `namSinh`, `gioiTinh`, `quocTich`,`noiSinh`, `nguyenQuan`," +
+            String query = "INSERT INTO nhan_khau (`maNhanKhau`, `hoTen`, `namSinh`, `gioiTinh`, `quocTich`,`noiSinh`, `nguyenQuan`," +
                     " `danToc`, `tonGiao`,`tienAn`, `trinhDoHocVan`,`diaChiHienNay`,`ngheNghiep`,`noiLamViec`, `noiThuongTru`, " +
                     "  `idNguoiTao`) " +
                     "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
