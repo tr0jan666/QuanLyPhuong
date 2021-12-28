@@ -29,13 +29,15 @@ public class MenuController implements Initializable {
 
     @FXML
     void goToDichTeScreen(ActionEvent event) {
-        UIHelper.navigateNew("dich_te/menu-dich-te.fxml", "Quản lý dịch tễ", null,1000,630);
+//        UIHelper.navigateNew("dich_te/menu-dich-te.fxml", "Quản lý dịch tễ", null,1000,630);
+        UIHelper.navigateNew("dich_te/menu-dich-te.fxml", "Quản lý dịch tễ", null,1200, 800);
+
         btnDichTe.getScene().getWindow().hide();
     }
 
     @FXML
     void goToNhanKhauScreen(ActionEvent event) {
-        UIHelper.navigateNew("nhan_khau/menu-nhan-khau.fxml", "Quản lý nhân khẩu", null,1000,630);
+        UIHelper.navigateNew("nhan_khau/menu-nhan-khau.fxml", "Quản lý nhân khẩu", null,1200,800);
         btnNhanKhau.getScene().getWindow().hide();
 
     }
