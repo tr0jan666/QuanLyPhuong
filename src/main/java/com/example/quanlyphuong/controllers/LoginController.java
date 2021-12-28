@@ -35,6 +35,7 @@ public class LoginController {
 
     AuthService authService = AuthService.getInstance();
 
+
     @FXML
     void onLogin(ActionEvent event) {
         SimpleResult simpleResult = authService.login(tftUser.getText(), tftPassword.getText(), cbAdmin.isSelected());

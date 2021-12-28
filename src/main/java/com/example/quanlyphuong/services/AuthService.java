@@ -41,7 +41,7 @@ public class AuthService {
             if (selectUserRS.next()) {
                 //db co user
                 int id = selectUserRS.getInt(1);
-                String dbPassword = selectUserRS.getString(2);
+                String dbPassword = selectUserRS.getString(3);
 
                 if (Objects.equals(dbPassword, password)) {
                     this.currentUser = new UserMoldel(id, userName, password);
