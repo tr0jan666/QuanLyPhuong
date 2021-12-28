@@ -17,6 +17,10 @@ public class TestCovidModel {
         this.ketQua = ketQua;
     }
 
+    public TestCovidModel() {
+
+    }
+
     public int getIDTest() {
         return IDTest;
     }

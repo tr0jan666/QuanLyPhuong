@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.PopUpThongTinController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="686.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
             <children>
@@ -41,7 +41,6 @@
                         <RowConstraints maxHeight="36.00003662109373" minHeight="10.0" prefHeight="36.00003662109373" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="36.00003662109373" minHeight="10.0" prefHeight="36.00003662109373" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="36.00003662109373" minHeight="10.0" prefHeight="36.00003662109373" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="36.00003662109373" minHeight="10.0" prefHeight="36.00003662109373" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <Label id="lb_HoVaTen" text="Họ và tên" />
@@ -49,7 +48,7 @@
                         <Label id="lb_NgaySinh" text="Ngày sinh" GridPane.rowIndex="1" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <children>
-                                <TextField id="tf_NgaySinh" prefHeight="26.0" prefWidth="369.0" />
+                                <TextField id="tf_NgaySinh" fx:id="tf_NgaySinh" prefHeight="26.0" prefWidth="369.0" />
                             </children></HBox>
                         <Label id="lb_GioiTinh" text="Giới tính" GridPane.columnIndex="2" />
                         <Label GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -64,36 +63,32 @@
                         <Label id="lb_HocVan" text="Học vấn" GridPane.rowIndex="5" />
                         <Label id="lb_ChuyenMon" layoutX="11.0" layoutY="156.0" text="Chuyên môn" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                         <Label id="lb_NoiLamViec" layoutX="404.0" layoutY="144.0" text="Nơi làm việc" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <Label id="lb_ChuHo" text="Chủ hộ" GridPane.rowIndex="9" />
-                        <Label id="lb_QUanHeVoiChuHo" text="Quan hệ với chủ hộ" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-                        <TextField id="tf_GioiTinh" GridPane.columnIndex="3" />
-                        <TextField id="tf_QuocTich" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <TextField id="tf_NoiSinh" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField id="tf_QueQuan" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <TextField id="tf_DanToc" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField id="tf_TonGiao" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <TextField id="tf_SoCCCD" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField id="tf_HocVan" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField id="tf_NgheNghiep" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField id="tf_NoiThuongTru" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextField id="tf_DiaChiHienTai" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextField id="tf_LiDoChuyenDen" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <TextField id="tf_NgayChuyenDen" GridPane.columnIndex="3" GridPane.rowIndex="10" />
-                        <TextField id="tf_NoiLamViec" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                        <TextField id="tf_ChuyenMon" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <TextField id="tf_HoVaTen" prefHeight="26.0" prefWidth="369.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="tf_GioiTinh" GridPane.columnIndex="3" />
+                        <TextField fx:id="tf_quocTich" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="tf_noiSinh" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="tf_nguyenQuan" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <TextField fx:id="tf_danToc" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="tf_tonGiao" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <TextField fx:id="tf_cmt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="tf_hocVan" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="tf_ngheNghiep" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="tf_thuongTru" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="tf_diaChiHienTai" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="tf_LiDoChuyenDen" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextField fx:id="tf_NgayChuyenDen" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                        <TextField fx:id="tf_noiLamViec" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <TextField fx:id="tf_chuyenMon" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <TextField fx:id="tf_HovaTen" prefHeight="26.0" prefWidth="369.0" GridPane.columnIndex="1" />
                         <Label id="lb_MaNhanKhau" text="Mã Nhân Khẩu" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                        <TextField id="tf_MaNhanKhau" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                        <Label id="lb_LiDoChuyenDen" text="Lí do chuyển đến" GridPane.rowIndex="10" />
-                        <Label id="lb_NgayChuyenDen" text="Ngày chuyển đến" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-                        <TextField id="tf_ChuHo" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <TextField id="tf_QuanHeVoiChuHo" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-                        <TextField id="tf_LiDoChuyenDi" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                        <TextField id="tf_NgayChuyenDi" GridPane.columnIndex="3" GridPane.rowIndex="11" />
-                        <Label id="lb_LiDoChuyenDi" text="Lí do chuyển đi" GridPane.rowIndex="11" />
-                        <Label id="lb_NgayChuyenDi" text="Ngày chuyển đi" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                        <TextField fx:id="tf_maNhanKhau" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                        <Label id="lb_LiDoChuyenDen" text="Lí do chuyển đến" GridPane.rowIndex="9" />
+                        <Label id="lb_NgayChuyenDen" text="Ngày chuyển đến" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                        <TextField fx:id="tf_LiDoChuyenDi" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <TextField fx:id="tf_NgayChuyenDi" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                        <Label id="lb_LiDoChuyenDi" text="Lí do chuyển đi" GridPane.rowIndex="10" />
+                        <Label id="lb_NgayChuyenDi" text="Ngày chuyển đi" GridPane.columnIndex="2" GridPane.rowIndex="10" />
                         <Label id="lb_TienAn" text="Tiền Án" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <TextField id="tf_TienAn" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <TextField fx:id="tf_tienAn" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                     </children>
                 </GridPane>
                 <Label layoutX="250.0" layoutY="521.0" />

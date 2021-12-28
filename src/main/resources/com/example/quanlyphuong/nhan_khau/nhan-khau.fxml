@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.NhanKhauController">
     <children>
-        <TableView layoutX="14.0" layoutY="180.0" prefHeight="588.0" prefWidth="820.0">
+        <TableView id= "tableView" layoutX="14.0" layoutY="180.0" prefHeight="588.0" prefWidth="820.0">
             <columns>
                 <TableColumn id="tc_HoVaTen" fx:id="col_hoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
                 <TableColumn id="tc_Tuoi" fx:id="col_cmt" prefWidth="109.0" text="CMT" />
