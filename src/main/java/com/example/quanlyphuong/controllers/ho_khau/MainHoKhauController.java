@@ -70,6 +70,8 @@ public class MainHoKhauController implements Initializable {
         alert.setHeaderText("Bạn có muốn xóa hàng này không?");
 
         Optional<ButtonType> result = alert.showAndWait();
+
+        // Đoạn này xóa em k biết làm này
         if(result.get() == ButtonType.OK) {
             for (HoKhauBean hkDetailString : tbvBangThongKe.getSelectionModel().getSelectedItems()) {
                 _hkBean.delete(hkDetailString.getHoKhauModel());
