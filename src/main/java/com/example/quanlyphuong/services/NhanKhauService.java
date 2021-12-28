@@ -20,6 +20,9 @@ import java.util.Date;
 import java.util.Map;
 
 public class NhanKhauService {
+
+    private static final NhanKhauService INSTANCE = new NhanKhauService();
+
     public NhanKhauModel getDetail(int idNhanKhau) {
         //write code here
 

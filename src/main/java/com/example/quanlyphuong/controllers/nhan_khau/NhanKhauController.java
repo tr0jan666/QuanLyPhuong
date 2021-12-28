@@ -69,19 +69,8 @@ public class NhanKhauController {
 
     @FXML
     void themNhanKhau(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Stage popUpStage = new Stage();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/nhan_khau/pop_up_them_nhan_khau.fxml"));
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-        popUpStage.initModality(Modality.APPLICATION_MODAL);
-        popUpStage.initOwner(stage);
-        popUpStage.setTitle("Thêm mới nhân khẩu");
-        popUpStage.setScene(scene);
-        popUpStage.centerOnScreen();
-        popUpStage.showAndWait();
-//        setDataTable();
+        UIHelper.navigateNew("nhan_khau/pop_up_them_nhan_khau.fxml", "Thêm nhân khẩu", null,1000, 700);
+//        btn_ThemNhanKhau.getScene().getWindow().hide();
     }
 
     @FXML
