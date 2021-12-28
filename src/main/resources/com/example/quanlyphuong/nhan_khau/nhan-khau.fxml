@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -13,18 +14,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="630.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.NhanKhauController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.NhanKhauController">
     <children>
-        <TableView layoutX="14.0" layoutY="130.0" prefHeight="500.0" prefWidth="670.0">
+        <TableView layoutX="14.0" layoutY="180.0" prefHeight="588.0" prefWidth="820.0">
             <columns>
-                <TableColumn id="tc_HoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
-                <TableColumn id="tc_Tuoi" prefWidth="109.0" text="CMT" />
-                <TableColumn id="tc_DiaChi" prefWidth="95.0" text="Tuổi" />
-                <TableColumn id="tc_ChuHo" minWidth="0.0" prefWidth="171.0" text="Giới tính" />
+                <TableColumn id="tc_HoVaTen" fx:id="col_hoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
+                <TableColumn id="tc_Tuoi" fx:id="col_cmt" prefWidth="109.0" text="CMT" />
+                <TableColumn id="tc_DiaChi" fx:id="col_tuoi" prefWidth="95.0" text="Tuổi" />
+                <TableColumn id="tc_ChuHo" fx:id="col_gioiTinh" minWidth="0.0" prefWidth="171.0" text="Giới tính" />
                 <TableColumn id="tc_MaHo" minWidth="0.0" prefWidth="137.0" text="Địa chỉ" />
             </columns>
         </TableView>
-        <GridPane layoutX="23.0" layoutY="38.0" prefHeight="43.0" prefWidth="728.0">
+        <GridPane layoutX="26.0" layoutY="128.0" prefHeight="31.0" prefWidth="728.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="604.4000122070313" minWidth="10.0" prefWidth="406.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.8000137329102" minWidth="5.199987792968727" prefWidth="122.0" />
@@ -37,15 +38,15 @@
                 <TextField id="tf_TimKiem" prefHeight="26.0" prefWidth="342.0" />
                 <ButtonBar prefHeight="43.0" prefWidth="156.0" GridPane.columnIndex="2">
                     <buttons>
-                        <Button id="btn_ThemNhanKhau" fx:id="btn_ThemNhanKhau" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Thêm Nhân Khẩu" />
+                        <Button id="btn_ThemNhanKhau" fx:id="btn_ThemNhanKhau" mnemonicParsing="false" onAction="#themNhanKhau" prefHeight="26.0" prefWidth="150.0" text="Thêm Nhân Khẩu" />
                     </buttons>
                 </ButtonBar>
-                <Button id="btn_TimKiem" alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="105.0" text="Tìm kiếm" textAlignment="CENTER" GridPane.columnIndex="1" />
+                <Button id="btn_TimKiem" fx:id="btn_timKiem" alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="105.0" text="Tìm kiếm" textAlignment="CENTER" GridPane.columnIndex="1" />
             </children>
         </GridPane>
-        <VBox layoutX="696.0" layoutY="130.0" prefHeight="423.0" prefWidth="80.0">
+        <VBox layoutX="867.0" layoutY="190.0" prefHeight="439.0" prefWidth="105.0">
             <children>
-                <Button id="btn_ChiTiet" fx:id="btn_chiTiet" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Chi tiết">
+                <Button id="btn_ChiTiet" fx:id="btn_chiTiet" mnemonicParsing="false" onAction="#xemChiTietNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Chi tiết">
                     <VBox.margin>
                         <Insets top="15.0" />
                     </VBox.margin>
@@ -53,7 +54,7 @@
                   <Font size="11.0" />
                </font>
                 </Button>
-                <Button id="btn_Xoa" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Xóa" textFill="#cc0e0e">
+                <Button id="btn_Xoa" fx:id="btn_Xoa" mnemonicParsing="false" onAction="#xoaNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Xóa" textFill="#cc0e0e">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
@@ -61,7 +62,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-                <Button id="btn_KhaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Khai tử" textFill="#cc0e0e">
+                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#khaiTuNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
@@ -69,7 +70,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-            <Button id="btn_KhaiTu" layoutX="10.0" layoutY="115.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Tạm trú">
+            <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="10.0" layoutY="115.0" mnemonicParsing="false" onAction="#tamTruNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm trú">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -77,7 +78,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <Button id="btn_KhaiTu" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Tạm vắng">
+            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#tamVangNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm vắng">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -87,10 +88,15 @@
             </Button>
             </children>
         </VBox>
-        <Button id="btn_KhoiPhuc" layoutX="696.0" layoutY="566.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Khôi phục">
+        <Button id="btn_KhoiPhuc" layoutX="869.0" layoutY="689.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Khôi phục">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
+      <Label layoutX="305.0" layoutY="22.0" prefHeight="106.0" prefWidth="430.0" text="Nhân khẩu" textFill="#29adff">
+         <font>
+            <Font name="System Bold" size="64.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

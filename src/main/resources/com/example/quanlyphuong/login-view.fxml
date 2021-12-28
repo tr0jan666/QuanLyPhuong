@@ -5,51 +5,50 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="371.0" prefWidth="600.0" styleClass="leftPaneLogin" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.LoginController">
-    <children>
-      <AnchorPane layoutX="241.0" prefHeight="372.0" prefWidth="359.0" styleClass="right__pane__login" stylesheets="@login.css">
+<AnchorPane prefHeight="530.0" prefWidth="800.0" stylesheets="@nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.LoginController">
+   <children>
+      <AnchorPane layoutX="242.0" layoutY="-2.0" prefHeight="538.0" prefWidth="400.0" style="-fx-background-color: #5068b2;" styleClass="right__pane__login" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <CheckBox fx:id="cbAdmin" layoutX="153.0" layoutY="228.0" mnemonicParsing="false" text="Login as adminstrator" textFill="#ececee" />
-              <Button fx:id="btnLogin" layoutX="158.0" layoutY="264.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="25.0" prefWidth="66.0" text="Login" />
-            <Button fx:id="btnCancel" layoutX="251.0" layoutY="264.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="66.0" text="Cancel" />
-              <Label layoutX="167.0" layoutY="81.0" prefHeight="43.0" prefWidth="97.0" text="  LOGIN" textFill="WHITE">
-                  <font>
-                      <Font size="21.0" />
-                  </font>
-              </Label>
-            <Text fx:id="txtRegister" fill="#03135b" layoutX="137.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />
-         </children></AnchorPane>
-      <AnchorPane prefHeight="372.0" prefWidth="312.0" styleClass="leftPaneLogin" stylesheets="@login.css">
-         <children>
-            <Text fill="#d93d1c" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PHẦN MỀM QUẢN LÝ NHÂN KHÂU, HỘ KHÂU VÀ DỊCH TỄ " wrappingWidth="326.0">
+            <Label alignment="CENTER" layoutX="122.0" layoutY="83.0" prefHeight="43.0" prefWidth="200.0" text="Quản Lý Dân Cư" textFill="WHITE" AnchorPane.leftAnchor="100.0">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Arial Bold" size="21.0" />
                </font>
-            </Text>
-              <Label layoutX="274.0" layoutY="198.0" text="Password:" textFill="WHITE">
-                  <font>
-                      <Font size="15.0" />
-                  </font>
-              </Label>
-              <ImageView fitHeight="254.0" fitWidth="303.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../icons/login.png" />
-               </image>
-              </ImageView>
+            </Label>
+            <TextField fx:id="tftUser" layoutX="140.0" layoutY="186.0" prefHeight="34.0" prefWidth="202.0" style="-fx-background-radius: 10;" />
+            <PasswordField fx:id="tftPassword" layoutX="140.0" layoutY="244.0" prefHeight="34.0" prefWidth="202.0" style="-fx-background-radius: 10;" />
+            <CheckBox fx:id="cbAdmin" layoutX="141.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-radius: 5;" text="Login as adminstrator" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></CheckBox>
+            <Button fx:id="btnLogin" layoutX="108.0" layoutY="361.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="34.0" prefWidth="100.0" styleClass="button1" text="Đăng Nhập" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.5" />
+               </font></Button>
+            <Button fx:id="btnCancel" layoutX="260.0" layoutY="361.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="34.0" prefWidth="100.0" styleClass="button1" text="Thoát" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.5" />
+               </font></Button>
+            <Text fx:id="txtRegister" fill="#03135b" layoutX="132.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />
+            <Label layoutX="35.0" layoutY="194.0" text="User Name:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="256.0" text="Password:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane prefHeight="530.0" prefWidth="400.0" styleClass="leftPaneLogin" AnchorPane.rightAnchor="400.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="107.0" layoutX="150.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="238.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="192.0" />
          </children>
       </AnchorPane>
-        <Label layoutX="264.0" layoutY="146.0" text="User Name:" textFill="WHITE">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Label>
-        <TextField fx:id="tftUser" layoutX="367.0" layoutY="143.0" prefHeight="26.0" prefWidth="201.0" />
-        <PasswordField fx:id="tftPassword" layoutX="367.0" layoutY="193.0" prefHeight="26.0" prefWidth="201.0" />
-    </children>
+   </children>
 </AnchorPane>
