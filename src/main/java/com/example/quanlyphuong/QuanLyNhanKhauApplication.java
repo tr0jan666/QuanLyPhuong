@@ -18,7 +18,7 @@ public class QuanLyNhanKhauApplication extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
+    
 
     }
 

@@ -52,4 +52,6 @@ public class NhanKhauService {
     public int soNguoiCachLy() {
         return 0;
     }
+
 }
+
