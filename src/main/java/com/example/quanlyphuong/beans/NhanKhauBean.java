@@ -14,6 +14,11 @@ public class NhanKhauBean {
     private NhanKhauModel nhanKhauModel;
     private ChungMinhThuModel chungMinhThuModel;
 
+    public NhanKhauBean(NhanKhauModel nhanKhauModel, ChungMinhThuModel chungMinhThuModel) {
+        this.nhanKhauModel = nhanKhauModel;
+        this.chungMinhThuModel = chungMinhThuModel;
+    }
+
     public NhanKhauModel getNhanKhauModel() {
         return nhanKhauModel;
     }
@@ -32,4 +37,5 @@ public class NhanKhauBean {
 
     public NhanKhauBean() {
     }
+
 }
