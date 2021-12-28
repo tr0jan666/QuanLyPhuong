@@ -7,6 +7,7 @@ import com.example.quanlyphuong.models.KhaiTuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.SimpleResult;
 
+import java.time.ZoneId;
 import java.util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +23,10 @@ import java.util.Map;
 public class NhanKhauService {
 
     private static final NhanKhauService INSTANCE = new NhanKhauService();
+
+    public static NhanKhauService getInstance() {
+        return INSTANCE;
+    }
 
     public NhanKhauModel getDetail(int idNhanKhau) {
         //write code here
@@ -87,13 +92,33 @@ public class NhanKhauService {
         return null;
     }
 
-    public SimpleResult taoNhanKhau(NhanKhauModel nhanKhauMoi) {
+//    public SimpleResult taoNhanKhau(NhanKhauModel nhanKhau){
+//        nhanKhau.setHo_ten(tf_ten.getText());
+//        nhanKhau.setNamSinh(java.sql.Date.from(dp_ngaySinh.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//        nhanKhau.setGioiTinh(cb_gioiTinh.getValue().toString());
+//        nhanKhau.setQuocTich(tf_quocTich.getText());
+//        nhanKhau.setNoiSinh(tf_noiSinh.getText());
+//        nhanKhau.setNguyenQuan(tf_nguyenQuan.getText());
+//        nhanKhau.setDanToc(tf_danToc.getText());
+//        nhanKhau.setTonGiao(tf_tonGiao.getText());
+//        nhanKhau.setTienAn(tf_tienAn.getText());
+//        nhanKhau.setTrinhDoHocVan(tf_hocVan.getText());
+//        nhanKhau.setDiaChiHienNay(tf_diaChiHienTai.getText());
+//        nhanKhau.setNgheNghiep(tf_ngheNghiep.getText());
+//        nhanKhau.setNoiLamViec(tf_noiLamViec.getText());
+//        nhanKhau.setNoiThuongTru(tf_thuongTru.getText());
+//        nhanKhau.setIdNguoiTao(AuthService.getInstance().getCurrentUser().getID());
+//
+//
+//
+//    }
 
+    public SimpleResult taoNhanKhau(NhanKhauModel nhanKhauMoi) {
         // lay thong tin input
         int ID = nhanKhauMoi.getID();
         String maNhanKhau = nhanKhauMoi.getMaNhanKhau();
         String Ho_ten = nhanKhauMoi.getHo_ten();
-        Date namSinh =  new java.sql.Date(nhanKhauMoi.getNamSinh().getTime());
+        java.sql.Date namSinh =  new java.sql.Date(nhanKhauMoi.getNamSinh().getTime());
         String gioiTinh = nhanKhauMoi.getGioiTinh();
         String noiSinh = nhanKhauMoi.getNoiSinh();
         String nguyenQuan = nhanKhauMoi.getNguyenQuan();
@@ -121,14 +146,18 @@ public class NhanKhauService {
 
         try(Connection connection = MySQLConnector.getConnection()){
             // ket noi voi data_base
-            String query = "INSERT INTO nhan_khau VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO `quan_ly_nhan_khau_new`.`nhan_khau` (`maNhanKhau`, `hoTen`, `namSinh`, `gioiTinh`, `noiSinh`, `nguyenQuan`," +
+                    " `danToc`, `tonGiao`, `quocTich`, `soHoChieu`, `noiThuongTru`, `diaChiHienNay`," +
+                    " `trinhDoHocVan`, `ngheNghiep`, `noiLamViec`, `tienAn`, `ngayChuyenDen`, `lyDoChuyenDen`, `ngayChuyenDi`," +
+                    " `lyDoChuyenDi`, `diaChiMoi`, `idNguoiTao`, `ngayXoa`, `idNguoiXoa`, `lyDoXoa`, `ghiChu`, `status`, `lastUpdate`) " +
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             // cai dat gia tri
-            preparedStatement.setInt(1, ID);
-            preparedStatement.setString(2, maNhanKhau);
+//            preparedStatement.setInt(1, ID);
+            preparedStatement.setString(1, maNhanKhau);
             preparedStatement.setString(3, Ho_ten);
-            preparedStatement.setDate(4, (java.sql.Date) namSinh);
+            preparedStatement.setDate(4, namSinh);
             preparedStatement.setString(5, gioiTinh);
             preparedStatement.setString(6, noiSinh );
             preparedStatement.setString(7, nguyenQuan);
@@ -154,6 +183,7 @@ public class NhanKhauService {
             preparedStatement.setString(27, lyDoXoa);
             preparedStatement.setString(28, ghiChu);
 
+            preparedStatement.executeQuery();
             // dong co so du lieu
             preparedStatement.close();
             connection.close();
@@ -161,6 +191,7 @@ public class NhanKhauService {
             return new SimpleResult(true, "Tao thong tin thanh cong");
         } catch (SQLException ex) {// thong bao loi
             ex.printStackTrace();
+
             return new SimpleResult(false, ex.getMessage());
         }
     }
@@ -365,4 +396,6 @@ public class NhanKhauService {
 
         return 0;
     }
+
+
 }

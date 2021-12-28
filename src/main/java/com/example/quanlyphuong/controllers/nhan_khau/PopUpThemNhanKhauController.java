@@ -104,7 +104,7 @@ public class PopUpThemNhanKhauController implements Initializable {
         cmt.setSoCMT(tf_cmt.getText());
         cmt.setIdNhanKhau(Integer.parseInt(tf_maNhanKhau.getText()));
 
-//        NhanKhauService.getIn
+        NhanKhauService.getInstance().taoNhanKhau(nhanKhau);
 
     }
 
