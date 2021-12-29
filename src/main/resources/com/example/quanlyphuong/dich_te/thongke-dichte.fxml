@@ -15,48 +15,48 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="630.0" prefWidth="790.0" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.ThongKeDichTeController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.ThongKeDichTeController">
     <children>
-        <VBox prefHeight="630.0" prefWidth="790.0">
+        <VBox prefHeight="800.0" prefWidth="1000.0">
             <children>
-            <AnchorPane prefHeight="175.0" prefWidth="790.0" style="-fx-background-color: #38466b; -fx-background-radius: 8;">
+            <AnchorPane prefHeight="200.0" prefWidth="790.0" style="-fx-background-color: #38466b; -fx-background-radius: 8;">
                <children>
-                      <AnchorPane layoutX="6.0" layoutY="50.0" prefHeight="117.0" prefWidth="594.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
+                      <AnchorPane layoutX="6.0" layoutY="50.0" prefHeight="123.0" prefWidth="594.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
                           <children>
-                              <Label layoutX="55.0" layoutY="27.0" text="Giới tính :">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="27.0" prefHeight="20.0" prefWidth="92.0" text="Giới tính :">
                            <font>
-                              <Font name="Arial Bold" size="14.0" />
+                              <Font name="Arial Bold" size="16.0" />
                            </font></Label>
-                              <ComboBox layoutX="144.0" layoutY="20.0" prefHeight="26.0" prefWidth="82.0" AnchorPane.bottomAnchor="72.0" AnchorPane.topAnchor="20.0" />
-                              <Label layoutX="58.0" layoutY="72.0" text="Độ tuổi :">
+                              <ComboBox layoutX="176.0" layoutY="21.0" prefHeight="26.0" prefWidth="82.0" AnchorPane.bottomAnchor="71.0" AnchorPane.topAnchor="21.0" />
+                              <Label layoutX="81.0" layoutY="73.0" text="Độ tuổi :">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font></Label>
-                              <Label layoutX="144.0" layoutY="73.0" text="Từ">
+                              <Label layoutX="185.0" layoutY="75.0" text="Từ">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                              <TextField layoutX="192.0" layoutY="69.0" prefHeight="24.0" prefWidth="43.0" />
-                              <Label layoutX="268.0" layoutY="72.0" text="Đến">
+                              <TextField layoutX="249.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
+                              <Label layoutX="326.0" layoutY="73.0" text="Đến">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                              <TextField layoutX="317.0" layoutY="69.0" prefHeight="24.0" prefWidth="43.0" />
-                              <CheckBox layoutX="290.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đang cách ly">
-                           <font>
-                              <Font size="14.0" />
-                           </font></CheckBox>
-                              <CheckBox layoutX="444.0" layoutY="67.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Đã tiêm 2 mũi">
+                              <TextField layoutX="389.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
+                              <CheckBox layoutX="339.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đang cách ly">
                            <font>
                               <Font size="14.0" />
                            </font></CheckBox>
-                              <CheckBox layoutX="444.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đã tiêm 1 mũi">
+                              <CheckBox layoutX="526.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Đã tiêm 2 mũi">
+                           <font>
+                              <Font size="14.0" />
+                           </font></CheckBox>
+                              <CheckBox layoutX="526.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đã tiêm 1 mũi">
                            <font>
                               <Font size="14.0" />
                            </font></CheckBox>
                           </children>
                       </AnchorPane>
-                   <Button fx:id="btnTimKiemThongkeDT" layoutX="643.0" layoutY="49.0" mnemonicParsing="false" onAction="#setTimKiemThongKeDT" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Tìm Kiếm">
+                   <Button fx:id="btnTimKiemThongkeDT" layoutX="828.0" layoutY="60.0" mnemonicParsing="false" onAction="#setTimKiemThongKeDT" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Tìm Kiếm">
                        <graphic>
                            <Group>
                                <children>
@@ -67,7 +67,7 @@
                        <font>
                            <Font name="Arial Bold" size="14.0" />
                        </font></Button>
-                   <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="643.0" layoutY="108.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
+                   <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="828.0" layoutY="140.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
                        <font>
                            <Font name="Arial Bold" size="14.0" />
                        </font>
@@ -78,16 +78,16 @@
                                </children>
                            </Group>
                        </graphic></Button>
-                  <Label alignment="CENTER" layoutX="311.0" layoutY="10.0" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Thống Kê" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="10.0">
+                  <Label alignment="CENTER" layoutX="400.0" layoutY="14.0" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Thống Kê" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="14.0">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <ScrollPane prefHeight="455.0" prefWidth="790.0">
+            <ScrollPane prefHeight="619.0" prefWidth="998.0">
                <content>
-                      <TableView prefHeight="455.0">
+                      <TableView prefHeight="619.0" prefWidth="1000.0">
                           <columns>
                               <TableColumn prefWidth="100.0" text="CCCD" />
                               <TableColumn minWidth="0.0" prefWidth="0.0" text="Họ và tên" />
