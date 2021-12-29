@@ -40,13 +40,13 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                              <TextField fx:id="tuTuoi" layoutX="234.0" layoutY="64.0" prefHeight="24.0" prefWidth="43.0" />
+                              <TextField fx:id="tuTuoiText" layoutX="234.0" layoutY="64.0" prefHeight="24.0" prefWidth="43.0" />
                               <Label layoutX="307.0" layoutY="69.0" text="Đến">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                              <TextField fx:id="denTuoi" layoutX="373.0" layoutY="64.0" prefHeight="24.0" prefWidth="43.0" />
+                              <TextField fx:id="denTuoiText" layoutX="373.0" layoutY="64.0" prefHeight="24.0" prefWidth="43.0" />
                         <Label layoutX="363.0" layoutY="20.0" text="Tình trạng :">
                            <font>
                               <Font name="System Bold" size="16.0" />
