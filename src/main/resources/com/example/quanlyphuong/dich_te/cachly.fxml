@@ -14,8 +14,8 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="630.0" prefWidth="790.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.CachLyController">
-    <GridPane layoutX="14.0" layoutY="49.0" prefHeight="114.0" prefWidth="650.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.CachLyController">
+    <GridPane layoutX="48.0" layoutY="49.0" prefHeight="114.0" prefWidth="720.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="56.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="180.0" />
@@ -67,22 +67,22 @@
          <TextField focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
         </children>
     </GridPane>
-    <AnchorPane prefHeight="455.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
+    <AnchorPane prefHeight="455.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
         <children>
             <TableView layoutX="-8.0" prefHeight="455.0" prefWidth="798.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                 <columns>
-                    <TableColumn prefWidth="55.0" text="ID" />
-                    <TableColumn prefWidth="180.0" text="Họ và tên" />
-                    <TableColumn prefWidth="90.0" text="CCCD" />
-                    <TableColumn prefWidth="134.0" text="Địa điểm" />
-                    <TableColumn prefWidth="110.0" text="Ngày bắt đầu" />
-                    <TableColumn prefWidth="110.0" text="Ngày kết thúc" />
-                    <TableColumn prefWidth="106.0" text="Mức độ" />
+                    <TableColumn prefWidth="65.0" text="ID" />
+                    <TableColumn prefWidth="240.0" text="Họ và tên" />
+                    <TableColumn prefWidth="130.0" text="CCCD" />
+                    <TableColumn prefWidth="200.0" text="Địa điểm" />
+                    <TableColumn prefWidth="120.0" text="Ngày bắt đầu" />
+                    <TableColumn prefWidth="120.0" text="Ngày kết thúc" />
+                    <TableColumn prefWidth="121.0" text="Mức độ" />
                 </columns>
             </TableView>
         </children>
     </AnchorPane>
-    <Button graphicTextGap="11.0" layoutX="682.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="14.0">
+    <Button graphicTextGap="11.0" layoutX="831.0" layoutY="33.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="33.0">
         <graphic>
             <Group>
                 <children>
@@ -93,7 +93,7 @@
         <font>
             <Font name="Arial Bold" size="13.0" />
         </font></Button>
-    <Button graphicTextGap="17.0" layoutX="681.0" layoutY="117.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="117.0">
+    <Button graphicTextGap="17.0" layoutX="831.0" layoutY="140.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="140.0">
         <graphic>
             <Group>
                 <children>
@@ -104,7 +104,7 @@
         <font>
             <Font name="Arial Bold" size="13.0" />
         </font></Button>
-    <Button graphicTextGap="7.0" layoutX="691.0" layoutY="65.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Cật nhật" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="65.0">
+    <Button graphicTextGap="7.0" layoutX="831.0" layoutY="83.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Cật nhật" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="83.0">
         <graphic>
             <Group>
                 <children>
@@ -115,7 +115,7 @@
         <font>
             <Font name="Arial Bold" size="13.0" />
         </font></Button>
-      <Label alignment="CENTER" layoutX="263.0" layoutY="7.0" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Cách Ly" AnchorPane.topAnchor="10.0">
+      <Label alignment="CENTER" layoutX="393.0" layoutY="14.0" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Cách Ly" AnchorPane.topAnchor="14.0">
           <font>
               <Font name="Arial Bold" size="18.0" />
           </font>
