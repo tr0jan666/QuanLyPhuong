@@ -159,78 +159,6 @@ import java.util.ResourceBundle;
 
 public class ThongKeController implements Initializable {
 
-//    @FXML
-//    TableView table;
-//    @FXML
-//    TableColumn ID;
-//    @FXML
-//    TableColumn hoTen;
-//    @FXML
-//    TableColumn namSinh;
-//    @FXML
-//    TableColumn gioiTinh;
-//    @FXML
-//    TableColumn diaChiHienNay;
-//    @FXML
-//    ComboBox<String> gioiTinhCB;
-//    @FXML
-//    ComboBox<String> tinhTrangCB;
-//    @FXML
-//    TextField tuTuoiText;
-//    @FXML
-//    TextField denTuoiText;
-////    @FXML
-////    TextField tuNamText;
-////    @FXML
-////    TextField denNamText;
-//    @FXML
-//    Button btnTimKiem;
-////    @FXML
-////    Button thongKeButton;
-
-//    @FXML
-//    private TableColumn ID;
-//
-//    @FXML
-//    private Button btnTimKiem;
-//
-//    @FXML
-//    private Button btnXuatFile;
-//
-//    @FXML
-//    private TextField denTuoiText;
-//
-//    @FXML
-//    private TableColumn diaChiHienNay;
-//
-//    @FXML
-//    private TableColumn  gioiTinh;
-//
-//    @FXML
-//    private ComboBox<String> gioiTinhCB;
-//
-//    @FXML
-//    private TableColumn hoTen;
-//
-////    @FXML
-////    private TableColumn maHo;
-//
-//    @FXML
-//    private TableColumn namSinh;
-//
-//    @FXML
-//    private TableView<NhanKhauModel> table;
-//
-//    @FXML
-//    private ComboBox<String> tinhTrangCB;
-//
-//    @FXML
-//    private TextField tuTuoiText;
-//    @FXML
-//    private TextField denNamText;
-//    @FXML
-//    private TextField tuNamText;
-
     @FXML
     private TableColumn<?, ?> ID;
 
@@ -287,7 +215,7 @@ public class ThongKeController implements Initializable {
         sceneSwitch = new MenuNhanKhauController();
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         listNhanKhauBeans = thongKeNhanKhauService.getListNhanKhau();
-         System.out.println("phan nguyen init ");
+         //System.out.println("phan nguyen init ");
         //setDataTable();
         setData();
         btnTimKiem.setStyle("-fx-background-color: #0063B7; -fx-text-fill: white");
@@ -339,7 +267,7 @@ public class ThongKeController implements Initializable {
         }
 
         listNhanKhauBeans = thongKeNhanKhauService.statisticNhanKhau(tuTuoi, denTuoi, gender, status, tuNam, denNam);
-        System.out.println("xong init data");
+//        System.out.println("xong init data");
 
        setDataTable();
     }
@@ -348,7 +276,7 @@ public class ThongKeController implements Initializable {
         ArrayList<NhanKhauModel> listItem = new ArrayList<>();
         listNhanKhauBeans.forEach(nhanKhau -> {
             listItem.add(nhanKhau.getNhanKhauModel());
-            System.out.println(nhanKhau.getNhanKhauModel().getHo_ten());
+         //   System.out.println(nhanKhau.getNhanKhauModel().getHo_ten());
         });
         observablelistNhanKhau = FXCollections.observableList(listItem);
         ID.setCellValueFactory(new PropertyValueFactory<>("ID"));

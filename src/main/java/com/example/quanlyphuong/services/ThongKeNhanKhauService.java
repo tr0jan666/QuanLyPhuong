@@ -100,7 +100,8 @@ public class ThongKeNhanKhauService {
         List<NhanKhauBean> list = new ArrayList<>();
         try {
             Connection connection = MySQLConnector.getConnection();
-            String query = "SELECT * FROM nhan_khau ";
+           // String query = "SELECT * FROM nhan_khau ";
+            String query = "SELECT * FROM nhan_khau INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau ORDER BY ngayTao DESC";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println("get list nhk bean");
