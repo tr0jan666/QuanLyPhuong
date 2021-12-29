@@ -78,7 +78,7 @@ public class MenuDichTeController implements Initializable {
 
     @FXML
     void setThongKe(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/thongke.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/thongke-dichte.fxml"));
         Pane thongkePane = (Pane) loader.load();
         borderPane.setCenter(thongkePane);
 

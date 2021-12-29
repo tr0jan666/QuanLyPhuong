@@ -37,7 +37,7 @@ public class MenuNhanKhauController implements Initializable {
     }
 
     public void setHoKhau(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("nhan_khau/hokhau.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("ho_khau/Main_ho_khau.fxml"));
         Pane hokhauPane = (Pane) loader.load();
         borderPane.setCenter(hokhauPane);
 

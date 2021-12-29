@@ -1,6 +1,7 @@
 
 package com.example.quanlyphuong.models;
 
+import java.time.DateTimeException;
 import java.util.Date;
 
 public class NhanKhauModel {
@@ -15,7 +16,7 @@ public class NhanKhauModel {
     private String tonGiao;
     private String quocTich;
     private String noiThuongTru;
-    private String soHoChieu;
+    private String soHoChieu; //chưa có trong database
     private String diaChiHienNay;
     private String trinhDoHocVan;
     private String ngheNghiep;
@@ -32,17 +33,18 @@ public class NhanKhauModel {
     private int idNguoiXoa;
     private String lyDoXoa;
     private String ghiChu;
-    private String status;
-    private String lastUpdate;
 
     private TiemChungModel thongTinTiemChung;
     private CachLyModel thongTinCachLy;
-    private HoKhauModel thongTinHoKhau;
 
-    public NhanKhauModel() {
+    private int status;
+    private Date lastUpdate ;
+
+    //construtor
+    public NhanKhauModel(){
+
     }
-
-    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu, String status, String lastUpdate, TiemChungModel thongTinTiemChung, CachLyModel thongTinCachLy, HoKhauModel thongTinHoKhau) {
+    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu) {
         this.ID = ID;
         this.maNhanKhau = maNhanKhau;
         Ho_ten = ho_ten;
@@ -71,13 +73,13 @@ public class NhanKhauModel {
         this.idNguoiXoa = idNguoiXoa;
         this.lyDoXoa = lyDoXoa;
         this.ghiChu = ghiChu;
-        this.status = status;
-        this.lastUpdate = lastUpdate;
         this.thongTinTiemChung = thongTinTiemChung;
         this.thongTinCachLy = thongTinCachLy;
-        this.thongTinHoKhau = thongTinHoKhau;
+        this.status = status;
+        this.lastUpdate = lastUpdate;
     }
 
+    // Get + Set
     public int getID() {
         return ID;
     }
@@ -302,22 +304,6 @@ public class NhanKhauModel {
         this.ghiChu = ghiChu;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(String lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
     public TiemChungModel getThongTinTiemChung() {
         return thongTinTiemChung;
     }
@@ -334,12 +320,20 @@ public class NhanKhauModel {
         this.thongTinCachLy = thongTinCachLy;
     }
 
-    public HoKhauModel getThongTinHoKhau() {
-        return thongTinHoKhau;
+    public int getStatus() {
+        return status;
     }
 
-    public void setThongTinHoKhau(HoKhauModel thongTinHoKhau) {
-        this.thongTinHoKhau = thongTinHoKhau;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }
 
