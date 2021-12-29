@@ -53,17 +53,19 @@ public class NhanKhauController {
     private TableColumn<?, ?> col_tuoi;
 
     @FXML
-    void khaiTuNhanKhau(ActionEvent event) {
+    void onKhaiTuClick(ActionEvent event) {
 
     }
 
     @FXML
-    void tamTruNhanKhau(ActionEvent event) {
+    void onTamTruClick(ActionEvent event) {
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Đăng ký tạm trú", null);
 
     }
 
     @FXML
-    void tamVangNhanKhau(ActionEvent event) {
+    void onTamVangClick(ActionEvent event) {
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_vang.fxml", "Đăng ký tạm vắng", null);
 
     }
 
@@ -106,12 +108,17 @@ public class NhanKhauController {
     }
 
     public void changeSceneTamTru(ActionEvent event) {
-        UIHelper.navigateNew("/com.example.quanlyphuong/nhankhau/pop_up_dk_tam_tru.fxml", "Đăng ký tạm trú", null);
-        btn_ThemNhanKhau.getScene().getWindow().hide();
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Đăng ký tạm trú", null);
+//        btn_ThemNhanKhau.getScene().getWindow().hide();
     }
 
     public void changeSceneThuongTru(ActionEvent event) {
-        UIHelper.navigateNew("/com.example.quanlyphuong/nhankhau/pop_up_dk_thuong_tru.fxml", "Đăng ký thường trú", null);
-        btn_ThemNhanKhau.getScene().getWindow().hide();
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_thuong_tru.fxml", "Đăng ký thường trú", null);
+//        btn_ThemNhanKhau.getScene().getWindow().hide();
+    }
+
+    public void onThuongTruClick(ActionEvent actionEvent) {
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_thuong_tru.fxml", "Đăng ký thường trú", null);
+
     }
 }
