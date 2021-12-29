@@ -150,7 +150,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.services.ThongKeNhanKhauService;
 import com.example.quanlyphuong.services.StringService;
+import javafx.stage.FileChooser;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -218,8 +222,6 @@ public class ThongKeController implements Initializable {
          //System.out.println("phan nguyen init ");
         //setDataTable();
         setData();
-        btnTimKiem.setStyle("-fx-background-color: #0063B7; -fx-text-fill: white");
-//      thongKeButton.setStyle("-fx-background-color: #0B82FA; -fx-text-fill: white");
         gioiTinhList = FXCollections.observableArrayList("Toàn bộ", "Nam", "Nữ");
         tinhTrangList = FXCollections.observableArrayList("Toàn bộ", "Thường trú", "Tạm trú", "Tạm vắng");
         gioiTinhCB.setItems(gioiTinhList);
@@ -291,5 +293,33 @@ public class ThongKeController implements Initializable {
     public void setTimKiem() {
         setData();
     }
+
+    @FXML
+    void setXuatFile(ActionEvent event) {
+
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Chọn nơi để lưu");
+        File filetosave = fc.showSaveDialog(null);
+        if (filetosave != null) {
+            try {
+                FileWriter fw = new FileWriter(filetosave);
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                for (NhanKhauModel nk : observablelistNhanKhau) {
+                    bw.write(nk.toString());
+                    bw.newLine();
+                }
+                bw.close();
+            } catch (IOException e) {
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setTitle("Check");
+                alert1.setContentText("Đã có lỗi xảy ra ,xin vui lòng thử lại !! ");
+                alert1.show();
+            }
+
+
+        }
+    }
+
 
 }
