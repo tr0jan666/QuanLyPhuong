@@ -50,7 +50,7 @@ public class NhanKhauController {
     private TableColumn<?, ?> col_hoVaTen;
 
     @FXML
-    private TableColumn<?, ?> col_tuoi;
+    private TableColumn<?, ?> col_ngaySinh;
 
     @FXML
     void khaiTuNhanKhau(ActionEvent event) {

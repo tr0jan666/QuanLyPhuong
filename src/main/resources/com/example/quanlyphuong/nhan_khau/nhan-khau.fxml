@@ -20,7 +20,7 @@
             <columns>
                 <TableColumn id="tc_HoVaTen" fx:id="col_hoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
                 <TableColumn id="tc_Tuoi" fx:id="col_cmt" prefWidth="109.0" text="CMT" />
-                <TableColumn id="tc_DiaChi" fx:id="col_tuoi" prefWidth="95.0" text="Tuổi" />
+                <TableColumn id="tc_DiaChi" fx:id="col_ngaySinh" prefWidth="95.0" text="Tuổi" />
                 <TableColumn id="tc_ChuHo" fx:id="col_gioiTinh" minWidth="0.0" prefWidth="171.0" text="Giới tính" />
                 <TableColumn id="tc_MaHo" minWidth="0.0" prefWidth="137.0" text="Địa chỉ" />
             </columns>
