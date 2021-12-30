@@ -132,7 +132,7 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setQuocTich(rs.getString("quocTich"));
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
-                System.out.println(nhanKhau.getHo_ten());
+//                System.out.println(nhanKhau.getHo_ten());
 
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
@@ -161,8 +161,16 @@ public class ThongKeNhanKhauService {
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
-        if (!gender.equalsIgnoreCase("Toan Bo")) {
-            query += " AND nhan_khau.gioiTinh = '" + gender + "'";
+//        if (!gender.equalsIgnoreCase("Toan Bo")) {
+//            query += " AND nhan_khau.gioiTinh = '" + gender + "'";
+//        }
+        if (gender.equalsIgnoreCase("Nam")) {
+            int gt=1;
+            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
+        }
+        if (gender.equalsIgnoreCase("Nu")) {
+            int gt=0;
+            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
         if (Status.equalsIgnoreCase("Toan bo")) {
             query += " AND (tam_tru.denNgay >= CURDATE() OR tam_tru.denNgay IS NULL)"
@@ -212,44 +220,6 @@ public class ThongKeNhanKhauService {
                 chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
                 chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
 
-//                if (idNhanKhau > 0) {
-////                    String sql = "SELECT * FROM tieu_su WHERE idNhanKhau = " + idNhanKhau;
-////                    PreparedStatement prst = (PreparedStatement) connection.prepareStatement(sql);
-////                    ResultSet rs_temp = prst.executeQuery();
-////                    List<TieuSuModel> listTieuSuModels = new ArrayList<>();
-////                    while (rs_temp.next()) {
-////                        TieuSuModel tieuSuModel = new TieuSuModel();
-////                        tieuSuModel.setID(rs_temp.getInt("ID"));
-////                        tieuSuModel.setIdNhanKhau(rs_temp.getInt("idNhanKhau"));
-////                        tieuSuModel.setTuNgay(rs_temp.getDate("tuNgay"));
-////                        tieuSuModel.setDenNgay(rs_temp.getDate("denNgay"));
-////                        tieuSuModel.setDiaChi(rs_temp.getString("diaChi"));
-////                        tieuSuModel.setNgheNghiep(rs_temp.getString("ngheNghiep"));
-////                        tieuSuModel.setNoiLamViec(rs_temp.getString("noiLamViec"));
-////                        listTieuSuModels.add(tieuSuModel);
-////                    }
-////                    nhanKhauBean.setListTieuSuModels(listTieuSuModels);
-////                    prst.close();
-////
-////                    sql = "SELECT * FROM gia_dinh WHERE idNhanKhau = " + idNhanKhau;
-////                    prst = (PreparedStatement) connection.prepareStatement(sql);
-////                    rs_temp = prst.executeQuery();
-////                    List<GiaDinhModel> listGiaDinhModels = new ArrayList<>();
-////                    while (rs_temp.next()) {
-////                        GiaDinhModel giaDinhModel = new GiaDinhModel();
-////                        giaDinhModel.setID(rs_temp.getInt("ID"));
-////                        giaDinhModel.setHoTen(rs_temp.getString("hoTen"));
-////                        giaDinhModel.setNamSinh(rs_temp.getDate("namSinh"));
-////                        giaDinhModel.setGioiTinh(rs_temp.getString("gioiTinh"));
-////                        giaDinhModel.setIdNhanKhau(rs_temp.getInt("idNhanKhau"));
-////                        giaDinhModel.setDiaChiHienTai(rs_temp.getString("diaChiHienTai"));
-////                        giaDinhModel.setNgheNghiep(rs_temp.getString("ngheNghiep"));
-////                        giaDinhModel.setQuanHeVoiNhanKhau(rs_temp.getString("quanHeVoiNhanKhau"));
-////                        listGiaDinhModels.add(giaDinhModel);
-////                    }
-////                    nhanKhauBean.setListGiaDinhModels(listGiaDinhModels);
-////                    prst.close();
-//                }
             nhanKhauBean.setNhanKhauModel(nhanKhau);
             nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
                        list.add(nhanKhauBean);
