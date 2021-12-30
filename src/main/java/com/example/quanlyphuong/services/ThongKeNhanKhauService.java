@@ -50,44 +50,44 @@ public class ThongKeNhanKhauService {
 //                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
             }
             preparedStatement.close();
-//            if (idNhanKhau > 0) {
-////                query = "SELECT * FROM tieu_su WHERE idNhanKhau = " + idNhanKhau;
-////                preparedStatement = (PreparedStatement) connection.prepareStatement(query);
-////                rs = preparedStatement.executeQuery();
-////                List<TieuSuModel> listTieuSuModels = new ArrayList<>();
-////                while (rs.next()) {
-////                    TieuSuModel tieuSuModel = new TieuSuModel();
-////                    tieuSuModel.setID(rs.getInt("ID"));
-////                    tieuSuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-////                    tieuSuModel.setTuNgay(rs.getDate("tuNgay"));
-////                    tieuSuModel.setDenNgay(rs.getDate("denNgay"));
-////                    tieuSuModel.setDiaChi(rs.getString("diaChi"));
-////                    tieuSuModel.setNgheNghiep(rs.getString("ngheNghiep"));
-////                    tieuSuModel.setNoiLamViec(rs.getString("noiLamViec"));
-////                    listTieuSuModels.add(tieuSuModel);
-////                }
-////                nhanKhauBean.setListTieuSuModels(listTieuSuModels);
-////                preparedStatement.close();
-////
-////                query = "SELECT * FROM gia_dinh WHERE idNhanKhau = " + idNhanKhau;
-////                preparedStatement = (PreparedStatement) connection.prepareStatement(query);
-////                rs = preparedStatement.executeQuery();
-////                List<GiaDinhModel> listGiaDinhModels = new ArrayList<>();
-////                while (rs.next()) {
-////                    GiaDinhModel giaDinhModel = new GiaDinhModel();
-////                    giaDinhModel.setID(rs.getInt("ID"));
-////                    giaDinhModel.setHoTen(rs.getString("hoTen"));
-////                    giaDinhModel.setNamSinh(rs.getDate("namSinh"));
-////                    giaDinhModel.setGioiTinh(rs.getString("gioiTinh"));
-////                    giaDinhModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-////                    giaDinhModel.setDiaChiHienTai(rs.getString("diaChiHienTai"));
-////                    giaDinhModel.setNgheNghiep(rs.getString("ngheNghiep"));
-////                    giaDinhModel.setQuanHeVoiNhanKhau(rs.getString("quanHeVoiNhanKhau"));
-////                    listGiaDinhModels.add(giaDinhModel);
-////                }
-////                nhanKhauBean.setListGiaDinhModels(listGiaDinhModels);
-////                preparedStatement.close();
-//            }
+ /*           if (idNhanKhau > 0) {
+//                query = "SELECT * FROM tieu_su WHERE idNhanKhau = " + idNhanKhau;
+//                preparedStatement = (PreparedStatement) connection.prepareStatement(query);
+//                rs = preparedStatement.executeQuery();
+//                List<TieuSuModel> listTieuSuModels = new ArrayList<>();
+//                while (rs.next()) {
+//                    TieuSuModel tieuSuModel = new TieuSuModel();
+//                    tieuSuModel.setID(rs.getInt("ID"));
+//                    tieuSuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
+//                    tieuSuModel.setTuNgay(rs.getDate("tuNgay"));
+//                    tieuSuModel.setDenNgay(rs.getDate("denNgay"));
+//                    tieuSuModel.setDiaChi(rs.getString("diaChi"));
+//                    tieuSuModel.setNgheNghiep(rs.getString("ngheNghiep"));
+//                    tieuSuModel.setNoiLamViec(rs.getString("noiLamViec"));
+//                    listTieuSuModels.add(tieuSuModel);
+//                }
+//                nhanKhauBean.setListTieuSuModels(listTieuSuModels);
+//                preparedStatement.close();
+//
+//                query = "SELECT * FROM gia_dinh WHERE idNhanKhau = " + idNhanKhau;
+//                preparedStatement = (PreparedStatement) connection.prepareStatement(query);
+//                rs = preparedStatement.executeQuery();
+//                List<GiaDinhModel> listGiaDinhModels = new ArrayList<>();
+//                while (rs.next()) {
+//                    GiaDinhModel giaDinhModel = new GiaDinhModel();
+//                    giaDinhModel.setID(rs.getInt("ID"));
+//                    giaDinhModel.setHoTen(rs.getString("hoTen"));
+//                    giaDinhModel.setNamSinh(rs.getDate("namSinh"));
+//                    giaDinhModel.setGioiTinh(rs.getString("gioiTinh"));
+//                    giaDinhModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
+//                    giaDinhModel.setDiaChiHienTai(rs.getString("diaChiHienTai"));
+//                    giaDinhModel.setNgheNghiep(rs.getString("ngheNghiep"));
+//                    giaDinhModel.setQuanHeVoiNhanKhau(rs.getString("quanHeVoiNhanKhau"));
+//                    listGiaDinhModels.add(giaDinhModel);
+//                }
+//                nhanKhauBean.setListGiaDinhModels(listGiaDinhModels);
+//                preparedStatement.close();
+            }*/
             connection.close();
         } catch (Exception e) {
             this.exceptionHandle(e.getMessage());

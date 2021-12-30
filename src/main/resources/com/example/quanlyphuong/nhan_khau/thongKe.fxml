@@ -84,7 +84,7 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Button>
-                        <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="600.0" layoutY="88.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
+                        <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="600.0" layoutY="88.0" mnemonicParsing="false" onAction="#setXuatFile" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
