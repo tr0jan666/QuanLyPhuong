@@ -83,7 +83,7 @@ public class NhanKhauController implements Initializable {
     }
 
     @FXML
-    void khaiTuNhanKhau(ActionEvent event) {
+    void khauTuNhanKhau(ActionEvent event){
 
     }
 

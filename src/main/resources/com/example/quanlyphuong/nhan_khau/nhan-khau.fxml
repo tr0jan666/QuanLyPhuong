@@ -63,7 +63,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#onKhaiTuClick" prefHeight="50.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
+                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#khauTuNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
@@ -71,7 +71,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#onTamVangClick" prefHeight="50.0" prefWidth="100.0" text="Tạm vắng">
+            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#tamVangNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm vắng">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -79,7 +79,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="10.0" layoutY="115.0" mnemonicParsing="false" onAction="#onTamTruClick" prefHeight="50.0" prefWidth="100.0" text="Tạm trú">
+            <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="10.0" layoutY="115.0" mnemonicParsing="false" onAction="#tamTruNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm trú">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -87,7 +87,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_thuongTru" mnemonicParsing="false" onAction="#onThuongTruClick" prefHeight="50.0" prefWidth="100.0" text="Thường trú">
+            <Button id="btn_KhaiTu" fx:id="btn_thuongTru" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Thường trú">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
