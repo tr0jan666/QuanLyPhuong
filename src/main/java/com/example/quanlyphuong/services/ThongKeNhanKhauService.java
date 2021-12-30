@@ -34,7 +34,7 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -117,7 +117,7 @@ public class ThongKeNhanKhauService {
 
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
@@ -197,7 +197,7 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -303,7 +303,7 @@ public class ThongKeNhanKhauService {
                 NhanKhauModel nhanKhau = temp.getNhanKhauModel();
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
