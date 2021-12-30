@@ -31,9 +31,9 @@
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <TextField focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tfCCCD" focusTraversable="false" onAction="#timNhanKhauBean" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfHoTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfDiaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="CCCD" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
@@ -50,11 +50,11 @@
             <font>
                <Font size="13.0" />
             </font></Label>
-            <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <DatePicker fx:id="tfStart" focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                 <GridPane.margin>
 
                 </GridPane.margin></DatePicker>
-            <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <DatePicker fx:id="tfEnd" focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
@@ -64,25 +64,26 @@
                <Font size="13.0" />
             </font></Label>
 
-         <TextField focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <TextField fx:id="tfMucDo" focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#reFresh" text="refresh" GridPane.columnIndex="4" GridPane.rowIndex="2" />
         </children>
     </GridPane>
     <AnchorPane prefHeight="455.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
         <children>
-            <TableView layoutX="-8.0" prefHeight="455.0" prefWidth="798.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tbvChiTiet" layoutX="-8.0" onMouseClicked="#setThongTin" prefHeight="455.0" prefWidth="798.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                 <columns>
-                    <TableColumn prefWidth="65.0" text="ID" />
-                    <TableColumn prefWidth="240.0" text="Họ và tên" />
-                    <TableColumn prefWidth="130.0" text="CCCD" />
-                    <TableColumn prefWidth="200.0" text="Địa điểm" />
-                    <TableColumn prefWidth="120.0" text="Ngày bắt đầu" />
-                    <TableColumn prefWidth="120.0" text="Ngày kết thúc" />
-                    <TableColumn prefWidth="121.0" text="Mức độ" />
+                    <TableColumn fx:id="ID" prefWidth="65.0" text="ID" />
+                    <TableColumn fx:id="HoTen" prefWidth="240.0" text="Họ và tên" />
+                    <TableColumn fx:id="CCCD" prefWidth="130.0" text="CCCD" />
+                    <TableColumn fx:id="DiaDiem" prefWidth="200.0" text="Địa điểm" />
+                    <TableColumn fx:id="BatDau" prefWidth="120.0" text="Ngày bắt đầu" />
+                    <TableColumn fx:id="KetThuc" prefWidth="120.0" text="Ngày kết thúc" />
+                    <TableColumn fx:id="MucDo" prefWidth="121.0" text="Mức độ" />
                 </columns>
             </TableView>
         </children>
     </AnchorPane>
-    <Button graphicTextGap="11.0" layoutX="831.0" layoutY="33.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="33.0">
+    <Button fx:id="btnThem" graphicTextGap="11.0" layoutX="831.0" layoutY="33.0" mnemonicParsing="false" onAction="#themCachLy" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="33.0">
         <graphic>
             <Group>
                 <children>
@@ -93,7 +94,7 @@
         <font>
             <Font name="Arial Bold" size="13.0" />
         </font></Button>
-    <Button graphicTextGap="17.0" layoutX="831.0" layoutY="140.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="140.0">
+    <Button fx:id="btnXoa" graphicTextGap="17.0" layoutX="831.0" layoutY="140.0" mnemonicParsing="false" onAction="#xoa" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="140.0">
         <graphic>
             <Group>
                 <children>
@@ -104,7 +105,7 @@
         <font>
             <Font name="Arial Bold" size="13.0" />
         </font></Button>
-    <Button graphicTextGap="7.0" layoutX="831.0" layoutY="83.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Cật nhật" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="83.0">
+    <Button fx:id="btnCapNhap" graphicTextGap="7.0" layoutX="831.0" layoutY="83.0" mnemonicParsing="false" onAction="#capNhap" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Cật nhật" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="83.0">
         <graphic>
             <Group>
                 <children>
