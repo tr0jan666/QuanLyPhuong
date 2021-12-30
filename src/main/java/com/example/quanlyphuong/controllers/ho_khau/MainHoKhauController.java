@@ -125,7 +125,7 @@ public class MainHoKhauController implements Initializable {
 
     @FXML
     void changeSceneTachHoKhau(ActionEvent event) {
-        UIHelper.navigateNew("ho_khau/tach_hk.fxml", "Tách  hộ khẩu", null);
+        UIHelper.navigateNew("ho_khau/tach_HK.fxml", "Tách  hộ khẩu", null);
 //        hoKhauService = new HoKhauService();
 //        listHoKhauBeans = hoKhauService.getListHoKhau();
 //

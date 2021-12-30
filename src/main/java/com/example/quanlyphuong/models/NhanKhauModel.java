@@ -9,7 +9,7 @@ public class NhanKhauModel {
     private String maNhanKhau;
     private String Ho_ten;
     private Date namSinh;
-    private String gioiTinh;
+    private int gioiTinh;
     private String noiSinh;
     private String nguyenQuan;
     private String danToc;
@@ -40,11 +40,13 @@ public class NhanKhauModel {
     private int status;
     private Date lastUpdate ;
 
+    private String gioiTinhString;
+
     //construtor
     public NhanKhauModel(){
 
     }
-    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, String gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu) {
+    public NhanKhauModel(int ID, String maNhanKhau, String ho_ten, Date namSinh, int gioiTinh, String noiSinh, String nguyenQuan, String danToc, String tonGiao, String quocTich, String noiThuongTru, String soHoChieu, String diaChiHienNay, String trinhDoHocVan, String ngheNghiep, String noiLamViec, String tienAn, Date ngayChuyenDen, String lyDoChuyenDen, Date ngayChuyenDi, String lyDoChuyenDi, String diaChiMoi, Date ngayTao, int idNguoiTao, Date ngayXoa, int idNguoiXoa, String lyDoXoa, String ghiChu) {
         this.ID = ID;
         this.maNhanKhau = maNhanKhau;
         Ho_ten = ho_ten;
@@ -112,11 +114,11 @@ public class NhanKhauModel {
         this.namSinh = namSinh;
     }
 
-    public String getGioiTinh() {
+    public int getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(int gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -334,6 +336,14 @@ public class NhanKhauModel {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public String getGioiTinhString() {
+        return gioiTinhString;
+    }
+
+    public void setGioiTinhString(String gioiTinhString) {
+        this.gioiTinhString = gioiTinhString;
     }
 }
 

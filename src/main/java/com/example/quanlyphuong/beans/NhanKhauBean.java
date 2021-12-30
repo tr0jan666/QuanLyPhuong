@@ -31,5 +31,6 @@ public class NhanKhauBean {
     }
 
     public NhanKhauBean() {
+
     }
 }

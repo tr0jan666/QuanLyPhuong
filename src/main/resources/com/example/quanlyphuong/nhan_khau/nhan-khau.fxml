@@ -16,13 +16,14 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.NhanKhauController">
     <children>
-        <TableView layoutX="14.0" layoutY="180.0" prefHeight="588.0" prefWidth="820.0">
+        <TableView fx:id="tv_nhanKhau" layoutX="14.0" layoutY="180.0" prefHeight="588.0" prefWidth="820.0">
             <columns>
                 <TableColumn id="tc_HoVaTen" fx:id="col_hoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
                 <TableColumn id="tc_Tuoi" fx:id="col_cmt" prefWidth="109.0" text="CMT" />
-                <TableColumn id="tc_DiaChi" fx:id="col_ngaySinh" prefWidth="95.0" text="Tuổi" />
+                <TableColumn id="tc_DiaChi" fx:id="col_ngaySinh" prefWidth="95.0" text="Ngày sinh" />
                 <TableColumn id="tc_ChuHo" fx:id="col_gioiTinh" minWidth="0.0" prefWidth="171.0" text="Giới tính" />
-                <TableColumn id="tc_MaHo" minWidth="0.0" prefWidth="137.0" text="Địa chỉ" />
+                <TableColumn id="tc_MaHo" fx:id="col_diaChi" minWidth="0.0" prefWidth="137.0" text="Địa chỉ" />
+            <TableColumn fx:id="col_ngheNghiep" prefWidth="153.0" text="Nghề nghiệp" />
             </columns>
         </TableView>
         <GridPane layoutX="26.0" layoutY="128.0" prefHeight="31.0" prefWidth="728.0">
@@ -88,7 +89,7 @@
             </Button>
             </children>
         </VBox>
-        <Button id="btn_KhoiPhuc" layoutX="869.0" layoutY="689.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Khôi phục">
+        <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="869.0" layoutY="689.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="50.0" prefWidth="100.0" text="refresh">
          <font>
             <Font size="11.0" />
          </font>
