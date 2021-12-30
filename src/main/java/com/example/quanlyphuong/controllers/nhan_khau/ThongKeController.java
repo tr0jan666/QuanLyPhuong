@@ -157,6 +157,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -302,13 +304,20 @@ public class ThongKeController implements Initializable {
         File filetosave = fc.showSaveDialog(null);
         if (filetosave != null) {
             try {
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
                 FileWriter fw = new FileWriter(filetosave);
                 BufferedWriter bw = new BufferedWriter(fw);
-
-                for (NhanKhauModel nk : observablelistNhanKhau) {
-                    bw.write(nk.toString());
+                bw.write("ID"+"\t\t"+"Họ tên"+"\t\t"+"Năm sinh"+"\t\t"+"Giới tính"+"\t\t"+"Địa chỉ");
+                bw.newLine();
+                ArrayList<NhanKhauModel> listItem = new ArrayList<>();
+                for (NhanKhauBean nhanKhau : listNhanKhauBeans) {
+                    listItem.add(nhanKhau.getNhanKhauModel());
+                    String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
+                    bw.write(String.valueOf(nhanKhau.getNhanKhauModel().getID())+"\t\t"+nhanKhau.getNhanKhauModel().getHo_ten()+"\t\t"+s+"\t\t"+nhanKhau.getNhanKhauModel().getGioiTinh()+"\t\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay());
                     bw.newLine();
                 }
+
+
                 bw.close();
             } catch (IOException e) {
                 Alert alert1 = new Alert(Alert.AlertType.ERROR);
@@ -320,6 +329,7 @@ public class ThongKeController implements Initializable {
 
         }
     }
+
 
 
 }
