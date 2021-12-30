@@ -2,10 +2,7 @@ package com.example.quanlyphuong.beans;
 
 import com.example.quanlyphuong.models.ThanhVienCuaHoModel;
 
-/**
- *
- * @author Hai
- */
+
 public class MemOfFamily {
     private NhanKhauBean nhanKhau;
     private ThanhVienCuaHoModel thanhVienCuaHoModel;
@@ -16,7 +13,8 @@ public class MemOfFamily {
     }
     
     public MemOfFamily() {
-
+        this.nhanKhau = new NhanKhauBean();
+        this.thanhVienCuaHoModel = new ThanhVienCuaHoModel();
     }
     
     

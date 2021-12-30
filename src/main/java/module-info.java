@@ -24,4 +24,6 @@ module com.example.quanlyphuong {
 
 
     opens com.example.quanlyphuong.controllers.ho_khau to javafx.fxml;
+    opens com.example.quanlyphuong.models to javafx.base;
+
 }
