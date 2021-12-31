@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="238.0" layoutY="7.0" prefHeight="71.0" prefWidth="454.0" text="Đăng ký tạm trú" textFill="#29adff">
+            <font>
+                <Font name="System Bold" size="48.0" />
+            </font>
+        </Label>
+        <GridPane alignment="CENTER" layoutX="25.0" layoutY="108.0" prefHeight="222.0" prefWidth="800.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.5999755859375" minWidth="10.0" prefWidth="95.4" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.00001525878906" minWidth="10.0" prefWidth="281.60003662109375" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="344.20001220703125" minWidth="10.0" prefWidth="99.19998779296873" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.20001220703125" minWidth="10.0" prefWidth="300.8000122070313" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="43.19998779296875" minHeight="10.0" prefHeight="23.800018310546875" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="57.400000000000006" minHeight="10.0" prefHeight="57.400000000000006" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="57.00001220703123" minHeight="10.0" prefHeight="57.00001220703123" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="64.79999389648438" minHeight="10.0" prefHeight="44.79998779296875" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="52.80000000000001" minHeight="10.0" prefHeight="37.59998779296876" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Họ và tên" />
+                <TextField prefHeight="26.0" prefWidth="234.0" GridPane.columnIndex="1" />
+                <ComboBox prefHeight="29.0" prefWidth="91.0" promptText="Chọn" GridPane.columnIndex="3" />
+                <Label text="Ngày sinh" GridPane.rowIndex="1" />
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Spinner prefHeight="26.0" prefWidth="89.0" />
+                        <Spinner layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="86.0" />
+                        <Spinner layoutX="88.0" layoutY="10.0" prefHeight="26.0" prefWidth="142.0" />
+                    </children>
+                </HBox>
+                <Label text="Giới tính" GridPane.columnIndex="2" />
+                <Label GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label text="Nơi cấp" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Số CMT/CCCD" GridPane.rowIndex="2" />
+                <Label text="Nơi thường trú" GridPane.rowIndex="3" />
+                <Label prefWidth="194.0" text="Địa chỉ hiện tại" GridPane.rowIndex="4" />
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            </children>
+        </GridPane>
+        <Button layoutX="741.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu" />
+    </children>
+</AnchorPane>

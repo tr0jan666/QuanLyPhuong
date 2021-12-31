@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.MenuDichTeController">
+    <children>
+        <HBox prefHeight="630.0" prefWidth="1000.0" stylesheets="@../nhan_khau/menu-nhan-khau.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox fillWidth="false" prefHeight="630.0" prefWidth="210.0" spacing="27.0" styleClass="pane">
+                    <children>
+                        <Button fx:id="trangChu" graphicTextGap="30.0" mnemonicParsing="false" onAction="#setTrangChu" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Trang chủ" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <graphic>
+                                <Group>
+                                    <children>
+                                        <SVGPath content="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z" scaleX="0.05" scaleY="0.05" styleClass="icon" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnKhaiBao" alignment="TOP_LEFT" graphicTextGap="35.0" mnemonicParsing="false" onAction="#setKhaiBao" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Khai báo" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="1.0" right="1.0" />
+                            </VBox.margin>
+                            <graphic>
+                                <Group>
+                                    <children>
+                                        <SVGPath content="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 400H303.2c.9-4.5.8 3.6.8-22.4 0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6 0 26-.2 17.9.8 22.4H48V144h480v288zm-168-80h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm-168 96c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64z" scaleX="0.045" scaleY="0.045" styleClass="icon" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnCachLy" alignment="TOP_LEFT" graphicTextGap="35.0" mnemonicParsing="false" onAction="#setCachLy" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Cách ly" textFill="WHITE">
+                            <VBox.margin>
+                                <Insets left="1.0" right="1.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="18.0" />
+                            </font>
+                            <graphic>
+                                <Group>
+                                    <children>
+                                        <SVGPath content="M96,128A64,64,0,1,0,32,64,64,64,0,0,0,96,128Zm0,176.08a44.11,44.11,0,0,1,13.64-32L181.77,204c1.65-1.55,3.77-2.31,5.61-3.57A63.91,63.91,0,0,0,128,160H64A64,64,0,0,0,0,224v96a32,32,0,0,0,32,32V480a32,32,0,0,0,32,32h64a32,32,0,0,0,32-32V383.61l-50.36-47.53A44.08,44.08,0,0,1,96,304.08ZM480,128a64,64,0,1,0-64-64A64,64,0,0,0,480,128Zm32,32H448a63.91,63.91,0,0,0-59.38,40.42c1.84,1.27,4,2,5.62,3.59l72.12,68.06a44.37,44.37,0,0,1,0,64L416,383.62V480a32,32,0,0,0,32,32h64a32,32,0,0,0,32-32V352a32,32,0,0,0,32-32V224A64,64,0,0,0,512,160ZM444.4,295.34l-72.12-68.06A12,12,0,0,0,352,236v36H224V236a12,12,0,0,0-20.28-8.73L131.6,295.34a12.4,12.4,0,0,0,0,17.47l72.12,68.07A12,12,0,0,0,224,372.14V336H352v36.14a12,12,0,0,0,20.28,8.74l72.12-68.07A12.4,12.4,0,0,0,444.4,295.34Z" scaleX="0.045" scaleY="0.045" styleClass="icon" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnThongKe" alignment="TOP_LEFT" graphicTextGap="35.0" mnemonicParsing="false" onAction="#setThongKe" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Thống kê" textFill="WHITE">
+                            <VBox.margin>
+                                <Insets left="1.0" right="1.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="18.0" />
+                            </font>
+                            <graphic>
+                                <Group styleClass="icon">
+                                    <children>
+                                        <SVGPath content="M216 288h-48c-8.84 0-16 7.16-16 16v192c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V304c0-8.84-7.16-16-16-16zM88 384H40c-8.84 0-16 7.16-16 16v96c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16v-96c0-8.84-7.16-16-16-16zm256-192h-48c-8.84 0-16 7.16-16 16v288c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V208c0-8.84-7.16-16-16-16zm128-96h-48c-8.84 0-16 7.16-16 16v384c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V112c0-8.84-7.16-16-16-16zM600 0h-48c-8.84 0-16 7.16-16 16v480c0 8.84 7.16 16 16 16h48c8.84 0 16-7.16 16-16V16c0-8.84-7.16-16-16-16z" scaleX="0.04" scaleY="0.04" styleClass="icon" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                        </Button>
+                  <Button fx:id="btnTiemChung" graphicTextGap="33.0" mnemonicParsing="false" onAction="#setTiemChung" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Tiêm chủng">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M201.5 174.8l55.7 55.8c3.1 3.1 3.1 8.2 0 11.3l-11.3 11.3c-3.1 3.1-8.2 3.1-11.3 0l-55.7-55.8-45.3 45.3 55.8 55.8c3.1 3.1 3.1 8.2 0 11.3l-11.3 11.3c-3.1 3.1-8.2 3.1-11.3 0L111 265.2l-26.4 26.4c-17.3 17.3-25.6 41.1-23 65.4l7.1 63.6L2.3 487c-3.1 3.1-3.1 8.2 0 11.3l11.3 11.3c3.1 3.1 8.2 3.1 11.3 0l66.3-66.3 63.6 7.1c23.9 2.6 47.9-5.4 65.4-23l181.9-181.9-135.7-135.7-64.9 65zm308.2-93.3L430.5 2.3c-3.1-3.1-8.2-3.1-11.3 0l-11.3 11.3c-3.1 3.1-3.1 8.2 0 11.3l28.3 28.3-45.3 45.3-56.6-56.6-17-17c-3.1-3.1-8.2-3.1-11.3 0l-33.9 33.9c-3.1 3.1-3.1 8.2 0 11.3l17 17L424.8 223l17 17c3.1 3.1 8.2 3.1 11.3 0l33.9-34c3.1-3.1 3.1-8.2 0-11.3l-73.5-73.5 45.3-45.3 28.3 28.3c3.1 3.1 8.2 3.1 11.3 0l11.3-11.3c3.1-3.2 3.1-8.2 0-11.4z" scaleX="0.05" scaleY="0.05" styleClass="icon" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnTestCovid" graphicTextGap="26.0" mnemonicParsing="false" onAction="#setTestCovid" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Test covid">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M616,304a24,24,0,1,0-24-24A24,24,0,0,0,616,304ZM552,416a24,24,0,1,0,24,24A24,24,0,0,0,552,416Zm-64-56a24,24,0,1,0,24,24A24,24,0,0,0,488,360ZM616,464a24,24,0,1,0,24,24A24,24,0,0,0,616,464Zm0-104a24,24,0,1,0,24,24A24,24,0,0,0,616,360Zm-64-40a24,24,0,1,0,24,24A24,24,0,0,0,552,320Zm-74.78-45c-21-47.12-48.5-151.75-73.12-186.75A208.13,208.13,0,0,0,234.1,0H192C86,0,0,86,0,192c0,56.75,24.75,107.62,64,142.88V512H288V480h64a64,64,0,0,0,64-64H320a32,32,0,0,1,0-64h96V320h32A32,32,0,0,0,477.22,275ZM288,224a32,32,0,1,1,32-32A32.07,32.07,0,0,1,288,224Z" scaleX="0.05" scaleY="0.05" styleClass="icon" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+                        <Button fx:id="btnQuayLai" alignment="TOP_LEFT" graphicTextGap="38.0" mnemonicParsing="false" onAction="#setQuayLai" prefHeight="60.0" prefWidth="210.0" styleClass="button3" text="Quay Lại">
+                            <font>
+                                <Font name="Arial Bold" size="18.0" />
+                            </font>
+                            <graphic>
+                                <Group>
+                                    <children>
+                                        <SVGPath content="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm28.9-143.6L209.4 288H392c13.3 0 24-10.7 24-24v-16c0-13.3-10.7-24-24-24H209.4l75.5-72.4c9.7-9.3 9.9-24.8.4-34.3l-11-10.9c-9.4-9.4-24.6-9.4-33.9 0L107.7 239c-9.4 9.4-9.4 24.6 0 33.9l132.7 132.7c9.4 9.4 24.6 9.4 33.9 0l11-10.9c9.5-9.5 9.3-25-.4-34.3z" scaleX="0.043" scaleY="0.043" styleClass="icon" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                        </Button>
+                        <Label alignment="TOP_CENTER" graphicTextGap="8.0" prefHeight="55.0" prefWidth="212.0" text="Copyright by nhóm 8" textAlignment="CENTER">
+                            <font>
+                                <Font name="Arial Italic" size="16.0" />
+                            </font>
+                            <graphic>
+                                <Group>
+                                    <children>
+                                        <SVGPath content="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z" scaleX="0.04" scaleY="0.04" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                        </Label>
+                    </children>
+                </VBox>
+                <BorderPane fx:id="borderPane" prefHeight="630.0" prefWidth="790.0" styleClass="button3" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
