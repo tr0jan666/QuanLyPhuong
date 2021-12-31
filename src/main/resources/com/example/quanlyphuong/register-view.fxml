@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #accbbf;" stylesheets="@nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.RegisterController">
+   <children>
+      <AnchorPane layoutX="142.0" layoutY="56.0" prefHeight="407.0" prefWidth="514.0" style="-fx-background-color: white; -fx-background-radius: 15;" AnchorPane.bottomAnchor="61.5" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="61.5">
+         <children>
+            <Button fx:id="btnRegister" defaultButton="true" layoutX="177.0" layoutY="336.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="34.0" prefWidth="95.0" styleClass="button2" text="Đăng Ký" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.5" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="170.0" layoutY="25.0" prefHeight="44.0" prefWidth="174.0" text="Tạo Tài Khoản">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfUserName" layoutX="196.0" layoutY="105.0" prefHeight="40.0" prefWidth="245.0" promptText="Username" style="-fx-background-color: rgb(232, 240, 254); -fx-background-radius: 15;" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="72.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="tfPwd" layoutX="195.0" layoutY="172.0" prefHeight="40.0" prefWidth="245.0" promptText="Password" style="-fx-background-color: rgb(232, 240, 254); -fx-background-radius: 15;" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="72.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="tfRePwd" layoutX="196.0" layoutY="244.0" prefHeight="40.0" prefWidth="245.0" promptText="Confirm Password" style="-fx-background-color: rgb(232, 240, 254); -fx-background-radius: 15;" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="72.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            <Button layoutX="331.0" layoutY="336.0" mnemonicParsing="false" onAction="#setQuayLai" prefHeight="34.0" prefWidth="95.0" styleClass="button2" text="Quay Lại" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.5" />
+               </font>
+            </Button>
+            <Label layoutX="73.0" layoutY="116.0" text="Tài khoản">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="183.0" text="Mật khẩu">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="255.0" text="Xác nhận mật khẩu">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
