@@ -27,6 +27,7 @@ public class ThongKeNhanKhauService {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             int idNhanKhau = -1;
+            System.out.println("phan nguyen");
             while (rs.next()) {
                 NhanKhauModel nhanKhau = nhanKhauBean.getNhanKhauModel();
                 ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
@@ -34,7 +35,14 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                System.out.println(rs.getInt("gioiTinh"));
+                if(rs.getInt("gioiTinh") == 1){
+                    nhanKhau.setGioiTinh("nam");
+                }else{
+                    nhanKhau.setGioiTinh("nữ");
+                }
+                //nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -117,7 +125,15 @@ public class ThongKeNhanKhauService {
 
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+//                System.out.println(rs.getInt("gioiTinh"));
+                if(rs.getInt("gioiTinh") == 1){
+                    nhanKhau.setGioiTinh("nam");
+                }else{
+                    nhanKhau.setGioiTinh("nữ");
+                }
+
+             //   System.out.println(nhanKhau.getGioiTinh());
+                //nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
@@ -205,7 +221,12 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                //nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                if(rs.getInt("gioiTinh") == 1){
+                    nhanKhau.setGioiTinh("nam");
+                }else{
+                    nhanKhau.setGioiTinh("nữ");
+                }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -273,7 +294,12 @@ public class ThongKeNhanKhauService {
                 NhanKhauModel nhanKhau = temp.getNhanKhauModel();
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+//                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                if(rs.getInt("gioiTinh") == 1){
+                    nhanKhau.setGioiTinh("nam");
+                }else{
+                    nhanKhau.setGioiTinh("nữ");
+                }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 

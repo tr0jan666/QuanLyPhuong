@@ -47,7 +47,7 @@ public class ThongKeController implements Initializable {
     private TableColumn<?, ?> diaChiHienNay;
 
     @FXML
-    private TableColumn<?, ?> gioiTinh;
+    private TableColumn<?,?> gioiTinh;
 
     @FXML
     private ComboBox<String> gioiTinhCB;
@@ -181,7 +181,6 @@ public class ThongKeController implements Initializable {
 
         listNhanKhauBeans = thongKeNhanKhauService.statisticNhanKhau(tuTuoi, denTuoi, gender, status, tuNam, denNam);
 //        System.out.println("xong init data");
-
         setDataTable();
     }
 
@@ -190,6 +189,7 @@ public class ThongKeController implements Initializable {
         listNhanKhauBeans.forEach(nhanKhau -> {
             listItem.add(nhanKhau.getNhanKhauModel());
             //   System.out.println(nhanKhau.getNhanKhauModel().getHo_ten());
+            //System.out.println(nhanKhau.getNhanKhauModel().getGioiTinh());
         });
         observablelistNhanKhau = FXCollections.observableList(listItem);
         ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
@@ -197,6 +197,7 @@ public class ThongKeController implements Initializable {
         namSinh.setCellValueFactory(new PropertyValueFactory<>("namSinh"));
 
         gioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+
         diaChiHienNay.setCellValueFactory(new PropertyValueFactory<>("diaChiHienNay"));
         table.setItems(observablelistNhanKhau);
     }
