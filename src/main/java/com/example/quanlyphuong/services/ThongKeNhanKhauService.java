@@ -161,8 +161,16 @@ public class ThongKeNhanKhauService {
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
-        if (!gender.equalsIgnoreCase("Toan Bo")) {
+      /*  if (!gender.equalsIgnoreCase("Toan Bo")) {
             query += " AND nhan_khau.gioiTinh = '" + gender + "'";
+        }*/
+         if(gender.equalsIgnoreCase("Nam")){
+            int gt = 1 ;
+            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
+        }
+        if(gender.equalsIgnoreCase("Nu")){
+            int gt = 0 ;
+            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
         if (Status.equalsIgnoreCase("Toan bo")) {
             query += " AND (tam_tru.denNgay >= CURDATE() OR tam_tru.denNgay IS NULL)"
