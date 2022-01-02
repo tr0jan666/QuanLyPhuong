@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.TiemChungController">
+<AnchorPane prefHeight="630.0" prefWidth="790.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.TiemChungController">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="1000.0" AnchorPane.bottomAnchor="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane prefHeight="175.0" prefWidth="790.0" AnchorPane.bottomAnchor="454.8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label alignment="CENTER" layoutX="393.0" layoutY="14.0" prefHeight="38.0" prefWidth="215.0" style="-fx-background-color: f0f2f5; -fx-background-radius: 5;" text="Thông Tin Tiêm Chủng" AnchorPane.leftAnchor="393.0">
+                <Label alignment="CENTER" layoutX="289.0" layoutY="7.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: f0f2f5; -fx-background-radius: 5;" text="Thông Tin Tiêm Chủng" AnchorPane.leftAnchor="263.0">
                     <font>
                         <Font name="Arial Bold" size="18.0" />
                     </font>
                 </Label>
-                <GridPane layoutX="14.0" layoutY="49.0" prefHeight="114.0" prefWidth="650.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
+                <GridPane layoutX="14.0" layoutY="49.0" prefHeight="114.0" prefWidth="650.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;">
                     <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="56.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="180.0" />
@@ -38,14 +38,9 @@
                         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="CCCD" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="13.0" />
-                     </font></Label>
-                        <Label text="Địa điểm" GridPane.rowIndex="3">
+                        <TextField fx:id="tf_cccd" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="tf_tiemLan" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="CCCD" GridPane.rowIndex="2">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
@@ -57,38 +52,38 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                        <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <DatePicker fx:id="dt_thoiGianTiem" focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                             <GridPane.margin>
 
                             </GridPane.margin></DatePicker>
-                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Tiêm lần" textAlignment="CENTER" GridPane.rowIndex="2">
+                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Tiêm lần" textAlignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
 
-                        <TextField focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <TextField fx:id="tf_loaiVaccine" focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <TextField fx:id="tf_hoTen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Họ tên" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
-                <Button layoutX="840.0" layoutY="60.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="91.0" text="Cập nhật" />
-                <Button layoutX="840.0" layoutY="136.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="91.0" text="Thống kê" />
+                <Button fx:id="btn_capNhat" layoutX="693.0" layoutY="49.0" mnemonicParsing="false" onAction="#capNhat" prefHeight="30.0" prefWidth="79.0" text="Cập nhật" />
+                <Button fx:id="btn_them" layoutX="693.0" layoutY="106.0" mnemonicParsing="false" onAction="#BtnThem" prefHeight="30.0" prefWidth="79.0" text="Thêm" />
             </children>
         </AnchorPane>
-      <ScrollPane layoutX="1.0" layoutY="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
+      <ScrollPane layoutX="1.0" layoutY="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
          <content>
-              <AnchorPane prefHeight="605.0" prefWidth="998.0">
+              <AnchorPane prefHeight="443.0" prefWidth="998.0">
                <children>
-                    <TableView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <TableView fx:id="tableTiemChung" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columns>
-                            <TableColumn prefWidth="82.0" text="CCCD" />
-                            <TableColumn minWidth="0.0" prefWidth="114.0" text="Họ và tên" />
-                            <TableColumn prefWidth="90.0" text="Tiêm lần 1" />
-                            <TableColumn prefWidth="68.0" text="Ngày" />
-                            <TableColumn prefWidth="110.0" text="Loại Vaccine" />
-                            <TableColumn prefWidth="110.0" text="Địa điểm" />
-                            <TableColumn prefWidth="121.0" text="Tiêm lần 2" />
-                            <TableColumn minWidth="4.0" prefWidth="78.0" text="Ngày" />
-                            <TableColumn prefWidth="103.0" text="Loại Vaccine" />
-                            <TableColumn prefWidth="120.0" text="Địa điểm" />
+                            <TableColumn fx:id="tc_hoVaTen" minWidth="0.0" prefWidth="145.0" text="Họ và tên" />
+                            <TableColumn fx:id="tc_cccd" prefWidth="100.0" text="CCCD" />
+                            <TableColumn fx:id="tc_tiemLan1" prefWidth="64.0" text="Tiêm lần 1" />
+                            <TableColumn fx:id="tc_ngayLan1" prefWidth="94.0" text="Ngày" />
+                            <TableColumn fx:id="tc_loaiVaccine1" prefWidth="110.0" text="Loại Vaccine" />
+                            <TableColumn fx:id="tc_tiemLan2" prefWidth="64.0" text="Tiêm lần 2" />
+                            <TableColumn fx:id="tc_ngayLan2" minWidth="4.0" prefWidth="94.0" text="Ngày" />
+                            <TableColumn fx:id="tc_loaiVaccine2" prefWidth="103.0" text="Loại Vaccine" />
                         </columns>
                     </TableView>
                </children>
