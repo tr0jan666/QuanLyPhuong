@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.TestCovidController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.TestCovidController">
     <Label alignment="CENTER" layoutX="400.0" layoutY="14.0" prefHeight="34.0" prefWidth="202.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Test Covid" textAlignment="CENTER" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="14.0">
         <font>
             <Font name="Arial Bold" size="18.0" />
@@ -47,11 +48,11 @@
             <font>
                <Font size="13.0" />
             </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian test" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian test" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
             </font></Label>
-            <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="187.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                 <GridPane.margin>
 
                 </GridPane.margin></DatePicker>
@@ -59,12 +60,11 @@
             <font>
                <Font size="13.0" />
             </font></Label>
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="136.0" text="Kết quả" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="136.0" text="Kết quả" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="3">
             <font>
                <Font size="13.0" />
             </font></Label>
-
-            <TextField focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <ComboBox fx:id="cb_ketQua" prefHeight="26.0" prefWidth="191.0" promptText="Lựa chọn" GridPane.columnIndex="3" GridPane.rowIndex="3" />
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="369.0" prefHeight="430.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
@@ -81,7 +81,7 @@
             </TableView>
         </children>
     </AnchorPane>
-    <Button graphicTextGap="11.0" layoutX="842.0" layoutY="33.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="33.0">
+    <Button graphicTextGap="11.0" layoutX="842.0" layoutY="60.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="60.0">
         <graphic>
             <Group>
                 <children>
@@ -92,22 +92,11 @@
         <font>
             <Font name="Arial Bold" size="13.0" />
         </font></Button>
-    <Button graphicTextGap="17.0" layoutX="842.0" layoutY="140.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="140.0">
+    <Button graphicTextGap="17.0" layoutX="842.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="100.0">
         <graphic>
             <Group>
                 <children>
                     <SVGPath content="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z" scaleX="0.035" scaleY="0.035" styleClass="icon" />
-                </children>
-            </Group>
-        </graphic>
-        <font>
-            <Font name="Arial Bold" size="13.0" />
-        </font></Button>
-    <Button graphicTextGap="7.0" layoutX="842.0" layoutY="83.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Cật nhật" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="83.0">
-        <graphic>
-            <Group>
-                <children>
-                    <SVGPath content="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z" scaleX="0.03" scaleY="0.03" styleClass="icon" />
                 </children>
             </Group>
         </graphic>
