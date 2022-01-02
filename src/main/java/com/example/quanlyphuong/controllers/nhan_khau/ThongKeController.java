@@ -74,19 +74,17 @@ public class ThongKeController implements Initializable {
     @FXML
     private TextField tuTuoiText;
 
-    MenuNhanKhauController sceneSwitch;
     List<NhanKhauBean> listNhanKhauBeans;
     ThongKeNhanKhauService thongKeNhanKhauService;
     ObservableList<NhanKhauBean> observablelistNhanKhau;
     ObservableList<String> gioiTinhList;
     ObservableList<String> tinhTrangList;
     int accessCount = 0;
-    int gioiTinh1 = -1;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        sceneSwitch = new MenuNhanKhauController();
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         listNhanKhauBeans = thongKeNhanKhauService.getListNhanKhau();
         setData();
@@ -96,7 +94,6 @@ public class ThongKeController implements Initializable {
         gioiTinhCB.getSelectionModel().selectFirst();
         tinhTrangCB.setItems(tinhTrangList);
         tinhTrangCB.getSelectionModel().selectFirst();
-
     }
 
     public void setData() {
@@ -104,23 +101,16 @@ public class ThongKeController implements Initializable {
         int denTuoi = 200;
         int tuNam = 0;
         int denNam = 2100;
-
+        String gender = "Toan Bo";
         String status = "Toan Bo";
         if (accessCount != 0){
-            if(gioiTinhCB.getValue().toString().equals("Nu")) {
-                gioiTinh1 = 0;
-            } else
-            if(gioiTinhCB.getValue().toString().equals("Nam")){
-                gioiTinh1 = 1;
-            }
-            else
-            gioiTinh1 = -1;
-           // gender = StringService.covertToString(gioiTinhCB.getSelectionModel().getSelectedItem());
+
+            gender = StringService.covertToString(gioiTinhCB.getSelectionModel().getSelectedItem());
             status = StringService.covertToString(tinhTrangCB.getSelectionModel().getSelectedItem());
 
         }
         accessCount++;
-        System.out.println(accessCount);
+
         try {
             if (!tuTuoiText.getText().trim().isEmpty()) {
                 tuTuoi = Integer.parseInt(tuTuoiText.getText().trim());
@@ -145,7 +135,7 @@ public class ThongKeController implements Initializable {
             alert.setContentText("Vui lòng nhập đúng kiểu dữ liệu");
             alert.show();
         }
-        listNhanKhauBeans = thongKeNhanKhauService.statisticNhanKhau(tuTuoi, denTuoi, gioiTinh1, status, tuNam, denNam);
+        listNhanKhauBeans = thongKeNhanKhauService.statisticNhanKhau(tuTuoi, denTuoi, gender, status, tuNam, denNam);
        setDataTable();
     }
 

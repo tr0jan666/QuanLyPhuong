@@ -137,7 +137,6 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setQuocTich(rs.getString("quocTich"));
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
-                System.out.println(nhanKhau.getHo_ten());
 
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
@@ -155,7 +154,7 @@ public class ThongKeNhanKhauService {
         return list;
     }
 
-    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi, int denTuoi, int gender, String Status, int tuNam, int denNam) {
+    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi, int denTuoi, String gender, String Status, int tuNam, int denNam) {
         List<NhanKhauBean> list = new ArrayList<>();
 
         String query = "SELECT * FROM nhan_khau "
@@ -169,11 +168,11 @@ public class ThongKeNhanKhauService {
       /*  if (!gender.equalsIgnoreCase("Toan Bo")) {
             query += " AND nhan_khau.gioiTinh = '" + gender + "'";
         }*/
-         if(gender==1){
+         if(gender.equalsIgnoreCase("Nam")){
             int gt = 1 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
-        if(gender==0){
+        if(gender.equalsIgnoreCase("Nu")){
             int gt = 0 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }

@@ -8,7 +8,9 @@ public class TestCovidModel {
     private Date thoiDiemTest;
     private String hinhThucTest;
     private boolean ketQua;
+    public  TestCovidModel(){
 
+    }
     public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, boolean ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;

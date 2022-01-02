@@ -2,10 +2,7 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
-import com.example.quanlyphuong.models.CachLyModel;
-import com.example.quanlyphuong.models.ChungMinhThuModel;
-import com.example.quanlyphuong.models.NhanKhauModel;
-import com.example.quanlyphuong.models.TiemChungModel;
+import com.example.quanlyphuong.models.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +12,7 @@ import java.util.List;
 
 public class ThongKeCovidService {
 
-    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,int gender ,int cly ,int tmui1 ,int tmui2 ) {
+    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int tmui1 ,int tmui2 ) {
         List<NhanKhauBean> list = new ArrayList<>();
 
         String query = "SELECT * FROM nhan_khau "
@@ -27,11 +24,11 @@ public class ThongKeCovidService {
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
 
-        if(gender==1){
+        if(gender.equalsIgnoreCase("Nam")){
             int gt = 1 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
-        if(gender==0){
+        if(gender.equalsIgnoreCase("Nu")){
             int gt = 0 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
@@ -99,8 +96,9 @@ public class ThongKeCovidService {
 
                 NhanKhauModel nhanKhau = new NhanKhauModel();
                 ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
-             /*  CachLyModel cachLyModel = new CachLyModel() ;
-                TiemChungModel tiemChungModel = new TiemChungModel();*/
+                CachLyModel cachLyModel = new CachLyModel() ;
+                TiemChungModel tiemChungModel = new TiemChungModel();
+                TestCovidModel testCovidModel = new TestCovidModel();
 
 
                 nhanKhau.setID(rs.getInt("ID"));
@@ -111,22 +109,13 @@ public class ThongKeCovidService {
                 }else{
                     nhanKhau.setGioiTinhString("Nữ");
                 }
-
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
-
-                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
-                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
-
-                nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
-                nhanKhau.setDanToc(rs.getString("danToc"));
-                nhanKhau.setTonGiao(rs.getString("tonGiao"));
-                nhanKhau.setQuocTich(rs.getString("quocTich"));
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
-                System.out.println(nhanKhau.getHo_ten());
+                cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
+                testCovidModel.setKetQua(rs.getBoolean("ketQua"));
+
 
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);

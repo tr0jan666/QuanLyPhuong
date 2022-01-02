@@ -2,6 +2,7 @@ package com.example.quanlyphuong.controllers.dich_te;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.models.NhanKhauModel;
+import com.example.quanlyphuong.services.StringService;
 import com.example.quanlyphuong.services.ThongKeCovidService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -89,14 +90,15 @@ public class ThongKeDichTeController implements Initializable {
     private TableColumn<?, ?> col_loaiVaccineLan2;
 
     @FXML
-    private TableColumn<?, ?> col_cachLy;
+    private TableColumn<NhanKhauBean, Integer> col_cachLy;
 
     @FXML
-    private TableColumn<?, ?> col_covid;
+    private TableColumn<NhanKhauBean, Boolean> col_covid;
     List<NhanKhauBean> listNhanKhauCovidBeans;
     ThongKeCovidService thongKeCovidService;
     ObservableList<NhanKhauBean> observablelistNhanKhauCovid;
     ObservableList<String> gioiTinhList;
+    int accessCount = 0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -114,16 +116,12 @@ public class ThongKeDichTeController implements Initializable {
         int tuTuoi = -1;
         int denTuoi = 200;
         int cachly = 0, tiemmui1 =0,tiemmui2=0;
-        int gioiTinh1 = -1 ;
+        String gender = "Toan Bo" ;
         String status = "Toan Bo";
-        int accessCount =0;
+
         if (accessCount != 0){
-             gioiTinh1 = 0;
-            if(gioiTinhCB.getValue().toString().equals("Nam")){
-                gioiTinh1 = 1;
-            }
 
-
+            gender = StringService.covertToString(gioiTinhCB.getSelectionModel().getSelectedItem());
         }
         accessCount++;
         try {
@@ -149,7 +147,7 @@ public class ThongKeDichTeController implements Initializable {
             alert.show();
         }
 
-        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gioiTinh1, cachly, tiemmui1,tiemmui2);
+        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, tiemmui1,tiemmui2);
 //        System.out.println("xong init data");
 
         setDataTable();
@@ -162,6 +160,8 @@ public class ThongKeDichTeController implements Initializable {
         col_cccd.setCellValueFactory((nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getChungMinhThuModel().getSoCMT())));
         col_gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
         col_diaChi.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
+        col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinCachLy().getMucDo()));
+        col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTestCovid().getKetQua()));
         table.setItems(observablelistNhanKhauCovid);
 
     }
