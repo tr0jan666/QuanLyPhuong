@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.ThongKeDichTeController">
+<AnchorPane fx:id="anchorpane1" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.ThongKeDichTeController">
     <children>
         <VBox prefHeight="800.0" prefWidth="1000.0">
             <children>
@@ -27,7 +27,7 @@
                            <font>
                               <Font name="Arial Bold" size="16.0" />
                            </font></Label>
-                              <ComboBox layoutX="176.0" layoutY="21.0" prefHeight="26.0" prefWidth="82.0" AnchorPane.bottomAnchor="71.0" AnchorPane.topAnchor="21.0" />
+                              <ComboBox fx:id="gioiTinhCB" layoutX="176.0" layoutY="21.0" prefHeight="31.0" prefWidth="99.0" AnchorPane.bottomAnchor="71.0" AnchorPane.topAnchor="21.0" />
                               <Label layoutX="81.0" layoutY="73.0" text="Độ tuổi :">
                            <font>
                               <Font name="System Bold" size="16.0" />
@@ -36,21 +36,21 @@
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                              <TextField layoutX="249.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
+                              <TextField fx:id="tuTuoiText" layoutX="249.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
                               <Label layoutX="326.0" layoutY="73.0" text="Đến">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                              <TextField layoutX="389.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
-                              <CheckBox layoutX="339.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đang cách ly">
+                              <TextField fx:id="denTuoiText" layoutX="389.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
+                              <CheckBox fx:id="cachLyCB" layoutX="339.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đang cách ly">
                            <font>
                               <Font size="14.0" />
                            </font></CheckBox>
-                              <CheckBox layoutX="526.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Đã tiêm 2 mũi">
+                              <CheckBox fx:id="mui2CB" layoutX="526.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Đã tiêm 2 mũi">
                            <font>
                               <Font size="14.0" />
                            </font></CheckBox>
-                              <CheckBox layoutX="526.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đã tiêm 1 mũi">
+                              <CheckBox fx:id="mui1CB" layoutX="526.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đã tiêm 1 mũi">
                            <font>
                               <Font size="14.0" />
                            </font></CheckBox>
@@ -67,7 +67,7 @@
                        <font>
                            <Font name="Arial Bold" size="14.0" />
                        </font></Button>
-                   <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="828.0" layoutY="140.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
+                   <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="828.0" layoutY="140.0" mnemonicParsing="false" onAction="#setXuatFileThongke" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
                        <font>
                            <Font name="Arial Bold" size="14.0" />
                        </font>
@@ -87,22 +87,23 @@
             </AnchorPane>
             <ScrollPane prefHeight="619.0" prefWidth="998.0">
                <content>
-                      <TableView prefHeight="619.0" prefWidth="1000.0">
+                      <TableView fx:id="table" prefHeight="1000.0">
                           <columns>
-                              <TableColumn prefWidth="100.0" text="CCCD" />
+                        <TableColumn fx:id="col_hoTen" prefWidth="210.0" text="Họ Tên" />
+                              <TableColumn fx:id="col_cccd" prefWidth="120.0" text="CCCD" />
                               <TableColumn minWidth="0.0" prefWidth="0.0" text="Họ và tên" />
-                              <TableColumn prefWidth="100.0" text="Giới tính" />
+                              <TableColumn fx:id="col_gioiTinh" text="Giới tính" />
                               <TableColumn minWidth="0.0" prefWidth="0.0" text="Ngày sinh" />
-                              <TableColumn prefWidth="100.0" text="Địa chỉ" />
+                              <TableColumn fx:id="col_diaChi" prefWidth="240.0" text="Địa chỉ" />
                               <TableColumn minWidth="0.0" prefWidth="0.0" text="Column X" />
-                              <TableColumn prefWidth="99.0" text="Tiêm lần 1" />
-                              <TableColumn prefWidth="75.0" text="Ngày" />
-                              <TableColumn prefWidth="119.0" text="Loại vaccine" />
-                              <TableColumn prefWidth="98.0" text="Tiêm lần 2" />
-                              <TableColumn prefWidth="52.0" text="Ngày" />
-                              <TableColumn prefWidth="104.0" text="Loại vaccine" />
-                              <TableColumn prefWidth="75.0" text="Cách ly" />
-                              <TableColumn prefWidth="75.0" text="Covid" />
+                              <TableColumn fx:id="col_tiemLan1" prefWidth="99.0" text="Tiêm lần 1" />
+                              <TableColumn fx:id="col_ngayTiemLan1" prefWidth="100.0" text="Ngày" />
+                              <TableColumn fx:id="col_loaiVaccineLan1" prefWidth="119.0" text="Loại vaccine" />
+                              <TableColumn fx:id="col_tiemLan2" prefWidth="98.0" text="Tiêm lần 2" />
+                              <TableColumn fx:id="col_ngayTiemLan2" prefWidth="100.0" text="Ngày" />
+                              <TableColumn fx:id="col_loaiVaccineLan2" prefWidth="119.0" text="Loại vaccine" />
+                              <TableColumn fx:id="col_cachLy" prefWidth="85.0" text="Cách ly" />
+                              <TableColumn fx:id="col_covid" prefWidth="85.0" text="Covid" />
                           </columns>
                       </TableView>
                </content>
