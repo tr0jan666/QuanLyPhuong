@@ -52,7 +52,7 @@ public class NhanKhauService {
                 if(nhanKhau.getGioiTinh() == 1){
                     nhanKhau.setGioiTinhString("Nam");
                 }else{
-                    nhanKhau.setGioiTinhString("Nu");
+                    nhanKhau.setGioiTinhString("Nữ");
                 }
 
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
