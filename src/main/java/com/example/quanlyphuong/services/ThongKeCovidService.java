@@ -12,17 +12,20 @@ import java.util.List;
 
 public class ThongKeCovidService {
 
-    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int tmui1 ,int tmui2 ) {
+    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int dtiemmui ) {
         List<NhanKhauBean> list = new ArrayList<>();
 
-        String query = "SELECT * FROM nhan_khau,cach_ly,tiem_chung "
+        String query = "SELECT * FROM nhan_khau"
                 + " INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau"
-                + " LEFT JOIN tam_tru ON nhan_khau.ID = tam_tru.idNhanKhau "
-                + " LEFT JOIN tam_vang ON nhan_khau.ID = tam_vang.idNhanKhau "
+                + " LEFT JOIN cach_ly ON nhan_khau.ID = cach_ly.idNhanKhau "
+                + " LEFT JOIN tiem_chung ON nhan_khau.ID = tiem_chung.idNhanKhau "
                 + " WHERE ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) >= "
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
+
+
+
 
         if(gender.equalsIgnoreCase("Nam")){
             int gt = 1 ;
@@ -36,6 +39,12 @@ public class ThongKeCovidService {
         if(cly==1){
             query+=" AND cach_ly.mucDoCachLy = '" + cly + "'";
         }
+        if(dtiemmui==1){
+            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui + "'";
+        }
+        if(dtiemmui==2){
+            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui + "'";
+        }
 
         try {
             Connection connection = MySQLConnector.getConnection();
@@ -46,9 +55,14 @@ public class ThongKeCovidService {
                 NhanKhauBean nhanKhauBean = new NhanKhauBean();
                 NhanKhauModel nhanKhau =  new NhanKhauModel() ;
                 ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
+                //them cach ly tiem chung
+                CachLyModel cachLyModel = new CachLyModel();
+                TiemChungModel tiemChungModel = new TiemChungModel();
+                cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
+                tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
+
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
-
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
                 if(nhanKhau.getGioiTinh() == 1){
@@ -56,22 +70,17 @@ public class ThongKeCovidService {
                 }else{
                     nhanKhau.setGioiTinhString("Nữ");
                 }
-                nhanKhau.setNamSinh(rs.getDate("namSinh"));
-                nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
-                nhanKhau.setTonGiao(rs.getString("tonGiao"));
-                nhanKhau.setDanToc(rs.getString("danToc"));
-                nhanKhau.setQuocTich(rs.getString("quocTich"));
-                nhanKhau.setSoHoChieu(rs.getString("soHoChieu"));
-                nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
-                // con nhieu nua
+
                 chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
                 chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
-                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
 
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
+               // them cach ly tiem chung
+                nhanKhauBean.setCachLyModel(cachLyModel);
+                nhanKhauBean.setTiemChungModel(tiemChungModel);
+
                 list.add(nhanKhauBean);
             }
             preparedStatement.close();

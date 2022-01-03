@@ -72,16 +72,13 @@ public class ThongKeDichTeController implements Initializable {
     private TableColumn<NhanKhauBean, String> col_diaChi;
 
     @FXML
-    private TableColumn<?, ?> col_tiemLan1;
+    private TableColumn<NhanKhauBean, Integer> col_soLanTiem;
 
     @FXML
     private TableColumn<?, ?> col_ngayTiemLan1;
 
     @FXML
     private TableColumn<?, ?> col_loaiVaccineLan1;
-
-    @FXML
-    private TableColumn<?, ?> col_tiemLan2;
 
     @FXML
     private TableColumn<?, ?> col_ngayTiemLan2;
@@ -115,7 +112,7 @@ public class ThongKeDichTeController implements Initializable {
     public void setData(){
         int tuTuoi = -1;
         int denTuoi = 200;
-        int cachly = 0, tiemmui1 =0,tiemmui2=0;
+        int cachly = 0, datiemmui =0;
         String gender = "Toan Bo" ;
         String status = "Toan Bo";
 
@@ -136,8 +133,8 @@ public class ThongKeDichTeController implements Initializable {
                 denTuoi = 200;
             }
             if(cachLyCB.isSelected()) cachly = 1;
-            if(mui1CB.isSelected()) tiemmui1 = 1;
-            if(mui2CB.isSelected()) tiemmui2 = 1;
+            if(mui1CB.isSelected()) datiemmui = 1;
+            if(mui2CB.isSelected()) datiemmui = 2;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +144,7 @@ public class ThongKeDichTeController implements Initializable {
             alert.show();
         }
 
-        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, tiemmui1,tiemmui2);
+        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, datiemmui);
 //        System.out.println("xong init data");
 
         setDataTable();
@@ -160,8 +157,9 @@ public class ThongKeDichTeController implements Initializable {
         col_cccd.setCellValueFactory((nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getChungMinhThuModel().getSoCMT())));
         col_gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
         col_diaChi.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
-        col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinCachLy().getMucDo()));
+       /* col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinCachLy().getMucDo()));
         col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTestCovid().getKetQua()));
+        col_soLanTiem.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getSoLanTiem()));*/
         table.setItems(observablelistNhanKhauCovid);
 
     }
@@ -184,13 +182,13 @@ public class ThongKeDichTeController implements Initializable {
                 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
                 FileWriter fw = new FileWriter(filetosave);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("ID"+"\t\t"+"Họ tên"+"\t\t"+"Năm sinh"+"\t\t"+"Giới tính"+"\t\t"+"Địa chỉ");
+                bw.write("Họ tên"+"\t\t"+"CCCD"+"\t\t"+"Giới tính"+"\t\t"+"Địa chỉ");
                 bw.newLine();
                 ArrayList<NhanKhauModel> listItem = new ArrayList<>();
                 for (NhanKhauBean nhanKhau : listNhanKhauCovidBeans) {
                     listItem.add(nhanKhau.getNhanKhauModel());
-                    String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
-                    bw.write(String.valueOf(nhanKhau.getNhanKhauModel().getID())+"\t\t"+nhanKhau.getNhanKhauModel().getHo_ten()+"\t\t"+s+"\t\t"+nhanKhau.getNhanKhauModel().getGioiTinh()+"\t\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay());
+                  //  String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
+                    bw.write(nhanKhau.getNhanKhauModel().getHo_ten()+"\t\t"+nhanKhau.getChungMinhThuModel().getSoCMT()+"\t\t"+nhanKhau.getNhanKhauModel().getGioiTinhString()+"\t\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay());
                     bw.newLine();
                 }
 

@@ -91,15 +91,11 @@
                           <columns>
                         <TableColumn fx:id="col_hoTen" prefWidth="210.0" text="Họ Tên" />
                               <TableColumn fx:id="col_cccd" prefWidth="120.0" text="CCCD" />
-                              <TableColumn minWidth="0.0" prefWidth="0.0" text="Họ và tên" />
                               <TableColumn fx:id="col_gioiTinh" text="Giới tính" />
-                              <TableColumn minWidth="0.0" prefWidth="0.0" text="Ngày sinh" />
                               <TableColumn fx:id="col_diaChi" prefWidth="240.0" text="Địa chỉ" />
-                              <TableColumn minWidth="0.0" prefWidth="0.0" text="Column X" />
-                              <TableColumn fx:id="col_tiemLan1" prefWidth="99.0" text="Tiêm lần 1" />
+                              <TableColumn fx:id="col_soLanTiem" prefWidth="99.0" text="Số lần tiêm" />
                               <TableColumn fx:id="col_ngayTiemLan1" prefWidth="100.0" text="Ngày" />
                               <TableColumn fx:id="col_loaiVaccineLan1" prefWidth="119.0" text="Loại vaccine" />
-                              <TableColumn fx:id="col_tiemLan2" prefWidth="98.0" text="Tiêm lần 2" />
                               <TableColumn fx:id="col_ngayTiemLan2" prefWidth="100.0" text="Ngày" />
                               <TableColumn fx:id="col_loaiVaccineLan2" prefWidth="119.0" text="Loại vaccine" />
                               <TableColumn fx:id="col_cachLy" prefWidth="85.0" text="Cách ly" />
