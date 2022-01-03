@@ -15,7 +15,7 @@ public class ThongKeCovidService {
     public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int tmui1 ,int tmui2 ) {
         List<NhanKhauBean> list = new ArrayList<>();
 
-        String query = "SELECT * FROM nhan_khau "
+        String query = "SELECT * FROM nhan_khau,cach_ly,tiem_chung "
                 + " INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau"
                 + " LEFT JOIN tam_tru ON nhan_khau.ID = tam_tru.idNhanKhau "
                 + " LEFT JOIN tam_vang ON nhan_khau.ID = tam_vang.idNhanKhau "
@@ -33,7 +33,9 @@ public class ThongKeCovidService {
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
 // them cach ly va tiem mui 1,2
-
+        if(cly==1){
+            query+=" AND cach_ly.mucDoCachLy = '" + cly + "'";
+        }
 
         try {
             Connection connection = MySQLConnector.getConnection();
