@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ThongKeCovidService {
 
-    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int dtiemmui ) {
+    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int dtiemmui1,int dtiemmui2 ) {
         List<NhanKhauBean> list = new ArrayList<>();
 
         String query = "SELECT * FROM nhan_khau"
@@ -39,11 +39,11 @@ public class ThongKeCovidService {
         if(cly==1){
             query+=" AND cach_ly.mucDoCachLy = '" + cly + "'";
         }
-        if(dtiemmui==1){
-            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui + "'";
+        if(dtiemmui1==1){
+            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui1 + "'";
         }
-        if(dtiemmui==2){
-            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui + "'";
+        if(dtiemmui2==2){
+            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui2 + "'";
         }
 
         try {

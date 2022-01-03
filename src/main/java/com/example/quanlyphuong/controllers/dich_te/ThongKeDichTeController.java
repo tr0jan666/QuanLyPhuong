@@ -23,6 +23,7 @@ import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -72,19 +73,22 @@ public class ThongKeDichTeController implements Initializable {
     private TableColumn<NhanKhauBean, String> col_diaChi;
 
     @FXML
-    private TableColumn<NhanKhauBean, Integer> col_soLanTiem;
+    private TableColumn<NhanKhauBean, Integer> col_tiemLan1;
 
     @FXML
-    private TableColumn<?, ?> col_ngayTiemLan1;
+    private TableColumn<NhanKhauBean, Date> col_ngayTiemLan1;
 
     @FXML
-    private TableColumn<?, ?> col_loaiVaccineLan1;
+    private TableColumn<NhanKhauBean, String> col_loaiVaccineLan1;
 
     @FXML
-    private TableColumn<?, ?> col_ngayTiemLan2;
+    private TableColumn<NhanKhauBean, Integer> col_tiemLan2;
 
     @FXML
-    private TableColumn<?, ?> col_loaiVaccineLan2;
+    private TableColumn<NhanKhauBean, Date> col_ngayTiemLan2;
+
+    @FXML
+    private TableColumn<NhanKhauBean, String> col_loaiVaccineLan2;
 
     @FXML
     private TableColumn<NhanKhauBean, Integer> col_cachLy;
@@ -112,7 +116,7 @@ public class ThongKeDichTeController implements Initializable {
     public void setData(){
         int tuTuoi = -1;
         int denTuoi = 200;
-        int cachly = 0, datiemmui =0;
+        int cachly = 0, datiemmui1 =0,datiemmui2=0;
         String gender = "Toan Bo" ;
         String status = "Toan Bo";
 
@@ -133,8 +137,8 @@ public class ThongKeDichTeController implements Initializable {
                 denTuoi = 200;
             }
             if(cachLyCB.isSelected()) cachly = 1;
-            if(mui1CB.isSelected()) datiemmui = 1;
-            if(mui2CB.isSelected()) datiemmui = 2;
+            if(mui1CB.isSelected()) datiemmui1 = 1;
+            if(mui2CB.isSelected()) datiemmui2 = 2;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -144,7 +148,7 @@ public class ThongKeDichTeController implements Initializable {
             alert.show();
         }
 
-        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, datiemmui);
+        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, datiemmui1,datiemmui2);
 //        System.out.println("xong init data");
 
         setDataTable();
@@ -157,9 +161,15 @@ public class ThongKeDichTeController implements Initializable {
         col_cccd.setCellValueFactory((nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getChungMinhThuModel().getSoCMT())));
         col_gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
         col_diaChi.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
-       /* col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinCachLy().getMucDo()));
+        col_tiemLan1.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getSoLanTiem()));
+        col_ngayTiemLan1.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getNgayTiem()));
+        col_loaiVaccineLan1.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getVacxin()));
+        col_tiemLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getSoLanTiem()));
+        col_ngayTiemLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getNgayTiem()));
+        col_loaiVaccineLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getVacxin()));
+        col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinCachLy().getMucDo()));
         col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTestCovid().getKetQua()));
-        col_soLanTiem.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getThongTinTiemChung().getSoLanTiem()));*/
+
         table.setItems(observablelistNhanKhauCovid);
 
     }
