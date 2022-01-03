@@ -60,7 +60,7 @@ public class TestCovidController implements Initializable{
     private TextField tf_diaDiem;
 
     @FXML
-    private DatePicker dp_thoGianTest;
+    private DatePicker dp_thoiGianTest;
 
     @FXML
     public ComboBox<String> cb_ketQua;
@@ -96,28 +96,27 @@ public class TestCovidController implements Initializable{
     TestCovidService testCovidService;
     ObservableList<TestCovidBean> observableListHoKhauBeans;
     ThongKeNhanKhauService thongKeNhanKhauService;
-    NhanKhauBean nhanKhauTiemChung;
+    NhanKhauBean nhanKhauTestCovid;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public void refresh(){
         testCovidService = new TestCovidService();
-        listNhanKhauTestCovid = testCovidService.getListNhanKhauCachLy();
+        listNhanKhauTestCovid = testCovidService.getListNhanKhauTestCovid();
 
-        observableListHoKhauBeans = FXCollections.observableList(listNhanKhauCachLy);
+        observableListHoKhauBeans = FXCollections.observableList(listNhanKhauTestCovid);
 
         col_id.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getMaNhanKhau()));
         col_hoVaTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
         col_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
-        //col_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().get()));
-        BatDau.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getCachLyModel().getThoiGianBatDau()));
-        MucDo.setCellValueFactory(bean-> new ReadOnlyObjectWrapper<>(bean.getValue().getCachLyModel().getMucDo()));
-        KetThuc.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getCachLyModel().getThoiGianKetThuc()));
-        tbvChiTiet.setItems(observableListHoKhauBeans);
+        col_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getDiaDiemTest()));
+        col_thoiGian.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getThoiDiemTest()));
+        col_ketQua.setCellValueFactory(bean-> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getKetQua()));
+        tbv_testCovid.setItems(observableListHoKhauBeans);
 
     }
 
     @FXML
-    void xoa(ActionEvent event) {
+    void xoaTestCovid(ActionEvent event) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -139,4 +138,106 @@ public class TestCovidController implements Initializable{
         }
 
     }
+
+    @FXML
+    void timNhanKhauBean(ActionEvent event) {
+        thongKeNhanKhauService = new ThongKeNhanKhauService();
+        String cmt = tf_cccd.getText();
+        System.out.println(cmt);
+
+        nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(cmt);
+        if(nhanKhauTestCovid == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Không tồn tại chứng minh thư ");
+            alert.show();
+        }else{
+            tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
+        }
+
+    }
+    boolean isMissingField(){
+        if ( tf_cccd.getText().isBlank() || tf_hoVaTen.getText().isEmpty() || tf_diaDiem.getText().isEmpty()
+                || (dp_thoiGianTest.getValue() == null) || cb_ketQua.getItems().isEmpty()){
+            return true;
+        }
+        return false;
+
+    }
+    void clearTf(){
+        tf_cccd.clear();
+        tf_hoVaTen.clear();
+        tf_diaDiem.clear();
+        dp_thoiGianTest.setValue(null);
+        cb_ketQua.setValue(null);
+    }
+
+    @FXML
+    void themTestCovid(ActionEvent event) throws SQLException {
+        thongKeNhanKhauService = new ThongKeNhanKhauService();
+        TestCovidBean testCovidBean = new TestCovidBean();
+        testCovidService = new TestCovidService();
+        nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(tf_cccd.getText());
+
+        for(TestCovidBean cl: listNhanKhauTestCovid){
+            if(cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tf_cccd.getText())){
+                Alert thongBaoChung = new Alert(Alert.AlertType.WARNING);
+                thongBaoChung.setContentText("Người này hiện đã tiêm ");
+                thongBaoChung.show();
+                clearTf();
+                return;
+            }
+        }
+
+        if(isMissingField()){
+            Alert missingAlert = new Alert(Alert.AlertType.WARNING);
+            missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
+            missingAlert.show();
+        }
+
+        TestCovidModel testCovidModel = new TestCovidModel();
+        testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
+        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        testCovidModel.setKetQua(cb_ketQua.getItems());
+
+        testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
+        testCovidBean.setTestCovidModel(testCovidModel);
+
+        testCovidService.addTestCovid(testCovidBean);
+
+        refresh();
+        clearTf();
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setContentText("Thêm thành công");
+        successAlert.show();
+
+
+    }
+
+    @FXML
+    void setThongTin(MouseEvent event) {
+        testCovidService = new TestCovidService();
+        TestCovidBean bean = tbv_testCovid.getSelectionModel().getSelectedItem();
+
+        tf_hoVaTen.setText(bean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
+        tf_cccd.setText(bean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
+        tf_diaDiem.setText(bean.getTestCovidModel().getDiaDiemTest());
+        dp_thoiGianTest.setValue(LocalDate.parse(bean.getTestCovidModel().getThoiDiemTest(),formatter));
+        cb_ketQua.setItems(String.valueOf(bean.getTestCovidModel().getKetQua()));
+
+        tf_cccd.setDisable(true);
+        tf_hoVaTen.setDisable(true);
+
+        btn_Them.setDisable(true);
+    }
+
+
+    @FXML
+    void reFresh(ActionEvent event) {
+        clearTf();
+        tf_hoVaTen.setDisable(false);
+        tf_cccd.setDisable(false);
+        btn_Them.setDisable(false);
+
+    }
+
 }

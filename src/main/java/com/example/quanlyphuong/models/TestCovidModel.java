@@ -7,13 +7,15 @@ public class TestCovidModel {
     private int idNhanKhau;
     private Date thoiDiemTest;
     private String hinhThucTest;
+    private String diaDiemTest;
     private boolean ketQua;
 
-    public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, boolean ketQua) {
+    public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, String diaDiemTest, boolean ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;
         this.thoiDiemTest = thoiDiemTest;
         this.hinhThucTest = hinhThucTest;
+        this.diaDiemTest = diaDiemTest;
         this.ketQua = ketQua;
     }
 
@@ -47,6 +49,14 @@ public class TestCovidModel {
 
     public void setHinhThucTest(String hinhThucTest) {
         this.hinhThucTest = hinhThucTest;
+    }
+
+    public String getDiaDiemTest() {
+        return diaDiemTest;
+    }
+
+    public void setDiaDiemTest(String diaDiemTest) {
+        this.diaDiemTest = diaDiemTest;
     }
 
     public boolean getKetQua() {
