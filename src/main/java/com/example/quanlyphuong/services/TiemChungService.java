@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -126,11 +127,11 @@ public class TiemChungService {
         }
     }
 
-    public void updateTiemChung(TiemChungBean tiemChungBean,String loaiVacxin,String ngayTiem){
+    public void updateTiemChung1(int idNhanKhau, String loaiVacxin, String ngayTiem){
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
             String query = "update tiem_chung set vacxin = " + loaiVacxin + ",ngayTiem = " + ngayTiem+
-                    "where idNhanKhau = " + tiemChungBean.getNhanKhauBean().getNhanKhauModel().getID();
+                    "where idNhanKhau = " + idNhanKhau +"and soLanTiem = 1";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.executeUpdate();
@@ -139,5 +140,36 @@ public class TiemChungService {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void updateTiemChung2(int idNhanKhau,String loaiVacxin,String ngayTiem){
+        try {
+            Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "update tiem_chung set vacxin = " + loaiVacxin + ",ngayTiem = " + ngayTiem+
+                    "where idNhanKhau = " + idNhanKhau +"and soLanTiem = 2";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public int getIDfromCCCD(int cccd){
+        int ID = 0;
+        try {
+            Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "select ID from nhan_khau nk,chung_minh_thu cmt where cmt.idNhanKhau = nk.ID and cmt.soCMT = " + cccd;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                ID = rs.getInt("ID");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ID;
     }
 }

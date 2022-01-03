@@ -1,7 +1,10 @@
 package com.example.quanlyphuong.controllers.dich_te;
 
+import com.example.quanlyphuong.QuanLyNhanKhauApplication;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.beans.TiemChungBean;
+import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.models.AppScreen;
 import com.example.quanlyphuong.models.TiemChungModel;
 import com.example.quanlyphuong.services.NhanKhauService;
 import com.example.quanlyphuong.services.ThongKeNhanKhauService;
@@ -11,11 +14,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.w3c.dom.events.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -24,6 +31,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static com.example.quanlyphuong.helper.UIHelper.DEFAULT_SCREEN_HEIGHT;
+import static com.example.quanlyphuong.helper.UIHelper.DEFAULT_SCREEN_WIDTH;
 
 public class TiemChungController implements Initializable {
     @FXML
@@ -123,6 +133,7 @@ public class TiemChungController implements Initializable {
         tiemChungModelTemp.setHoTen(tf_hoTen.getText());
         tiemChungModelTemp.setSoLanTiem(Integer.parseInt(tf_tiemLan.getText()));
         tiemChungModelTemp.setNgayTiem(Date.from(dt_thoiGianTiem.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        tiemChungModelTemp.setVacxin(tf_loaiVaccine.getText());
 
         tiemChungBean.setTiemChungModel(tiemChungModelTemp);
         tiemChungBean.setNhanKhauBean(nhanKhauTiemChung);
@@ -138,49 +149,40 @@ public class TiemChungController implements Initializable {
     }
 
     @FXML
-    void setThongTinL1(ActionEvent event){
+    void setThongTinL1(MouseEvent event){
         tiemChungService = new TiemChungService();
         TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
+        FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/pop-up-tiem-chung.fxml"));
+        System.out.println((QuanLyNhanKhauApplication.class.getResource("dich_te/pop-up-tiem-chung.fxml")));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
+            Stage stage = new Stage();
+            stage.setTitle("Chi tiết");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            PopUpTiemChung popUpTiemChung = fxmlLoader.getController();
+            popUpTiemChung.setData(tiemChungBean);
 
-        tf_hoTen.setText(tiemChungBean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
-        tf_cccd.setText(tiemChungBean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
-        tf_tiemLan.setText("1");
-        tf_loaiVaccine.setText(tiemChungService.getTiemChungL1(tiemChungBean.getNhanKhauBean().getNhanKhauModel().getID()).getVacxin());
-        dt_thoiGianTiem.setValue(LocalDate.parse((CharSequence) tiemChungService.getTiemChungL1(tiemChungBean.getNhanKhauBean().getNhanKhauModel().getID()).getNgayTiem(),formatter));
-
-        tf_hoTen.setDisable(true);
-        tf_cccd.setDisable(true);
-    }
-
-    @FXML
-    void setThongTinL2(ActionEvent event){
-        tiemChungService = new TiemChungService();
-        TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
-
-        tf_hoTen.setText(tiemChungBean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
-        tf_cccd.setText(tiemChungBean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
-        tf_tiemLan.setText("2");
-        tf_loaiVaccine.setText(tiemChungService.getTiemChungL2(tiemChungBean.getNhanKhauBean().getNhanKhauModel().getID()).getVacxin());
-        dt_thoiGianTiem.setValue(LocalDate.parse((CharSequence) tiemChungService.getTiemChungL2(tiemChungBean.getNhanKhauBean().getNhanKhauModel().getID()).getNgayTiem(),formatter));
-
-        tf_hoTen.setDisable(true);
-        tf_cccd.setDisable(true);
-    }
-
-    @FXML
-    void capNhat(ActionEvent event){
-        tiemChungService = new TiemChungService();
-        TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
-        String loaiVacxin = tf_loaiVaccine.getText();
-        String thoiGianTiem = dt_thoiGianTiem.getValue().format(formatter);
-
-        if(MissingFields()){
-            Alert missingAlert = new Alert(Alert.AlertType.WARNING);
-            missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
-            missingAlert.show();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        tiemChungService.updateTiemChung(tiemChungBean,loaiVacxin,thoiGianTiem);
-        setData();
     }
+
+//    @FXML
+//    void capNhat(ActionEvent event){
+//        tiemChungService = new TiemChungService();
+//        TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
+//        String loaiVacxin = tf_loaiVaccine.getText();
+//        String thoiGianTiem = dt_thoiGianTiem.getValue().format(formatter);
+//
+//        if(MissingFields()){
+//            Alert missingAlert = new Alert(Alert.AlertType.WARNING);
+//            missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
+//            missingAlert.show();
+//        }
+//
+//        tiemChungService.updateTiemChung(tiemChungBean,loaiVacxin,thoiGianTiem);
+//        setData();
+//    }
 }
