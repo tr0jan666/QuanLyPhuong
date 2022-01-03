@@ -19,6 +19,7 @@ public class ThongKeCovidService {
                 + " INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau"
                 + " LEFT JOIN cach_ly ON nhan_khau.ID = cach_ly.idNhanKhau "
                 + " LEFT JOIN tiem_chung ON nhan_khau.ID = tiem_chung.idNhanKhau "
+                + " LEFT JOIN test ON nhan_khau.ID = test.idNhanKhau "
                 + " WHERE ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) >= "
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
@@ -58,8 +59,12 @@ public class ThongKeCovidService {
                 //them cach ly tiem chung
                 CachLyModel cachLyModel = new CachLyModel();
                 TiemChungModel tiemChungModel = new TiemChungModel();
+                TestCovidModel testCovidModel = new TestCovidModel();
                 cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
                 tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
+                tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
+                tiemChungModel.setVacxin(rs.getString("vacxin"));
+                testCovidModel.setKetQua(rs.getBoolean("ketQua"));
 
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
@@ -80,6 +85,7 @@ public class ThongKeCovidService {
                // them cach ly tiem chung
                 nhanKhauBean.setCachLyModel(cachLyModel);
                 nhanKhauBean.setTiemChungModel(tiemChungModel);
+                nhanKhauBean.setTestCovidModel(testCovidModel);
 
                 list.add(nhanKhauBean);
             }
@@ -96,6 +102,7 @@ public class ThongKeCovidService {
             Connection connection = MySQLConnector.getConnection();
             // String query = "SELECT * FROM nhan_khau ";
             String query = "SELECT * FROM nhan_khau INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau ORDER BY ngayTao DESC";
+
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println("get list nhk bean");
@@ -107,6 +114,7 @@ public class ThongKeCovidService {
 
                 NhanKhauModel nhanKhau = new NhanKhauModel();
                 ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
+
                 CachLyModel cachLyModel = new CachLyModel() ;
                 TiemChungModel tiemChungModel = new TiemChungModel();
                 TestCovidModel testCovidModel = new TestCovidModel();
@@ -124,10 +132,15 @@ public class ThongKeCovidService {
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
+                tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
+                tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
+                tiemChungModel.setVacxin(rs.getString("vacxin"));
                 cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
                 testCovidModel.setKetQua(rs.getBoolean("ketQua"));
 
-
+                nhanKhauBean.setTiemChungModel(tiemChungModel);
+                nhanKhauBean.setCachLyModel(cachLyModel);
+                nhanKhauBean.setTestCovidModel(testCovidModel);
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
 

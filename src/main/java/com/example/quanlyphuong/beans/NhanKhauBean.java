@@ -1,9 +1,6 @@
 package com.example.quanlyphuong.beans;
 
-import com.example.quanlyphuong.models.CachLyModel;
-import com.example.quanlyphuong.models.ChungMinhThuModel;
-import com.example.quanlyphuong.models.NhanKhauModel;
-import com.example.quanlyphuong.models.TiemChungModel;
+import com.example.quanlyphuong.models.*;
 
 
 import java.util.ArrayList;
@@ -15,6 +12,16 @@ public class NhanKhauBean {
     private ChungMinhThuModel chungMinhThuModel;
     private CachLyModel cachLyModel;
     private TiemChungModel tiemChungModel;
+
+    public TestCovidModel getTestCovidModel() {
+        return testCovidModel;
+    }
+
+    public void setTestCovidModel(TestCovidModel testCovidModel) {
+        this.testCovidModel = testCovidModel;
+    }
+
+    private TestCovidModel testCovidModel;
 
     public CachLyModel getCachLyModel() {
         return cachLyModel;
