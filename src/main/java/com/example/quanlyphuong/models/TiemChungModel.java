@@ -8,7 +8,8 @@ public class TiemChungModel {
     private int soLanTiem;
     private Date ngayTiem;
     private String vacxin;
-
+    public  TiemChungModel(){
+    }
     public TiemChungModel(int idTiemChung, int idNhanKhau, int soLanTiem, Date ngayTiem, String vacxin) {
         this.idTiemChung = idTiemChung;
         this.idNhanKhau = idNhanKhau;

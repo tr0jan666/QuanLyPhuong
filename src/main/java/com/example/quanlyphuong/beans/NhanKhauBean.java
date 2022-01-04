@@ -1,7 +1,6 @@
 package com.example.quanlyphuong.beans;
 
-import com.example.quanlyphuong.models.ChungMinhThuModel;
-import com.example.quanlyphuong.models.NhanKhauModel;
+import com.example.quanlyphuong.models.*;
 
 
 import java.util.ArrayList;
@@ -11,7 +10,34 @@ import java.util.List;
 public class NhanKhauBean {
     private NhanKhauModel nhanKhauModel;
     private ChungMinhThuModel chungMinhThuModel;
+    private CachLyModel cachLyModel;
+    private TiemChungModel tiemChungModel;
 
+    public TestCovidModel getTestCovidModel() {
+        return testCovidModel;
+    }
+
+    public void setTestCovidModel(TestCovidModel testCovidModel) {
+        this.testCovidModel = testCovidModel;
+    }
+
+    private TestCovidModel testCovidModel;
+
+    public CachLyModel getCachLyModel() {
+        return cachLyModel;
+    }
+
+    public void setCachLyModel(CachLyModel cachLyModel) {
+        this.cachLyModel = cachLyModel;
+    }
+
+    public TiemChungModel getTiemChungModel() {
+        return tiemChungModel;
+    }
+
+    public void setTiemChungModel(TiemChungModel tiemChungModel) {
+        this.tiemChungModel = tiemChungModel;
+    }
 
     public NhanKhauBean(NhanKhauModel nhanKhauModel, ChungMinhThuModel chungMinhThuModel) {
         this.nhanKhauModel = nhanKhauModel;

@@ -2,6 +2,7 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
+import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
 import com.example.quanlyphuong.helper.enums.NhanKhauFilterEnum;
 import com.example.quanlyphuong.models.*;
 import com.example.quanlyphuong.models.KhaiTuModel;
@@ -49,10 +50,10 @@ public class NhanKhauService {
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
-                if(nhanKhau.getGioiTinh() == 1){
+                if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
                     nhanKhau.setGioiTinhString("Nam");
                 }else{
-                    nhanKhau.setGioiTinhString("Nu");
+                    nhanKhau.setGioiTinhString("Nữ");
                 }
 
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
