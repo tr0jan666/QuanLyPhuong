@@ -143,6 +143,41 @@ public class NhanKhauService {
 //
 //    }
 
+    public SimpleResult taoTamTru(NhanKhauBean nhanKhauBean, TamTruModel tamTruModel){
+        taoNhanKhau(nhanKhauBean);
+
+        String maGiayTamTru = tamTruModel.getMaGiayTamTru();
+        String sdt = tamTruModel.getSoDienThoaiNguoiDangKy();
+        java.sql.Date tuNgay =  new java.sql.Date(tamTruModel.getTuNgay().getTime());
+        java.sql.Date denNgay =  new java.sql.Date(tamTruModel.getDenNgay().getTime());
+        String lydo = tamTruModel.getLyDo();
+        int idNhanKhau = nhanKhauBean.getChungMinhThuModel().getIdNhanKhau();
+
+        try(Connection connection = MySQLConnector.getConnection()) {
+            // ket noi voi data_base
+            String query = "INSERT INTO tam_tru (`idNhanKhau`, `maGiayTamTru`, `soDienThoaiNguoiDangKy`, `tuNgay`, `denNgay`,`lyDo`) " +
+                    "VALUES (?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, idNhanKhau);
+            preparedStatement.setString(2, maGiayTamTru);
+            preparedStatement.setString(3, sdt);
+            preparedStatement.setDate(4, tuNgay);
+            preparedStatement.setDate(5, denNgay);
+            preparedStatement.setString(6, lydo);
+
+            preparedStatement.execute();
+            connection.close();
+
+            return new SimpleResult(true, "Tao tam tru thanh cong");
+        }
+        catch (SQLException ex) {// thong bao loi
+            ex.printStackTrace();
+
+            return new SimpleResult(false, ex.getMessage());
+        }
+    }
+
     public SimpleResult taoNhanKhau(NhanKhauBean nhanKhauBean) {
         NhanKhauModel nhanKhauMoi = nhanKhauBean.getNhanKhauModel();
         ChungMinhThuModel cmt = nhanKhauBean.getChungMinhThuModel();
@@ -200,8 +235,6 @@ public class NhanKhauService {
 
             Calendar calendar = Calendar.getInstance();
             java.sql.Date createDate = new java.sql.Date(calendar.getTime().getTime());
-            System.out.println(namSinh);
-            System.out.println(createDate);
 
             preparedStatement.setDate(17, createDate);
 
@@ -212,6 +245,7 @@ public class NhanKhauService {
 
             if(rs.next()) {
                 int genID = rs.getInt(1);
+                cmt.setIdNhanKhau(genID);
                 String query2 = "insert into chung_minh_thu(`idNhanKhau`,`soCMT`) values (?,?)";
                 PreparedStatement preparedStatement1 = connection.prepareStatement(query2);
                 preparedStatement1.setInt(1, genID );

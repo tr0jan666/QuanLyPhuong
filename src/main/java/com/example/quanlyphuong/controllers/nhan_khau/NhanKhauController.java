@@ -89,7 +89,7 @@ public class NhanKhauController implements Initializable {
 
     @FXML
     void tamTruNhanKhau(ActionEvent event) {
-
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Thêm tạm trú", null,850, 600);
     }
 
     @FXML
