@@ -28,7 +28,7 @@ public class HomeDichTeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             Connection connection = MySQLConnector.getConnection();
-            String query = "SELECT COUNT(*) AS tong FROM cach_ly";
+            String query = "SELECT COUNT(*) AS tong FROM cach_ly WHERE mucDoCachLy = 1";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -53,7 +53,7 @@ public class HomeDichTeController implements Initializable {
             }
             preparedStatement.close();
 
-            query = "SELECT COUNT(*) AS tong FROM test";
+            query = "SELECT COUNT(*) AS tong FROM test WHERE ketQua = 1";
             preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             rs = preparedStatement.executeQuery();
             while (rs.next()) {

@@ -155,7 +155,7 @@ public class ThongKeDichTeController implements Initializable {
         }
 
         listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, testCovid, status);
-//        System.out.println("xong init data");
+
 
         setDataTable();
     }

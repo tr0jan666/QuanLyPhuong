@@ -156,7 +156,20 @@ public class ThongKeCovidService {
                 tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
                 cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
+                if(cachLyModel.getMucDo()==1){
+                    cachLyModel.setMucDoString("Có");
+                }
+                else{
+                    cachLyModel.setMucDoString("Không");
+                }
+
                 testCovidModel.setKetQua(rs.getBoolean("ketQua"));
+                if(testCovidModel.getKetQua()==true){
+                    testCovidModel.setKetQuaString("Đã test");
+                }
+                else{
+                    testCovidModel.setKetQuaString("Chưa test");
+                }
 
                 nhanKhauBean.setTiemChungModel(tiemChungModel);
                 nhanKhauBean.setCachLyModel(cachLyModel);
