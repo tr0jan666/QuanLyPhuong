@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.MainDichTeController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.HomeDichTeController">
     <children>
         <AnchorPane layoutX="150.0" layoutY="49.0" prefHeight="107.0" prefWidth="693.0" styleClass="info__pane" AnchorPane.bottomAnchor="618.6" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="74.4">
             <children>
@@ -15,7 +15,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="tongNhanKhauLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
+                <Label fx:id="tongDangCachLyLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
@@ -23,12 +23,12 @@
             </children></AnchorPane>
         <AnchorPane layoutX="150.0" layoutY="622.0" prefHeight="107.0" prefWidth="830.0" styleClass="info__pane" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="618.0">
             <children>
-                <Label layoutX="14.0" layoutY="13.0" text="Tỉ lệ tử vong :" textFill="WHITE">
+                <Label layoutX="14.0" layoutY="13.0" text="Tỉ lệ test covid :" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="nhanKhauTamVangLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
+                <Label fx:id="tongTestCovidLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
@@ -51,7 +51,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="nhanKhauTamTruLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
+                <Label fx:id="tongTiemMui2Lb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
@@ -83,7 +83,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="tongHoKhauLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
+                <Label fx:id="tongTiemMui1Lb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
