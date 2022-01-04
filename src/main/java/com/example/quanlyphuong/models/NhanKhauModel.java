@@ -40,7 +40,19 @@ public class NhanKhauModel {
     private int status;
     private Date lastUpdate ;
 
+    public TestCovidModel getThongTinTestCovid() {
+        return thongTinTestCovid;
+    }
+
+    public void setThongTinTestCovid(TestCovidModel thongTinTestCovid) {
+        this.thongTinTestCovid = thongTinTestCovid;
+    }
+
+    private TestCovidModel thongTinTestCovid;
+
     private String gioiTinhString;
+
+
 
     //construtor
     public NhanKhauModel(){

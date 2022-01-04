@@ -1,7 +1,6 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
-import com.example.quanlyphuong.services.StringService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,9 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.services.ThongKeNhanKhauService;
-import javafx.scene.control.cell.PropertyValueFactory;
+import com.example.quanlyphuong.services.StringService;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -24,16 +24,16 @@ import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class ThongKeController implements Initializable {
 
     @FXML
     private AnchorPane anchorpanetk;
     @FXML
-    private TableColumn<NhanKhauBean, Integer> ID;
+    private TableColumn<?, ?> ID;
 
     @FXML
     private Button btnTimKiem;
@@ -48,7 +48,7 @@ public class ThongKeController implements Initializable {
     private TextField denTuoiText;
 
     @FXML
-    private TableColumn<NhanKhauBean, String> diaChiHienNay;
+    private TableColumn<?, ?> diaChiHienNay;
 
     @FXML
     private TableColumn<NhanKhauBean, String> gioiTinh;
@@ -57,13 +57,13 @@ public class ThongKeController implements Initializable {
     private ComboBox<String> gioiTinhCB;
 
     @FXML
-    private TableColumn<NhanKhauBean, String> hoTen;
+    private TableColumn<?, ?> hoTen;
 
     @FXML
-    private TableColumn<NhanKhauBean, Date> namSinh;
+    private TableColumn<?, ?> namSinh;
 
     @FXML
-    private TableView<NhanKhauBean> table;
+    private TableView<NhanKhauModel> table;
 
     @FXML
     private ComboBox<String> tinhTrangCB;
@@ -74,19 +74,22 @@ public class ThongKeController implements Initializable {
     @FXML
     private TextField tuTuoiText;
 
+    MenuNhanKhauController sceneSwitch;
     List<NhanKhauBean> listNhanKhauBeans;
     ThongKeNhanKhauService thongKeNhanKhauService;
-    ObservableList<NhanKhauBean> observablelistNhanKhau;
+    ObservableList<NhanKhauModel> observablelistNhanKhau;
     ObservableList<String> gioiTinhList;
     ObservableList<String> tinhTrangList;
     int accessCount = 0;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        sceneSwitch = new MenuNhanKhauController();
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         listNhanKhauBeans = thongKeNhanKhauService.getListNhanKhau();
+         //System.out.println("phan nguyen init ");
+        //setDataTable();
         setData();
         gioiTinhList = FXCollections.observableArrayList("Toàn bộ", "Nam", "Nữ");
         tinhTrangList = FXCollections.observableArrayList("Toàn bộ", "Thường trú", "Tạm trú", "Tạm vắng");
@@ -94,6 +97,7 @@ public class ThongKeController implements Initializable {
         gioiTinhCB.getSelectionModel().selectFirst();
         tinhTrangCB.setItems(tinhTrangList);
         tinhTrangCB.getSelectionModel().selectFirst();
+
     }
 
     public void setData() {
@@ -104,13 +108,15 @@ public class ThongKeController implements Initializable {
         String gender = "Toan Bo";
         String status = "Toan Bo";
         if (accessCount != 0){
-
+            int gioiTinh = 0;
+            if(gioiTinhCB.getValue().toString().equals("Nam")){
+                gioiTinh = 1;
+            }
             gender = StringService.covertToString(gioiTinhCB.getSelectionModel().getSelectedItem());
             status = StringService.covertToString(tinhTrangCB.getSelectionModel().getSelectedItem());
 
         }
         accessCount++;
-
         try {
             if (!tuTuoiText.getText().trim().isEmpty()) {
                 tuTuoi = Integer.parseInt(tuTuoiText.getText().trim());
@@ -135,20 +141,25 @@ public class ThongKeController implements Initializable {
             alert.setContentText("Vui lòng nhập đúng kiểu dữ liệu");
             alert.show();
         }
+
         listNhanKhauBeans = thongKeNhanKhauService.statisticNhanKhau(tuTuoi, denTuoi, gender, status, tuNam, denNam);
-        setDataTable();
+//        System.out.println("xong init data");
+
+       setDataTable();
     }
 
     public void setDataTable() {
-
-        observablelistNhanKhau = FXCollections.observableList(listNhanKhauBeans);
-        ID.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getID()));
-        hoTen.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getHo_ten()));
-        namSinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNamSinh()));
-        gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
-        diaChiHienNay.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
+        ArrayList<NhanKhauModel> listItem = new ArrayList<>();
+        listNhanKhauBeans.forEach(nhanKhau -> {
+            listItem.add(nhanKhau.getNhanKhauModel());
+        });
+        observablelistNhanKhau = FXCollections.observableList(listItem);
+        ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        hoTen.setCellValueFactory(new PropertyValueFactory<>("Ho_ten"));
+        namSinh.setCellValueFactory(new PropertyValueFactory<>("namSinh"));
+        gioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        diaChiHienNay.setCellValueFactory(new PropertyValueFactory<>("diaChiHienNay"));
         table.setItems(observablelistNhanKhau);
-
     }
 
     public void setTimKiem() {
@@ -174,7 +185,7 @@ public class ThongKeController implements Initializable {
                 for (NhanKhauBean nhanKhau : listNhanKhauBeans) {
                     listItem.add(nhanKhau.getNhanKhauModel());
                     String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
-                    bw.write(String.valueOf(nhanKhau.getNhanKhauModel().getID())+"\t\t"+nhanKhau.getNhanKhauModel().getHo_ten()+"\t\t"+s+"\t\t"+nhanKhau.getNhanKhauModel().getGioiTinhString()+"\t\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay());
+                    bw.write(String.valueOf(nhanKhau.getNhanKhauModel().getID())+"\t\t"+nhanKhau.getNhanKhauModel().getHo_ten()+"\t\t"+s+"\t\t"+nhanKhau.getNhanKhauModel().getGioiTinh()+"\t\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay());
                     bw.newLine();
                 }
 

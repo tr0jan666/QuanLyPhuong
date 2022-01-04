@@ -9,6 +9,18 @@ public class TestCovidModel {
     private String hinhThucTest;
     private boolean ketQua;
 
+    public String getKetQuaString() {
+        return ketQuaString;
+    }
+
+    public void setKetQuaString(String ketQuaString) {
+        this.ketQuaString = ketQuaString;
+    }
+
+    private String ketQuaString;
+    public  TestCovidModel(){
+
+    }
     public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, boolean ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;
