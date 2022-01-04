@@ -36,7 +36,7 @@ public class TiemChungService {
                 nhanKhauModel.setHo_ten(resultSet.getString("hoTen"));
                 nhanKhauModel.setNamSinh(resultSet.getDate("namSinh"));
                 nhanKhauModel.setDiaChiHienNay(resultSet.getString("diaChiHienNay"));
-                nhanKhauModel.setGioiTinh(resultSet.getString("gioiTinh"));
+                nhanKhauModel.setGioiTinh(resultSet.getInt("gioiTinh"));
                 nhanKhauModel.setID(resultSet.getInt("nhan_khau.ID"));
                 nhanKhauModel.setNguyenQuan(resultSet.getString("nguyenQuan"));
                 nhanKhauModel.setDanToc(resultSet.getString("danToc"));

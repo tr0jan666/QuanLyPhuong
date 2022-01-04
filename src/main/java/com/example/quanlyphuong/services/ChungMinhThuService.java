@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.helper.MySQLConnector;
+import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.SimpleResult;
 
 import java.sql.Connection;
@@ -37,5 +38,9 @@ public class ChungMinhThuService {
             exception.printStackTrace();
             return new SimpleResult(false, exception.getMessage());
         }
+    }
+
+    public NhanKhauModel getNhanKhauByCMT(String soCMT) {
+        return null;
     }
 }
