@@ -2,6 +2,7 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.beans.TiemChungBean;
+import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.TiemChungModel;
@@ -19,9 +20,9 @@ public class TiemChungService {
     public List<TiemChungBean> getListTiemChung(){
         List<TiemChungBean> list = new ArrayList<>();
         try{
-            Connection connection = MysqlConnection.getMysqlConnection();
+            Connection connection = MySQLConnector.getConnection();
             String query = "select * from `tiem_chung` as tc join `nhan_khau` as nk on nk.`ID` = tc.`idNhanKhau`" +
-                    " join `chung_minh_thu` as cmt on cmt.`idNhanKhau` = td.`idNhanKhau`";
+                    " join `chung_minh_thu` as cmt on cmt.`idNhanKhau` = tc.`idNhanKhau`";
             Statement statement =connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){
