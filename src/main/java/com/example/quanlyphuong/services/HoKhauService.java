@@ -47,7 +47,7 @@ public class HoKhauService {
                 NhanKhauModel chuHo = new NhanKhauModel();
                 chuHo.setID(rs.getInt("ID"));
                 chuHo.setHo_ten(rs.getString("hoTen"));
-                chuHo.setGioiTinh(rs.getString("gioiTinh"));
+                chuHo.setGioiTinh(rs.getInt("gioiTinh"));
                 chuHo.setNamSinh(rs.getDate("namSinh"));
                 chuHo.setDiaChiHienNay(rs.getString("diaChiHienNay"));
                 temp.setChuHo(chuHo);
@@ -64,7 +64,7 @@ public class HoKhauService {
                         ThanhVienCuaHoModel thanhVienCuaHoModel = new ThanhVienCuaHoModel();
                         nhanKhauModel.setID(rs_1.getInt("idNhanKhau"));
                         nhanKhauModel.setHo_ten(rs_1.getString("hoTen"));
-                        nhanKhauModel.setGioiTinh(rs_1.getString("gioiTinh"));
+                        nhanKhauModel.setGioiTinh(rs_1.getInt("gioiTinh"));
                         nhanKhauModel.setNamSinh(rs_1.getDate("namSinh"));
                         nhanKhauModel.setNguyenQuan(rs_1.getString("nguyenQuan"));
                         nhanKhauModel.setTonGiao(rs_1.getString("tonGiao"));

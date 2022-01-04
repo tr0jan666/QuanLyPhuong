@@ -1,8 +1,12 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
+import com.example.quanlyphuong.beans.HoKhauBean;
+import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
+import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.AuthService;
+import com.example.quanlyphuong.services.ChungMinhThuService;
 import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -15,9 +19,12 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.sql.Date;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PopUpThemNhanKhauController implements Initializable {
+
+
 
     @FXML
     private Button btn_check;
@@ -82,12 +89,20 @@ public class PopUpThemNhanKhauController implements Initializable {
 
     @FXML
     void themNhanKhau(ActionEvent event) {
+        if(!checkValidForm()){
+            return;
+        }
         NhanKhauModel nhanKhau = new NhanKhauModel();
         ChungMinhThuModel cmt = new ChungMinhThuModel();
 
         nhanKhau.setHo_ten(tf_ten.getText());
         nhanKhau.setNamSinh(Date.from(dp_ngaySinh.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        nhanKhau.setGioiTinh(cb_gioiTinh.getValue().toString());
+
+        int gioiTinh = 0;
+        if(cb_gioiTinh.getValue().toString().equals("Nam")){
+            gioiTinh = 1;
+        }
+        nhanKhau.setGioiTinh(gioiTinh);
         nhanKhau.setQuocTich(tf_quocTich.getText());
         nhanKhau.setNoiSinh(tf_noiSinh.getText());
         nhanKhau.setNguyenQuan(tf_nguyenQuan.getText());
@@ -100,10 +115,16 @@ public class PopUpThemNhanKhauController implements Initializable {
         nhanKhau.setNoiLamViec(tf_noiLamViec.getText());
         nhanKhau.setNoiThuongTru(tf_thuongTru.getText());
         nhanKhau.setIdNguoiTao(AuthService.getInstance().getCurrentUser().getID());
+        nhanKhau.setMaNhanKhau(tf_maNhanKhau.getText());
+
         cmt.setSoCMT(tf_cmt.getText());
         cmt.setIdNhanKhau(Integer.parseInt(tf_maNhanKhau.getText()));
 
-        NhanKhauService.getInstance().taoNhanKhau(nhanKhau);
+        NhanKhauBean nhanKhauBean = new NhanKhauBean();
+        nhanKhauBean.setNhanKhauModel(nhanKhau);
+        nhanKhauBean.setChungMinhThuModel(cmt);
+
+        NhanKhauService.getInstance().taoNhanKhau(nhanKhauBean);
 
     }
 
@@ -117,7 +138,8 @@ public class PopUpThemNhanKhauController implements Initializable {
                 tf_quocTich.getText().trim().isEmpty()||
                 tf_nguyenQuan.getText().trim().isEmpty()||
                 tf_tonGiao.getText().trim().isEmpty()||
-                tf_diaChiHienTai.getText().trim().isEmpty()
+                tf_diaChiHienTai.getText().trim().isEmpty() ||
+                tf_maNhanKhau.getText().trim().isEmpty()
             ){
             Alert missingFieldAlert = new Alert(Alert.AlertType.ERROR);
             missingFieldAlert.setTitle("Cảnh báo!");
@@ -137,7 +159,12 @@ public class PopUpThemNhanKhauController implements Initializable {
             return false;
         }
 
-        return true;
+        //check cmt lan 2
+        if(validateCMT()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     ObservableList gioiTinhList;
@@ -151,5 +178,26 @@ public class PopUpThemNhanKhauController implements Initializable {
 
 
     }
+
+    public void checkCMT(ActionEvent actionEvent) {
+        validateCMT();
+    }
+
+    public boolean validateCMT(){
+        SimpleResult result = ChungMinhThuService.getInstance().checkCMTTonTai(tf_cmt.getText());
+        Alert alert;
+        if(result.isSuccess()){
+            alert = new Alert(Alert.AlertType.CONFIRMATION, result.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+            return true;
+        }      else {
+            alert = new Alert(Alert.AlertType.ERROR, result.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+        }
+
+        return false;
+    }
+
+
 }
 

@@ -57,7 +57,7 @@
                         <Label id="lb_HocVan" text="Học vấn" GridPane.rowIndex="5" />
                         <Label id="lb_ChuyenMon" layoutX="11.0" layoutY="156.0" text="Địa chỉ hiện tại" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                         <Label id="lb_NoiLamViec" layoutX="404.0" layoutY="144.0" text="Nơi làm việc" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <TextField fx:id="tf_ten" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" />
+                        <TextField id="tf_HoVaTen" fx:id="tf_ten" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" />
                         <Label id="lb_TienAn" text="Tiền Án" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <ComboBox fx:id="cb_gioiTinh" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" />
                   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="(*)" textAlignment="RIGHT" GridPane.columnIndex="1">
@@ -68,18 +68,18 @@
                         <Insets left="260.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="tf_noiSinh" layoutX="142.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="tf_danToc" layoutX="142.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="tf_cmt" layoutX="142.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="tf_hocVan" layoutX="142.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="tf_ngheNghiep" layoutX="142.0" layoutY="247.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="tf_thuongTru" layoutX="142.0" layoutY="288.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="tf_quocTich" layoutX="142.0" layoutY="361.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <TextField fx:id="tf_nguyenQuan" layoutX="595.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField fx:id="tf_tonGiao" layoutX="595.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <TextField fx:id="tf_tienAn" layoutX="595.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <TextField fx:id="tf_diaChiHienTai" layoutX="595.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                  <TextField fx:id="tf_noiLamViec" layoutX="595.0" layoutY="247.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_noiSinh" layoutX="142.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_danToc" layoutX="142.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_cmt" layoutX="142.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_hocVan" layoutX="142.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_ngheNghiep" layoutX="142.0" layoutY="247.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_thuongTru" layoutX="142.0" layoutY="288.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_quocTich" layoutX="142.0" layoutY="361.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_nguyenQuan" layoutX="595.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_tonGiao" layoutX="595.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_tienAn" layoutX="595.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_diaChiHienTai" layoutX="595.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_noiLamViec" layoutX="595.0" layoutY="247.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="402.0" layoutY="20.0" text="(*)" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <opaqueInsets>
                         <Insets />
@@ -154,7 +154,12 @@
                      </GridPane.margin>
                   </Label>
                   <Label text="Mã nhân khẩu" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                  <TextField fx:id="tf_maNhanKhau" layoutX="595.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                  <TextField id="tf_HoVaTen" fx:id="tf_maNhanKhau" layoutX="595.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                  <Button fx:id="btnCheckCMT" mnemonicParsing="false" onAction="#checkCMT" text="Kiểm tra tồn tại" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="200.0" />
+                     </GridPane.margin>
+                  </Button>
                     </children>
                 </GridPane>
                 <Label layoutX="250.0" layoutY="521.0" />
