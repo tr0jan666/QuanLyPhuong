@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController;
 import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -29,6 +30,17 @@ public class NhanKhauController implements Initializable {
     private Parent parent;
     private Scene scene;
 
+    public static NhanKhauController frame;
+
+    public NhanKhauController() {
+        if (frame == null) {
+            frame = this;
+        } else {
+//            super
+//            return;
+//            throw new RuntimeException("Singleton FXML");
+        }
+    }
     List<NhanKhauBean> listNhanKhauBean;
     ObservableList<NhanKhauBean> observableListNhanKhauBeans;
 

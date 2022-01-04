@@ -1,6 +1,8 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.helper.constants.ScreenSizeConstant;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.SimpleResult;
@@ -106,7 +108,17 @@ public class TamTruController implements Initializable {
         tamTruModel.setDenNgay(Date.from(date_denNgay.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         tamTruModel.setLyDo(tf_lyDo.getText());
 
-        NhanKhauService.getInstance().taoTamTru(nhanKhauBean, tamTruModel);
+        SimpleResult result = NhanKhauService.getInstance().taoTamTru(nhanKhauBean, tamTruModel);
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION, result.getMessage(), ButtonType.OK);
+        successAlert.showAndWait();
+
+        if (result.isSuccess()) {
+                tf_cmt.getScene().getWindow().hide();
+                NhanKhauController.frame.refreshScreen();
+
+        } else {
+            // hide alert
+        }
     }
 
     private boolean checkValidForm(boolean notify) {
