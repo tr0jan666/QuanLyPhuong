@@ -9,6 +9,16 @@ public class CachLyModel {
     private String diaDiemCachLy;
     private int hetBenh;
 
+    public String getMucDoString() {
+        return mucDoString;
+    }
+
+    public void setMucDoString(String mucDoString) {
+        this.mucDoString = mucDoString;
+    }
+
+    private String mucDoString;
+
     public CachLyModel() {
     }
 

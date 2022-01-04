@@ -8,6 +8,16 @@ public class TestCovidModel {
     private Date thoiDiemTest;
     private String hinhThucTest;
     private boolean ketQua;
+
+    public String getKetQuaString() {
+        return ketQuaString;
+    }
+
+    public void setKetQuaString(String ketQuaString) {
+        this.ketQuaString = ketQuaString;
+    }
+
+    private String ketQuaString;
     public  TestCovidModel(){
 
     }

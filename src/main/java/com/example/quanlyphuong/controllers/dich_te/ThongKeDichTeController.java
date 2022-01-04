@@ -47,10 +47,7 @@ public class ThongKeDichTeController implements Initializable {
     private CheckBox cachLyCB;
 
     @FXML
-    private CheckBox mui2CB;
-
-    @FXML
-    private CheckBox mui1CB;
+    private CheckBox testCovidCB;
 
     @FXML
     private Button btnTimKiemThongkeDT;
@@ -74,33 +71,39 @@ public class ThongKeDichTeController implements Initializable {
     private TableColumn<NhanKhauBean, String> col_diaChi;
 
     @FXML
-    private TableColumn<NhanKhauBean, Integer> col_tiemLan1;
+    private TableColumn<NhanKhauBean, Integer> col_tiemLan;
 
     @FXML
-    private TableColumn<NhanKhauBean, Date> col_ngayTiemLan1;
+    private TableColumn<NhanKhauBean, Date> col_ngayTiemLan;
 
     @FXML
-    private TableColumn<NhanKhauBean, String> col_loaiVaccineLan1;
+    private TableColumn<NhanKhauBean, String> col_loaiVaccineLan;
 
-    @FXML
+   /* @FXML
     private TableColumn<NhanKhauBean, Integer> col_tiemLan2;
 
     @FXML
     private TableColumn<NhanKhauBean, Date> col_ngayTiemLan2;
 
     @FXML
-    private TableColumn<NhanKhauBean, String> col_loaiVaccineLan2;
+    private TableColumn<NhanKhauBean, String> col_loaiVaccineLan2;*/
 
     @FXML
-    private TableColumn<NhanKhauBean, Integer> col_cachLy;
+    private ComboBox<String> tiemChungCB;
 
     @FXML
-    private TableColumn<NhanKhauBean, Boolean> col_covid;
+    private TableColumn<NhanKhauBean, String> col_cachLy;
+
+    @FXML
+    private TableColumn<NhanKhauBean, String> col_covid;
+
     List<NhanKhauBean> listNhanKhauCovidBeans;
     ThongKeCovidService thongKeCovidService;
     ObservableList<NhanKhauBean> observablelistNhanKhauCovid;
     ObservableList<String> gioiTinhList;
+    ObservableList<String> tiemChungList;
     int accessCount = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -110,20 +113,22 @@ public class ThongKeDichTeController implements Initializable {
         gioiTinhList = FXCollections.observableArrayList("Toàn bộ", "Nam", "Nữ");
         gioiTinhCB.setItems(gioiTinhList);
         gioiTinhCB.getSelectionModel().selectFirst();
-
+        tiemChungList = FXCollections.observableArrayList("Toàn bộ", "Đã tiêm mũi 1", "Đã tiêm mũi 2");
+        tiemChungCB.setItems(tiemChungList);
+        tiemChungCB.getSelectionModel().selectFirst();
 
     }
 
     public void setData(){
         int tuTuoi = -1;
         int denTuoi = 200;
-        int cachly = 0, datiemmui1 =0,datiemmui2=0;
+        int cachly = 0, testCovid =0;
         String gender = "Toan Bo" ;
         String status = "Toan Bo";
 
         if (accessCount != 0){
-
             gender = StringService.covertToString(gioiTinhCB.getSelectionModel().getSelectedItem());
+            status = StringService.covertToString(tiemChungCB.getSelectionModel().getSelectedItem());
         }
         accessCount++;
         try {
@@ -138,8 +143,8 @@ public class ThongKeDichTeController implements Initializable {
                 denTuoi = 200;
             }
             if(cachLyCB.isSelected()) cachly = 1;
-            if(mui1CB.isSelected()) datiemmui1 = 1;
-            if(mui2CB.isSelected()) datiemmui2 = 2;
+            if(testCovidCB.isSelected()) testCovid = 1;
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,7 +154,7 @@ public class ThongKeDichTeController implements Initializable {
             alert.show();
         }
 
-        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, datiemmui1,datiemmui2);
+        listNhanKhauCovidBeans = thongKeCovidService.statisticNhanKhau(tuTuoi, denTuoi, gender, cachly, testCovid, status);
 //        System.out.println("xong init data");
 
         setDataTable();
@@ -163,14 +168,14 @@ public class ThongKeDichTeController implements Initializable {
         col_gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
         col_diaChi.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
 
-        col_tiemLan1.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getSoLanTiem()));
-        col_ngayTiemLan1.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getNgayTiem()));
-        col_loaiVaccineLan1.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getVacxin()));
-        col_tiemLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getSoLanTiem()));
+        col_tiemLan.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getSoLanTiem()));
+        col_ngayTiemLan.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getNgayTiem()));
+        col_loaiVaccineLan.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getVacxin()));
+        /*col_tiemLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getSoLanTiem()));
         col_ngayTiemLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getNgayTiem()));
-        col_loaiVaccineLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getVacxin()));
-        col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getCachLyModel().getMucDo()));
-        col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTestCovidModel().getKetQua()));
+        col_loaiVaccineLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getVacxin()));*/
+        col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getCachLyModel().getMucDoString()));
+        col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTestCovidModel().getKetQuaString()));
 
         table.setItems(observablelistNhanKhauCovid);
 

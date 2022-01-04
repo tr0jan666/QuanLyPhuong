@@ -52,6 +52,8 @@ public class NhanKhauModel {
 
     private String gioiTinhString;
 
+
+
     //construtor
     public NhanKhauModel(){
 

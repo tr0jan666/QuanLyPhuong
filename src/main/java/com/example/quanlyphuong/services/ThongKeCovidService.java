@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ThongKeCovidService {
 
-    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int dtiemmui1,int dtiemmui2 ) {
+    public List<NhanKhauBean> statisticNhanKhau(int TuTuoi ,int denTuoi ,String gender ,int cly ,int tcovid,String status ) {
         List<NhanKhauBean> list = new ArrayList<>();
 
         String query = "SELECT * FROM nhan_khau"
@@ -26,8 +26,7 @@ public class ThongKeCovidService {
                 + denTuoi;
 
 
-
-
+// tim kiem theo gioi tinh
         if(gender.equalsIgnoreCase("Nam")){
             int gt = 1 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
@@ -36,16 +35,25 @@ public class ThongKeCovidService {
             int gt = 0 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
-// them cach ly va tiem mui 1,2
+
+        // them cach ly va tiem mui 1,2
+        if(status.equalsIgnoreCase("Đa tiem mui 1")){
+            int dtiemmui= 1 ;
+            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui + "'";
+        }
+
+        if(status.equalsIgnoreCase("Đa tiem mui 2")){
+            int dtiemmui= 2 ;
+            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui + "'";
+        }
+
         if(cly==1){
             query+=" AND cach_ly.mucDoCachLy = '" + cly + "'";
         }
-        if(dtiemmui1==1){
-            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui1 + "'";
+        if(tcovid==1){
+            query+=" AND test.ketQua = '" + tcovid + "'";
         }
-        if(dtiemmui2==2){
-            query+=" AND tiem_chung.soLanTiem = '" + dtiemmui2 + "'";
-        }
+
 
         try {
             Connection connection = MySQLConnector.getConnection();
@@ -61,10 +69,22 @@ public class ThongKeCovidService {
                 TiemChungModel tiemChungModel = new TiemChungModel();
                 TestCovidModel testCovidModel = new TestCovidModel();
                 cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
+                if(cachLyModel.getMucDo()==1){
+                    cachLyModel.setMucDoString("Có");
+                }
+                else{
+                    cachLyModel.setMucDoString("Không");
+                }
                 tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
                 tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
                 testCovidModel.setKetQua(rs.getBoolean("ketQua"));
+                if(testCovidModel.getKetQua()==true){
+                    testCovidModel.setKetQuaString("Đã test");
+                }
+                else{
+                    testCovidModel.setKetQuaString("Chưa test");
+                }
 
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
