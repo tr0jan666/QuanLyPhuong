@@ -1,5 +1,21 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.button_chucnang{
 
+  /*  -fx-opacity: 0;*/
+    -fx-cursor: not-allowed;
+
+}
+.button_chucnang:hover{
+    -fx-background-color: #f0f2f5;
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.2;
+
+
+}
+
+.vbox_chucnang{
+    -fx-background-image: url("anhmenuchucnang.png");
+}
 .leftPaneLogin{
     -fx-background-image: url("3dlogin.png");
 }
