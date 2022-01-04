@@ -199,7 +199,7 @@ public class ThongKeDichTeController implements Initializable {
                 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
                 FileWriter fw = new FileWriter(filetosave);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("Họ tên"+"\t"+"CCCD"+"\t"+"Giới tính"+"\t"+"Địa chỉ"+"\t"+"Tiêm lần 1"+"\t"+"Ngày"+"\t"+"Vaccine"+"\t"+"Tiêm lần 2"+"\t"+"Ngày"+"\t"+"Vaccine"+"\t"+"Cách ly"+"\t"+"Covid");
+                bw.write("Họ tên"+"\t"+"CCCD"+"\t"+"Giới tính"+"\t"+"Địa chỉ"+"\t"+"Tiêm lần"+"\t"+"Ngày"+"\t"+"Vaccine"+"\t"+"Tình trạng cách ly"+"\t"+"Covid");
                 bw.newLine();
                 ArrayList<NhanKhauModel> listItem = new ArrayList<>();
                 for (NhanKhauBean nhanKhau : listNhanKhauCovidBeans) {
@@ -207,8 +207,7 @@ public class ThongKeDichTeController implements Initializable {
                   //  String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
                     bw.write(nhanKhau.getNhanKhauModel().getHo_ten()+"\t"+nhanKhau.getChungMinhThuModel().getSoCMT()+"\t"+nhanKhau.getNhanKhauModel().getGioiTinhString()+"\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay()+"\t");
                     bw.write(nhanKhau.getTiemChungModel().getSoLanTiem()+"\t"+nhanKhau.getTiemChungModel().getNgayTiem()+"\t"+nhanKhau.getTiemChungModel().getVacxin()+"\t");
-                    bw.write(nhanKhau.getTiemChungModel().getSoLanTiem()+"\t"+nhanKhau.getTiemChungModel().getNgayTiem()+"\t"+nhanKhau.getTiemChungModel().getVacxin()+"\t");
-                    bw.write(nhanKhau.getCachLyModel().getMucDo()+"\t"+nhanKhau.getTestCovidModel().getKetQua());
+                    bw.write(nhanKhau.getCachLyModel().getMucDoString()+"\t"+nhanKhau.getTestCovidModel().getKetQuaString());
                     bw.newLine();
                 }
 
