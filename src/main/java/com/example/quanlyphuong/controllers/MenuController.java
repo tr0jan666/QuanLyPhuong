@@ -25,7 +25,7 @@ public class MenuController implements Initializable {
     private Button btnNhanKhau;
 
     @FXML
-    private Button txtRegister;
+    private Text txtRegister;
 
     @FXML
     void goToDichTeScreen(ActionEvent event) {
@@ -43,7 +43,7 @@ public class MenuController implements Initializable {
     }
 
 
-    public void goToRegister(ActionEvent event) {
+    public void goToRegister(MouseEvent mouseEvent) {
         UIHelper.navigateNew("register-view.fxml", "Đăng ký tài khoản cho cán bộ",null,800,530);
         txtRegister.getScene().getWindow().hide();
     }
@@ -55,7 +55,7 @@ public class MenuController implements Initializable {
 
     }
 
-    public Button getTxtRegister() {
+    public Text getTxtRegister() {
         return txtRegister;
     }
 }
