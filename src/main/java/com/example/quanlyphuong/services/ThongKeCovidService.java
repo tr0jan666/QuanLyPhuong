@@ -2,6 +2,7 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
+import com.example.quanlyphuong.helper.constants.KetQuaTestConstant;
 import com.example.quanlyphuong.models.*;
 
 import java.sql.Connection;
@@ -78,12 +79,12 @@ public class ThongKeCovidService {
                 tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
                 tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
-                testCovidModel.setKetQua(rs.getBoolean("ketQua"));
-                if(testCovidModel.getKetQua()==true){
-                    testCovidModel.setKetQuaString("Đã test");
+                testCovidModel.setKetQua(rs.getInt("ketQua"));
+                if(testCovidModel.getKetQua()== KetQuaTestConstant.DUONG_TINH){
+                    testCovidModel.setKetQuaString("Dương tính");
                 }
                 else{
-                    testCovidModel.setKetQuaString("Chưa test");
+                    testCovidModel.setKetQuaString("Âm tính");
                 }
 
                 idNhanKhau = rs.getInt("idNhanKhau");
@@ -163,12 +164,12 @@ public class ThongKeCovidService {
                     cachLyModel.setMucDoString("Không");
                 }
 
-                testCovidModel.setKetQua(rs.getBoolean("ketQua"));
-                if(testCovidModel.getKetQua()==true){
-                    testCovidModel.setKetQuaString("Đã test");
+                testCovidModel.setKetQua(rs.getInt("ketQua"));
+                if(testCovidModel.getKetQua() == KetQuaTestConstant.DUONG_TINH){
+                    testCovidModel.setKetQuaString("Dương tính");
                 }
                 else{
-                    testCovidModel.setKetQuaString("Chưa test");
+                    testCovidModel.setKetQuaString("Âm tính");
                 }
 
                 nhanKhauBean.setTiemChungModel(tiemChungModel);
