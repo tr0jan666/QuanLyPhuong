@@ -69,6 +69,25 @@ public class NhanKhauService {
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
                 nhanKhau.setQuocTich(rs.getString("quocTich"));
                 nhanKhau.setNgheNghiep(rs.getString("ngheNghiep"));
+                nhanKhau.setStatus(rs.getInt("status"));
+                int status = nhanKhau.getStatus();
+
+                if(status==1){
+                    nhanKhau.setStatusString("Thường trú");
+                }else if(status==2){
+                    nhanKhau.setStatusString("Tạm trú");
+                }else if(status==-1){
+                    nhanKhau.setStatusString("Tạm vắng");
+                }else if(status == 0){
+                    continue;
+                }
+                nhanKhau.setNamSinh(new java.util.Date(rs.getDate("namSinh").getTime()));
+                nhanKhau.setNoiSinh(rs.getString("noiSinh"));
+                nhanKhau.setTienAn(rs.getString("tienAn"));
+                nhanKhau.setTrinhDoHocVan(rs.getString("trinhDoHocVan"));
+                nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
+                nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
+
                 list.add(nhanKhauBean);
             }
             preparedStatement.close();
@@ -200,6 +219,7 @@ public class NhanKhauService {
         String noiLamViec= nhanKhauMoi.getNoiLamViec();
         String noiThuongTru= nhanKhauMoi.getNoiThuongTru();
         int idNguoiTao= nhanKhauMoi.getIdNguoiTao();
+        int status = nhanKhauMoi.getStatus();
 //        Date ngayXoa= nhanKhauMoi.getNgayXoa();
 //        int idNguoiXoa= nhanKhauMoi.getIdNguoiXoa();
 //        String lyDoXoa= nhanKhauMoi.getLyDoXoa();
@@ -209,8 +229,8 @@ public class NhanKhauService {
             // ket noi voi data_base
             String query = "INSERT INTO nhan_khau (`maNhanKhau`, `hoTen`, `namSinh`, `gioiTinh`, `quocTich`,`noiSinh`, `nguyenQuan`," +
                     " `danToc`, `tonGiao`,`tienAn`, `trinhDoHocVan`,`diaChiHienNay`,`ngheNghiep`,`noiLamViec`, `noiThuongTru`, " +
-                    "  `idNguoiTao`, `ngayTao`) " +
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    "  `idNguoiTao`, `ngayTao`, `status`) " +
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
 
             // cai dat gia tri
@@ -234,10 +254,12 @@ public class NhanKhauService {
             preparedStatement.setString(15, noiThuongTru);
             preparedStatement.setInt(16, idNguoiTao);
 
+
             Calendar calendar = Calendar.getInstance();
             java.sql.Date createDate = new java.sql.Date(calendar.getTime().getTime());
 
             preparedStatement.setDate(17, createDate);
+            preparedStatement.setInt(18, status);
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -266,13 +288,17 @@ public class NhanKhauService {
         }
     }
 
-    public SimpleResult suaNhanKhau(NhanKhauModel nhanKhauMoi) {
+    public SimpleResult suaNhanKhau(NhanKhauBean nhanKhauBean) {
+        NhanKhauModel nhanKhauMoi = nhanKhauBean.getNhanKhauModel();
+        ChungMinhThuModel cmt = nhanKhauBean.getChungMinhThuModel();
 
         // lay thong tin input
-        int ID = nhanKhauMoi.getID();
+        int IDNhanKhau = cmt.getIdNhanKhau();
         String maNhanKhau = nhanKhauMoi.getMaNhanKhau();
         String Ho_ten = nhanKhauMoi.getHo_ten();
-        Date namSinh = nhanKhauMoi.getNamSinh();
+
+        java.sql.Date namSinh =  new java.sql.Date(nhanKhauMoi.getNamSinh().getTime());
+
         int gioiTinh = nhanKhauMoi.getGioiTinh();
         String noiSinh = nhanKhauMoi.getNoiSinh();
         String nguyenQuan = nhanKhauMoi.getNguyenQuan();
@@ -299,40 +325,35 @@ public class NhanKhauService {
         String ghiChu= nhanKhauMoi.getGhiChu();
 
         try(Connection connection = MySQLConnector.getConnection()){
-            String query = "UPDATE nhan_khau SET "
-                    + "maNhanKhau = " + maNhanKhau
-                    + "Ho_ten = " + Ho_ten
-                    + "namSinh = " + namSinh
-                    + "gioiTinh = " + gioiTinh
-                    + "noiSinh = " + noiSinh
-                    + "nguyenQuan = " + nguyenQuan
-                    + "danToc = " + danToc
-                    + "tonGiao = " + tonGiao
-                    + "quocTich = " + quocTich
-                    + "noiThuongTru = " + noiThuongTru
-                    + "soHoChieu = " + soHoChieu
-                    + "diaChiHienNay = " + diaChiHienNay
-                    + "trinhDoHocVan = " + trinhDoHocVan
-                    + "ngheNghiep = " + ngheNghiep
-                    + "noiLamViec = " + noiLamViec
-                    + "tienAn = " + tienAn
-                    + "ngayChuyenDen = " + ngayChuyenDen
-                    + "lyDoChuyenDen = " + lyDoChuyenDen
-                    + "ngayChuyenDi = " + ngayChuyenDi
-                    + "lyDoChuyenDi = " + lyDoChuyenDi
-                    + "diaChiMoi = " + diaChiMoi
-                    + "ngayTao = " + ngayTao
-                    + "idNguoiTao = " + idNguoiTao
-                    + "ngayXoa = " + ngayXoa
-                    + "idNguoiXoa = " + idNguoiXoa
-                    + "lyDoXoa = " + lyDoXoa
-                    + "ghiChu = " + ghiChu
-                    + "WHERE ID =" + ID;
+
+            String query = "update nhan_khau set  `hoTen`= ? , `namSinh` = ?, `gioiTinh` = ?, `quocTich`=?,`noiSinh` =?, `nguyenQuan`=?," +
+                    " `danToc` =?, `tonGiao` = ?,`tienAn` =?, `trinhDoHocVan`=?,`diaChiHienNay` = ?,`ngheNghiep` =? ,`noiLamViec`=?, `noiThuongTru`=? " +
+                    "where ID = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
+            // cai dat gia tri
+//            preparedStatement.setInt(1, ID);
+            preparedStatement.setString(1, Ho_ten);
+            preparedStatement.setDate(2, namSinh);
+
+            preparedStatement.setInt(3, gioiTinh);
+            preparedStatement.setString(4, quocTich );
+
+            preparedStatement.setString(5, noiSinh );
+            preparedStatement.setString(6, nguyenQuan);
+            preparedStatement.setString(7, danToc );
+            preparedStatement.setString(8, tonGiao);
+            preparedStatement.setString(9, tienAn );
+            preparedStatement.setString(10, trinhDoHocVan);
+            preparedStatement.setString(11, diaChiHienNay );
+            preparedStatement.setString(12, ngheNghiep );
+            preparedStatement.setString(13, noiLamViec);
+            preparedStatement.setString(14, noiThuongTru);
+            preparedStatement.setInt(15, IDNhanKhau);
+
             preparedStatement.executeUpdate();
-            preparedStatement.close();
+
             connection.close();
 
             return new SimpleResult(true, "Sua thong tin thanh cong");
