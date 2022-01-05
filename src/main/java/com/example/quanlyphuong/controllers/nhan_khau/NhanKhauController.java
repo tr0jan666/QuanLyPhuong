@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -31,6 +32,8 @@ public class NhanKhauController implements Initializable {
     private Scene scene;
 
     public static NhanKhauController frame;
+
+    public static NhanKhauBean chosenNhanKhauBean;
 
     public NhanKhauController() {
         if (frame == null) {
@@ -87,6 +90,10 @@ public class NhanKhauController implements Initializable {
     private TableColumn<NhanKhauBean,String> col_diaChi;
 
     @FXML
+    private TableColumn<NhanKhauBean,String> col_status;
+
+
+    @FXML
     private Button btn_refresh;
 
     @FXML
@@ -117,7 +124,7 @@ public class NhanKhauController implements Initializable {
 
     @FXML
     void xemChiTietNhanKhau(ActionEvent event) {
-
+        changeSceneChiTiet();
     }
 
     @FXML
@@ -145,7 +152,7 @@ public class NhanKhauController implements Initializable {
         dialog.setResultConverter(dialogButton ->{
             if(dialogButton == ButtonType.OK){
                 if(box1.isSelected()){
-                    changeSceneThuongTru(event);
+//                    changeSceneThuongTru(event);
                 }else if(box2.isSelected()){
                     changeSceneTamTru(event);
                 }else return null;
@@ -159,10 +166,6 @@ public class NhanKhauController implements Initializable {
         btn_ThemNhanKhau.getScene().getWindow().hide();
     }
 
-    public void changeSceneThuongTru(ActionEvent event) {
-        UIHelper.navigateNew("/com.example.quanlyphuong/nhankhau/pop_up_dk_thuong_tru.fxml", "Đăng ký thường trú", null);
-        btn_ThemNhanKhau.getScene().getWindow().hide();
-    }
 
     public void refreshScreen(){
 
@@ -176,8 +179,26 @@ public class NhanKhauController implements Initializable {
         col_diaChi.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
         col_ngheNghiep.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNgheNghiep()));
         col_gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
+        col_status.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getStatusString()));
+
 
         tv_nhanKhau.setItems(observableListNhanKhauBeans);
+
+    }
+
+
+    public void chiTietNhanKhau(MouseEvent event) {
+        NhanKhauBean nhanKhauBean = tv_nhanKhau.getSelectionModel().getSelectedItem();
+        NhanKhauController.chosenNhanKhauBean = nhanKhauBean;
+        btn_chiTiet.setVisible(true);
+        if(event.getClickCount() ==2 && (nhanKhauBean != null)){
+            changeSceneChiTiet();
+        }
+    }
+
+    public void changeSceneChiTiet() {
+
+        UIHelper.navigateNew("nhan_khau/pop_up_thong_tin.fxml", "Chi tiết", null,1000,700);
 
     }
 }

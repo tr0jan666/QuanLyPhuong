@@ -38,6 +38,8 @@ public class NhanKhauModel {
     private CachLyModel thongTinCachLy;
 
     private int status;
+    private String statusString;
+
     private Date lastUpdate ;
 
     public TestCovidModel getThongTinTestCovid() {
@@ -356,6 +358,14 @@ public class NhanKhauModel {
 
     public void setGioiTinhString(String gioiTinhString) {
         this.gioiTinhString = gioiTinhString;
+    }
+
+    public String getStatusString() {
+        return statusString;
+    }
+
+    public void setStatusString(String statusString) {
+        this.statusString = statusString;
     }
 }
 

@@ -91,6 +91,8 @@ public class TamTruController implements Initializable {
         nhanKhau.setNoiThuongTru(tf_noiThuongTru.getText());
         nhanKhau.setIdNguoiTao(AuthService.getInstance().getCurrentUser().getID());
         nhanKhau.setMaNhanKhau(tf_maNhanKhau.getText());
+        nhanKhau.setStatus(2);
+        nhanKhau.setStatusString("Tạm Trú");
 
         cmt.setSoCMT(tf_cmt.getText());
 //        cmt.setIdNhanKhau(Integer.parseInt(tf_maNhanKhau.getText()));

@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.TamVangController">
     <children>
-        <Label layoutX="113.0" layoutY="14.0" text="Khai báo tạm vắng" textFill="#29adff">
+        <Label layoutX="85.0" layoutY="14.0" prefHeight="59.0" prefWidth="530.0" text="Khai báo tạm vắng" textFill="#29adff">
             <font>
                 <Font name="System Bold" size="48.0" />
             </font>
