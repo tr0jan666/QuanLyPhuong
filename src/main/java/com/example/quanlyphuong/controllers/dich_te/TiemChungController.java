@@ -175,6 +175,11 @@ public class TiemChungController implements Initializable {
         }
     }
 
+    @FXML
+    public void capNhat(ActionEvent actionEvent) {
+
+    }
+
 //    @FXML
 //    void capNhat(ActionEvent event){
 //        tiemChungService = new TiemChungService();

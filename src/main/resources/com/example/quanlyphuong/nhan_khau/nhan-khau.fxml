@@ -16,13 +16,14 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.NhanKhauController">
     <children>
-        <TableView layoutX="14.0" layoutY="180.0" prefHeight="588.0" prefWidth="820.0">
+        <TableView fx:id="tv_nhanKhau" layoutX="14.0" layoutY="180.0" prefHeight="588.0" prefWidth="820.0">
             <columns>
                 <TableColumn id="tc_HoVaTen" fx:id="col_hoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
                 <TableColumn id="tc_Tuoi" fx:id="col_cmt" prefWidth="109.0" text="CMT" />
-                <TableColumn id="tc_DiaChi" fx:id="col_tuoi" prefWidth="95.0" text="Tuổi" />
+                <TableColumn id="tc_DiaChi" fx:id="col_ngaySinh" prefWidth="95.0" text="Ngày sinh" />
                 <TableColumn id="tc_ChuHo" fx:id="col_gioiTinh" minWidth="0.0" prefWidth="171.0" text="Giới tính" />
-                <TableColumn id="tc_MaHo" minWidth="0.0" prefWidth="137.0" text="Địa chỉ" />
+                <TableColumn id="tc_MaHo" fx:id="col_diaChi" minWidth="0.0" prefWidth="137.0" text="Địa chỉ" />
+            <TableColumn fx:id="col_ngheNghiep" prefWidth="153.0" text="Nghề nghiệp" />
             </columns>
         </TableView>
         <GridPane layoutX="26.0" layoutY="128.0" prefHeight="31.0" prefWidth="728.0">
@@ -62,7 +63,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#onKhaiTuClick" prefHeight="50.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
+                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#khauTuNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
@@ -70,7 +71,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#onTamVangClick" prefHeight="50.0" prefWidth="100.0" text="Tạm vắng">
+            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#tamVangNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm vắng">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -78,7 +79,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="10.0" layoutY="115.0" mnemonicParsing="false" onAction="#onTamTruClick" prefHeight="50.0" prefWidth="100.0" text="Tạm trú">
+            <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="10.0" layoutY="115.0" mnemonicParsing="false" onAction="#tamTruNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm trú">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -86,7 +87,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_thuongTru" mnemonicParsing="false" onAction="#onThuongTruClick" prefHeight="50.0" prefWidth="100.0" text="Thường trú">
+            <Button id="btn_KhaiTu" fx:id="btn_thuongTru" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Thường trú">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -96,7 +97,7 @@
             </Button>
             </children>
         </VBox>
-        <Button id="btn_KhoiPhuc" layoutX="869.0" layoutY="689.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Khôi phục">
+        <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="869.0" layoutY="689.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="50.0" prefWidth="100.0" text="refresh">
          <font>
             <Font size="11.0" />
          </font>
