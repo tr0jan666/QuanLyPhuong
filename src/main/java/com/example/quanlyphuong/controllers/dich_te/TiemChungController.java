@@ -87,15 +87,9 @@ public class TiemChungController implements Initializable {
 
         tc_hoVaTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
         tc_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
-        if(tc_tiemLan1.getText() == null){
-            tc_tiemLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getSoLanTiem()));
-            tc_loaiVaccine1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getVacxin()));
-            tc_ngayLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
-        }else{
-            tc_tiemLan2.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getSoLanTiem()));
-            tc_loaiVaccine2.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getVacxin()));
-            tc_ngayLan2.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
-        }
+        tc_tiemLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getSoLanTiem()));
+        tc_loaiVaccine1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getVacxin()));
+        tc_ngayLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
         tableTiemChung.setItems(tiemChungBeanObservableList);
     }
 
@@ -122,6 +116,18 @@ public class TiemChungController implements Initializable {
         ThongKeNhanKhauService thongKeNhanKhauService = new ThongKeNhanKhauService();
         nhanKhauTiemChung = thongKeNhanKhauService.getNhanKhau(tf_cccd.getText());
 
+        for(TiemChungBean tc : tiemChungBeanList){
+            if(tc.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tf_cccd.getText())){
+                if(tc.getTiemChungModel().getSoLanTiem() == Integer.parseInt(tf_tiemLan.getText())){
+                    Alert thongBaoTrung = new Alert(Alert.AlertType.WARNING);
+                    thongBaoTrung.setContentText("Người này hiện đã tiêm mũi" + tf_tiemLan.getText());
+                    thongBaoTrung.show();
+                    clearInput();
+                    return;
+                }
+            }
+        }
+
         if(MissingFields()){
             Alert missingAlert = new Alert(Alert.AlertType.WARNING);
             missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
@@ -129,8 +135,8 @@ public class TiemChungController implements Initializable {
         }
 
         TiemChungModel tiemChungModelTemp = new TiemChungModel();
-        tiemChungModelTemp.setCCCD(tf_cccd.getText());
-        tiemChungModelTemp.setHoTen(tf_hoTen.getText());
+//        tiemChungModelTemp.setCCCD(tf_cccd.getText());
+//        tiemChungModelTemp.setHoTen(tf_hoTen.getText());
         tiemChungModelTemp.setSoLanTiem(Integer.parseInt(tf_tiemLan.getText()));
         tiemChungModelTemp.setNgayTiem(Date.from(dt_thoiGianTiem.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         tiemChungModelTemp.setVacxin(tf_loaiVaccine.getText());

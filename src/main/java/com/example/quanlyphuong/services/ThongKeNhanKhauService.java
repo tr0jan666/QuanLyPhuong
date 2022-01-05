@@ -20,6 +20,8 @@ public class ThongKeNhanKhauService {
      */
     public NhanKhauBean getNhanKhau(String cmt) {
         NhanKhauBean nhanKhauBean = new NhanKhauBean();
+        NhanKhauModel nhanKhau = nhanKhauBean.getNhanKhauModel();
+        ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
         // truy cap db
         try {
             Connection connection = MySQLConnector.getConnection();
@@ -28,8 +30,7 @@ public class ThongKeNhanKhauService {
             ResultSet rs = preparedStatement.executeQuery();
             int idNhanKhau = -1;
             while (rs.next()) {
-                NhanKhauModel nhanKhau = nhanKhauBean.getNhanKhauModel();
-                ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
+
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
 
@@ -43,11 +44,11 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setSoHoChieu(rs.getString("soHoChieu"));
                 nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
-                // con nhieu nua
-//                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-//                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-//                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
-//                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
+
+                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
+                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
+                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
+                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
             }
             preparedStatement.close();
 //            if (idNhanKhau > 0) {
