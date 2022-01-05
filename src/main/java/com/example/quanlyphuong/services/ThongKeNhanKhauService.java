@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class ThongKeNhanKhauService {
-
+    //TODO @Vuong clean code: move all function to NhanKhauService
     /*
      * Ham lay ra 1 nhan khau trong db bang chung minh thu
      *

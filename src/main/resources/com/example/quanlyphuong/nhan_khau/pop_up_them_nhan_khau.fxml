@@ -160,6 +160,14 @@
                         <Insets left="200.0" />
                      </GridPane.margin>
                   </Button>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="855.0" layoutY="294.0" text="(*)" textAlignment="RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="260.0" />
+                     </GridPane.margin>
+                  </Label>
                     </children>
                 </GridPane>
                 <Label layoutX="250.0" layoutY="521.0" />

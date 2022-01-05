@@ -82,14 +82,14 @@ public class PopUpThemNhanKhauController implements Initializable {
 
     @FXML
     void checkNhanKhau(ActionEvent event) {
-        if(checkValidForm()){
+        if(checkValidForm(true)){
 
         }
     }
 
     @FXML
     void themNhanKhau(ActionEvent event) {
-        if(!checkValidForm()){
+        if(!checkValidForm(false)){
             return;
         }
         NhanKhauModel nhanKhau = new NhanKhauModel();
@@ -124,11 +124,14 @@ public class PopUpThemNhanKhauController implements Initializable {
         nhanKhauBean.setNhanKhauModel(nhanKhau);
         nhanKhauBean.setChungMinhThuModel(cmt);
 
-        NhanKhauService.getInstance().taoNhanKhau(nhanKhauBean);
+        SimpleResult simpleResult = NhanKhauService.getInstance().taoNhanKhau(nhanKhauBean);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
+        alert.showAndWait();
 
     }
 
-    private boolean checkValidForm(){
+    private boolean checkValidForm(boolean notify){
         if(tf_ten.getText().trim().isEmpty()
                 || !dp_ngaySinh.hasProperties() ||
                 tf_noiSinh.getText().trim().isEmpty() ||
@@ -160,7 +163,7 @@ public class PopUpThemNhanKhauController implements Initializable {
         }
 
         //check cmt lan 2
-        if(validateCMT()){
+        if(validateCMT(notify)){
             return true;
         }else{
             return false;
@@ -180,19 +183,23 @@ public class PopUpThemNhanKhauController implements Initializable {
     }
 
     public void checkCMT(ActionEvent actionEvent) {
-        validateCMT();
+        validateCMT(true);
     }
 
-    public boolean validateCMT(){
+    public boolean validateCMT(boolean notify){
         SimpleResult result = ChungMinhThuService.getInstance().checkCMTTonTai(tf_cmt.getText());
         Alert alert;
         if(result.isSuccess()){
-            alert = new Alert(Alert.AlertType.CONFIRMATION, result.getMessage(), ButtonType.CLOSE);
-            alert.showAndWait();
+            if(notify==true) {
+                alert = new Alert(Alert.AlertType.CONFIRMATION, result.getMessage(), ButtonType.CLOSE);
+                alert.showAndWait();
+            }
             return true;
         }      else {
-            alert = new Alert(Alert.AlertType.ERROR, result.getMessage(), ButtonType.CLOSE);
-            alert.showAndWait();
+
+                alert = new Alert(Alert.AlertType.ERROR, result.getMessage(), ButtonType.CLOSE);
+                alert.showAndWait();
+
         }
 
         return false;
