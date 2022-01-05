@@ -1,9 +1,9 @@
 package com.example.quanlyphuong.controllers.dich_te;
 
 import com.example.quanlyphuong.beans.TestCovidBean;
-import com.example.quanlyphuong.beans.HoKhauBean;
+
 import com.example.quanlyphuong.beans.NhanKhauBean;
-import com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController;
+
 import com.example.quanlyphuong.models.TestCovidModel;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.services.TestCovidService;
@@ -12,15 +12,14 @@ import com.example.quanlyphuong.services.ThongKeNhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
+
+
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javax.swing.JComboBox;
+
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
@@ -29,7 +28,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class TestCovidController implements Initializable{
+public class TestCovidController implements Initializable {
 
     public static TestCovidController frame;
 
@@ -60,7 +59,7 @@ public class TestCovidController implements Initializable{
     private TextField tf_diaDiem;
 
     @FXML
-    private Date dp_thoiGianTest;
+    private DatePicker dp_thoiGianTest;
 
     @FXML
     public ComboBox<String> cb_ketQua;
@@ -88,7 +87,7 @@ public class TestCovidController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cb_ketQua.setItems(FXCollections.observableArrayList( "Âm tính","Dương tính"));
+        cb_ketQua.setItems(FXCollections.observableArrayList("Âm tính", "Dương tính", "Chưa test"));
 
     }
 
@@ -99,7 +98,7 @@ public class TestCovidController implements Initializable{
     NhanKhauBean nhanKhauTestCovid;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public void refresh(){
+    public void refresh() {
         testCovidService = new TestCovidService();
         listNhanKhauTestCovid = testCovidService.getListNhanKhauTestCovid();
 
@@ -110,7 +109,7 @@ public class TestCovidController implements Initializable{
         col_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
         col_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getDiaDiemTest()));
         col_thoiGian.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getThoiDiemTest()));
-        col_ketQua.setCellValueFactory(bean-> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getKetQua()));
+        col_ketQua.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getKetQua()));
         tbv_testCovid.setItems(observableListHoKhauBeans);
 
     }
@@ -146,40 +145,42 @@ public class TestCovidController implements Initializable{
         System.out.println(cmt);
 
         nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(cmt);
-        if(nhanKhauTestCovid == null){
+        if (nhanKhauTestCovid == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Không tồn tại chứng minh thư ");
             alert.show();
-        }else{
+        } else {
             tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
         }
 
     }
-    boolean isMissingField(){
-        if ( tf_cccd.getText().isBlank() || tf_hoVaTen.getText().isEmpty() || tf_diaDiem.getText().isEmpty()
-                || (dp_thoiGianTest.getClass() == null) || cb_ketQua.getItems().isEmpty()){
+
+    boolean isMissingField() {
+        if (tf_cccd.getText().isBlank() || tf_hoVaTen.getText().isEmpty() || tf_diaDiem.getText().isEmpty()
+                || (dp_thoiGianTest.getClass() == null) || cb_ketQua.getItems().isEmpty()) {
             return true;
         }
         return false;
 
     }
-    void clearTf(){
+
+    void clearTf() {
         tf_cccd.clear();
         tf_hoVaTen.clear();
         tf_diaDiem.clear();
-        dp_thoiGianTest.setTime(0);
+        dp_thoiGianTest.setValue(null);
         cb_ketQua.setValue(null);
     }
 
     @FXML
-    void themTestCovid(ActionEvent event) throws SQLException {
+    void themTestCovid(javafx.event.ActionEvent event) throws SQLException {
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         TestCovidBean testCovidBean = new TestCovidBean();
         testCovidService = new TestCovidService();
         nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(tf_cccd.getText());
 
-        for(TestCovidBean cl: listNhanKhauTestCovid){
-            if(cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tf_cccd.getText())){
+        for (TestCovidBean cl : listNhanKhauTestCovid) {
+            if (cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tf_cccd.getText())) {
                 Alert thongBaoChung = new Alert(Alert.AlertType.WARNING);
                 thongBaoChung.setContentText("Người này hiện đã tiêm ");
                 thongBaoChung.show();
@@ -188,17 +189,22 @@ public class TestCovidController implements Initializable{
             }
         }
 
-        if(isMissingField()){
+        if (isMissingField()) {
             Alert missingAlert = new Alert(Alert.AlertType.WARNING);
             missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
             missingAlert.show();
         }
 
-        TestCovidModel testCovidModel = new TestCovidModel() ;
+        TestCovidModel testCovidModel = new TestCovidModel();
         testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
-        testCovidModel.setThoiDiemTest(dp_thoiGianTest);
-        testCovidModel.setKetQua(Integer.parseInt(cb_ketQua.getValue()));
-
+        testCovidModel.setThoiDiemTest(java.sql.Date.valueOf(dp_thoiGianTest.getValue()));
+        if (cb_ketQua.getValue() == "Âm tính") {
+            testCovidModel.setKetQua(0);
+        } else if (cb_ketQua.getValue() == "Dương tính") {
+            testCovidModel.setKetQua(1);
+        } else if (cb_ketQua.getValue() == "Chưa test") {
+            testCovidModel.setKetQua(2);
+        }
         testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
         testCovidBean.setTestCovidModel(testCovidModel);
 
@@ -206,10 +212,10 @@ public class TestCovidController implements Initializable{
 
         refresh();
         clearTf();
+
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
         successAlert.setContentText("Thêm thành công");
         successAlert.show();
-
 
     }
 
@@ -221,11 +227,10 @@ public class TestCovidController implements Initializable{
         tf_hoVaTen.setText(bean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
         tf_cccd.setText(bean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
         tf_diaDiem.setText(bean.getTestCovidModel().getDiaDiemTest());
-        dp_thoiGianTest.setTime(bean.getTestCovidModel().getThoiDiemTest().getTime());
-        if(bean.getTestCovidModel().getKetQua() == 1){
+        dp_thoiGianTest.setValue(LocalDate.ofEpochDay(bean.getTestCovidModel().getThoiDiemTest().getTime()));
+        if (bean.getTestCovidModel().getKetQua() == 1) {
             cb_ketQua.setItems(FXCollections.observableArrayList("Âm tính"));
-        }
-        else{
+        } else {
             cb_ketQua.setItems(FXCollections.observableArrayList("Dương tính"));
         }
 

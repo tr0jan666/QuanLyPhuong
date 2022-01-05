@@ -87,12 +87,12 @@ public class ThongKeCovidService {
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
                 testCovidModel.setKetQua(rs.getInt("ketQua"));
                 if(testCovidModel.getKetQua() == KetQuaTestConstant.DUONG_TINH){
-                    testCovidModel.setKetQuaString("Dương tính");
+                    testCovidModel.setKetQua(1);
                 }
                 else if(testCovidModel.getKetQua() == -1){
-                    testCovidModel.setKetQuaString("Âm tính");
+                    testCovidModel.setKetQua(0);
                 } else {
-                    testCovidModel.setKetQuaString("Chưa test");
+                    testCovidModel.setKetQua(2);
                 }
 
                 idNhanKhau = rs.getInt("idNhanKhau");
@@ -174,12 +174,12 @@ public class ThongKeCovidService {
 
                 testCovidModel.setKetQua(rs.getInt("ketQua"));
                 if(testCovidModel.getKetQua() == KetQuaTestConstant.DUONG_TINH){
-                    testCovidModel.setKetQuaString("Dương tính");
+                    testCovidModel.setKetQua(1);
                 }
                 else if(testCovidModel.getKetQua() == -1){
-                    testCovidModel.setKetQuaString("Âm tính");
+                    testCovidModel.setKetQua(0);
                 } else {
-                    testCovidModel.setKetQuaString("Chưa test");
+                    testCovidModel.setKetQua(2);
                 }
 
 

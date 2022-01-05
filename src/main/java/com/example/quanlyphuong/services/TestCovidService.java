@@ -74,7 +74,6 @@ public class TestCovidService {
     public void addTestCovid(TestCovidBean bean) throws SQLException{
         try{
             Connection connection = MySQLConnector.getConnection();
-            Statement statement = connection.createStatement();
             String query = "INSERT INTO  test (`idNhanKhau`, `thoiDiemTest`, `ketQua`,`diaDiemTest`) VALUES (?,?,?,?) ";
 
 
@@ -90,6 +89,7 @@ public class TestCovidService {
             preparedStatement.executeUpdate();
             //statement.executeUpdate(query);
 
+            preparedStatement.execute();
             preparedStatement.close();
             connection.close();
             System.out.println("them thanh cong");

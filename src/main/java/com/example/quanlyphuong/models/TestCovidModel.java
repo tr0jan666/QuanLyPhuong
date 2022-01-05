@@ -13,6 +13,7 @@ public class TestCovidModel {
     public TestCovidModel(){
 
     }
+
     public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, String diaDiemTest, int ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;

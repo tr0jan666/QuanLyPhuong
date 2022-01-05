@@ -182,7 +182,7 @@ public class ThongKeDichTeController implements Initializable {
         col_ngayTiemLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getNgayTiem()));
         col_loaiVaccineLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getVacxin()));*/
         col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getCachLyModel().getMucDoString()));
-        col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTestCovidModel().getKetQuaString()));
+        col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper(nhanKhauBean.getValue().getTestCovidModel().getKetQua()));
 
         table.setItems(observablelistNhanKhauCovid);
 
@@ -214,7 +214,7 @@ public class ThongKeDichTeController implements Initializable {
                   //  String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
                     bw.write(nhanKhau.getNhanKhauModel().getHo_ten()+"\t"+nhanKhau.getChungMinhThuModel().getSoCMT()+"\t"+nhanKhau.getNhanKhauModel().getGioiTinhString()+"\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay()+"\t");
                     bw.write(nhanKhau.getTiemChungModel().getSoLanTiem()+"\t"+nhanKhau.getTiemChungModel().getNgayTiem()+"\t"+nhanKhau.getTiemChungModel().getVacxin()+"\t");
-                    bw.write(nhanKhau.getCachLyModel().getMucDoString()+"\t"+nhanKhau.getTestCovidModel().getKetQuaString());
+                    bw.write(nhanKhau.getCachLyModel().getMucDoString()+"\t"+nhanKhau.getTestCovidModel().getKetQua());
                     bw.newLine();
                 }
 
