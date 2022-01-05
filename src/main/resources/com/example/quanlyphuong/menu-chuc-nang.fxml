@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,42 +9,52 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="730.0" prefWidth="1200.0" stylesheets="@nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.MenuController">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" stylesheets="@nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.MenuController">
    <children>
-      <BorderPane prefHeight="730.0" prefWidth="1200.0">
-         <left>
-            <VBox prefHeight="730.0" prefWidth="260.0" styleClass="vbox_chucnang" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="500.0" prefWidth="750.0">
+         <center>
+            <VBox prefHeight="500.0" prefWidth="750.0" spacing="15.0" styleClass="vbox_chucnang" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane prefHeight="80.0" prefWidth="300.0">
+                  <AnchorPane prefHeight="100.0" prefWidth="600.0">
                      <children>
-                        <Label prefHeight="60.0" prefWidth="150.0" text="Menu Chức Năng" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0" />
+                        <Label alignment="CENTER" layoutX="151.0" layoutY="17.0" prefHeight="52.0" prefWidth="300.0" styleClass="button_chucnang2" text="Menu Chức Năng" textFill="#89005a" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="25.0">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font></Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="60.0" prefWidth="300.0">
+                  <AnchorPane prefHeight="101.0" prefWidth="600.0">
                      <children>
-                        <Label contentDisplay="CENTER" layoutX="65.0" prefHeight="50.0" prefWidth="171.0" styleClass="button_chucnang" text="Quản Lý Nhân Khẩu" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0" />
-                        <Button fx:id="btnNhanKhau" focusTraversable="false" minHeight="54.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToNhanKhauScreen" opacity="0.0" prefHeight="50.0" prefWidth="270.0" styleClass="button_chucnang" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
+                        <Button fx:id="btnNhanKhau" alignment="CENTER" focusTraversable="false" layoutX="161.0" minHeight="54.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToNhanKhauScreen" prefHeight="54.0" prefWidth="300.0" styleClass="button_chucnang1" text="Quản Lý Nhân Khẩu" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="25.0">
                            <font>
-                              <Font name="Arial Bold Italic" size="15.0" />
+                              <Font name="Arial Bold" size="17.0" />
                            </font>
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="60.0" prefWidth="300.0">
+                  <AnchorPane prefHeight="100.0" prefWidth="600.0">
                      <children>
-                        <Label prefHeight="60.0" prefWidth="150.0" text="Quản Lý Dịch Tễ" textFill="#f0f2f5" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0" />
-                        <Button fx:id="btnDichTe" focusTraversable="false" minHeight="54.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToDichTeScreen" opacity="0.0" prefHeight="50.0" prefWidth="270.0" styleClass="button_chucnang" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0" />
+                        <Label alignment="CENTER" layoutX="144.0" layoutY="25.0" prefHeight="54.0" prefWidth="310.0" text="Quản Lý Dịch Tễ" textFill="#f0f2f5" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="25.0" />
+                        <Button fx:id="btnDichTe" focusTraversable="false" layoutX="144.0" minHeight="54.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToDichTeScreen" prefHeight="54.0" prefWidth="304.0" styleClass="button_chucnang2" text="Quản Lý Dịch Tễ" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="25.0">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="60.0" prefWidth="300.0">
+                  <AnchorPane prefHeight="104.0" prefWidth="750.0">
                      <children>
-                        <Text fx:id="txtRegister" fill="WHITE" layoutX="12.0" layoutY="19.0" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng Kí Tài Khoản Cho Cán Bộ" wrappingWidth="207.6708984375" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="35.0" />
+                        <Text fx:id="txtRegister" fill="#89005a" layoutX="253.0" layoutY="54.0" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng Kí Tài Khoản Cho Cán Bộ" underline="true" wrappingWidth="264.6708984375" AnchorPane.bottomAnchor="36.482421875" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="232.3291015625" AnchorPane.topAnchor="34.576171875">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor></Text>
                      </children>
                   </AnchorPane>
-                  <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="211.0" styleClass="button_chucnang" textFill="WHITE" />
                </children>
             </VBox>
-         </left>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

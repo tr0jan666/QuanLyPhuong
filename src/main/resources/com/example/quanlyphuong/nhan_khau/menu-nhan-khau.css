@@ -1,11 +1,37 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-.button_chucnang{
+.button_chucnang1{
 
   /*  -fx-opacity: 0;*/
+    -fx-background-color: #89005a;
+    -fx-background-radius: 10px;
+    -fx-text-fill:#f0f2f5 ;
     -fx-cursor: not-allowed;
 
 }
-.button_chucnang:hover{
+.button_chucnang1:hover{
+    -fx-background-color: #f0f2f5;
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.2;
+    -fx-border-color: #89005a;
+    -fx-border-radius: 10px;
+    -fx-border-width: 3.5px;
+
+
+}
+
+.button_chucnang2{
+
+    /*  -fx-opacity: 0;*/
+    -fx-background-color: #fff8dd;
+    -fx-background-radius: 10px;
+    -fx-border-color: #89005a;
+    -fx-border-radius: 10px;
+    -fx-border-width: 3.5px;
+    -fx-text-fill: #89005a;
+    -fx-cursor: not-allowed;
+
+}
+.button_chucnang2:hover{
     -fx-background-color: #f0f2f5;
     -fx-text-fill: #000000;
     -fx-opacity: 0.2;
@@ -13,8 +39,10 @@
 
 }
 
+
 .vbox_chucnang{
-    -fx-background-image: url("anhmenuchucnang.png");
+    -fx-background-color: #fff8dd;
+   /* -fx-background-image: url("anhmenuchucnang.png");*/
 }
 .leftPaneLogin{
     -fx-background-image: url("3dlogin.png");
@@ -31,11 +59,10 @@
     -fx-background-color : #f0f2f5;
     -fx-background-radius: 8px;
 }
-.vbox2ben{
+/*.vbox2ben{
     -fx-background-image: url("hinh-nen-anime-4k-dep-15.jpg") ;
-    /*-fx-background-image: url("welcome.jpg");*/
-}
-
+    /*-fx-background-image: url("welcome.jpg");
+}*/
 
 .button1
 {
