@@ -55,7 +55,7 @@ public class RegisterController {
 
     @FXML
     void setQuayLai(ActionEvent event) {
-        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null, 600, 400);
+        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null, 750, 500);
         menuChucNangScreen.<MenuController>getController().getTxtRegister().setVisible(AuthService.getInstance().getCurrentUser().isAdministrator());
         ((Node) event.getSource()).getScene().getWindow().hide();
 

@@ -2,7 +2,6 @@ package com.example.quanlyphuong.controllers.dich_te;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.models.NhanKhauModel;
-import com.example.quanlyphuong.models.TiemChungModel;
 import com.example.quanlyphuong.services.StringService;
 import com.example.quanlyphuong.services.ThongKeCovidService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -47,7 +46,7 @@ public class ThongKeDichTeController implements Initializable {
     private CheckBox cachLyCB;
 
     @FXML
-    private CheckBox testCovidCB;
+    private ComboBox<String> ketQuaCovidCB;
 
     @FXML
     private Button btnTimKiemThongkeDT;
@@ -102,6 +101,7 @@ public class ThongKeDichTeController implements Initializable {
     ObservableList<NhanKhauBean> observablelistNhanKhauCovid;
     ObservableList<String> gioiTinhList;
     ObservableList<String> tiemChungList;
+    ObservableList<String> ketQuaCovidList;
     int accessCount = 0;
 
     @Override
@@ -116,19 +116,25 @@ public class ThongKeDichTeController implements Initializable {
         tiemChungList = FXCollections.observableArrayList("Toàn bộ", "Đã tiêm mũi 1", "Đã tiêm mũi 2");
         tiemChungCB.setItems(tiemChungList);
         tiemChungCB.getSelectionModel().selectFirst();
+        ketQuaCovidList = FXCollections.observableArrayList("Toàn bộ", "Dương tính", "Âm tính");
+        ketQuaCovidCB.setItems(ketQuaCovidList);
+        ketQuaCovidCB.getSelectionModel().selectFirst();
 
     }
 
     public void setData(){
         int tuTuoi = -1;
         int denTuoi = 200;
-        int cachly = 0, testCovid =0;
+        int cachly = 0;
         String gender = "Toan Bo" ;
         String status = "Toan Bo";
+        String testCovid = "Toan Bo";
 
         if (accessCount != 0){
             gender = StringService.covertToString(gioiTinhCB.getSelectionModel().getSelectedItem());
             status = StringService.covertToString(tiemChungCB.getSelectionModel().getSelectedItem());
+            testCovid = StringService.covertToString(ketQuaCovidCB.getSelectionModel().getSelectedItem());
+
         }
         accessCount++;
         try {
@@ -142,8 +148,9 @@ public class ThongKeDichTeController implements Initializable {
             } else {
                 denTuoi = 200;
             }
+
             if(cachLyCB.isSelected()) cachly = 1;
-            if(testCovidCB.isSelected()) testCovid = 1;
+
 
 
         } catch (Exception e) {
