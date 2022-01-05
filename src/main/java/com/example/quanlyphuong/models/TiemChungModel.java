@@ -1,5 +1,6 @@
 package com.example.quanlyphuong.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class TiemChungModel {
@@ -10,13 +11,15 @@ public class TiemChungModel {
     private int soLanTiem;
     private Date ngayTiem;
     private String vacxin;
+    private String diaDiem;
 
     public TiemChungModel() {
     }
 
-    public TiemChungModel(String hoTen,String CCCD,int idTiemChung,int idNhanKhau,int soLanTiem,Date ngayTiem,String vacxin){
+    public TiemChungModel(String hoTen,String CCCD,String diaDiem,int idTiemChung,int idNhanKhau,int soLanTiem,Date ngayTiem,String vacxin){
         this.hoTen = hoTen;
         this.CCCD = CCCD;
+        this.diaDiem = diaDiem;
         this.idTiemChung = idTiemChung;
         this.idNhanKhau = idNhanKhau;
         this.soLanTiem = soLanTiem;
@@ -48,7 +51,7 @@ public class TiemChungModel {
         this.soLanTiem = soLanTiem;
     }
 
-    public Date getNgayTiem() {
+    public LocalDate getNgayTiem() {
         return ngayTiem;
     }
 
@@ -78,5 +81,13 @@ public class TiemChungModel {
 
     public void setCCCD(String CCCD) {
         this.CCCD = CCCD;
+    }
+
+    public String getDiaDiem() {
+        return diaDiem;
+    }
+
+    public void setDiaDiem(String diaDiem) {
+        this.diaDiem = diaDiem;
     }
 }

@@ -45,17 +45,13 @@ public class TiemChungController implements Initializable {
     @FXML
     private TableColumn<TiemChungBean,Integer> tc_tiemLan1;
     @FXML
-    private TableColumn<TiemChungBean,Date> tc_ngayLan1;
+    private TableColumn<TiemChungBean,LocalDate> tc_ngayLan1;
     @FXML
     private TableColumn<TiemChungBean,String> tc_loaiVaccine1;
     @FXML
-    private TableColumn<TiemChungBean,Integer> tc_tiemLan2;
+    private TableColumn<TiemChungBean,String> tc_diaDiem;
     @FXML
-    private TableColumn<TiemChungBean,Date> tc_ngayLan2;
-    @FXML
-    private TableColumn<TiemChungBean,String> tc_loaiVaccine2;
-    @FXML
-    private TextField tf_hoTen;
+    private TextField tf_diaDiem;
     @FXML
     private TextField tf_cccd;
     @FXML
@@ -89,12 +85,12 @@ public class TiemChungController implements Initializable {
         tc_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
         tc_tiemLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getSoLanTiem()));
         tc_loaiVaccine1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getVacxin()));
-            tc_ngayLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
+        tc_ngayLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
         tableTiemChung.setItems(tiemChungBeanObservableList);
     }
 
     boolean MissingFields(){
-        if(tf_hoTen.getText().isEmpty()||tf_cccd.getText().isEmpty()
+        if(tf_diaDiem.getText().isEmpty()||tf_cccd.getText().isEmpty()
                 ||tf_tiemLan.getText().isEmpty()||tf_loaiVaccine.getText().isEmpty()||(dt_thoiGianTiem.getValue() == null)){
             return true;
         }
@@ -102,7 +98,7 @@ public class TiemChungController implements Initializable {
     }
 
     void clearInput(){
-        tf_hoTen.clear();
+        tf_diaDiem.clear();
         tf_cccd.clear();
         tf_tiemLan.clear();
         tf_loaiVaccine.clear();
@@ -155,40 +151,93 @@ public class TiemChungController implements Initializable {
     }
 
     @FXML
-    void setThongTinL1(MouseEvent event){
+    void setThongtin(MouseEvent event){
         tiemChungService = new TiemChungService();
         TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
-        FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/pop-up-tiem-chung.fxml"));
-        System.out.println((QuanLyNhanKhauApplication.class.getResource("dich_te/pop-up-tiem-chung.fxml")));
-        try {
-            Scene scene = new Scene(fxmlLoader.load(), DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
-            Stage stage = new Stage();
-            stage.setTitle("Chi tiết");
-            stage.setResizable(false);
-            stage.setScene(scene);
-            PopUpTiemChung popUpTiemChung = fxmlLoader.getController();
-            popUpTiemChung.setData(tiemChungBean);
 
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        tf_cccd.setText(tiemChungBean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
+        tf_diaDiem.setText(tiemChungBean.getTiemChungModel().getDiaDiem());
+        tf_tiemLan.setText(String.valueOf(tiemChungBean.getTiemChungModel().getSoLanTiem()));
+        tf_loaiVaccine.setText(tiemChungBean.getTiemChungModel().getVacxin());
+        dt_thoiGianTiem.setValue(tiemChungBean.getTiemChungModel().getNgayTiem());
+
+        tf_cccd.setDisable(true);
     }
 
 //    @FXML
-//    void capNhat(ActionEvent event){
+//    void setThongTinL1(MouseEvent event){
 //        tiemChungService = new TiemChungService();
 //        TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
-//        String loaiVacxin = tf_loaiVaccine.getText();
-//        String thoiGianTiem = dt_thoiGianTiem.getValue().format(formatter);
+//        FXMLLoader fxmlLoader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/pop-up-tiem-chung.fxml"));
+//        System.out.println((QuanLyNhanKhauApplication.class.getResource("dich_te/pop-up-tiem-chung.fxml")));
+//        try {
+//            Scene scene = new Scene(fxmlLoader.load(), DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
+//            Stage stage = new Stage();
+//            stage.setTitle("Chi tiết");
+//            stage.setResizable(false);
+//            stage.setScene(scene);
+//            PopUpTiemChung popUpTiemChung = fxmlLoader.getController();
+//            popUpTiemChung.setData(tiemChungBean);
 //
-//        if(MissingFields()){
-//            Alert missingAlert = new Alert(Alert.AlertType.WARNING);
-//            missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
-//            missingAlert.show();
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
 //        }
-//
-//        tiemChungService.updateTiemChung(tiemChungBean,loaiVacxin,thoiGianTiem);
-//        setData();
 //    }
+
+    @FXML
+    void capNhat(ActionEvent event){
+        tiemChungService = new TiemChungService();
+        TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
+        String loaiVacxin = tf_loaiVaccine.getText();
+        String thoiGianTiem = dt_thoiGianTiem.getValue().format(formatter);
+        String diaDiem = tf_diaDiem.getText();
+        String tiemLan = tf_tiemLan.getText();
+
+        for(TiemChungBean tc : tiemChungBeanList){
+            if(tc.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tf_cccd.getText())){
+                if(tc.getTiemChungModel().getSoLanTiem() == Integer.parseInt(tf_tiemLan.getText())){
+                    Alert thongBaoTrung = new Alert(Alert.AlertType.WARNING);
+                    thongBaoTrung.setContentText("Người này hiện đã tiêm mũi" + tf_tiemLan.getText());
+                    thongBaoTrung.show();
+                    clearInput();
+                    return;
+                }
+            }
+        }
+
+        if(MissingFields()){
+            Alert missingAlert = new Alert(Alert.AlertType.WARNING);
+            missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
+            missingAlert.show();
+            return;
+        }
+
+        tiemChungService.updateTiemChung(tiemChungBean.getNhanKhauBean().getNhanKhauModel().getID() ,loaiVacxin,thoiGianTiem,diaDiem,tiemLan);
+        setData();
+    }
+
+    @FXML
+    void btnCheckEvent(ActionEvent event){
+        if(tf_cccd != null){
+            try{
+                tiemChungService = new TiemChungService();
+                tiemChungBeanList = tiemChungService.getListTiemChung(tf_cccd.getText());
+                tiemChungBeanObservableList = FXCollections.observableList(tiemChungBeanList);
+
+                tc_hoVaTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
+                tc_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
+                tc_tiemLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getSoLanTiem()));
+                tc_loaiVaccine1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getVacxin()));
+                tc_ngayLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
+                tc_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getDiaDiem()));
+                tableTiemChung.setItems(tiemChungBeanObservableList);
+            }catch (Exception e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(String.valueOf(e));
+                alert.show();
+                return;
+            }
+        }
+    }
 }

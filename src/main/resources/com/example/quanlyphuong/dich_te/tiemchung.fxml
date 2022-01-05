@@ -18,17 +18,18 @@
     <children>
         <AnchorPane prefHeight="175.0" prefWidth="1000.0" AnchorPane.bottomAnchor="625.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label alignment="CENTER" layoutX="289.0" layoutY="7.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: f0f2f5; -fx-background-radius: 5;" text="Thông Tin Tiêm Chủng" AnchorPane.leftAnchor="263.0">
+                <Label alignment="CENTER" layoutX="392.0" layoutY="8.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: f0f2f5; -fx-background-radius: 5;" text="Thông Tin Tiêm Chủng" AnchorPane.leftAnchor="392.0">
                     <font>
                         <Font name="Arial Bold" size="18.0" />
                     </font>
                 </Label>
-                <GridPane layoutX="14.0" layoutY="50.0" prefHeight="113.0" prefWidth="747.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;">
+                <GridPane layoutX="91.0" layoutY="48.0" prefHeight="116.0" prefWidth="670.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;">
                     <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="56.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="262.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.39999999999998" minWidth="10.0" prefWidth="127.39998779296877" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.8000122070313" minWidth="10.0" prefWidth="264.8000122070313" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="88.39999389648438" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="233.5999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.39999999999998" minWidth="10.0" prefWidth="101.60002441406249" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0000244140625" minWidth="10.0" prefWidth="240.99996337890622" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.8000122070313" minWidth="10.0" prefWidth="18.800073242187523" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="34.4000244140625" minWidth="0.0" prefWidth="0.0" />
                     </columnConstraints>
                     <rowConstraints>
@@ -53,7 +54,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                        <DatePicker fx:id="dt_thoiGianTiem" focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <DatePicker fx:id="dt_thoiGianTiem" focusTraversable="false" prefHeight="26.0" prefWidth="267.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                             <GridPane.margin>
 
                             </GridPane.margin></DatePicker>
@@ -67,12 +68,13 @@
                   <Label text="Địa điểm" GridPane.rowIndex="2" />
                   <Button fx:id="btn_check" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets left="35.0" />
+                        <Insets left="15.0" />
                      </GridPane.margin>
                   </Button>
                     </children>
                 </GridPane>
-                <Button fx:id="btn_them" layoutX="846.0" layoutY="88.0" mnemonicParsing="false" onAction="#BtnThem" prefHeight="30.0" prefWidth="79.0" text="Thêm" />
+                <Button fx:id="btn_them" layoutX="846.0" layoutY="130.0" mnemonicParsing="false" onAction="#BtnThem" prefHeight="30.0" prefWidth="79.0" text="Thêm" />
+            <Button fx:id="btn_capNhat" layoutX="846.0" layoutY="50.0" mnemonicParsing="false" onAction="#capNhat" prefHeight="30.0" prefWidth="79.0" text="Cập nhật" />
             </children>
         </AnchorPane>
       <ScrollPane layoutX="1.0" layoutY="175.0" prefHeight="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
@@ -86,7 +88,7 @@
                             <TableColumn fx:id="tc_tiemLan1" minWidth="0.0" prefWidth="103.20001220703125" text="Tiêm lần" />
                             <TableColumn fx:id="tc_loaiVaccine1" prefWidth="152.80001831054688" text="Loại Vaccine" />
                             <TableColumn fx:id="tc_ngayLan1" prefWidth="150.39996337890625" text="Ngày" />
-                        <TableColumn prefWidth="208.79998779296875" text="Địa Điểm" />
+                            <TableColumn fx:id="tc_diaDiem" prefWidth="208.79998779296875" text="Địa Điểm" />
                         </columns>
                     </TableView>
                </children>
