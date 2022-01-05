@@ -21,10 +21,10 @@
                 <TableColumn id="tc_HoVaTen" fx:id="col_hoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
                 <TableColumn id="tc_Tuoi" fx:id="col_cmt" prefWidth="109.0" text="CMT" />
                 <TableColumn id="tc_DiaChi" fx:id="col_ngaySinh" prefWidth="95.0" text="Ngày sinh" />
-                <TableColumn id="tc_ChuHo" fx:id="col_gioiTinh" minWidth="0.0" prefWidth="79.0" text="Giới tính" />
-                <TableColumn id="tc_MaHo" fx:id="col_diaChi" minWidth="0.0" prefWidth="157.0" text="Địa chỉ" />
-            <TableColumn fx:id="col_ngheNghiep" prefWidth="104.0" text="Nghề nghiệp" />
-            <TableColumn fx:id="col_status" prefWidth="120.0" text="status" />
+                <TableColumn id="tc_ChuHo" fx:id="col_gioiTinh" minWidth="0.0" prefWidth="129.0" text="Giới tính" />
+                <TableColumn id="tc_MaHo" fx:id="col_diaChi" minWidth="0.0" prefWidth="118.0" text="Địa chỉ" />
+            <TableColumn fx:id="col_ngheNghiep" prefWidth="120.0" text="Nghề nghiệp" />
+            <TableColumn fx:id="col_status" prefWidth="101.0" text="status" />
             </columns>
         </TableView>
         <GridPane layoutX="26.0" layoutY="128.0" prefHeight="31.0" prefWidth="728.0">
