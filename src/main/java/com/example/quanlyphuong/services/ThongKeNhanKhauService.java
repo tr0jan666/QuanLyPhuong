@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class ThongKeNhanKhauService {
-
+    //TODO @Vuong clean code: move all function to NhanKhauService
     /*
      * Ham lay ra 1 nhan khau trong db bang chung minh thu
      *
@@ -118,6 +118,12 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                if(nhanKhau.getGioiTinh()==1){
+                    nhanKhau.setGioiTinhString("Nam");
+                }
+                else{
+                    nhanKhau.setGioiTinhString("Nữ");
+                }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
@@ -132,7 +138,6 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setQuocTich(rs.getString("quocTich"));
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
-                System.out.println(nhanKhau.getHo_ten());
 
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
@@ -161,9 +166,7 @@ public class ThongKeNhanKhauService {
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
-      /*  if (!gender.equalsIgnoreCase("Toan Bo")) {
-            query += " AND nhan_khau.gioiTinh = '" + gender + "'";
-        }*/
+
          if(gender.equalsIgnoreCase("Nam")){
             int gt = 1 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
@@ -206,6 +209,12 @@ public class ThongKeNhanKhauService {
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                if(nhanKhau.getGioiTinh()==1){
+                    nhanKhau.setGioiTinhString("Nam");
+                }
+                else{
+                    nhanKhau.setGioiTinhString("Nữ");
+                }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));

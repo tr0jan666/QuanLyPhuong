@@ -94,7 +94,7 @@ public class MenuDichTeController implements Initializable {
 
     @FXML
     void setTrangChu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/main-dich-te.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/Home-dich-te.fxml"));
         Pane trangchuPane = (Pane) loader.load();
         borderPane.setCenter(trangchuPane);
 
@@ -104,7 +104,7 @@ public class MenuDichTeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
 
-            Pane mainDichTe = FXMLLoader.load(QuanLyNhanKhauApplication.class.getResource("dich_te/main-dich-te.fxml"));
+            Pane mainDichTe = FXMLLoader.load(QuanLyNhanKhauApplication.class.getResource("dich_te/Home-dich-te.fxml"));
             borderPane.setCenter(mainDichTe);
 
 
