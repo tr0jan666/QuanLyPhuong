@@ -60,7 +60,7 @@ public class TestCovidController implements Initializable{
     private TextField tf_diaDiem;
 
     @FXML
-    private DatePicker dp_thoiGianTest;
+    private Date dp_thoiGianTest;
 
     @FXML
     public ComboBox<String> cb_ketQua;
@@ -105,12 +105,12 @@ public class TestCovidController implements Initializable{
 
         observableListHoKhauBeans = FXCollections.observableList(listNhanKhauTestCovid);
 
-        col_id.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getMaNhanKhau()));
+        col_id.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getNhanKhauBean().getNhanKhauModel().getMaNhanKhau()));
         col_hoVaTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
         col_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
         col_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getDiaDiemTest()));
-        col_thoiGian.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getThoiDiemTest()));
-        col_ketQua.setCellValueFactory(bean-> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getKetQua()));
+        col_thoiGian.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getThoiDiemTest()));
+        col_ketQua.setCellValueFactory(bean-> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getKetQua()));
         tbv_testCovid.setItems(observableListHoKhauBeans);
 
     }
@@ -157,7 +157,7 @@ public class TestCovidController implements Initializable{
     }
     boolean isMissingField(){
         if ( tf_cccd.getText().isBlank() || tf_hoVaTen.getText().isEmpty() || tf_diaDiem.getText().isEmpty()
-                || (dp_thoiGianTest.getValue() == null) || cb_ketQua.getItems().isEmpty()){
+                || (dp_thoiGianTest.getClass() == null) || cb_ketQua.getItems().isEmpty()){
             return true;
         }
         return false;
@@ -167,7 +167,7 @@ public class TestCovidController implements Initializable{
         tf_cccd.clear();
         tf_hoVaTen.clear();
         tf_diaDiem.clear();
-        dp_thoiGianTest.setValue(null);
+        dp_thoiGianTest.setTime(0);
         cb_ketQua.setValue(null);
     }
 
@@ -194,10 +194,10 @@ public class TestCovidController implements Initializable{
             missingAlert.show();
         }
 
-        TestCovidModel testCovidModel = new TestCovidModel();
+        TestCovidModel testCovidModel = new TestCovidModel() ;
         testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
-        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        testCovidModel.setKetQua(cb_ketQua.getItems());
+        testCovidModel.setThoiDiemTest(dp_thoiGianTest);
+        testCovidModel.setKetQua(Integer.parseInt(cb_ketQua.getValue()));
 
         testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
         testCovidBean.setTestCovidModel(testCovidModel);
@@ -221,8 +221,13 @@ public class TestCovidController implements Initializable{
         tf_hoVaTen.setText(bean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
         tf_cccd.setText(bean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
         tf_diaDiem.setText(bean.getTestCovidModel().getDiaDiemTest());
-        dp_thoiGianTest.setValue(LocalDate.parse(bean.getTestCovidModel().getThoiDiemTest(),formatter));
-        cb_ketQua.setItems(String.valueOf(bean.getTestCovidModel().getKetQua()));
+        dp_thoiGianTest.setTime(bean.getTestCovidModel().getThoiDiemTest().getTime());
+        if(bean.getTestCovidModel().getKetQua() == 1){
+            cb_ketQua.setItems(FXCollections.observableArrayList("Âm tính"));
+        }
+        else{
+            cb_ketQua.setItems(FXCollections.observableArrayList("Dương tính"));
+        }
 
         tf_cccd.setDisable(true);
         tf_hoVaTen.setDisable(true);

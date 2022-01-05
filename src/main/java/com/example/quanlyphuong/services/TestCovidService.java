@@ -34,26 +34,10 @@ public class TestCovidService {
                 System.out.println(rs.getString("hoTen"));
                 nhanKhau.setID(rs.getInt("nhan_khau.ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
-                nhanKhau.setNamSinh(rs.getDate("namSinh"));
-                nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
 
-                chungMinhThuModel.setIdNhanKhau(rs.getInt("chung_minh_thu.idNhanKhau"));
+
                 chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
-                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
-
-                nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
-                nhanKhau.setDanToc(rs.getString("danToc"));
-                nhanKhau.setTonGiao(rs.getString("tonGiao"));
-                nhanKhau.setQuocTich(rs.getString("quocTich"));
-                nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
-
-                testCovidModel.setIDTest(rs.getInt("cach_ly.ID"));
-                testCovidModel.setDiaDiemTest(rs.getString("noiCachLy"));
-                testCovidModel.setThoiDiemTest(rs.getString("thoiGianBatDau"));
-                testCovidModel.setKetQua(rs.getString("thoiGianKetThuc"));
 
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
@@ -98,8 +82,9 @@ public class TestCovidService {
 
             // cai dat gia tri
             preparedStatement.setInt(1,bean.getNhanKhauBean().getNhanKhauModel().getID());
-            preparedStatement.setString(2, bean.getTestCovidModel().getThoiDiemTest());
-            preparedStatement.setString(3, bean.getTestCovidModel().getKetQua());
+            long time = bean.getTestCovidModel().getThoiDiemTest().getTime();
+            preparedStatement.setDate(2, new java.sql.Date(time));
+            preparedStatement.setInt(3, bean.getTestCovidModel().getKetQua());
             preparedStatement.setString(4, bean.getTestCovidModel().getDiaDiemTest());
 
             preparedStatement.executeUpdate();
