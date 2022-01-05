@@ -6,6 +6,7 @@ import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.models.CachLyModel;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
+import com.example.quanlyphuong.models.SimpleResult;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -76,7 +77,7 @@ public class CachLyService {
         return list;
     }
 
-    public void deleteCachLy(CachLyBean bean){
+    public SimpleResult deleteCachLy(CachLyBean bean){
         int idCachLy= bean.getCachLyModel().getID();
         try{
             Connection connection = MySQLConnector.getConnection();
@@ -84,30 +85,36 @@ public class CachLyService {
             String query = "DELETE FROM cach_ly WHERE cach_ly.ID =  "+ idCachLy;
 
             statement.executeUpdate(query);
-        }catch(Exception mysqlException){
+            return new SimpleResult(true, "xóa thành công");
+
+        }catch(Exception e){
 //            this.exceptionHandle(mysqlException.getMessage());
-            System.out.println(mysqlException);
+            return new SimpleResult(false, e.getMessage());
+
         }
     }
-    public void updateCachLy(CachLyBean bean,String noiCachLy, String start, String end, int mucdo) throws SQLException {
-        Connection connection = MySQLConnector.getConnection();
-        Statement statement = connection.createStatement();
+    public SimpleResult updateCachLy(int id, String noiCachLy, String start, String end, int mucdo) throws SQLException {
+        try {
+            Connection connection = MySQLConnector.getConnection();
+            Statement statement = connection.createStatement();
 
-        String query = "UPDATE cach_ly SET noiCachLy = '" + noiCachLy+
-                "',thoiGianBatDau ='" + start +"'" +
-                ",thoiGianKetThuc = '"+end+
-                "',mucDoCachLy = " + String.valueOf(mucdo)
-                +" WHERE idNhanKhau = " + String.valueOf(bean.getNhanKhauBean().getNhanKhauModel().getID())+"";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+            String query = "UPDATE cach_ly SET noiCachLy = '" + noiCachLy +
+                    "',thoiGianBatDau ='" + start + "'" +
+                    ",thoiGianKetThuc = '" + end +
+                    "',mucDoCachLy = " + String.valueOf(mucdo)
+                    + " WHERE idNhanKhau = " + id + "";
 
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-        connection.close();
-
-        System.out.println("Cập nhanapj thành công");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            return new SimpleResult(true, "cap nhập thành công");
+        }catch (Exception e){
+            return new SimpleResult(false, e.getMessage());
+        }
     }
-    public void addCachLy(CachLyBean bean) throws SQLException{
+    public SimpleResult addCachLy(CachLyBean bean) throws SQLException{
         try{
             Connection connection = MySQLConnector.getConnection();
             Statement statement = connection.createStatement();
@@ -129,9 +136,11 @@ public class CachLyService {
             preparedStatement.close();
             connection.close();
             System.out.println("them thanh cong");
-        }catch(Exception mysqlException){
-//            this.exceptionHandle(mysqlException.getMessage());
-            System.out.println(mysqlException);
+            return new SimpleResult(true, "thêm thành công");
+
+        }catch(Exception e){
+            return new SimpleResult(false, e.getMessage());
+
         }
     }
 }

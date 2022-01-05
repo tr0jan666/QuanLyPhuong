@@ -19,9 +19,10 @@
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="56.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="180.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="58.33331298828125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.6666564941406" minWidth="10.0" prefWidth="86.66668701171875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="180.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="79.6666259765625" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -31,7 +32,7 @@
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <TextField fx:id="tfCCCD" focusTraversable="false" onAction="#timNhanKhauBean" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfCCCD" focusTraversable="false" onAction="#timNhanKhauBean" prefHeight="25.0" prefWidth="148.0" promptText="vd: 123456" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tfHoTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tfDiaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="CCCD" GridPane.rowIndex="1">
@@ -42,30 +43,31 @@
             <font>
                <Font size="13.0" />
             </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian bắt đầu" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian bắt đầu" GridPane.columnIndex="3" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
             </font></Label>
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Thời gian kết thúc" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Thời gian kết thúc" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
             </font></Label>
-            <DatePicker fx:id="tfStart" focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <DatePicker fx:id="tfStart" focusTraversable="false" prefHeight="26.0" prefWidth="251.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                 <GridPane.margin>
 
                 </GridPane.margin></DatePicker>
-            <DatePicker fx:id="tfEnd" focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <DatePicker fx:id="tfEnd" focusTraversable="false" prefHeight="26.0" prefWidth="249.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
             </font></Label>
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="136.0" text="Mức độ" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label alignment="CENTER" prefHeight="16.0" prefWidth="136.0" text="Mức độ" GridPane.columnIndex="3" GridPane.rowIndex="3">
             <font>
                <Font size="13.0" />
             </font></Label>
 
-         <TextField fx:id="tfMucDo" focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-         <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#reFresh" text="refresh" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+         <TextField fx:id="tfMucDo" focusTraversable="false" promptText="vd: 0, 1, 2, 3, 4, 5" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+         <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#reFreshThongTin" text="refresh" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+         <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" text="check" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         </children>
     </GridPane>
     <AnchorPane prefHeight="455.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
