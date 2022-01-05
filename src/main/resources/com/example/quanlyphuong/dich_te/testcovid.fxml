@@ -41,30 +41,30 @@
             <TextField focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="CCCD" GridPane.rowIndex="1">
-            <font>
-               <Font size="13.0" />
-            </font></Label>
+                <font>
+                    <Font size="13.0" />
+                </font></Label>
             <Label text="Địa điểm" GridPane.rowIndex="3">
-            <font>
-               <Font size="13.0" />
-            </font></Label>
+                <font>
+                    <Font size="13.0" />
+                </font></Label>
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian test" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
-            <font>
-               <Font size="13.0" />
-            </font></Label>
+                <font>
+                    <Font size="13.0" />
+                </font></Label>
             <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="187.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                 <GridPane.margin>
 
                 </GridPane.margin></DatePicker>
             <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
-            <font>
-               <Font size="13.0" />
-            </font></Label>
+                <font>
+                    <Font size="13.0" />
+                </font></Label>
             <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="136.0" text="Kết quả" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="3">
-            <font>
-               <Font size="13.0" />
-            </font></Label>
-         <ComboBox fx:id="cb_ketQua" prefHeight="26.0" prefWidth="191.0" promptText="Lựa chọn" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <font>
+                    <Font size="13.0" />
+                </font></Label>
+            <ComboBox fx:id="cb_ketQua" prefHeight="26.0" prefWidth="191.0" promptText="Lựa chọn" GridPane.columnIndex="3" GridPane.rowIndex="3" />
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="369.0" prefHeight="430.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
@@ -81,7 +81,7 @@
             </TableView>
         </children>
     </AnchorPane>
-    <Button graphicTextGap="11.0" layoutX="842.0" layoutY="60.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="60.0">
+    <Button fx:id="btn_Them" graphicTextGap="11.0" layoutX="842.0" layoutY="60.0" mnemonicParsing="false" onAction="#themTestCovid" prefHeight="30.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="60.0">
         <graphic>
             <Group>
                 <children>
