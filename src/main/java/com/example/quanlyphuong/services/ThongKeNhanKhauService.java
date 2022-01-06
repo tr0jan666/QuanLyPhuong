@@ -30,7 +30,7 @@ public class ThongKeNhanKhauService {
             int idNhanKhau = -1;
             while (rs.next()) {
                 NhanKhauModel nhanKhau = new NhanKhauModel();
-                ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
+                ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
 
@@ -47,6 +47,7 @@ public class ThongKeNhanKhauService {
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
 
+                nhanKhauBean.setNhanKhauModel(nhanKhau);
             }
             preparedStatement.close();
 //            if (idNhanKhau > 0) {
