@@ -28,7 +28,7 @@ public class ThongKeNhanKhauService {
             ResultSet rs = preparedStatement.executeQuery();
             int idNhanKhau = -1;
             while (rs.next()) {
-                NhanKhauModel nhanKhau = nhanKhauBean.getNhanKhauModel();
+                NhanKhauModel nhanKhau = new NhanKhauModel();
                 ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
@@ -48,6 +48,7 @@ public class ThongKeNhanKhauService {
 //                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
 //                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
 //                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
+                nhanKhauBean.setNhanKhauModel(nhanKhau);
             }
             preparedStatement.close();
 //            if (idNhanKhau > 0) {
