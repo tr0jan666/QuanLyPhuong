@@ -10,18 +10,27 @@ import com.example.quanlyphuong.services.StringService;
 import com.example.quanlyphuong.services.TestCovidService;
 import com.example.quanlyphuong.services.ThongKeNhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 
 import javafx.event.ActionEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -49,6 +58,9 @@ public class TestCovidController implements Initializable {
 
     @FXML
     private Button btn_Xoa;
+
+    @FXML
+    private Button btn_kiemTra;
 
     @FXML
     private TextField tf_cccd;
@@ -113,8 +125,21 @@ public class TestCovidController implements Initializable {
         col_hoVaTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
         col_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
         col_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getDiaDiemTest()));
-        col_thoiGian.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getThoiDiemTest()));
-        col_ketQua.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getKetQua()));
+        col_thoiGian.setCellValueFactory(bean -> new ReadOnlyObjectWrapper( bean.getValue().getTestCovidModel().getThoiDiemTest()));
+        col_ketQua.setCellValueFactory(bean -> {
+            int gender = bean.getValue().getTestCovidModel().getKetQua();
+            String genderAsString;
+            if(gender == 0)
+            {
+                genderAsString = "Âm tính";
+            }
+            else
+            {
+                genderAsString = "Dương tính";
+            }
+
+            return new ReadOnlyStringWrapper(genderAsString);
+        });
         tbv_testCovid.setItems(observableListHoKhauBeans);
 
     }
@@ -145,15 +170,6 @@ public class TestCovidController implements Initializable {
         testCovidService = new TestCovidService();
         nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(tf_cccd.getText());
 
-        for (TestCovidBean cl : listNhanKhauTestCovid) {
-            if (cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tf_cccd.getText())) {
-                Alert thongBaoChung = new Alert(Alert.AlertType.WARNING);
-                thongBaoChung.setContentText("Người này hiện đã test ");
-                thongBaoChung.show();
-                clearTf();
-                return;
-            }
-        }
 
         if (isMissingField()) {
             Alert missingAlert = new Alert(Alert.AlertType.WARNING);
@@ -163,7 +179,7 @@ public class TestCovidController implements Initializable {
 
         TestCovidModel testCovidModel = new TestCovidModel();
         testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
-        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         if (cb_ketQua.getValue() == "Âm tính") {
             testCovidModel.setKetQua(0);
         } else if (cb_ketQua.getValue() == "Dương tính") {
@@ -203,11 +219,73 @@ public class TestCovidController implements Initializable {
     }
 
     @FXML
+    void checkCCCD(ActionEvent event) throws IOException {
+        thongKeNhanKhauService = new ThongKeNhanKhauService();
+        String cmt = tf_cccd.getText();
+        System.out.println(cmt);
+
+        nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(cmt);
+        if(nhanKhauTestCovid == null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
+
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get() == ButtonType.OK){
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setTitle("ABC");
+                stage.setScene(new Scene(root1));
+                stage.show();
+                return;
+            } else {
+                return;
+            }
+
+
+        }
+        //else{
+           // tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
+        //}
+
+
+    }
+
+    @FXML
     void reFreshThongTin(ActionEvent event) {
         clearTf();
         tf_cccd.setDisable(false);
         tf_diaDiem.setDisable(false);
         tf_hoVaTen.setDisable(false);
         btn_Them.setDisable(false);
+    }
+
+    @FXML
+    void xoa(ActionEvent event) {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setContentText("Hãy nhấn OK để thực hiện lệnh xóa, nhấn hủy để hủy lệnh xóa!");
+        alert.setHeaderText("Bạn có muốn xóa hàng này không?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            // delete from database
+            TestCovidBean bean = tbv_testCovid.getSelectionModel().getSelectedItem();
+            testCovidService = new TestCovidService();
+            testCovidService.deleteTestCovid(bean);
+            refresh();
+            Alert thanhCongAlert = new Alert(Alert.AlertType.INFORMATION);
+            thanhCongAlert.setContentText("Xoa Thanh Cong");
+            thanhCongAlert.show();
+            reFreshThongTin(event);
+        } else if (result.get() == ButtonType.CANCEL) {
+            reFreshThongTin(event);
+            alert.close();
+        }
+
     }
 }

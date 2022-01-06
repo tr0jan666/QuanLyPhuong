@@ -25,7 +25,7 @@
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="56.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="180.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
         </columnConstraints>
@@ -37,9 +37,9 @@
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <TextField fx:id="tf_cccd" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tf_hoVaTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tf_diaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tf_cccd" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" promptText="Số trên thẻ căn cước công dân" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tf_hoVaTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" promptText="Họ và tên người được test" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tf_diaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" promptText="Tên nơi thực hiện test" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="CCCD" GridPane.rowIndex="1">
                 <font>
                     <Font size="13.0" />
@@ -48,11 +48,11 @@
                 <font>
                     <Font size="13.0" />
                 </font></Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian test" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian test" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                 <font>
                     <Font size="13.0" />
                 </font></Label>
-            <DatePicker fx:id="dp_thoiGianTest" focusTraversable="false" prefHeight="26.0" prefWidth="187.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <DatePicker fx:id="dp_thoiGianTest" focusTraversable="false" prefHeight="26.0" prefWidth="187.0" promptText="Tháng / Ngày / Năm" GridPane.columnIndex="3" GridPane.rowIndex="2">
                 <GridPane.margin>
 
                 </GridPane.margin></DatePicker>
@@ -65,6 +65,7 @@
                     <Font size="13.0" />
                 </font></Label>
             <ComboBox fx:id="cb_ketQua" prefHeight="26.0" prefWidth="191.0" promptText="Lựa chọn" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <Button fx:id="btn_kiemTra" alignment="CENTER" mnemonicParsing="false" onAction="#checkCCCD" text="Kiểm tra" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="369.0" prefHeight="430.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
@@ -92,7 +93,7 @@
         <font>
             <Font name="Arial Bold" size="13.0" />
         </font></Button>
-    <Button graphicTextGap="17.0" layoutX="842.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="100.0">
+    <Button fx:id="btn_Xoa" graphicTextGap="17.0" layoutX="842.0" layoutY="100.0" mnemonicParsing="false" onAction="#xoa" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="100.0">
         <graphic>
             <Group>
                 <children>

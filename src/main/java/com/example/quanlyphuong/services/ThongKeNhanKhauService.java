@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.beans.TestCovidBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.models.*;
 
@@ -28,8 +29,8 @@ public class ThongKeNhanKhauService {
             ResultSet rs = preparedStatement.executeQuery();
             int idNhanKhau = -1;
             while (rs.next()) {
-                NhanKhauModel nhanKhau = nhanKhauBean.getNhanKhauModel();
-                ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
+                NhanKhauModel nhanKhau = new NhanKhauModel();
+                ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
 
@@ -43,11 +44,9 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setSoHoChieu(rs.getString("soHoChieu"));
                 nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
-                // con nhieu nua
-//                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-//                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-//                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
-//                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
+                nhanKhauBean.setNhanKhauModel(nhanKhau);
+                nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
+
             }
             preparedStatement.close();
 //            if (idNhanKhau > 0) {

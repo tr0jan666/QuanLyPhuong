@@ -62,7 +62,7 @@ public class TestCovidService {
         return list;
     }
 
-    public void deleteTestCovid( TestCovidBean bean){
+    public SimpleResult deleteTestCovid( TestCovidBean bean){
         int idTestCovid= bean.getTestCovidModel().getIDTest();
         try{
             Connection connection = MySQLConnector.getConnection();
@@ -70,9 +70,12 @@ public class TestCovidService {
             String query = "DELETE FROM test WHERE test.ID =  "+ idTestCovid;
 
             statement.executeUpdate(query);
-        }catch(Exception mysqlException){
+            return new SimpleResult(true, "Kết quả test đã được xóa");
+
+        }catch(Exception e){
 //            this.exceptionHandle(mysqlException.getMessage());
-            System.out.println(mysqlException);
+            return new SimpleResult(false, e.getMessage());
+
         }
     }
 
