@@ -1,20 +1,16 @@
 package com.example.quanlyphuong.controllers.dich_te;
 
 import com.example.quanlyphuong.beans.CachLyBean;
-import com.example.quanlyphuong.beans.HoKhauBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
-import com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController;
+import com.example.quanlyphuong.helper.CommonUtils;
+import com.example.quanlyphuong.helper.constants.MucDoCachLyConstant;
 import com.example.quanlyphuong.models.CachLyModel;
-import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.CachLyService;
-import com.example.quanlyphuong.services.HoKhauService;
 import com.example.quanlyphuong.services.ThongKeNhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -48,6 +43,7 @@ public class CachLyController implements Initializable {
 //            throw new RuntimeException("Singleton FXML");
         }
     }
+
     @FXML
     private TextField tfCCCD;
 
@@ -58,13 +54,13 @@ public class CachLyController implements Initializable {
     private TextField tfDiaDiem;
 
     @FXML
-    private DatePicker tfStart;
+    private DatePicker dpStart;
 
     @FXML
-    private DatePicker tfEnd;
+    private DatePicker dpEnd;
 
     @FXML
-    private TextField tfMucDo;
+    private ComboBox<String> cbMucDo;
 
     @FXML
     private TableView<CachLyBean> tbvChiTiet;
@@ -88,7 +84,8 @@ public class CachLyController implements Initializable {
     private TableColumn<CachLyBean, String> KetThuc;
 
     @FXML
-    private TableColumn<CachLyBean, Integer> MucDo;
+    private TableColumn<CachLyBean,
+            String> MucDo;
 
     @FXML
     private Button btnThem;
@@ -103,16 +100,14 @@ public class CachLyController implements Initializable {
     private Button btnCheckCCCD;
 
 
-
-
     List<CachLyBean> listNhanKhauCachLy;
     CachLyService cachLyService;
     ObservableList<CachLyBean> observableListHoKhauBeans;
     ThongKeNhanKhauService thongKeNhanKhauService;
     NhanKhauBean nhanKhauCachLy;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public void refresh(){
+    public void refresh() {
         cachLyService = new CachLyService();
         listNhanKhauCachLy = cachLyService.getListNhanKhauCachLy();
 
@@ -123,11 +118,18 @@ public class CachLyController implements Initializable {
         CCCD.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
         DiaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getCachLyModel().getDiaDiemCachLy()));
         BatDau.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getCachLyModel().getThoiGianBatDau()));
-        MucDo.setCellValueFactory(bean-> new ReadOnlyObjectWrapper<>(bean.getValue().getCachLyModel().getMucDo()));
+        MucDo.setCellValueFactory(bean -> {
+            String mucDoString = CommonUtils.getMucDoString(bean.getValue().getCachLyModel().getMucDo());
+            return new ReadOnlyObjectWrapper<String>(mucDoString);
+        });
         KetThuc.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getCachLyModel().getThoiGianKetThuc()));
         tbvChiTiet.setItems(observableListHoKhauBeans);
 
+        cbMucDo.setItems(FXCollections.observableList(MucDoCachLyConstant.LIST_MUC_DO_STRING));
+        cbMucDo.setValue(MucDoCachLyConstant.LIST_MUC_DO_STRING.get(0));
+
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         refresh();
@@ -158,6 +160,7 @@ public class CachLyController implements Initializable {
         }
 
     }
+
     @FXML
     void checkCCCD(ActionEvent event) throws IOException {
         thongKeNhanKhauService = new ThongKeNhanKhauService();
@@ -165,13 +168,13 @@ public class CachLyController implements Initializable {
         System.out.println(cmt);
 
         nhanKhauCachLy = thongKeNhanKhauService.getNhanKhau(cmt);
-        if(nhanKhauCachLy == null){
+        if (nhanKhauCachLy == null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
 
             Optional<ButtonType> option = alert.showAndWait();
 
-            if (option.get() == ButtonType.OK){
+            if (option.get() == ButtonType.OK) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
@@ -182,35 +185,43 @@ public class CachLyController implements Initializable {
                 stage.show();
                 return;
             } else {
-               return;
+                return;
             }
 
 
-        }else{
+        } else {
             tfHoTen.setText(nhanKhauCachLy.getNhanKhauModel().getHo_ten());
         }
 
 
     }
+
     @FXML
     void timNhanKhauBean(ActionEvent event) {
 
     }
-    boolean isMissingField(){
-        if ( tfCCCD.getText().isBlank() || tfHoTen.getText().isEmpty() || tfDiaDiem.getText().isEmpty()
-            || (tfStart.getValue() == null) || tfMucDo.getText().isEmpty() || (tfEnd.getValue() == null)){
+
+    boolean isValidateWrong() {
+        //validate thoi gian
+        if (dpStart.getValue().isAfter(dpEnd.getValue()))
+            return true;
+        if (tfCCCD.getText().isBlank() || tfHoTen.getText().isEmpty() || tfDiaDiem.getText().isEmpty()
+                || (dpStart.getValue() == null) ||
+//                tfMucDo.getText().isEmpty() ||
+                (dpEnd.getValue() == null)) {
             return true;
         }
         return false;
 
     }
-    void clearTf(){
+
+    void clearTf() {
         tfCCCD.clear();
         tfHoTen.clear();
         tfDiaDiem.clear();
-        tfMucDo.clear();
-        tfStart.setValue(null);
-        tfEnd.setValue(null);
+//        tfMucDo.clear();
+        dpStart.setValue(null);
+        dpEnd.setValue(null);
     }
 
     @FXML
@@ -220,8 +231,8 @@ public class CachLyController implements Initializable {
         cachLyService = new CachLyService();
         nhanKhauCachLy = thongKeNhanKhauService.getNhanKhau(tfCCCD.getText());
 
-        for(CachLyBean cl: listNhanKhauCachLy){
-            if(cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tfCCCD.getText())){
+        for (CachLyBean cl : listNhanKhauCachLy) {
+            if (cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tfCCCD.getText())) {
                 Alert thongBaoTrung = new Alert(Alert.AlertType.WARNING);
                 thongBaoTrung.setContentText("Người này hiện đang cách ly");
                 thongBaoTrung.show();
@@ -230,48 +241,52 @@ public class CachLyController implements Initializable {
             }
         }
 
-            if(isMissingField()){
-                Alert missingAlert = new Alert(Alert.AlertType.WARNING);
-                missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
-                missingAlert.show();
+        if (isValidateWrong()) {
+            Alert missingAlert = new Alert(Alert.AlertType.WARNING);
+            missingAlert.setContentText("Vui lòng điền đầy đủ và chính xác thông tin thông tin");
+            missingAlert.show();
+        } else {
+
+            CachLyModel cachLyModel = new CachLyModel();
+            cachLyModel.setDiaDiemCachLy(tfDiaDiem.getText());
+//        cachLyModel.setMucDo(Integer.parseInt(tfMucDo.getText()));
+            cachLyModel.setMucDo(CommonUtils.getMucDoInt(cbMucDo.getValue()));
+
+            cachLyModel.setThoiGianBatDau(dpStart.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            cachLyModel.setThoiGianKetThuc(dpEnd.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+            cachLyBean.setNhanKhauBean(nhanKhauCachLy);
+            cachLyBean.setCachLyModel(cachLyModel);
+
+            Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
+            alertCn.setContentText("Bạn có thêm người cách ly");
+            Optional<ButtonType> confirmCn = alertCn.showAndWait();
+
+            if (confirmCn.get() == ButtonType.OK) {
+                SimpleResult rs = cachLyService.addCachLy(cachLyBean);
+                if (rs.isSuccess()) {
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setContentText("Thêm thành công");
+
+
+                    reFreshThongTin(event);
+                    alertSuccess.show();
+                    refresh();
+                } else {
+                    Alert alertFailed = new Alert(Alert.AlertType.INFORMATION);
+                    alertFailed.setContentText(rs.getMessage());
+                    alertFailed.show();
+
+                    reFreshThongTin(event);
+                    refresh();
+                }
+            } else {
+                // khong reset thong tin khi user cancel confirm
+
+//                reFreshThongTin(event);
+                return;
             }
-        CachLyModel cachLyModel = new CachLyModel();
-        cachLyModel.setDiaDiemCachLy(tfDiaDiem.getText());
-        cachLyModel.setMucDo(Integer.parseInt(tfMucDo.getText()));
-        cachLyModel.setThoiGianBatDau(tfStart.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        cachLyModel.setThoiGianKetThuc(tfEnd.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
-        cachLyBean.setNhanKhauBean(nhanKhauCachLy);
-        cachLyBean.setCachLyModel(cachLyModel);
-
-        Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
-        alertCn.setContentText("Bạn có thêm người cách ly");
-        Optional<ButtonType> confirmCn = alertCn.showAndWait();
-
-        if(confirmCn.get() == ButtonType.OK){
-            SimpleResult rs = cachLyService.addCachLy(cachLyBean);
-            if(rs.isSuccess()){
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setContentText("Thêm thành công");
-
-
-                reFreshThongTin(event);
-                alertSuccess.show();
-                refresh();
-            }else{
-                Alert alertFailed = new Alert(Alert.AlertType.INFORMATION);
-                alertFailed.setContentText(rs.getMessage());
-                alertFailed.show();
-
-
-                reFreshThongTin(event);
-                refresh();
-            }
-        }else {
-            reFreshThongTin(event);
-            return;
         }
-
 
 
     }
@@ -284,10 +299,10 @@ public class CachLyController implements Initializable {
         tfHoTen.setText(bean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
         tfCCCD.setText(bean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
         tfDiaDiem.setText(bean.getCachLyModel().getDiaDiemCachLy());
-        tfStart.setValue(LocalDate.parse(bean.getCachLyModel().getThoiGianBatDau(),formatter));
-        tfEnd.setValue(LocalDate.parse(bean.getCachLyModel().getThoiGianKetThuc(),formatter));
-        tfMucDo.setText(String.valueOf(bean.getCachLyModel().getMucDo()));
-
+        dpStart.setValue(LocalDate.parse(bean.getCachLyModel().getThoiGianBatDau(), formatter));
+        dpEnd.setValue(LocalDate.parse(bean.getCachLyModel().getThoiGianKetThuc(), formatter));
+//        tfMucDo.setText(String.valueOf(bean.getCachLyModel().getMucDo()));
+        cbMucDo.setValue(CommonUtils.getMucDoString(bean.getCachLyModel().getMucDo()));
         tfCCCD.setDisable(true);
         tfHoTen.setDisable(true);
 
@@ -299,46 +314,47 @@ public class CachLyController implements Initializable {
         cachLyService = new CachLyService();
         CachLyBean cachLyBean = tbvChiTiet.getSelectionModel().getSelectedItem();
         String diadiem = tfDiaDiem.getText();
-        int mucdo = Integer.parseInt(tfMucDo.getText());
-        String start = tfStart.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String end = tfEnd.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        int mucdo = CommonUtils.getMucDoInt(cbMucDo.getValue());
+        String start = dpStart.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String end = dpEnd.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        System.out.println("start: "+ start);
-        System.out.println("end: "+end);
+        System.out.println("start: " + start);
+        System.out.println("end: " + end);
 
-        if(isMissingField()){
+        if (isValidateWrong()) {
             Alert missingAlert = new Alert(Alert.AlertType.WARNING);
-            missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
+            missingAlert.setContentText("Vui lòng điền đầy đủ và chính xác thông tin");
             missingAlert.show();
         }
-
-        Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
-        alertCn.setContentText("Bạn có muốn cập nhập");
-        Optional<ButtonType> confirmCn = alertCn.showAndWait();
-        if(confirmCn.get() == ButtonType.OK){
-            SimpleResult rs = cachLyService.updateCachLy(cachLyBean.getNhanKhauBean().getNhanKhauModel().getID(), diadiem, start, end, mucdo);
-            if(rs.isSuccess()){
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setContentText("Cập nhập thành công");
-
-
-                reFreshThongTin(event);
-                alertSuccess.show();
-                refresh();
-            }else{
-                Alert alertFailed = new Alert(Alert.AlertType.INFORMATION);
-                alertFailed.setContentText(rs.getMessage());
-                alertFailed.show();
+        else {
+            Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
+            alertCn.setContentText("Bạn có muốn cập nhập");
+            Optional<ButtonType> confirmCn = alertCn.showAndWait();
+            if (confirmCn.get() == ButtonType.OK) {
+                SimpleResult rs = cachLyService.updateCachLy(cachLyBean.getNhanKhauBean().getNhanKhauModel().getID(), diadiem, start, end, mucdo);
+                if (rs.isSuccess()) {
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setContentText("Cập nhập thành công");
 
 
-                reFreshThongTin(event);
-                refresh();
+                    reFreshThongTin(event);
+                    alertSuccess.show();
+                    refresh();
+                } else {
+                    Alert alertFailed = new Alert(Alert.AlertType.INFORMATION);
+                    alertFailed.setContentText(rs.getMessage());
+                    alertFailed.show();
+
+
+                    reFreshThongTin(event);
+                    refresh();
+                }
+            } else {
+                // khong reset thong tin khi user cancel confirm
+//            reFreshThongTin(event);
+                return;
             }
-        }else {
-            reFreshThongTin(event);
-            return;
         }
-
 
 
 
@@ -353,7 +369,6 @@ public class CachLyController implements Initializable {
         btnThem.setDisable(false);
 
     }
-
 
 
 }
