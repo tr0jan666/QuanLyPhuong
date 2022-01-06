@@ -202,9 +202,13 @@ public class KhaiBaoController implements Initializable {
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         KhaiBaoBean khaiBaoBean = new KhaiBaoBean();
         khaiBaoService = new KhaiBaoService();
-        nhanKhauKhaiBao = thongKeNhanKhauService.getNhanKhau(tfCCCD.getText());
-        System.out.println(nhanKhauKhaiBao.getNhanKhauModel().getHo_ten());
-
+//        nhanKhauKhaiBao = thongKeNhanKhauService.getNhanKhau(tfCCCD.getText());
+//        System.out.println(nhanKhauKhaiBao.getNhanKhauModel().getHo_ten());
+        try {
+            checkCCCD(null);
+        }catch (Exception exception) {
+            return;
+        }
         for(KhaiBaoBean cl: listNhanKhauKhaiBao){
             if(cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tfCCCD.getText())){
                 Alert thongBaoTrung = new Alert(Alert.AlertType.WARNING);
@@ -219,6 +223,7 @@ public class KhaiBaoController implements Initializable {
             Alert missingAlert = new Alert(Alert.AlertType.WARNING);
             missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
             missingAlert.show();
+            return;
         }
 
         KhaiBaoModel khaiBaoModel = new KhaiBaoModel();
