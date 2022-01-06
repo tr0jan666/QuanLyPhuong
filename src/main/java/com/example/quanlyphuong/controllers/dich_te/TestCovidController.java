@@ -60,7 +60,7 @@ public class TestCovidController implements Initializable {
     private Button btn_Xoa;
 
     @FXML
-    private Button btn_kiemTra;
+    private Button btn_check;
 
     @FXML
     private TextField tf_cccd;
@@ -179,7 +179,7 @@ public class TestCovidController implements Initializable {
 
         TestCovidModel testCovidModel = new TestCovidModel();
         testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
-        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         if (cb_ketQua.getValue() == "Âm tính") {
             testCovidModel.setKetQua(0);
         } else if (cb_ketQua.getValue() == "Dương tính") {
@@ -247,9 +247,9 @@ public class TestCovidController implements Initializable {
 
 
         }
-        //else{
-           // tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
-        //}
+        else{
+            tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
+        }
 
 
     }

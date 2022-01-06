@@ -12,10 +12,10 @@ public class QuanLyNhanKhauApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dich_te/testcovid.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), ScreenSizeConstant.LOGIN_WIDTH,ScreenSizeConstant.LOGIN_HEIGHT);
         stage.setTitle("Quản lý phường");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
     
