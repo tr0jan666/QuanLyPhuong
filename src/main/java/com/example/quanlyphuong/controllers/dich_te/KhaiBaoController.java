@@ -164,7 +164,7 @@ public class KhaiBaoController implements Initializable {
         String cmt = tfCCCD.getText();
 
         nhanKhauKhaiBao = thongKeNhanKhauService.getNhanKhau(cmt);
-        if(nhanKhauKhaiBao == null){
+        if(nhanKhauKhaiBao == null || nhanKhauKhaiBao.getNhanKhauModel() == null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
 
@@ -207,6 +207,7 @@ public class KhaiBaoController implements Initializable {
         try {
             checkCCCD(null);
         }catch (Exception exception) {
+            exception.printStackTrace();
             return;
         }
         for(KhaiBaoBean cl: listNhanKhauKhaiBao){
