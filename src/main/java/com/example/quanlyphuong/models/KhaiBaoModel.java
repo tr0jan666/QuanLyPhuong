@@ -9,12 +9,12 @@ public class KhaiBaoModel {
     private String hoTen;
     private String vungDich;
     private String bieuHien;
-    private Date ngayKhaiBao;
+    private String ngayKhaiBao;
 
     public KhaiBaoModel() {
     }
 
-    public KhaiBaoModel(int ID, String hoTen, String vungDich, String bieuHien, Date ngayKhaiBao) {
+    public KhaiBaoModel(int ID, String hoTen, String vungDich, String bieuHien, String ngayKhaiBao) {
         this.ID = ID;
         this.hoTen = hoTen;
         this.vungDich = vungDich;
@@ -54,17 +54,15 @@ public class KhaiBaoModel {
         this.bieuHien = bieuHien;
     }
 
-    public Date getNgayKhaiBao() {
+    public String getNgayKhaiBao() {
         return ngayKhaiBao;
     }
 
-    public void setNgayKhaiBao(Date ngayKhaiBao) {
+    public void setNgayKhaiBao(String ngayKhaiBao) {
         this.ngayKhaiBao = ngayKhaiBao;
     }
 
-    public void setNgayKhaiBao(String format) {
-    }
 
-    public void setNhanKhauBean(NhanKhauBean nhanKhauCachLy) {
-    }
+
+
 }

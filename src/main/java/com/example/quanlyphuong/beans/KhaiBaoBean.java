@@ -2,10 +2,11 @@ package com.example.quanlyphuong.beans;
 
 import com.example.quanlyphuong.models.CachLyModel;
 import com.example.quanlyphuong.models.KhaiBaoModel;
+import com.example.quanlyphuong.beans.NhanKhauBean;
 
 public class KhaiBaoBean {
     private NhanKhauBean nhanKhauBean;
-    private CachLyModel cachLyModel;
+
     private KhaiBaoModel khaiBaoModel;
 
     public NhanKhauBean getNhanKhauBean() {
@@ -16,13 +17,6 @@ public class KhaiBaoBean {
         this.nhanKhauBean = nhanKhauBean;
     }
 
-    public CachLyModel getCachLyModel() {
-        return cachLyModel;
-    }
-
-    public void setCachLyModel(CachLyModel cachLyModel) {
-        this.cachLyModel = cachLyModel;
-    }
 
     public KhaiBaoModel getKhaiBaoModel() {
         return khaiBaoModel;

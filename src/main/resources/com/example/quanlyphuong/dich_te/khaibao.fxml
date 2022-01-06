@@ -61,7 +61,7 @@
                <Font size="13.0" />
             </font></Label>
          <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" prefHeight="25.0" prefWidth="116.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <TextArea fx:id="taBieuHien" prefHeight="37.0" prefWidth="199.0" promptText="sốt, ho, mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="2" />
+         <TextArea fx:id="taBieuHien" prefHeight="37.0" prefWidth="199.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="2" />
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="200.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">

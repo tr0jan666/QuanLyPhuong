@@ -29,11 +29,21 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class KhaiBaoController implements Initializable {
+    public static KhaiBaoController frame;
+
+    public KhaiBaoController() {
+        if (frame == null) {
+            frame = this;
+        } else {
+//            super();
+        }
+    }
     @FXML
     private TableColumn<KhaiBaoBean, String> CCCD;
 
@@ -84,13 +94,13 @@ public class KhaiBaoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        refresh();
     }
     List<KhaiBaoBean> listNhanKhauKhaiBao;
     KhaiBaoService khaiBaoService;
     ObservableList<KhaiBaoBean> observableListHoKhauBeans;
     ThongKeNhanKhauService thongKeNhanKhauService;
-    NhanKhauBean nhanKhauCachLy;
+    NhanKhauBean nhanKhauKhaiBao;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public void refresh(){
         khaiBaoService = new KhaiBaoService();
@@ -102,7 +112,8 @@ public class KhaiBaoController implements Initializable {
         HoTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
         CCCD.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
         DiaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getKhaiBaoModel().getVungDich()));
-        thoigiankhaibao.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getKhaiBaoModel().getNgayKhaiBao().toString()));
+        //thoigiankhaibao.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getKhaiBaoModel().getNgayKhaiBao().toString()));
+        thoigiankhaibao.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getKhaiBaoModel().getNgayKhaiBao()));
         BieuHien.setCellValueFactory(bean-> new ReadOnlyObjectWrapper<>(bean.getValue().getKhaiBaoModel().getBieuHien()));
         tbvChiTiet.setItems(observableListHoKhauBeans);
     }
@@ -151,10 +162,9 @@ public class KhaiBaoController implements Initializable {
     void checkCCCD(ActionEvent event) throws IOException {
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         String cmt = tfCCCD.getText();
-//      System.out.println(cmt);
 
-        nhanKhauCachLy = thongKeNhanKhauService.getNhanKhau(cmt);
-        if(nhanKhauCachLy == null){
+        nhanKhauKhaiBao = thongKeNhanKhauService.getNhanKhau(cmt);
+        if(nhanKhauKhaiBao == null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
 
@@ -164,8 +174,8 @@ public class KhaiBaoController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
+//                stage.initModality(Modality.APPLICATION_MODAL);
+//                stage.initStyle(StageStyle.UNDECORATED);
                 stage.setTitle("Them nhan khau");
                 stage.setScene(new Scene(root1));
                 stage.show();
@@ -176,7 +186,7 @@ public class KhaiBaoController implements Initializable {
 
 
         }else{
-            tfHoTen.setText(nhanKhauCachLy.getNhanKhauModel().getHo_ten());
+            tfHoTen.setText(nhanKhauKhaiBao.getNhanKhauModel().getHo_ten());
         }
     }
     boolean isMissingField(){
@@ -192,7 +202,8 @@ public class KhaiBaoController implements Initializable {
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         KhaiBaoBean khaiBaoBean = new KhaiBaoBean();
         khaiBaoService = new KhaiBaoService();
-        nhanKhauCachLy = thongKeNhanKhauService.getNhanKhau(tfCCCD.getText());
+        nhanKhauKhaiBao = thongKeNhanKhauService.getNhanKhau(tfCCCD.getText());
+        System.out.println(nhanKhauKhaiBao.getNhanKhauModel().getHo_ten());
 
         for(KhaiBaoBean cl: listNhanKhauKhaiBao){
             if(cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tfCCCD.getText())){
@@ -209,19 +220,14 @@ public class KhaiBaoController implements Initializable {
             missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
             missingAlert.show();
         }
-//        CachLyModel cachLyModel = new CachLyModel();
-//        cachLyModel.setDiaDiemCachLy(tfDiaDiem.getText());
-//        cachLyModel.setMucDo(Integer.parseInt(tfMucDo.getText()));
-//        cachLyModel.setThoiGianBatDau(tfKhaiBao.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-//        cachLyBean.setNhanKhauBean(nhanKhauCachLy);
-//        cachLyBean.setCachLyModel(cachLyModel);
 
         KhaiBaoModel khaiBaoModel = new KhaiBaoModel();
         khaiBaoModel.setVungDich(tfDiaDiem.getText());
+
         khaiBaoModel.setNgayKhaiBao(tfKhaiBao.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         khaiBaoModel.setBieuHien(taBieuHien.getText());
 
-        khaiBaoModel.setNhanKhauBean(nhanKhauCachLy); //check
+        khaiBaoBean.setNhanKhauBean(nhanKhauKhaiBao); //check
         khaiBaoBean.setKhaiBaoModel(khaiBaoModel);
 
         Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
@@ -261,7 +267,8 @@ public class KhaiBaoController implements Initializable {
         tfHoTen.setText(bean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
         tfCCCD.setText(bean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
         tfDiaDiem.setText(bean.getKhaiBaoModel().getVungDich());
-        tfKhaiBao.setValue(LocalDate.parse(bean.getCachLyModel().getThoiGianBatDau(),formatter));
+
+        tfKhaiBao.setValue(LocalDate.parse(bean.getKhaiBaoModel().getNgayKhaiBao(),formatter));
 
         taBieuHien.setText(String.valueOf(bean.getKhaiBaoModel().getBieuHien()));
 

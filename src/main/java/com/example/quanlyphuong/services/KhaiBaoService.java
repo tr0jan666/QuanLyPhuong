@@ -4,7 +4,10 @@ import com.example.quanlyphuong.beans.KhaiBaoBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.models.*;
-
+import com.example.quanlyphuong.models.KhaiBaoModel;
+import com.example.quanlyphuong.models.ChungMinhThuModel;
+import com.example.quanlyphuong.models.NhanKhauModel;
+import com.example.quanlyphuong.models.SimpleResult;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +18,8 @@ public class KhaiBaoService {
         try {
             Connection connection = MySQLConnector.getConnection();
             String query = "SELECT * FROM khai_bao " +
-                    "INNER JOIN nhan_khau ON cach_ly.idNhanKhau = nhan_khau.ID " +
-                    "INNER JOIN cach_ly ON khai_bao.idNhanKhau =cach_ly.idNhanKhau " +
-                    "INNER JOIN chung_minh_thu ON cach_ly.idNhanKhau = chung_minh_thu.idNhanKhau";
+                    "INNER JOIN nhan_khau ON khai_bao.idNhanKhau = nhan_khau.ID " +
+                    "INNER JOIN chung_minh_thu ON khai_bao.idNhanKhau = chung_minh_thu.idNhanKhau";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -25,8 +27,6 @@ public class KhaiBaoService {
             while (rs.next()) {
                 KhaiBaoBean khaiBaoBean = new KhaiBaoBean();
                 KhaiBaoModel khaiBaoModel = new KhaiBaoModel();
-
-                CachLyModel cachLyModel = new CachLyModel();
 
                 NhanKhauBean nhanKhauBean = new NhanKhauBean();
 
@@ -52,14 +52,9 @@ public class KhaiBaoService {
                 nhanKhau.setQuocTich(rs.getString("quocTich"));
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
-                cachLyModel.setID(rs.getInt("cach_ly.ID"));
-                cachLyModel.setDiaDiemCachLy(rs.getString("noiCachLy"));
-                cachLyModel.setThoiGianBatDau(rs.getString("thoiGianBatDau"));
-                cachLyModel.setThoiGianKetThuc(rs.getString("thoiGianKetThuc"));
-                cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
 
                 khaiBaoModel.setID(rs.getInt("khai_bao.ID"));
-                khaiBaoModel.setNgayKhaiBao(rs.getDate("ngayKhaiBao"));
+                khaiBaoModel.setNgayKhaiBao(rs.getString("ngayKhaiBao"));
                 khaiBaoModel.setBieuHien(rs.getString("bieuHien"));
                 khaiBaoModel.setVungDich(rs.getString("vungDich"));
 
@@ -67,7 +62,6 @@ public class KhaiBaoService {
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
                 khaiBaoBean.setNhanKhauBean(nhanKhauBean);
-                khaiBaoBean.setCachLyModel(cachLyModel);
                 khaiBaoBean.setKhaiBaoModel(khaiBaoModel);
 
                 list.add(khaiBaoBean);
@@ -97,32 +91,12 @@ public class KhaiBaoService {
 
         }
     }
-//    public SimpleResult updateCachLy(int id, String noiCachLy, String start,  int mucdo) throws SQLException {
-//        try {
-//            Connection connection = MySQLConnector.getConnection();
-//            Statement statement = connection.createStatement();
-//
-//
-//            String query = "UPDATE cach_ly SET noiCachLy = '" + noiCachLy +
-//                    "',thoiGianBatDau ='" + start + "'" +
-//                    ",thoiGianKetThuc = '" +
-//                    "',mucDoCachLy = " + String.valueOf(mucdo)
-//                    + " WHERE idNhanKhau = " + id + "";
-//
-//            PreparedStatement preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.executeUpdate();
-//            preparedStatement.close();
-//            connection.close();
-//            return new SimpleResult(true, "cap nhập thành công");
-//        }catch (Exception e){
-//            return new SimpleResult(false, e.getMessage());
-//        }
-//    }
+
     public SimpleResult addKhaiBao(KhaiBaoBean bean) throws SQLException{
         try{
             Connection connection = MySQLConnector.getConnection();
             Statement statement = connection.createStatement();
-            String query = "INSERT INTO  Khai_bao (`idNhanKhau`, `vungdich`, `thoiGianKhaiBao`,`bieuHien`) VALUES (?,?,?,?) ";
+            String query = "INSERT INTO  khai_bao (`idNhanKhau`, `vungdich`, `ngayKhaiBao`,`bieuHien`) VALUES (?,?,?,?) ";
 
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -130,7 +104,7 @@ public class KhaiBaoService {
             // cai dat gia tri
             preparedStatement.setInt(1,bean.getNhanKhauBean().getNhanKhauModel().getID());
             preparedStatement.setString(2, bean.getKhaiBaoModel().getVungDich());
-            preparedStatement.setDate(3, (Date) bean.getKhaiBaoModel().getNgayKhaiBao());
+            preparedStatement.setString(3,  bean.getKhaiBaoModel().getNgayKhaiBao());
             preparedStatement.setString(4, bean.getKhaiBaoModel().getBieuHien());
 
 
