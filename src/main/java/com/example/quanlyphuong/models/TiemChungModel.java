@@ -51,7 +51,7 @@ public class TiemChungModel {
         this.soLanTiem = soLanTiem;
     }
 
-    public LocalDate getNgayTiem() {
+    public Date getNgayTiem() {
         return ngayTiem;
     }
 

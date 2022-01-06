@@ -45,7 +45,7 @@ public class TiemChungController implements Initializable {
     @FXML
     private TableColumn<TiemChungBean,Integer> tc_tiemLan1;
     @FXML
-    private TableColumn<TiemChungBean,LocalDate> tc_ngayLan1;
+    private TableColumn<TiemChungBean,Date> tc_ngayLan1;
     @FXML
     private TableColumn<TiemChungBean,String> tc_loaiVaccine1;
     @FXML
@@ -159,7 +159,7 @@ public class TiemChungController implements Initializable {
         tf_diaDiem.setText(tiemChungBean.getTiemChungModel().getDiaDiem());
         tf_tiemLan.setText(String.valueOf(tiemChungBean.getTiemChungModel().getSoLanTiem()));
         tf_loaiVaccine.setText(tiemChungBean.getTiemChungModel().getVacxin());
-        dt_thoiGianTiem.setValue(tiemChungBean.getTiemChungModel().getNgayTiem());
+        dt_thoiGianTiem.setValue(LocalDate.parse((CharSequence) tiemChungBean.getTiemChungModel().getNgayTiem(),formatter));
 
         tf_cccd.setDisable(true);
     }

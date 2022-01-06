@@ -168,7 +168,7 @@ public class TiemChungService {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1,bean.getNhanKhauBean().getNhanKhauModel().getID());
             preparedStatement.setInt(2,bean.getTiemChungModel().getSoLanTiem());
-            preparedStatement.setDate(3, Date.valueOf(bean.getTiemChungModel().getNgayTiem()));
+            preparedStatement.setDate(3, (Date) bean.getTiemChungModel().getNgayTiem());
             preparedStatement.setString(4,bean.getTiemChungModel().getVacxin());
             preparedStatement.executeUpdate();
             preparedStatement.close();
