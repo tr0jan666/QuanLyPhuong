@@ -4,6 +4,7 @@ import com.example.quanlyphuong.beans.TestCovidBean;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 
+import com.example.quanlyphuong.helper.constants.KetQuaTestConstant;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.models.TestCovidModel;
 import com.example.quanlyphuong.services.StringService;
@@ -127,18 +128,18 @@ public class TestCovidController implements Initializable {
         col_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getDiaDiemTest()));
         col_thoiGian.setCellValueFactory(bean -> new ReadOnlyObjectWrapper( bean.getValue().getTestCovidModel().getThoiDiemTest()));
         col_ketQua.setCellValueFactory(bean -> {
-            int gender = bean.getValue().getTestCovidModel().getKetQua();
-            String genderAsString;
-            if(gender == 0)
+            int ketQua = bean.getValue().getTestCovidModel().getKetQua();
+            String ketQuaString;
+            if(ketQua == KetQuaTestConstant.AM_TINH)
             {
-                genderAsString = "Âm tính";
+                ketQuaString = "Âm tính";
             }
             else
             {
-                genderAsString = "Dương tính";
+                ketQuaString = "Dương tính";
             }
 
-            return new ReadOnlyStringWrapper(genderAsString);
+            return new ReadOnlyStringWrapper(ketQuaString);
         });
         tbv_testCovid.setItems(observableListHoKhauBeans);
 
