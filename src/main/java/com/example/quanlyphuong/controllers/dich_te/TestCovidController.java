@@ -5,9 +5,8 @@ import com.example.quanlyphuong.beans.TestCovidBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 
 import com.example.quanlyphuong.models.TestCovidModel;
-import com.example.quanlyphuong.models.ChungMinhThuModel;
+import com.example.quanlyphuong.services.StringService;
 import com.example.quanlyphuong.services.TestCovidService;
-import com.example.quanlyphuong.services.HoKhauService;
 import com.example.quanlyphuong.services.ThongKeNhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -23,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -85,11 +85,7 @@ public class TestCovidController implements Initializable {
     @FXML
     private TableColumn<TestCovidBean, String> col_ketQua;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        cb_ketQua.setItems(FXCollections.observableArrayList("Âm tính", "Dương tính", "Chưa test"));
-
-    }
+    int accessCount = 0;
 
     List<TestCovidBean> listNhanKhauTestCovid;
     TestCovidService testCovidService;
@@ -98,13 +94,21 @@ public class TestCovidController implements Initializable {
     NhanKhauBean nhanKhauTestCovid;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        cb_ketQua.setItems(FXCollections.observableArrayList( "Âm tính", "Dương tính"));
+        refresh();
+    }
+
+
+
     public void refresh() {
         testCovidService = new TestCovidService();
         listNhanKhauTestCovid = testCovidService.getListNhanKhauTestCovid();
 
         observableListHoKhauBeans = FXCollections.observableList(listNhanKhauTestCovid);
 
-        col_id.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getNhanKhauBean().getNhanKhauModel().getMaNhanKhau()));
+        col_id.setCellValueFactory(bean -> new ReadOnlyObjectWrapper(bean.getValue().getTestCovidModel().getIDTest()));
         col_hoVaTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
         col_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
         col_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTestCovidModel().getDiaDiemTest()));
@@ -157,7 +161,7 @@ public class TestCovidController implements Initializable {
 
     boolean isMissingField() {
         if (tf_cccd.getText().isBlank() || tf_hoVaTen.getText().isEmpty() || tf_diaDiem.getText().isEmpty()
-                || (dp_thoiGianTest.getClass() == null) || cb_ketQua.getItems().isEmpty()) {
+                || (dp_thoiGianTest.getValue() == null) || cb_ketQua.getItems().isEmpty()) {
             return true;
         }
         return false;
@@ -182,7 +186,7 @@ public class TestCovidController implements Initializable {
         for (TestCovidBean cl : listNhanKhauTestCovid) {
             if (cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tf_cccd.getText())) {
                 Alert thongBaoChung = new Alert(Alert.AlertType.WARNING);
-                thongBaoChung.setContentText("Người này hiện đã tiêm ");
+                thongBaoChung.setContentText("Người này hiện đã test ");
                 thongBaoChung.show();
                 clearTf();
                 return;
@@ -202,8 +206,6 @@ public class TestCovidController implements Initializable {
             testCovidModel.setKetQua(0);
         } else if (cb_ketQua.getValue() == "Dương tính") {
             testCovidModel.setKetQua(1);
-        } else if (cb_ketQua.getValue() == "Chưa test") {
-            testCovidModel.setKetQua(2);
         }
         testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
         testCovidBean.setTestCovidModel(testCovidModel);

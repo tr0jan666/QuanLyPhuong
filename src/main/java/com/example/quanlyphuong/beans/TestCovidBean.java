@@ -8,6 +8,7 @@ public class TestCovidBean {
     public TestCovidBean() {
     }
 
+
     public NhanKhauBean getNhanKhauBean() {
         return nhanKhauBean;
     }

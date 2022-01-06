@@ -69,14 +69,14 @@
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="369.0" prefHeight="430.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
         <children>
-            <TableView layoutX="7.0" layoutY="-6.0" prefHeight="430.0" prefWidth="818.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tbv_testCovid" layoutX="7.0" layoutY="-6.0" prefHeight="430.0" prefWidth="818.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                 <columns>
-                    <TableColumn prefWidth="70.0" text="ID" />
-                    <TableColumn prefWidth="230.0" text="Họ và tên" />
-                    <TableColumn prefWidth="150.0" text="CCCD" />
-                    <TableColumn prefWidth="230.0" text="Địa điểm" />
-                    <TableColumn prefWidth="157.0" text="Thời gian" />
-                    <TableColumn prefWidth="160.0" text="Kết quả" />
+                    <TableColumn fx:id="col_id" prefWidth="70.0" text="ID" />
+                    <TableColumn fx:id="col_hoVaTen" prefWidth="230.0" text="Họ và tên" />
+                    <TableColumn fx:id="col_cccd" prefWidth="150.0" text="CCCD" />
+                    <TableColumn fx:id="col_diaDiem" prefWidth="230.0" text="Địa điểm" />
+                    <TableColumn fx:id="col_thoiGian" prefWidth="157.0" text="Thời gian" />
+                    <TableColumn fx:id="col_ketQua" prefWidth="160.0" text="Kết quả" />
                 </columns>
             </TableView>
         </children>

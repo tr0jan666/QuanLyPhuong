@@ -28,24 +28,28 @@ public class TestCovidService {
                 TestCovidBean testCovidBean = new TestCovidBean();
                 TestCovidModel testCovidModel = new TestCovidModel();
                 NhanKhauBean nhanKhauBean = new NhanKhauBean();
-                NhanKhauModel nhanKhau = new NhanKhauModel();
+                NhanKhauModel nhanKhauModel = new NhanKhauModel();
                 ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
 
                 System.out.println(rs.getString("hoTen"));
-                nhanKhau.setID(rs.getInt("nhan_khau.ID"));
-                nhanKhau.setHo_ten(rs.getString("hoTen"));
-
-
+                testCovidModel.setIDTest(rs.getInt("test.ID"));
 
                 chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-
-                nhanKhauBean.setNhanKhauModel(nhanKhau);
+                nhanKhauBean.setNhanKhauModel(nhanKhauModel);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
+
+                nhanKhauModel.setHo_ten(rs.getString("hoTen"));
+                testCovidModel.setKetQua(rs.getInt("ketQua"));
+                testCovidModel.setThoiDiemTest(rs.getDate("thoiDiemTest"));
+                testCovidModel.setDiaDiemTest(rs.getString("diaDiemTest"));
+
+
+
+
                 testCovidBean.setNhanKhauBean(nhanKhauBean);
                 testCovidBean.setTestCovidModel(testCovidModel);
 
                 list.add(testCovidBean);
-
             }
 
 
