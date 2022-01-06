@@ -88,14 +88,6 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_thuongTru" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Thường trú">
-               <font>
-                  <Font name="System Bold" size="11.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Button>
             </children>
         </VBox>
         <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="869.0" layoutY="689.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="50.0" prefWidth="100.0" text="refresh">
