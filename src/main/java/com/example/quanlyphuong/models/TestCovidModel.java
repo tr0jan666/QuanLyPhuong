@@ -5,7 +5,7 @@ import java.util.Date;
 public class TestCovidModel {
     private int IDTest;
     private int idNhanKhau;
-    private Date thoiDiemTest;
+    private String thoiDiemTest;
     private String hinhThucTest;
     private String diaDiemTest;
     private int ketQua;
@@ -14,7 +14,7 @@ public class TestCovidModel {
 
     }
 
-    public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, String diaDiemTest, int ketQua) {
+    public TestCovidModel(int IDTest, int idNhanKhau, String thoiDiemTest, String hinhThucTest, String diaDiemTest, int ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;
         this.thoiDiemTest = thoiDiemTest;
@@ -39,11 +39,11 @@ public class TestCovidModel {
         this.idNhanKhau = idNhanKhau;
     }
 
-    public Date getThoiDiemTest() {
+    public String getThoiDiemTest() {
         return thoiDiemTest;
     }
 
-    public void setThoiDiemTest(Date thoiDiemTest) {
+    public void setThoiDiemTest(String thoiDiemTest) {
         this.thoiDiemTest = thoiDiemTest;
     }
 

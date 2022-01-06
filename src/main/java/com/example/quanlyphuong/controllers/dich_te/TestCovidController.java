@@ -4,6 +4,7 @@ import com.example.quanlyphuong.beans.TestCovidBean;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 
+import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.models.TestCovidModel;
 import com.example.quanlyphuong.services.StringService;
 import com.example.quanlyphuong.services.TestCovidService;
@@ -20,7 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -85,7 +86,7 @@ public class TestCovidController implements Initializable {
     @FXML
     private TableColumn<TestCovidBean, String> col_ketQua;
 
-    int accessCount = 0;
+
 
     List<TestCovidBean> listNhanKhauTestCovid;
     TestCovidService testCovidService;
@@ -118,46 +119,7 @@ public class TestCovidController implements Initializable {
 
     }
 
-    @FXML
-    void xoaTestCovid(ActionEvent event) {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setContentText("Hãy nhấn OK để thực hiện lệnh xóa, nhấn hủy để hủy lệnh xóa!");
-        alert.setHeaderText("Bạn có muốn xóa hàng này không?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            // delete from database
-            TestCovidBean bean = tbv_testCovid.getSelectionModel().getSelectedItem();
-            testCovidService = new TestCovidService();
-            testCovidService.deleteTestCovid(bean);
-            refresh();
-            Alert thanhCongAlert = new Alert(Alert.AlertType.INFORMATION);
-            thanhCongAlert.setContentText("Xoa Thanh Cong");
-            thanhCongAlert.show();
-        } else if (result.get() == ButtonType.CANCEL) {
-            alert.close();
-        }
-
-    }
-
-    @FXML
-    void timNhanKhauBean(ActionEvent event) {
-        thongKeNhanKhauService = new ThongKeNhanKhauService();
-        String cmt = tf_cccd.getText();
-        System.out.println(cmt);
-
-        nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(cmt);
-        if (nhanKhauTestCovid == null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Không tồn tại chứng minh thư ");
-            alert.show();
-        } else {
-            tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
-        }
-
-    }
 
     boolean isMissingField() {
         if (tf_cccd.getText().isBlank() || tf_hoVaTen.getText().isEmpty() || tf_diaDiem.getText().isEmpty()
@@ -177,7 +139,7 @@ public class TestCovidController implements Initializable {
     }
 
     @FXML
-    void themTestCovid(javafx.event.ActionEvent event) throws SQLException {
+    void themTestCovid(ActionEvent event) throws SQLException {
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         TestCovidBean testCovidBean = new TestCovidBean();
         testCovidService = new TestCovidService();
@@ -201,7 +163,7 @@ public class TestCovidController implements Initializable {
 
         TestCovidModel testCovidModel = new TestCovidModel();
         testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
-        testCovidModel.setThoiDiemTest(java.sql.Date.valueOf(dp_thoiGianTest.getValue()));
+        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         if (cb_ketQua.getValue() == "Âm tính") {
             testCovidModel.setKetQua(0);
         } else if (cb_ketQua.getValue() == "Dương tính") {
@@ -210,46 +172,42 @@ public class TestCovidController implements Initializable {
         testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
         testCovidBean.setTestCovidModel(testCovidModel);
 
-        testCovidService.addTestCovid(testCovidBean);
 
-        refresh();
-        clearTf();
+        Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
+        alertCn.setContentText("Bạn có thêm người cách ly");
+        Optional<ButtonType> confirmCn = alertCn.showAndWait();
 
-        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-        successAlert.setContentText("Thêm thành công");
-        successAlert.show();
+        if (confirmCn.get() == ButtonType.OK) {
+            SimpleResult rs = testCovidService.addTestCovid(testCovidBean);
+            if (rs.isSuccess()) {
+                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                alertSuccess.setContentText("Thêm thành công");
 
-    }
 
-    @FXML
-    void setThongTin(MouseEvent event) {
-        testCovidService = new TestCovidService();
-        TestCovidBean bean = tbv_testCovid.getSelectionModel().getSelectedItem();
+                reFreshThongTin(event);
+                alertSuccess.show();
+                refresh();
+            } else {
+                Alert alertFailed = new Alert(Alert.AlertType.INFORMATION);
+                alertFailed.setContentText(rs.getMessage());
+                alertFailed.show();
 
-        tf_hoVaTen.setText(bean.getNhanKhauBean().getNhanKhauModel().getHo_ten());
-        tf_cccd.setText(bean.getNhanKhauBean().getChungMinhThuModel().getSoCMT());
-        tf_diaDiem.setText(bean.getTestCovidModel().getDiaDiemTest());
-        dp_thoiGianTest.setValue(LocalDate.ofEpochDay(bean.getTestCovidModel().getThoiDiemTest().getTime()));
-        if (bean.getTestCovidModel().getKetQua() == 1) {
-            cb_ketQua.setItems(FXCollections.observableArrayList("Âm tính"));
+
+                reFreshThongTin(event);
+                refresh();
+            }
         } else {
-            cb_ketQua.setItems(FXCollections.observableArrayList("Dương tính"));
+            reFreshThongTin(event);
+            return;
         }
-
-        tf_cccd.setDisable(true);
-        tf_hoVaTen.setDisable(true);
-
-        btn_Them.setDisable(true);
     }
-
 
     @FXML
-    void reFresh(ActionEvent event) {
+    void reFreshThongTin(ActionEvent event) {
         clearTf();
-        tf_hoVaTen.setDisable(false);
         tf_cccd.setDisable(false);
+        tf_diaDiem.setDisable(false);
+        tf_hoVaTen.setDisable(false);
         btn_Them.setDisable(false);
-
     }
-
 }

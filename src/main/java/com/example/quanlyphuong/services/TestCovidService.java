@@ -3,6 +3,7 @@ package com.example.quanlyphuong.services;
 import com.example.quanlyphuong.beans.TestCovidBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
+import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.models.TestCovidModel;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
@@ -40,7 +41,7 @@ public class TestCovidService {
 
                 nhanKhauModel.setHo_ten(rs.getString("hoTen"));
                 testCovidModel.setKetQua(rs.getInt("ketQua"));
-                testCovidModel.setThoiDiemTest(rs.getDate("thoiDiemTest"));
+                testCovidModel.setThoiDiemTest(rs.getString("thoiDiemTest"));
                 testCovidModel.setDiaDiemTest(rs.getString("diaDiemTest"));
 
 
@@ -75,8 +76,8 @@ public class TestCovidService {
         }
     }
 
-    public void addTestCovid(TestCovidBean bean) throws SQLException{
-        try{
+    public SimpleResult addTestCovid(TestCovidBean bean) throws SQLException {
+        try {
             Connection connection = MySQLConnector.getConnection();
             String query = "INSERT INTO  test (`idNhanKhau`, `thoiDiemTest`, `ketQua`,`diaDiemTest`) VALUES (?,?,?,?) ";
 
@@ -84,9 +85,8 @@ public class TestCovidService {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             // cai dat gia tri
-            preparedStatement.setInt(1,bean.getNhanKhauBean().getNhanKhauModel().getID());
-            long time = bean.getTestCovidModel().getThoiDiemTest().getTime();
-            preparedStatement.setDate(2, new java.sql.Date(time));
+            preparedStatement.setInt(1, bean.getNhanKhauBean().getNhanKhauModel().getID());
+            preparedStatement.setString(2, bean.getTestCovidModel().getThoiDiemTest());
             preparedStatement.setInt(3, bean.getTestCovidModel().getKetQua());
             preparedStatement.setString(4, bean.getTestCovidModel().getDiaDiemTest());
 
@@ -97,9 +97,11 @@ public class TestCovidService {
             preparedStatement.close();
             connection.close();
             System.out.println("them thanh cong");
-        }catch(Exception mysqlException){
-//            this.exceptionHandle(mysqlException.getMessage());
-            System.out.println(mysqlException);
+            return new SimpleResult(true, "thêm thành công");
+
+        } catch (Exception e) {
+            return new SimpleResult(false, e.getMessage());
+
         }
     }
 }
