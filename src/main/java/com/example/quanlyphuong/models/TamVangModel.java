@@ -12,6 +12,10 @@ public class TamVangModel {
     private Date denNgay;
     private String lyDo;
 
+    public TamVangModel(){
+
+    }
+
     public TamVangModel(int ID, int idNhanKhau, String maGiayTamVang, String noiTamTru, Date tuNgay, Date denNgay, String lyDo) {
         this.ID = ID;
         this.idNhanKhau = idNhanKhau;
