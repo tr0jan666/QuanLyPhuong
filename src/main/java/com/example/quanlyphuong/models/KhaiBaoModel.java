@@ -1,5 +1,7 @@
 package com.example.quanlyphuong.models;
 
+import com.example.quanlyphuong.beans.NhanKhauBean;
+
 import java.util.Date;
 
 public class KhaiBaoModel {
@@ -58,5 +60,11 @@ public class KhaiBaoModel {
 
     public void setNgayKhaiBao(Date ngayKhaiBao) {
         this.ngayKhaiBao = ngayKhaiBao;
+    }
+
+    public void setNgayKhaiBao(String format) {
+    }
+
+    public void setNhanKhauBean(NhanKhauBean nhanKhauCachLy) {
     }
 }
