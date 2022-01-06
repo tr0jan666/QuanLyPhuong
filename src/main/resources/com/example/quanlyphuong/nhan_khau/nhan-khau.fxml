@@ -56,7 +56,7 @@
                   <Font size="11.0" />
                </font>
                 </Button>
-                <Button id="btn_Xoa" fx:id="btn_Xoa" mnemonicParsing="false" onAction="#xoaNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Xóa" textFill="#cc0e0e">
+                <Button id="btn_Xoa" fx:id="btn_Xoa" mnemonicParsing="false" onAction="#xoaTamTru" prefHeight="66.0" prefWidth="100.0" text="Xóa tạm trú" textFill="#cc0e0e" visible="false">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
@@ -64,7 +64,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#khauTuNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
+                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#khauTuNhanKhau" prefHeight="57.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
@@ -72,7 +72,7 @@
                         <Insets top="15.0" />
                     </VBox.margin>
                 </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#tamVangNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm vắng">
+            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#tamVangNhanKhau" prefHeight="66.0" prefWidth="100.0" text="Tạm vắng" visible="false">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -80,17 +80,14 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="10.0" layoutY="115.0" mnemonicParsing="false" onAction="#tamTruNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Tạm trú">
+            <Button fx:id="btn_xoaTamVang" mnemonicParsing="false" onAction="#xoaTamVang" prefHeight="56.0" prefWidth="102.0" text="Xóa tạm vắng">
                <font>
-                  <Font name="System Bold" size="11.0" />
+                  <Font size="12.0" />
                </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
             </Button>
             </children>
         </VBox>
-        <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="869.0" layoutY="689.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="50.0" prefWidth="100.0" text="refresh">
+        <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="855.0" layoutY="729.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="49.0" prefWidth="134.0" text="refresh">
          <font>
             <Font size="11.0" />
          </font>
@@ -100,5 +97,11 @@
             <Font name="System Bold" size="64.0" />
          </font>
       </Label>
+      <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="856.0" layoutY="119.0" mnemonicParsing="false" onAction="#tamTruNhanKhau" prefHeight="50.0" prefWidth="126.0" text="Đăng kí tạm trú">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Button>
+      <Button layoutX="855.0" layoutY="663.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="134.0" text="Thành thường trú" />
     </children>
 </AnchorPane>

@@ -3,6 +3,8 @@ package com.example.quanlyphuong.controllers.nhan_khau;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController;
 import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.helper.constants.NhanKhauConstant;
+import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -92,6 +94,8 @@ public class NhanKhauController implements Initializable {
     @FXML
     private TableColumn<NhanKhauBean,String> col_status;
 
+    @FXML
+    private Button btn_xoaTamVang;
 
     @FXML
     private Button btn_refresh;
@@ -107,13 +111,39 @@ public class NhanKhauController implements Initializable {
     }
 
     @FXML
+    void xoaTamTru(ActionEvent event){
+        SimpleResult simpleResult = NhanKhauService.getInstance().xoaTamTru(chosenNhanKhauBean);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
+        alert.showAndWait();
+        btn_xoaTamVang.setVisible(false);
+        btn_tamVang.setVisible(true);
+
+        refreshScreen();
+    }
+
+    @FXML
+    void xoaTamVang(ActionEvent event){
+        SimpleResult simpleResult = NhanKhauService.getInstance().xoaTamVang(chosenNhanKhauBean);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
+        alert.showAndWait();
+        btn_xoaTamVang.setVisible(false);
+        btn_tamVang.setVisible(true);
+
+        refreshScreen();
+    }
+
+    @FXML
     void tamTruNhanKhau(ActionEvent event) {
-        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Thêm tạm trú", null,850, 600);
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Thêm tạm trú", null,650, 600);
     }
 
     @FXML
     void tamVangNhanKhau(ActionEvent event) {
-
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_vang.fxml", "Thêm tạm vắng", null,850, 600);
+        btn_tamVang.setVisible(false);
+        btn_xoaTamVang.setVisible(true);
     }
 
     @FXML
@@ -184,6 +214,11 @@ public class NhanKhauController implements Initializable {
 
         tv_nhanKhau.setItems(observableListNhanKhauBeans);
 
+        btn_tamVang.setVisible(false);
+        btn_Xoa.setVisible(false);
+        btn_chiTiet.setVisible(false);
+        btn_khaiTu.setVisible(false);
+        btn_xoaTamVang.setVisible(false);
     }
 
 
@@ -191,6 +226,24 @@ public class NhanKhauController implements Initializable {
         NhanKhauBean nhanKhauBean = tv_nhanKhau.getSelectionModel().getSelectedItem();
         NhanKhauController.chosenNhanKhauBean = nhanKhauBean;
         btn_chiTiet.setVisible(true);
+
+        btn_Xoa.setVisible(false);
+        btn_tamVang.setVisible(false);
+        btn_xoaTamVang.setVisible(false);
+
+        if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.TAM_TRU_STATUS){
+            btn_Xoa.setVisible(true);
+        }
+
+        if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.THUONG_TRU_STATUS){
+            btn_tamVang.setVisible(true);
+        }
+
+        if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.TAM_VANG_STATUS){
+            btn_xoaTamVang.setVisible(true);
+        }
+
+
         if(event.getClickCount() ==2 && (nhanKhauBean != null)){
             changeSceneChiTiet();
         }
