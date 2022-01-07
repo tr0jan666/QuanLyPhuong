@@ -4,6 +4,7 @@ import com.example.quanlyphuong.beans.TestCovidBean;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 
+import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.helper.constants.KetQuaTestConstant;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.models.TestCovidModel;
@@ -175,7 +176,12 @@ public class TestCovidController implements Initializable {
         TestCovidBean testCovidBean = new TestCovidBean();
         testCovidService = new TestCovidService();
         nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(tf_cccd.getText());
-
+        try {
+            checkCCCD(null);
+        }catch (Exception exception){
+            exception.printStackTrace();
+            return;
+        }
 
         if (isMissingField()) {
             Alert missingAlert = new Alert(Alert.AlertType.WARNING);
@@ -247,14 +253,15 @@ public class TestCovidController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get() == ButtonType.OK) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.setTitle("ABC");
-                    stage.setScene(new Scene(root1));
-                    stage.show();
+                    UIHelper.navigateNew("nhan_khau/pop_up_them_nhan_khau.fxml", "Thêm nhân khẩu");
+//                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
+//                    Parent root1 = (Parent) fxmlLoader.load();
+//                    Stage stage = new Stage();
+//                    stage.initModality(Modality.APPLICATION_MODAL);
+//                    stage.initStyle(StageStyle.UNDECORATED);
+//                    stage.setTitle("ABC");
+//                    stage.setScene(new Scene(root1));
+//                    stage.show();
                     return;
                 } else {
                     return;

@@ -93,14 +93,21 @@ public class TestCovidService {
             preparedStatement.setInt(3, bean.getTestCovidModel().getKetQua());
             preparedStatement.setString(4, bean.getTestCovidModel().getDiaDiemTest());
 
-            preparedStatement.executeUpdate();
+            int countUpdate = preparedStatement.executeUpdate();
             //statement.executeUpdate(query);
 
-            preparedStatement.execute();
+//            preparedStatement.execute();
             preparedStatement.close();
             connection.close();
-            System.out.println("them thanh cong");
-            return new SimpleResult(true, "thêm thành công");
+            if(countUpdate>0){
+                return new SimpleResult(true, "thêm thành công");
+
+            }else {
+                return new SimpleResult(false, "Thêm thất bại. Thử lại sau...");
+
+            }
+
+//            System.out.println("them thanh cong");
 
         } catch (Exception e) {
             return new SimpleResult(false, e.getMessage());
