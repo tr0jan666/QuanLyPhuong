@@ -182,45 +182,46 @@ public class TestCovidController implements Initializable {
             missingAlert.setContentText("Vui lòng điền đầy đủ thông tin");
             missingAlert.show();
         }
-
-        TestCovidModel testCovidModel = new TestCovidModel();
-        testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
-        testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        if (cb_ketQua.getValue() == "Âm tính") {
-            testCovidModel.setKetQua(0);
-        } else if (cb_ketQua.getValue() == "Dương tính") {
-            testCovidModel.setKetQua(1);
-        }
-        testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
-        testCovidBean.setTestCovidModel(testCovidModel);
-
-
-        Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
-        alertCn.setContentText("Bạn có thêm người cách ly");
-        Optional<ButtonType> confirmCn = alertCn.showAndWait();
-
-        if (confirmCn.get() == ButtonType.OK) {
-            SimpleResult rs = testCovidService.addTestCovid(testCovidBean);
-            if (rs.isSuccess()) {
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setContentText("Thêm thành công");
-
-
-                reFreshThongTin(event);
-                alertSuccess.show();
-                refresh();
-            } else {
-                Alert alertFailed = new Alert(Alert.AlertType.INFORMATION);
-                alertFailed.setContentText(rs.getMessage());
-                alertFailed.show();
-
-
-                reFreshThongTin(event);
-                refresh();
+        else {
+            TestCovidModel testCovidModel = new TestCovidModel();
+            testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
+            testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            if (cb_ketQua.getValue() == "Âm tính") {
+                testCovidModel.setKetQua(0);
+            } else if (cb_ketQua.getValue() == "Dương tính") {
+                testCovidModel.setKetQua(1);
             }
-        } else {
-            //reFreshThongTin(event);
-            //return;
+            testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
+            testCovidBean.setTestCovidModel(testCovidModel);
+
+
+            Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
+            alertCn.setContentText("Bạn có thêm người cách ly");
+            Optional<ButtonType> confirmCn = alertCn.showAndWait();
+
+            if (confirmCn.get() == ButtonType.OK) {
+                SimpleResult rs = testCovidService.addTestCovid(testCovidBean);
+                if (rs.isSuccess()) {
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setContentText("Thêm thành công");
+
+
+                    reFreshThongTin(event);
+                    alertSuccess.show();
+                    refresh();
+                } else {
+                    Alert alertFailed = new Alert(Alert.AlertType.INFORMATION);
+                    alertFailed.setContentText(rs.getMessage());
+                    alertFailed.show();
+
+
+                    reFreshThongTin(event);
+                    refresh();
+                }
+            } else {
+                //reFreshThongTin(event);
+                //return;
+            }
         }
     }
 
@@ -240,7 +241,8 @@ public class TestCovidController implements Initializable {
                 lb_check.setTextFill(Color.RED);
                 lb_check.setText("Không tồn tại");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
+                alert.setHeaderText("Không tồn tại CCCD");
+                alert.setContentText("Nếu muốn thêm nhân khẩu mới, hãy nhấn OK");
 
                 Optional<ButtonType> option = alert.showAndWait();
 
