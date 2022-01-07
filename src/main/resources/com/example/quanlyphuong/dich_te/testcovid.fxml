@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
@@ -38,9 +39,9 @@
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <TextField fx:id="tf_cccd" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" promptText="Số trên thẻ căn cước công dân" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tf_hoVaTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" promptText="Họ và tên người được test" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tf_diaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" promptText="Tên nơi thực hiện test" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tf_cccd" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" promptText="Số trên thẻ căn cước công dân" styleClass="home__button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tf_hoVaTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" promptText="Họ và tên người được test" styleClass="home__button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tf_diaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" promptText="Tên nơi thực hiện test" styleClass="home__button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="CCCD" GridPane.rowIndex="1">
                 <font>
                     <Font size="13.0" />
@@ -59,7 +60,7 @@
                 <font>
                     <Font size="13.0" />
                 </font></Label>
-            <DatePicker fx:id="dp_thoiGianTest" focusTraversable="false" prefHeight="26.0" prefWidth="153.0" promptText="Tháng / Ngày / Năm" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <DatePicker fx:id="dp_thoiGianTest" focusTraversable="false" prefHeight="26.0" prefWidth="153.0" promptText="Chọn ngày " styleClass="home__button" GridPane.columnIndex="3" GridPane.rowIndex="2">
                 <GridPane.margin>
 
                 </GridPane.margin></DatePicker>
@@ -67,11 +68,7 @@
                 <font>
                     <Font size="13.0" />
                 </font></Label>
-            <ComboBox fx:id="cb_ketQua" prefHeight="26.0" prefWidth="128.0" promptText="Lựa chọn" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-         <Button fx:id="btn_check" alignment="CENTER" mnemonicParsing="false" onAction="#checkCCCD" text="Check" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
-            <GridPane.margin>
-               <Insets left="10.0" />
-            </GridPane.margin></Button>
+            <ComboBox fx:id="cb_ketQua" prefHeight="26.0" prefWidth="128.0" promptText="Lựa chọn" styleClass="home__button" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          <Label layoutX="68.0" layoutY="89.0" text="Họ và tên" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
@@ -80,6 +77,23 @@
                <Insets right="10.0" />
             </GridPane.margin>
          </Label>
+         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <children>
+               <Button fx:id="btn_check" alignment="CENTER" mnemonicParsing="false" onAction="#checkCCCD" styleClass="button1" text="Check" textAlignment="CENTER">
+                  <HBox.margin>
+                     <Insets left="5.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Arial Bold" size="13.0" />
+                  </font>
+               </Button>
+               <Label fx:id="lb_check">
+                  <HBox.margin>
+                     <Insets left="5.0" />
+                  </HBox.margin>
+               </Label>
+            </children>
+         </HBox>
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="369.0" prefHeight="430.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">

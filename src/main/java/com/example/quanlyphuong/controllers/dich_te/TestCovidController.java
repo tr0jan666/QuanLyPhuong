@@ -27,9 +27,11 @@ import javafx.scene.input.MouseEvent;
 
 
 import javafx.event.ActionEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,6 +64,9 @@ public class TestCovidController implements Initializable {
 
     @FXML
     private Button btn_check;
+
+    @FXML
+    private Label lb_check;
 
     @FXML
     private TextField tf_cccd;
@@ -161,8 +166,8 @@ public class TestCovidController implements Initializable {
         tf_hoVaTen.clear();
         tf_diaDiem.clear();
         dp_thoiGianTest.setValue(null);
-        cb_ketQua.setValue(null);
     }
+
 
     @FXML
     void themTestCovid(ActionEvent event) throws SQLException {
@@ -214,43 +219,53 @@ public class TestCovidController implements Initializable {
                 refresh();
             }
         } else {
-            reFreshThongTin(event);
-            return;
+            //reFreshThongTin(event);
+            //return;
         }
     }
+
 
     @FXML
     void checkCCCD(ActionEvent event) throws IOException {
         thongKeNhanKhauService = new ThongKeNhanKhauService();
         String cmt = tf_cccd.getText();
-        System.out.println(cmt);
 
-        nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(cmt);
-        if(nhanKhauTestCovid == null){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
+        if (cmt.length() < 1) {
+            lb_check.setTextFill(Color.RED);
+            lb_check.setText("CCCD trống");
+        }
+        else {
+            nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(cmt);
+            if (nhanKhauTestCovid == null) {
+                lb_check.setTextFill(Color.RED);
+                lb_check.setText("Không tồn tại");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
 
-            Optional<ButtonType> option = alert.showAndWait();
+                Optional<ButtonType> option = alert.showAndWait();
 
-            if (option.get() == ButtonType.OK){
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setTitle("ABC");
-                stage.setScene(new Scene(root1));
-                stage.show();
-                return;
+                if (option.get() == ButtonType.OK) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.setTitle("ABC");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                    return;
+                } else {
+                    return;
+                }
+
+
             } else {
-                return;
+                lb_check.setTextFill(Color.GREEN);
+                lb_check.setText("Đã tìm thấy ");
+                tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
             }
-
-
         }
-        else{
-            tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
-        }
+
 
 
     }
@@ -262,6 +277,8 @@ public class TestCovidController implements Initializable {
         tf_diaDiem.setDisable(false);
         tf_hoVaTen.setDisable(false);
         btn_Them.setDisable(false);
+        lb_check.setText("");
+        
     }
 
     @FXML
@@ -280,7 +297,8 @@ public class TestCovidController implements Initializable {
             testCovidService.deleteTestCovid(bean);
             refresh();
             Alert thanhCongAlert = new Alert(Alert.AlertType.INFORMATION);
-            thanhCongAlert.setContentText("Xoa Thanh Cong");
+            thanhCongAlert.setHeaderText("Đã xóa thành công");
+            thanhCongAlert.setContentText("Bảng đã được cập nhập lại");
             thanhCongAlert.show();
             reFreshThongTin(event);
         } else if (result.get() == ButtonType.CANCEL) {
