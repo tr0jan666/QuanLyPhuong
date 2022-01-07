@@ -1,7 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .button_chucnang1{
 
-    /*  -fx-opacity: 0;*/
+  /*  -fx-opacity: 0;*/
     -fx-background-color: #fff8dd;
     -fx-background-radius: 10px;
     -fx-border-color: #1b74e4;
@@ -45,7 +45,7 @@
 
 .vbox_chucnang{
     -fx-background-color: #f0f2f5;
-    /* -fx-background-image: url("anhmenuchucnang.png"); #fff8dd*/
+   /* -fx-background-image: url("anhmenuchucnang.png"); #fff8dd*/
 }
 .leftPaneLogin{
     -fx-background-image: url("3dlogin.png");

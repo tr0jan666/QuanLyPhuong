@@ -3,11 +3,11 @@ package com.example.quanlyphuong.services;
 import com.example.quanlyphuong.beans.KhaiBaoBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
-import com.example.quanlyphuong.models.ChungMinhThuModel;
+import com.example.quanlyphuong.models.*;
 import com.example.quanlyphuong.models.KhaiBaoModel;
+import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.SimpleResult;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

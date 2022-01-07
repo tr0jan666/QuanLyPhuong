@@ -21,50 +21,50 @@
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="84.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="200.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="72.0" />
+         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="72.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="151.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="210.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="210.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
             <TextField fx:id="tfCCCD" focusTraversable="false" prefHeight="25.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tfHoTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tfDiaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label alignment="CENTER" prefHeight="19.0" prefWidth="133.0" text="    CCCD" GridPane.rowIndex="1">
-                <font>
-                    <Font size="13.0" />
-                </font></Label>
+            <font>
+               <Font size="13.0" />
+            </font></Label>
             <Label text="Địa điểm" GridPane.rowIndex="3">
-                <font>
-                    <Font size="13.0" />
-                </font></Label>
+            <font>
+               <Font size="13.0" />
+            </font></Label>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="152.0" text="Thời gian khai báo" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                <font>
-                    <Font size="13.0" />
-                </font></Label>
+            <font>
+               <Font size="13.0" />
+            </font></Label>
             <DatePicker fx:id="tfKhaiBao" focusTraversable="false" prefHeight="26.0" prefWidth="183.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                <GridPane.margin>
-                    <Insets />
-                </GridPane.margin></DatePicker>
+            <GridPane.margin>
+               <Insets />
+            </GridPane.margin></DatePicker>
             <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
-                <font>
-                    <Font size="13.0" />
-                </font></Label>
+            <font>
+               <Font size="13.0" />
+            </font></Label>
             <Label alignment="CENTER" prefHeight="19.0" prefWidth="147.0" text="Biểu hiện, triệu chứng" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                <font>
-                    <Font size="13.0" />
-                </font></Label>
-            <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" prefHeight="25.0" prefWidth="116.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                <GridPane.margin>
-                    <Insets left="5.0" right="5.0" />
-                </GridPane.margin></Button>
-            <TextArea fx:id="taBieuHien" prefHeight="37.0" prefWidth="199.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <font>
+               <Font size="13.0" />
+            </font></Label>
+         <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" prefHeight="25.0" prefWidth="116.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <GridPane.margin>
+               <Insets left="5.0" right="5.0" />
+            </GridPane.margin></Button>
+         <TextArea fx:id="taBieuHien" prefHeight="37.0" prefWidth="199.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="3" />
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="200.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
@@ -82,39 +82,39 @@
         </children>
     </AnchorPane>
     <Button fx:id="btnThem" graphicTextGap="11.0" layoutX="833.0" layoutY="43.0" mnemonicParsing="false" onAction="#themKhaiBao" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="43.0">
-        <graphic>
-            <Group>
-                <children>
-                    <SVGPath content="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 400H48V80h480v352zM208 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-89.6 128h179.2c12.4 0 22.4-8.6 22.4-19.2v-19.2c0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6v19.2c0 10.6 10 19.2 22.4 19.2zM360 320h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8z" scaleX="0.035" scaleY="0.035" styleClass="icon" />
-                </children>
-            </Group>
-        </graphic>
-        <font>
-            <Font name="Arial Bold" size="13.0" />
-        </font></Button>
-    <Button fx:id="btnXoa" graphicTextGap="17.0" layoutX="833.0" layoutY="90.0" mnemonicParsing="false" onAction="#xoa" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="90.0">
-        <graphic>
-            <Group>
-                <children>
-                    <SVGPath content="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z" scaleX="0.035" scaleY="0.035" styleClass="icon" />
-                </children>
-            </Group>
-        </graphic>
-        <font>
-            <Font name="Arial Bold" size="13.0" />
-        </font></Button>
-    <Label alignment="CENTER" layoutX="390.0" layoutY="12.0" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Khai Báo" AnchorPane.bottomAnchor="754.0" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="12.0">
-        <font>
-            <Font name="Arial Bold" size="18.0" />
-        </font>
-    </Label>
-    <Button fx:id="btnRefresh" graphicTextGap="11.0" layoutX="833.0" layoutY="140.0" mnemonicParsing="false" onAction="#reFreshThongTin" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="   Refresh" textAlignment="JUSTIFY">
-        <graphic>
-            <Group />
-        </graphic>
-        <font>
-            <Font name="Arial Bold" size="13.0" />
-        </font>
-    </Button>
+      <graphic>
+         <Group>
+            <children>
+               <SVGPath content="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 400H48V80h480v352zM208 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-89.6 128h179.2c12.4 0 22.4-8.6 22.4-19.2v-19.2c0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6v19.2c0 10.6 10 19.2 22.4 19.2zM360 320h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8z" scaleX="0.035" scaleY="0.035" styleClass="icon" />
+            </children>
+         </Group>
+      </graphic>
+      <font>
+         <Font name="Arial Bold" size="13.0" />
+      </font></Button>
+      <Button fx:id="btnXoa" graphicTextGap="17.0" layoutX="833.0" layoutY="90.0" mnemonicParsing="false" onAction="#xoa" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="90.0">
+      <graphic>
+         <Group>
+            <children>
+               <SVGPath content="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z" scaleX="0.035" scaleY="0.035" styleClass="icon" />
+            </children>
+         </Group>
+      </graphic>
+      <font>
+         <Font name="Arial Bold" size="13.0" />
+      </font></Button>
+   <Label alignment="CENTER" layoutX="390.0" layoutY="12.0" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Khai Báo" AnchorPane.bottomAnchor="754.0" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="12.0">
+      <font>
+         <Font name="Arial Bold" size="18.0" />
+      </font>
+   </Label>
+   <Button fx:id="btnRefresh" graphicTextGap="11.0" layoutX="833.0" layoutY="140.0" mnemonicParsing="false" onAction="#reFreshThongTin" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="   Refresh" textAlignment="JUSTIFY">
+      <graphic>
+         <Group />
+      </graphic>
+      <font>
+         <Font name="Arial Bold" size="13.0" />
+      </font>
+   </Button>
 
 </AnchorPane>
