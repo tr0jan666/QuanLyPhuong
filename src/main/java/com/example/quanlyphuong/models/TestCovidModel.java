@@ -1,10 +1,5 @@
 package com.example.quanlyphuong.models;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class TestCovidModel {
@@ -15,16 +10,23 @@ public class TestCovidModel {
     private String diaDiemTest;
     private int ketQua;
 
-    public TestCovidModel(){
-
+    public String getKetQuaString() {
+        return ketQuaString;
     }
 
-    public TestCovidModel(int IDTest, int idNhanKhau, String thoiDiemTest, String hinhThucTest, String diaDiemTest, int ketQua) {
+    public void setKetQuaString(String ketQuaString) {
+        this.ketQuaString = ketQuaString;
+    }
+
+    private String ketQuaString;
+    public  TestCovidModel(){
+
+    }
+    public TestCovidModel(int IDTest, int idNhanKhau, String thoiDiemTest, String hinhThucTest, int ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;
         this.thoiDiemTest = thoiDiemTest;
         this.hinhThucTest = hinhThucTest;
-        this.diaDiemTest = diaDiemTest;
         this.ketQua = ketQua;
     }
 
@@ -60,19 +62,19 @@ public class TestCovidModel {
         this.hinhThucTest = hinhThucTest;
     }
 
-    public String getDiaDiemTest() {
-        return diaDiemTest;
-    }
-
-    public void setDiaDiemTest(String diaDiemTest) {
-        this.diaDiemTest = diaDiemTest;
-    }
-
     public int getKetQua() {
         return ketQua;
     }
 
     public void setKetQua(int ketQua) {
         this.ketQua = ketQua;
+    }
+
+    public String getDiaDiemTest() {
+        return diaDiemTest;
+    }
+
+    public void setDiaDiemTest(String diaDiemTest) {
+        this.diaDiemTest = diaDiemTest;
     }
 }

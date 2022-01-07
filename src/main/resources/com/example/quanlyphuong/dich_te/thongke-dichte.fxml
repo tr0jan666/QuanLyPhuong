@@ -19,96 +19,97 @@
     <children>
         <VBox prefHeight="800.0" prefWidth="1000.0">
             <children>
-            <AnchorPane prefHeight="190.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 8;">
-               <children>
-                      <AnchorPane layoutX="6.0" layoutY="50.0" prefHeight="123.0" prefWidth="594.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
-                          <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="26.0" prefHeight="20.0" prefWidth="92.0" text="Giới tính :" AnchorPane.leftAnchor="35.0">
-                           <font>
-                              <Font name="Arial Bold" size="16.0" />
-                           </font></Label>
-                              <ComboBox fx:id="gioiTinhCB" layoutX="152.0" layoutY="21.0" prefHeight="31.0" prefWidth="110.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="21.0" />
-                              <Label layoutX="49.0" layoutY="73.0" text="Độ tuổi :" AnchorPane.leftAnchor="49.0">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font></Label>
-                              <Label layoutX="148.0" layoutY="74.0" text="Từ">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                              <TextField fx:id="tuTuoiText" layoutX="190.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" AnchorPane.leftAnchor="190.0" />
-                              <Label layoutX="263.0" layoutY="73.0" text="Đến">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                              <TextField fx:id="denTuoiText" layoutX="319.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
-                              <CheckBox fx:id="cachLyCB" layoutX="579.0" layoutY="26.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đang cách ly">
-                           <font>
-                              <Font size="14.0" />
-                           </font></CheckBox>
-                        <ComboBox fx:id="tiemChungCB" layoutX="411.0" layoutY="21.0" prefHeight="31.0" prefWidth="131.0" AnchorPane.leftAnchor="411.0" />
-                        <Label layoutX="294.0" layoutY="26.0" text="Tiêm chủng :">
-                           <font>
-                              <Font name="Arial Bold" size="16.0" />
-                           </font>
+                <AnchorPane prefHeight="190.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 8;">
+                    <children>
+                        <AnchorPane layoutX="6.0" layoutY="50.0" prefHeight="111.0" prefWidth="728.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="60.0">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="26.0" prefHeight="20.0" prefWidth="92.0" text="Giới tính :" AnchorPane.leftAnchor="35.0">
+                                    <font>
+                                        <Font name="Arial Bold" size="16.0" />
+                                    </font></Label>
+                                <ComboBox fx:id="gioiTinhCB" layoutX="152.0" layoutY="17.0" prefHeight="31.0" prefWidth="110.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="17.0" />
+                                <Label layoutX="49.0" layoutY="73.0" text="Độ tuổi :" AnchorPane.leftAnchor="49.0">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font></Label>
+                                <Label layoutX="141.0" layoutY="74.0" text="Từ">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></Label>
+                                <TextField fx:id="tuTuoiText" layoutX="175.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" AnchorPane.leftAnchor="175.0" />
+                                <Label layoutX="238.0" layoutY="73.0" text="Đến">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></Label>
+                                <TextField fx:id="denTuoiText" layoutX="287.0" layoutY="68.0" prefHeight="24.0" prefWidth="43.0" />
+                                <CheckBox fx:id="cachLyCB" layoutX="585.0" layoutY="26.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="118.0" text="Đang cách ly">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></CheckBox>
+                                <ComboBox fx:id="tiemChungCB" layoutX="411.0" layoutY="18.0" prefHeight="31.0" prefWidth="131.0" AnchorPane.leftAnchor="411.0" />
+                                <Label layoutX="294.0" layoutY="26.0" text="Tiêm chủng :">
+                                    <font>
+                                        <Font name="Arial Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="374.0" layoutY="69.0" prefHeight="31.0" prefWidth="79.0" text="Covid :">
+                                    <font>
+                                        <Font name="Arial Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="ketQuaCovidCB" layoutX="454.0" layoutY="67.0" prefHeight="31.0" prefWidth="131.0" />
+                            </children>
+                        </AnchorPane>
+                        <Button fx:id="btnTimKiemThongkeDT" layoutX="828.0" layoutY="60.0" mnemonicParsing="false" onAction="#setTimKiemThongKeDT" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Tìm Kiếm">
+                            <graphic>
+                                <Group>
+                                    <children>
+                                        <SVGPath content="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" scaleX="0.04" scaleY="0.04" />
+                                    </children>
+                                </Group>
+                            </graphic>
+                            <font>
+                                <Font name="Arial Bold" size="14.0" />
+                            </font></Button>
+                        <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="828.0" layoutY="140.0" mnemonicParsing="false" onAction="#setXuatFileThongke" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
+                            <font>
+                                <Font name="Arial Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <Group>
+                                    <children>
+                                        <SVGPath content="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm76.45 211.36l-96.42 95.7c-6.65 6.61-17.39 6.61-24.04 0l-96.42-95.7C73.42 337.29 80.54 320 94.82 320H160v-80c0-8.84 7.16-16 16-16h32c8.84 0 16 7.16 16 16v80h65.18c14.28 0 21.4 17.29 11.27 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z" scaleX="0.04" scaleY="0.04" />
+                                    </children>
+                                </Group>
+                            </graphic></Button>
+                        <Label alignment="CENTER" layoutX="400.0" layoutY="14.0" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Thống Kê" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="14.0">
+                            <font>
+                                <Font name="Arial Bold" size="18.0" />
+                            </font>
                         </Label>
-                        <Label layoutX="411.0" layoutY="69.0" prefHeight="31.0" prefWidth="79.0" text="Covid :">
-                           <font>
-                              <Font name="Arial Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="ketQuaCovidCB" layoutX="496.0" layoutY="66.0" prefHeight="31.0" prefWidth="131.0" />
-                          </children>
-                      </AnchorPane>
-                   <Button fx:id="btnTimKiemThongkeDT" layoutX="828.0" layoutY="60.0" mnemonicParsing="false" onAction="#setTimKiemThongKeDT" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Tìm Kiếm">
-                       <graphic>
-                           <Group>
-                               <children>
-                                   <SVGPath content="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" scaleX="0.04" scaleY="0.04" />
-                               </children>
-                           </Group>
-                       </graphic>
-                       <font>
-                           <Font name="Arial Bold" size="14.0" />
-                       </font></Button>
-                   <Button fx:id="btnXuatFile" alignment="CENTER" graphicTextGap="12.0" layoutX="828.0" layoutY="140.0" mnemonicParsing="false" onAction="#setXuatFileThongke" prefHeight="34.0" prefWidth="110.0" styleClass="button3" text="Xuất file">
-                       <font>
-                           <Font name="Arial Bold" size="14.0" />
-                       </font>
-                       <graphic>
-                           <Group>
-                               <children>
-                                   <SVGPath content="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm76.45 211.36l-96.42 95.7c-6.65 6.61-17.39 6.61-24.04 0l-96.42-95.7C73.42 337.29 80.54 320 94.82 320H160v-80c0-8.84 7.16-16 16-16h32c8.84 0 16 7.16 16 16v80h65.18c14.28 0 21.4 17.29 11.27 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z" scaleX="0.04" scaleY="0.04" />
-                               </children>
-                           </Group>
-                       </graphic></Button>
-                  <Label alignment="CENTER" layoutX="400.0" layoutY="14.0" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 5;" text="Thông Tin Thống Kê" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="14.0">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <ScrollPane prefHeight="619.0" prefWidth="998.0">
-               <content>
-                      <TableView fx:id="table" prefHeight="1000.0">
-                          <columns>
-                        <TableColumn fx:id="col_hoTen" prefWidth="250.0" text="Họ Tên" />
-                              <TableColumn fx:id="col_cccd" prefWidth="140.0" text="CCCD" />
-                              <TableColumn fx:id="col_gioiTinh" text="Giới tính" />
-                              <TableColumn fx:id="col_diaChi" prefWidth="300.0" text="Địa chỉ" />
-                              <TableColumn fx:id="col_tiemLan" prefWidth="99.0" text="Tiêm lần" />
-                              <TableColumn fx:id="col_ngayTiemLan" prefWidth="110.0" text="Ngày" />
-                              <TableColumn fx:id="col_loaiVaccineLan" prefWidth="130.0" text="Loại vaccine" />
-                              <TableColumn fx:id="col_cachLy" prefWidth="145.0" text="Tình trạng cách ly" />
-                              <TableColumn fx:id="col_covid" prefWidth="120.0" text="Covid" />
-                          </columns>
-                      </TableView>
-               </content>
-               <VBox.margin>
-                  <Insets left="1.0" right="1.0" />
-               </VBox.margin>
-            </ScrollPane>
+                    </children>
+                </AnchorPane>
+                <ScrollPane prefHeight="619.0" prefWidth="998.0">
+                    <content>
+                        <TableView fx:id="table" prefHeight="1500.0">
+                            <columns>
+                                <TableColumn fx:id="col_hoTen" prefWidth="250.0" text="Họ Tên" />
+                                <TableColumn fx:id="col_cccd" prefWidth="140.0" text="CCCD" />
+                                <TableColumn fx:id="col_gioiTinh" text="Giới tính" />
+                                <TableColumn fx:id="col_diaChi" prefWidth="300.0" text="Địa chỉ" />
+                                <TableColumn fx:id="col_tiemLan" prefWidth="99.0" text="Tiêm lần" />
+                                <TableColumn fx:id="col_ngayTiemLan" prefWidth="110.0" text="Ngày" />
+                                <TableColumn fx:id="col_loaiVaccineLan" prefWidth="130.0" text="Loại vaccine" />
+                                <TableColumn fx:id="col_cachLy" prefWidth="145.0" text="Tình trạng cách ly" />
+                                <TableColumn fx:id="col_covid" prefWidth="120.0" text="Covid" />
+                                <TableColumn fx:id="col_trieuChung" prefWidth="175.0" text="Biểu hiện, triệu chứng" />
+                            </columns>
+                        </TableView>
+                    </content>
+                    <VBox.margin>
+                        <Insets left="1.0" right="1.0" />
+                    </VBox.margin>
+                </ScrollPane>
             </children>
         </VBox>
     </children>

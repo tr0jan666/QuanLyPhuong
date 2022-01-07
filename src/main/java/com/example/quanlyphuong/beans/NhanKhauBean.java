@@ -12,6 +12,15 @@ public class NhanKhauBean {
     private ChungMinhThuModel chungMinhThuModel;
     private CachLyModel cachLyModel;
     private TiemChungModel tiemChungModel;
+    private KhaiBaoModel khaiBaoModel ;
+
+    public KhaiBaoModel getKhaiBaoModel() {
+        return khaiBaoModel;
+    }
+
+    public void setKhaiBaoModel(KhaiBaoModel khaiBaoModel) {
+        this.khaiBaoModel = khaiBaoModel;
+    }
 
     public TestCovidModel getTestCovidModel() {
         return testCovidModel;

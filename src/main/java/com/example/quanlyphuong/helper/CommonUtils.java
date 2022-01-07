@@ -25,7 +25,7 @@ public class CommonUtils {
                 mucDoString = "F5";
                 break;
             default:
-                mucDoString = "F0";
+                mucDoString = "Không cách ly";
                 break;
         }
         return  mucDoString;
@@ -46,7 +46,7 @@ public class CommonUtils {
             case "F4":
                 mucDoInt = MucDoCachLyConstant.F4;
                 break;
-            case "F05":
+            case "F5":
                 mucDoInt = MucDoCachLyConstant.F5;
                 break;
             default:

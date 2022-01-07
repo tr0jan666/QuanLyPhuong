@@ -43,6 +43,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class TestCovidController implements Initializable {
+    public static  String TIM_THAY = "Đã tìm thấy";
+    public static  String KHONG_TIM_THAY = "Không tồn tại";
 
     public static TestCovidController frame;
 
@@ -178,6 +180,7 @@ public class TestCovidController implements Initializable {
         nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(tf_cccd.getText());
         try {
             checkCCCD(null);
+            if(lb_check.getText().equals(KHONG_TIM_THAY)) return;
         }catch (Exception exception){
             exception.printStackTrace();
             return;
@@ -193,16 +196,16 @@ public class TestCovidController implements Initializable {
             testCovidModel.setDiaDiemTest(tf_diaDiem.getText());
             testCovidModel.setThoiDiemTest(dp_thoiGianTest.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             if (cb_ketQua.getValue() == "Âm tính") {
-                testCovidModel.setKetQua(0);
+                testCovidModel.setKetQua(KetQuaTestConstant.AM_TINH);
             } else if (cb_ketQua.getValue() == "Dương tính") {
-                testCovidModel.setKetQua(1);
+                testCovidModel.setKetQua(KetQuaTestConstant.DUONG_TINH);
             }
             testCovidBean.setNhanKhauBean(nhanKhauTestCovid);
             testCovidBean.setTestCovidModel(testCovidModel);
 
 
             Alert alertCn = new Alert(Alert.AlertType.CONFIRMATION);
-            alertCn.setContentText("Bạn có thêm người cách ly");
+            alertCn.setContentText("Bạn có thêm thông tin test covid");
             Optional<ButtonType> confirmCn = alertCn.showAndWait();
 
             if (confirmCn.get() == ButtonType.OK) {
@@ -245,7 +248,7 @@ public class TestCovidController implements Initializable {
             nhanKhauTestCovid = thongKeNhanKhauService.getNhanKhau(cmt);
             if (nhanKhauTestCovid == null) {
                 lb_check.setTextFill(Color.RED);
-                lb_check.setText("Không tồn tại");
+                lb_check.setText(KHONG_TIM_THAY);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Không tồn tại CCCD");
                 alert.setContentText("Nếu muốn thêm nhân khẩu mới, hãy nhấn OK");
@@ -270,7 +273,7 @@ public class TestCovidController implements Initializable {
 
             } else {
                 lb_check.setTextFill(Color.GREEN);
-                lb_check.setText("Đã tìm thấy ");
+                lb_check.setText(TIM_THAY);
                 tf_hoVaTen.setText(nhanKhauTestCovid.getNhanKhauModel().getHo_ten());
             }
         }

@@ -1,6 +1,8 @@
 package com.example.quanlyphuong.controllers.dich_te;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.helper.constants.KetQuaTestConstant;
+import com.example.quanlyphuong.helper.constants.MucDoCachLyConstant;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.services.StringService;
 import com.example.quanlyphuong.services.ThongKeCovidService;
@@ -96,6 +98,9 @@ public class ThongKeDichTeController implements Initializable {
     @FXML
     private TableColumn<NhanKhauBean, String> col_covid;
 
+    @FXML
+    private TableColumn<NhanKhauBean, String> col_trieuChung;
+
     List<NhanKhauBean> listNhanKhauCovidBeans;
     ThongKeCovidService thongKeCovidService;
     ObservableList<NhanKhauBean> observablelistNhanKhauCovid;
@@ -182,8 +187,8 @@ public class ThongKeDichTeController implements Initializable {
         col_ngayTiemLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getNgayTiem()));
         col_loaiVaccineLan2.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTiemChungModel().getVacxin()));*/
         col_cachLy.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getCachLyModel().getMucDoString()));
-        col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper(nhanKhauBean.getValue().getTestCovidModel().getKetQua()));
-
+        col_covid.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getTestCovidModel().getKetQuaString()));
+        col_trieuChung.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getKhaiBaoModel().getBieuHien()));
         table.setItems(observablelistNhanKhauCovid);
 
     }
@@ -211,10 +216,10 @@ public class ThongKeDichTeController implements Initializable {
                 ArrayList<NhanKhauModel> listItem = new ArrayList<>();
                 for (NhanKhauBean nhanKhau : listNhanKhauCovidBeans) {
                     listItem.add(nhanKhau.getNhanKhauModel());
-                  //  String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
+                    //  String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
                     bw.write(nhanKhau.getNhanKhauModel().getHo_ten()+"\t"+nhanKhau.getChungMinhThuModel().getSoCMT()+"\t"+nhanKhau.getNhanKhauModel().getGioiTinhString()+"\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay()+"\t");
                     bw.write(nhanKhau.getTiemChungModel().getSoLanTiem()+"\t"+nhanKhau.getTiemChungModel().getNgayTiem()+"\t"+nhanKhau.getTiemChungModel().getVacxin()+"\t");
-                    bw.write(nhanKhau.getCachLyModel().getMucDoString()+"\t"+nhanKhau.getTestCovidModel().getKetQua());
+                    bw.write(nhanKhau.getCachLyModel().getMucDoString()+"\t"+nhanKhau.getTestCovidModel().getKetQuaString());
                     bw.newLine();
                 }
 
