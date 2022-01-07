@@ -18,7 +18,7 @@ public class TestCovidService {
         List<TestCovidBean> list = new ArrayList<>();
         try {
             Connection connection = MySQLConnector.getConnection();
-            String query = "SELECT * FROM test INNER JOIN nhan_khau ON test.idNhanKhau = nhan_khau.ID INNER JOIN chung_minh_thu ON test.idNhanKhau = chung_minh_thu.idNhanKhau";
+            String query = "SELECT test.ID,soCMT,hoTen,ketQua,date_format(thoiDiemTest, '%d/%m/%Y'),diaDiemTest FROM quan_ly_nhan_khau.test INNER JOIN quan_ly_nhan_khau.nhan_khau ON test.idNhanKhau = nhan_khau.ID INNER JOIN quan_ly_nhan_khau.chung_minh_thu ON test.idNhanKhau = chung_minh_thu.idNhanKhau";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -41,7 +41,7 @@ public class TestCovidService {
 
                 nhanKhauModel.setHo_ten(rs.getString("hoTen"));
                 testCovidModel.setKetQua(rs.getInt("ketQua"));
-                testCovidModel.setThoiDiemTest(rs.getString("thoiDiemTest"));
+                testCovidModel.setThoiDiemTest(rs.getString("date_format(thoiDiemTest, '%d/%m/%Y')"));
                 testCovidModel.setDiaDiemTest(rs.getString("diaDiemTest"));
 
 
