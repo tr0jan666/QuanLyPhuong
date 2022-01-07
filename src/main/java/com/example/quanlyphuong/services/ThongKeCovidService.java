@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.helper.CommonUtils;
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.helper.constants.KetQuaTestConstant;
 import com.example.quanlyphuong.models.*;
@@ -21,6 +22,7 @@ public class ThongKeCovidService {
                 + " LEFT JOIN cach_ly ON nhan_khau.ID = cach_ly.idNhanKhau "
                 + " LEFT JOIN tiem_chung ON nhan_khau.ID = tiem_chung.idNhanKhau "
                 + " LEFT JOIN test ON nhan_khau.ID = test.idNhanKhau "
+                + " LEFT JOIN khai_bao ON nhan_khau.ID = khai_bao.idNhanKhau "
                 + " WHERE ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) >= "
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
@@ -49,7 +51,7 @@ public class ThongKeCovidService {
         }
 
         if(cly==1){
-            query+=" AND cach_ly.mucDoCachLy = '" + cly + "'";
+            query+=" AND cach_ly.mucDoCachLy ";
         }
         if(tcovid.equalsIgnoreCase("Duong tinh")){
 
@@ -74,22 +76,25 @@ public class ThongKeCovidService {
                 CachLyModel cachLyModel = new CachLyModel();
                 TiemChungModel tiemChungModel = new TiemChungModel();
                 TestCovidModel testCovidModel = new TestCovidModel();
+                KhaiBaoModel khaiBaoModel = new KhaiBaoModel();
                 cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
-                if(cachLyModel.getMucDo()==1){
+                cachLyModel.setMucDoString(CommonUtils.getMucDoString(cachLyModel.getMucDo()));
+              /*  if(cachLyModel.getMucDo()==1){
                     cachLyModel.setMucDoString("Có");
                 }
                 else if(cachLyModel.getMucDo()==0){
                     cachLyModel.setMucDoString("Không");
-                }
+                }*/
+                khaiBaoModel.setBieuHien(rs.getString("bieuHien"));
 
                 tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
                 tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
                 testCovidModel.setKetQua(rs.getInt("ketQua"));
-                if(testCovidModel.getKetQua() == KetQuaTestConstant.DUONG_TINH){
+                if(testCovidModel.getKetQua() == KetQuaTestConstant.DUONG_TINH ){
                     testCovidModel.setKetQuaString("Dương tính");
                 }
-                else if(testCovidModel.getKetQua() == -1){
+                else if(testCovidModel.getKetQua() == KetQuaTestConstant.AM_TINH){
                     testCovidModel.setKetQuaString("Âm tính");
                 } else {
                     testCovidModel.setKetQuaString("Chưa test");
@@ -115,6 +120,7 @@ public class ThongKeCovidService {
                 nhanKhauBean.setCachLyModel(cachLyModel);
                 nhanKhauBean.setTiemChungModel(tiemChungModel);
                 nhanKhauBean.setTestCovidModel(testCovidModel);
+                nhanKhauBean.setKhaiBaoModel(khaiBaoModel);
 
                 list.add(nhanKhauBean);
             }
@@ -165,18 +171,19 @@ public class ThongKeCovidService {
                 tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
                 cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
-                if(cachLyModel.getMucDo()==1){
+                cachLyModel.setMucDoString(CommonUtils.getMucDoString(cachLyModel.getMucDo()));
+              /*  if(cachLyModel.getMucDo()==1){
                     cachLyModel.setMucDoString("Có");
                 }
                 else if(cachLyModel.getMucDo()==0){
                     cachLyModel.setMucDoString("Không");
-                }
+                }*/
 
                 testCovidModel.setKetQua(rs.getInt("ketQua"));
                 if(testCovidModel.getKetQua() == KetQuaTestConstant.DUONG_TINH){
                     testCovidModel.setKetQuaString("Dương tính");
                 }
-                else if(testCovidModel.getKetQua() == -1){
+                else if(testCovidModel.getKetQua() == KetQuaTestConstant.AM_TINH){
                     testCovidModel.setKetQuaString("Âm tính");
                 } else {
                     testCovidModel.setKetQuaString("Chưa test");

@@ -25,7 +25,7 @@ public class CommonUtils {
                 mucDoString = "F5";
                 break;
             default:
-                mucDoString = "F0";
+                mucDoString = "Không cách ly";
                 break;
         }
         return  mucDoString;
