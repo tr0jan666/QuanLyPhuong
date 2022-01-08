@@ -2,6 +2,7 @@ package com.example.quanlyphuong.controllers.nhan_khau;
 
 import com.example.quanlyphuong.beans.HoKhauBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
 import com.example.quanlyphuong.models.SimpleResult;
@@ -98,10 +99,10 @@ public class PopUpThemNhanKhauController implements Initializable {
         nhanKhau.setHo_ten(tf_ten.getText());
         nhanKhau.setNamSinh(Date.from(dp_ngaySinh.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
-        int gioiTinh = 0;
+        int gioiTinh;
         if(cb_gioiTinh.getValue().toString().equals("Nam")){
-            gioiTinh = 1;
-        }
+            gioiTinh = GioiTinhConstant.NAM;
+        }else gioiTinh = GioiTinhConstant.NU;
         nhanKhau.setGioiTinh(gioiTinh);
         nhanKhau.setQuocTich(tf_quocTich.getText());
         nhanKhau.setNoiSinh(tf_noiSinh.getText());
@@ -126,9 +127,18 @@ public class PopUpThemNhanKhauController implements Initializable {
         nhanKhauBean.setChungMinhThuModel(cmt);
 
         SimpleResult simpleResult = NhanKhauService.getInstance().taoNhanKhau(nhanKhauBean);
+        Alert alert;
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
-        alert.showAndWait();
+        if(simpleResult.isSuccess()){
+            alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+            NhanKhauController.frame.refreshScreen();
+            tf_cmt.getScene().getWindow().hide();
+        }else {
+            alert = new Alert(Alert.AlertType.ERROR, simpleResult.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+        }
+
 
     }
 
