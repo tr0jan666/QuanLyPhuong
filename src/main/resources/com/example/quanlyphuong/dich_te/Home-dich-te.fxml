@@ -6,36 +6,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="630.0" prefWidth="790.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.MainDichTeController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.HomeDichTeController">
     <children>
-        <AnchorPane layoutX="150.0" layoutY="49.0" prefHeight="107.0" prefWidth="693.0" styleClass="info__pane" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+        <AnchorPane layoutX="150.0" layoutY="49.0" prefHeight="107.0" prefWidth="693.0" styleClass="info__pane" AnchorPane.bottomAnchor="618.6" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="74.4">
             <children>
                 <Label layoutX="14.0" layoutY="10.0" text="Số người đang cách ly :" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="tongNhanKhauLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
+                <Label fx:id="tongDangCachLyLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
                 </Label>
             </children></AnchorPane>
-        <AnchorPane layoutX="150.0" layoutY="499.0" prefHeight="107.0" prefWidth="711.0" styleClass="info__pane" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="483.0">
+        <AnchorPane layoutX="150.0" layoutY="622.0" prefHeight="107.0" prefWidth="830.0" styleClass="info__pane" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="618.0">
             <children>
-                <Label layoutX="14.0" layoutY="13.0" text="Tỉ lệ tử vong :" textFill="WHITE">
+                <Label layoutX="14.0" layoutY="13.0" text="Số người dương tính :" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="nhanKhauTamVangLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
+                <Label fx:id="tongTestCovidLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="20.0" layoutY="483.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="483.0">
+        <AnchorPane layoutX="20.0" layoutY="618.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="618.0">
             <children>
                 <ImageView fitHeight="76.0" fitWidth="72.0" layoutX="5.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
                     <image>
@@ -44,21 +44,21 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="150.0" layoutY="364.0" prefHeight="107.0" prefWidth="711.0" styleClass="info__pane" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="335.0">
+        <AnchorPane layoutX="150.0" layoutY="442.0" prefHeight="107.0" prefWidth="830.0" styleClass="info__pane" AnchorPane.bottomAnchor="251.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="442.0">
             <children>
-                <Label layoutX="14.0" layoutY="13.0" text="Tỉ lệ tiêm mũi 2 :" textFill="WHITE">
+                <Label layoutX="14.0" layoutY="13.0" text="Số người tiêm mũi 2 :" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="nhanKhauTamTruLb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
+                <Label fx:id="tongTiemMui2Lb" layoutX="15.0" layoutY="36.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="20.0" layoutY="351.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="335.0">
+        <AnchorPane layoutX="20.0" layoutY="442.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.bottomAnchor="251.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="442.0">
             <children>
                 <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="5.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -67,7 +67,7 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="20.0" layoutY="37.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="40.0">
+        <AnchorPane layoutX="20.0" layoutY="74.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="74.0">
             <children>
                 <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="5.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                     <image>
@@ -76,21 +76,21 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="150.0" layoutY="205.0" prefHeight="107.0" prefWidth="711.0" styleClass="info__pane" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="187.0">
+        <AnchorPane layoutX="150.0" layoutY="252.0" prefHeight="107.0" prefWidth="830.0" styleClass="info__pane" AnchorPane.bottomAnchor="441.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="252.0">
             <children>
-                <Label layoutX="14.0" layoutY="10.0" text="Tỉ lệ tiêm mũi 1 :" textFill="WHITE">
+                <Label layoutX="14.0" layoutY="10.0" text="Số người tiêm mũi 1 :" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="tongHoKhauLb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
+                <Label fx:id="tongTiemMui1Lb" layoutX="15.0" layoutY="33.0" text="13" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="39.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="214.0" layoutY="180.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="187.0">
+        <AnchorPane layoutX="20.0" layoutY="252.0" prefHeight="107.0" prefWidth="81.0" styleClass="info__pane" AnchorPane.bottomAnchor="441.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="252.0">
             <children>
                 <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="5.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
                     <image>

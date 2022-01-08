@@ -13,7 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HoKhauService {
+    private static final HoKhauService INSTANCE = new HoKhauService();
 
+    public static HoKhauService getInstance() {
+        return INSTANCE;
+    }
 
     public ArrayList<HoKhauBean> getListHoKhau() {
         ArrayList<HoKhauBean> list = new ArrayList<>();
@@ -37,7 +41,7 @@ public class HoKhauService {
                 NhanKhauModel chuHo = new NhanKhauModel();
                 chuHo.setID(rs.getInt("ID"));
                 chuHo.setHo_ten(rs.getString("hoTen"));
-                chuHo.setGioiTinh(rs.getString("gioiTinh"));
+                chuHo.setGioiTinh(rs.getInt("gioiTinh"));
                 chuHo.setNamSinh(rs.getDate("namSinh"));
                 chuHo.setDiaChiHienNay(rs.getString("diaChiHienNay"));
                 temp.setChuHo(chuHo);
@@ -54,7 +58,7 @@ public class HoKhauService {
                         ThanhVienCuaHoModel thanhVienCuaHoModel = new ThanhVienCuaHoModel();
                         nhanKhauModel.setID(rs_1.getInt("idNhanKhau"));
                         nhanKhauModel.setHo_ten(rs_1.getString("hoTen"));
-                        nhanKhauModel.setGioiTinh(rs_1.getString("gioiTinh"));
+                        nhanKhauModel.setGioiTinh(rs_1.getInt("gioiTinh"));
                         nhanKhauModel.setNamSinh(rs_1.getDate("namSinh"));
                         nhanKhauModel.setNguyenQuan(rs_1.getString("nguyenQuan"));
                         nhanKhauModel.setTonGiao(rs_1.getString("tonGiao"));
@@ -89,7 +93,33 @@ public class HoKhauService {
     }
 
 
+    public SimpleResult xoaHoKhau(int idHoKhau) {
+        String xoaHoKhauQuery = "delete from ho_khau where Id = ?";
+        String xoaThanhVienHoQuery = "delete from thanh_vien_cua_ho where idHoKhau = ?";
 
+        try (Connection connection = MySQLConnector.getConnection()) {
+            PreparedStatement xoaHoKhauStatement = connection.prepareStatement(xoaHoKhauQuery);
+            PreparedStatement xoaThanhVienHoStatement = connection.prepareStatement(xoaThanhVienHoQuery);
+
+            xoaHoKhauStatement.setInt(1, idHoKhau);
+            xoaThanhVienHoStatement.setInt(1, idHoKhau);
+
+            int countDeleteThanhVienHo = xoaThanhVienHoStatement.executeUpdate();
+            if(countDeleteThanhVienHo > 0) {
+                int countDeleteHoKhau = xoaHoKhauStatement.executeUpdate();
+                if(countDeleteHoKhau > 0) {
+                    return new SimpleResult(true, SimpleResult.DEFAULT_SUCCESS_MESSAGE);
+                }else {
+                    return  new SimpleResult(false, SimpleResult.DEFAULT_FAILED_MESSAGE);
+                }
+            }else {
+                return  new SimpleResult(false, SimpleResult.DEFAULT_FAILED_MESSAGE);
+            }
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+            return new SimpleResult(false, exception.getMessage());
+        }
+    }
 
 
 
@@ -149,7 +179,7 @@ public class HoKhauService {
 
             nhanKhauModel.setID(rs_1.getInt("idNhanKhau"));
             nhanKhauModel.setHo_ten(rs_1.getString("hoTen"));
-            nhanKhauModel.setGioiTinh(rs_1.getString("gioiTinh"));
+            nhanKhauModel.setGioiTinh(rs_1.getInt("gioiTinh"));
             nhanKhauModel.setNamSinh(rs_1.getDate("namSinh"));
             nhanKhauModel.setNguyenQuan(rs_1.getString("nguyenQuan"));
             nhanKhauModel.setTonGiao(rs_1.getString("tonGiao"));

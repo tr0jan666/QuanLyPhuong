@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.controllers.ho_khau;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
 import com.example.quanlyphuong.services.HoKhauService;
 import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -84,7 +85,13 @@ public class ChonChuHoController  implements  Initializable {
 
         ObservableList nhanKhauBeanObservableList = FXCollections.observableList(listNhanKhauBean);
         hoTen.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getHo_ten()));
-        gioiTinh.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinh()));
+        gioiTinh.setCellValueFactory(nhanKhauBean -> {
+            String gioiTinhString;
+            if(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinh() == GioiTinhConstant.NAM)
+                gioiTinhString = "Nam";
+            else gioiTinhString = "Nữ";
+            return new ReadOnlyObjectWrapper<String>(gioiTinhString);
+        });
         ngaySinh.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNamSinh()));
         soCMT.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getChungMinhThuModel().getSoCMT()));
         diaChiHienNay.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
