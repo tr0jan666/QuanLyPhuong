@@ -82,7 +82,7 @@
          <content>
               <AnchorPane prefHeight="605.0" prefWidth="998.0">
                <children>
-                    <TableView fx:id="tableTiemChung" prefHeight="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <TableView fx:id="tableTiemChung" prefHeight="625.0" AnchorPane.bottomAnchor="0.0" onMouseClicked="#setThongTin" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columns>
                             <TableColumn fx:id="tc_hoVaTen" minWidth="0.0" prefWidth="216.79999095201492" text="Họ và tên" />
                             <TableColumn fx:id="tc_cccd" prefWidth="168.00001525878906" text="CCCD" />

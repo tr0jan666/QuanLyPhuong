@@ -20,9 +20,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -155,7 +155,7 @@ public class TiemChungController implements Initializable {
     }
 
     @FXML
-    void setThongtin(MouseEvent event){
+    void setThongTin(MouseEvent event) {
         tiemChungService = new TiemChungService();
         TiemChungBean tiemChungBean = tableTiemChung.getSelectionModel().getSelectedItem();
 
@@ -248,4 +248,5 @@ public class TiemChungController implements Initializable {
             lbCheck.setTextFill(Color.GREEN);
 
         }    }
+
 }
