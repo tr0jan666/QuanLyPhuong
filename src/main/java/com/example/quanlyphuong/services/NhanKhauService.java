@@ -82,7 +82,7 @@ public class NhanKhauService {
                 }else if(status == 0){
                     continue;
                 }
-                nhanKhau.setNamSinh(new java.util.Date(rs.getDate("namSinh").getTime()));
+               // nhanKhau.setNamSinh(new java.util.Date(rs.getDate("namSinh").getTime()));
                 nhanKhau.setNoiSinh(rs.getString("noiSinh"));
                 nhanKhau.setTienAn(rs.getString("tienAn"));
                 nhanKhau.setTrinhDoHocVan(rs.getString("trinhDoHocVan"));

@@ -88,9 +88,26 @@ public class ThongKeNhanKhauService {
 
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                if(nhanKhau.getGioiTinh() == 1){
+                    nhanKhau.setGioiTinhString("Nam");
+                }else{
+                    nhanKhau.setGioiTinhString("Nữ");
+                }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+                nhanKhau.setStatus(rs.getInt("status"));
+                int status = nhanKhau.getStatus();
+
+                if(status==1){
+                    nhanKhau.setStatusString("Thường trú");
+                }else if(status==2){
+                    nhanKhau.setStatusString("Tạm trú");
+                }else if(status==-1){
+                    nhanKhau.setStatusString("Tạm vắng");
+                }else if(status == 0){
+                    continue;
+                }
 
                 chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
                 chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
@@ -132,13 +149,18 @@ public class ThongKeNhanKhauService {
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
-        if (!gender.equalsIgnoreCase("Toan Bo")) {
-            query += " AND nhan_khau.gioiTinh = '" + gender + "'";
+        if(gender.equalsIgnoreCase("Nam")){
+            int gt = 1 ;
+            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
-        if (Status.equalsIgnoreCase("Toan bo")) {
+        if(gender.equalsIgnoreCase("Nu")){
+            int gt = 0 ;
+            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
+        }
+     /*   if (Status.equalsIgnoreCase("Toan bo")) {
             query += " AND (tam_tru.denNgay >= CURDATE() OR tam_tru.denNgay IS NULL)"
                     + " AND (tam_vang.denNgay <= CURDATE() OR tam_vang.denNgay IS NULL)";
-        } else if (Status.equalsIgnoreCase("Thuong tru")) {
+        } else*/ if (Status.equalsIgnoreCase("Thuong tru")) {
             query += " AND tam_tru.denNgay IS NULL";
 
         } else if (Status.equalsIgnoreCase("Tam tru")) {
@@ -168,7 +190,12 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                if(nhanKhau.getGioiTinh() == 1){
+                    nhanKhau.setGioiTinhString("Nam");
+                }else{
+                    nhanKhau.setGioiTinhString("Nữ");
+                }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -177,6 +204,18 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setSoHoChieu(rs.getString("soHoChieu"));
                 nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+                nhanKhau.setStatus(rs.getInt("status"));
+                int status = nhanKhau.getStatus();
+
+                if(status==1){
+                    nhanKhau.setStatusString("Thường trú");
+                }else if(status==2){
+                    nhanKhau.setStatusString("Tạm trú");
+                }else if(status==-1){
+                    nhanKhau.setStatusString("Tạm vắng");
+                }else if(status == 0){
+                    continue;
+                }
                 // con nhieu nua
                 chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
                 chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
