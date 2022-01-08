@@ -62,7 +62,7 @@ public class MenuDichTeController implements Initializable {
 
     @FXML
     void setQuayLai(ActionEvent event) throws IOException {
-        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,600,400);
+        AppScreen menuChucNangScreen = UIHelper.navigateNew("menu-chuc-nang.fxml", "Chọn chức năng", null,750,500);
         menuChucNangScreen.<MenuController>getController().getTxtRegister().setVisible(AuthService.getInstance().getCurrentUser().isAdministrator());
         ((Node) event.getSource()).getScene().getWindow().hide();
 
@@ -94,7 +94,7 @@ public class MenuDichTeController implements Initializable {
 
     @FXML
     void setTrangChu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/main-dich-te.fxml"));
+        FXMLLoader loader = new FXMLLoader(QuanLyNhanKhauApplication.class.getResource("dich_te/Home-dich-te.fxml"));
         Pane trangchuPane = (Pane) loader.load();
         borderPane.setCenter(trangchuPane);
 
@@ -104,7 +104,7 @@ public class MenuDichTeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
 
-            Pane mainDichTe = FXMLLoader.load(QuanLyNhanKhauApplication.class.getResource("dich_te/main-dich-te.fxml"));
+            Pane mainDichTe = FXMLLoader.load(QuanLyNhanKhauApplication.class.getResource("dich_te/Home-dich-te.fxml"));
             borderPane.setCenter(mainDichTe);
 
 

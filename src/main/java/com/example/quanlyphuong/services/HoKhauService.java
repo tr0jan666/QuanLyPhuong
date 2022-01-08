@@ -1,12 +1,10 @@
 package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.HoKhauBean;
+import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.helper.enums.HoKhauFilterEnum;
-import com.example.quanlyphuong.models.HoKhauModel;
-import com.example.quanlyphuong.models.NhanKhauModel;
-import com.example.quanlyphuong.models.SimpleResult;
-import com.example.quanlyphuong.models.ThanhVienCuaHoModel;
+import com.example.quanlyphuong.models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,12 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HoKhauService {
-
     private static final HoKhauService INSTANCE = new HoKhauService();
 
-    private HoKhauService () {
-
-    }
     public static HoKhauService getInstance() {
         return INSTANCE;
     }
@@ -99,18 +93,6 @@ public class HoKhauService {
     }
 
 
-
-
-
-    public ArrayList<HoKhauModel> timKiemHoKhau(String keyword, HoKhauFilterEnum filterType) {
-
-        return null;
-    }
-
-    public SimpleResult taoHoKhau(HoKhauModel hoKhau) {
-        return null;
-    }
-
     public SimpleResult xoaHoKhau(int idHoKhau) {
         String xoaHoKhauQuery = "delete from ho_khau where Id = ?";
         String xoaThanhVienHoQuery = "delete from thanh_vien_cua_ho where idHoKhau = ?";
@@ -139,9 +121,8 @@ public class HoKhauService {
         }
     }
 
-    public SimpleResult suaHoKhau(HoKhauModel hoKhau) {
-        return null;
-    }
+
+
 
     public ArrayList<NhanKhauModel> listNhanKhauCuaHoTruChuHo(HoKhauModel hoKhau){
         return hoKhau.getListNhanKhau();
@@ -182,23 +163,54 @@ public class HoKhauService {
         connection.close();
         return true;
     }
+    public ArrayList<NhanKhauBean> danhSachNhanKhauCoTheLamChuHo() throws SQLException {
+        ArrayList<NhanKhauBean> list= new ArrayList<>();
+
+        String sql = "select * from( select* from nhan_khau where ID not in ( select idNhanKhau from thanh_vien_cua_ho)) as a, chung_minh_thu where a.ID = chung_minh_thu.idNhanKhau";
+        Connection connection = MySQLConnector.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet rs_1 = preparedStatement.executeQuery();
+
+        while (rs_1.next()){
+            NhanKhauBean nhanKhauBean = new NhanKhauBean();
+
+            NhanKhauModel nhanKhauModel = new NhanKhauModel();
+            ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
+
+            nhanKhauModel.setID(rs_1.getInt("idNhanKhau"));
+            nhanKhauModel.setHo_ten(rs_1.getString("hoTen"));
+            nhanKhauModel.setGioiTinh(rs_1.getInt("gioiTinh"));
+            nhanKhauModel.setNamSinh(rs_1.getDate("namSinh"));
+            nhanKhauModel.setNguyenQuan(rs_1.getString("nguyenQuan"));
+            nhanKhauModel.setTonGiao(rs_1.getString("tonGiao"));
+            nhanKhauModel.setDanToc(rs_1.getString("danToc"));
+            nhanKhauModel.setQuocTich(rs_1.getString("quocTich"));
+            nhanKhauModel.setSoHoChieu(rs_1.getString("soHoChieu"));
+            nhanKhauModel.setNoiThuongTru(rs_1.getString("noiThuongTru"));
+            nhanKhauModel.setDiaChiHienNay(rs_1.getString("diaChiHienNay"));
+
+            System.out.println(nhanKhauModel.getHo_ten());
+
+
+            chungMinhThuModel.setIdNhanKhau(rs_1.getInt("idNhanKhau"));
+            chungMinhThuModel.setSoCMT(rs_1.getString("soCMT"));
+            chungMinhThuModel.setNgayCap(rs_1.getDate("ngayCap"));
+            chungMinhThuModel.setNoiCap(rs_1.getString("noiCap"));
+
+            nhanKhauBean.setNhanKhauModel(nhanKhauModel);
+            nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
+            list.add(nhanKhauBean);
+
+        }
+        return list;
+
+    }
 
     public void tachHoKhau(HoKhauBean hoKhauBean) {
         /**
          * xoa cac thanh vien co trong moi ra khoi bang thanh_vien_cua_ho
          */
 
-        // xoa chu ho
-//        String query = "DELETE FROM thanh_vien_cua_ho WHERE idNhanKhau = " + hoKhauBean.getChuHo().getID();
-//        try {
-//            Connection connection = MysqlConnection.getMysqlConnection();
-//            PreparedStatement preparedStatement = connection.prepareStatement(query);
-//            int rs = preparedStatement.executeUpdate();
-//            System.out.println("xoa thanh cong");
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-        // xoa cac thanh vien
 
         hoKhauBean.getListThanhVienCuaHo().forEach((ThanhVienCuaHoModel item) -> {
             String sql = "DELETE FROM thanh_vien_cua_ho WHERE idNhanKhau = " + item.getIdNhanKhau();
@@ -221,5 +233,4 @@ public class HoKhauService {
             System.out.println("services.HoKhauService.tachHoKhau()");
         }
     }
-
 }
