@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.nhan_khau.NhanKhauController">
+    <children>
+        <TableView fx:id="tv_nhanKhau" layoutX="14.0" layoutY="180.0" onMouseClicked="#chiTietNhanKhau" prefHeight="588.0" prefWidth="820.0">
+            <columns>
+                <TableColumn id="tc_HoVaTen" fx:id="col_hoVaTen" prefWidth="153.60000610351562" text="Họ và tên " />
+                <TableColumn id="tc_Tuoi" fx:id="col_cmt" prefWidth="109.0" text="CMT" />
+                <TableColumn id="tc_DiaChi" fx:id="col_ngaySinh" prefWidth="95.0" text="Ngày sinh" />
+                <TableColumn id="tc_ChuHo" fx:id="col_gioiTinh" minWidth="0.0" prefWidth="129.0" text="Giới tính" />
+                <TableColumn id="tc_MaHo" fx:id="col_diaChi" minWidth="0.0" prefWidth="118.0" text="Địa chỉ" />
+            <TableColumn fx:id="col_ngheNghiep" prefWidth="120.0" text="Nghề nghiệp" />
+            <TableColumn fx:id="col_status" prefWidth="101.0" text="status" />
+            </columns>
+        </TableView>
+        <GridPane layoutX="26.0" layoutY="128.0" prefHeight="31.0" prefWidth="728.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="604.4000122070313" minWidth="10.0" prefWidth="406.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.8000137329102" minWidth="5.199987792968727" prefWidth="122.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="283.39996337890625" minWidth="10.0" prefWidth="214.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <TextField id="tf_TimKiem" prefHeight="26.0" prefWidth="342.0" />
+                <ButtonBar prefHeight="43.0" prefWidth="156.0" GridPane.columnIndex="2">
+                    <buttons>
+                        <Button id="btn_ThemNhanKhau" fx:id="btn_ThemNhanKhau" mnemonicParsing="false" onAction="#themNhanKhau" prefHeight="26.0" prefWidth="150.0" text="Thêm Nhân Khẩu" />
+                    </buttons>
+                </ButtonBar>
+                <Button id="btn_TimKiem" fx:id="btn_timKiem" alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="105.0" text="Tìm kiếm" textAlignment="CENTER" GridPane.columnIndex="1" />
+            </children>
+        </GridPane>
+        <VBox layoutX="867.0" layoutY="190.0" prefHeight="439.0" prefWidth="105.0">
+            <children>
+                <Button id="btn_ChiTiet" fx:id="btn_chiTiet" mnemonicParsing="false" onAction="#xemChiTietNhanKhau" prefHeight="50.0" prefWidth="100.0" text="Chi tiết" visible="false">
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+               <font>
+                  <Font size="11.0" />
+               </font>
+                </Button>
+                <Button id="btn_Xoa" fx:id="btn_Xoa" mnemonicParsing="false" onAction="#xoaTamTru" prefHeight="66.0" prefWidth="100.0" text="Xóa tạm trú" textFill="#cc0e0e" visible="false">
+                    <font>
+                        <Font name="System Bold" size="11.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+                <Button id="btn_KhaiTu" fx:id="btn_khaiTu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#khauTuNhanKhau" prefHeight="57.0" prefWidth="100.0" text="Khai tử" textFill="#cc0e0e">
+                    <font>
+                        <Font name="System Bold" size="11.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+            <Button id="btn_KhaiTu" fx:id="btn_tamVang" layoutX="10.0" layoutY="145.0" mnemonicParsing="false" onAction="#tamVangNhanKhau" prefHeight="66.0" prefWidth="100.0" text="Tạm vắng" visible="false">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn_xoaTamVang" mnemonicParsing="false" onAction="#xoaTamVang" prefHeight="56.0" prefWidth="102.0" text="Xóa tạm vắng">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            </children>
+        </VBox>
+        <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="855.0" layoutY="729.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="49.0" prefWidth="134.0" text="refresh">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Label layoutX="305.0" layoutY="22.0" prefHeight="106.0" prefWidth="430.0" text="Nhân khẩu" textFill="#29adff">
+         <font>
+            <Font name="System Bold" size="64.0" />
+         </font>
+      </Label>
+      <Button id="btn_KhaiTu" fx:id="btn_tamTru" layoutX="856.0" layoutY="119.0" mnemonicParsing="false" onAction="#tamTruNhanKhau" prefHeight="50.0" prefWidth="126.0" text="Đăng kí tạm trú">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Button>
+      <Button layoutX="855.0" layoutY="663.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="134.0" text="Thành thường trú" />
+    </children>
+</AnchorPane>
