@@ -16,14 +16,14 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.KhaiBaoController">
-    <GridPane layoutX="33.0" layoutY="60.0" prefHeight="114.0" prefWidth="720.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.KhaiBaoController">
+    <GridPane layoutX="33.0" layoutY="60.0" prefHeight="114.0" prefWidth="747.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="60.0">
         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="56.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="180.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="84.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="200.0" />
+         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="72.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="151.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="210.0" />
         </columnConstraints>
         <rowConstraints>
          <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -33,60 +33,73 @@
          <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <TextField focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="CCCD" GridPane.rowIndex="1">
+            <TextField fx:id="tfCCCD" focusTraversable="false" prefHeight="25.0" prefWidth="148.0" promptText="12345679" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfHoTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfDiaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="133.0" text="CCCD" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
-            </font></Label>
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
             <Label text="Địa điểm" GridPane.rowIndex="3">
             <font>
                <Font size="13.0" />
-            </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Thời gian bắt đầu" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="19.0" prefWidth="152.0" text="Thời gian khai báo" GridPane.columnIndex="3" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
-            </font></Label>
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Thời gian kết thúc" GridPane.columnIndex="2" GridPane.rowIndex="2">
-            <font>
-               <Font size="13.0" />
-            </font></Label>
-            <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
+            <DatePicker fx:id="tfKhaiBao" focusTraversable="false" prefHeight="26.0" prefWidth="183.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
             <GridPane.margin>
                <Insets />
             </GridPane.margin></DatePicker>
-            <DatePicker focusTraversable="false" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
-            </font></Label>
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="136.0" text="Tình trạng" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="147.0" text="Biểu hiện, triệu chứng" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
-            </font></Label>
-            <TextArea focusTraversable="false" scaleY="0.8" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
+         <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" prefHeight="25.0" prefWidth="116.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <GridPane.margin>
-               <Insets bottom="5.0" right="3.0" top="7.0" />
+               <Insets left="5.0" right="5.0" />
+            </GridPane.margin></Button>
+         <TextArea fx:id="taBieuHien" prefHeight="54.0" prefWidth="184.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.rowSpan="2">
+            <GridPane.margin>
+               <Insets right="26.0" />
             </GridPane.margin></TextArea>
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="200.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
         <children>
-            <TableView layoutX="7.0" layoutY="3.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.6000000000000227">
+            <TableView fx:id="tbvChiTiet" layoutX="14.0" layoutY="1.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.6000000000000227" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
                 <columns>
-                    <TableColumn prefWidth="50.0" text="ID" />
-                    <TableColumn prefWidth="220.0" text="Họ và tên" />
-                    <TableColumn prefWidth="130.0" text="CCCD" />
-                    <TableColumn prefWidth="190.0" text="Địa điểm" />
-                    <TableColumn prefWidth="135.0" text="Thời gian bắt đầu" />
-                    <TableColumn prefWidth="135.0" text="Thời gian kết thúc" />
-                    <TableColumn prefWidth="137.0" text="Tình trạng" />
+                    <TableColumn fx:id="ID" prefWidth="57.0" text="ID" />
+                    <TableColumn fx:id="HoTen" prefWidth="225.0" text="Họ và tên" />
+                    <TableColumn fx:id="CCCD" prefWidth="163.0" text="CCCD" />
+                    <TableColumn fx:id="DiaDiem" prefWidth="204.0" text="Địa điểm" />
+                    <TableColumn fx:id="thoigiankhaibao" prefWidth="165.0" text="Thời gian khai báo" />
+                    <TableColumn fx:id="BieuHien" prefWidth="180.0" text="Biểu hiện" />
                 </columns>
             </TableView>
         </children>
     </AnchorPane>
-    <Button graphicTextGap="11.0" layoutX="833.0" layoutY="29.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="29.0">
+    <Button fx:id="btnThem" graphicTextGap="11.0" layoutX="833.0" layoutY="43.0" mnemonicParsing="false" onAction="#themKhaiBao" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="43.0">
       <graphic>
          <Group>
             <children>
@@ -97,22 +110,11 @@
       <font>
          <Font name="Arial Bold" size="13.0" />
       </font></Button>
-      <Button graphicTextGap="17.0" layoutX="833.0" layoutY="140.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="140.0">
+      <Button fx:id="btnXoa" graphicTextGap="17.0" layoutX="833.0" layoutY="90.0" mnemonicParsing="false" onAction="#xoa" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="90.0">
       <graphic>
          <Group>
             <children>
                <SVGPath content="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z" scaleX="0.035" scaleY="0.035" styleClass="icon" />
-            </children>
-         </Group>
-      </graphic>
-      <font>
-         <Font name="Arial Bold" size="13.0" />
-      </font></Button>
-      <Button graphicTextGap="7.0" layoutX="833.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Cật nhật" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="85.0">
-      <graphic>
-         <Group>
-            <children>
-               <SVGPath content="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z" scaleX="0.03" scaleY="0.03" styleClass="icon" />
             </children>
          </Group>
       </graphic>
@@ -124,5 +126,13 @@
          <Font name="Arial Bold" size="18.0" />
       </font>
    </Label>
+   <Button fx:id="btnRefresh" graphicTextGap="11.0" layoutX="833.0" layoutY="140.0" mnemonicParsing="false" onAction="#reFreshThongTin" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="   Refresh" textAlignment="JUSTIFY">
+      <graphic>
+         <Group />
+      </graphic>
+      <font>
+         <Font name="Arial Bold" size="13.0" />
+      </font>
+   </Button>
 
 </AnchorPane>

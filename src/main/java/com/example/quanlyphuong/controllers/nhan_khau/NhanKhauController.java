@@ -9,6 +9,8 @@ import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -102,6 +104,9 @@ public class NhanKhauController implements Initializable {
 
     @FXML
     private Button btn_thanhThuongTru;
+
+    @FXML
+    private TextField tfTimKiem;
 
     @FXML
     void refreshTrang(){
@@ -222,6 +227,39 @@ public class NhanKhauController implements Initializable {
 
 
         tv_nhanKhau.setItems(observableListNhanKhauBeans);
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<NhanKhauBean> filteredData = new FilteredList<>(observableListNhanKhauBeans, b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        tfTimKiem.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(_nhanKhau -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (_nhanKhau.getNhanKhauModel().getHo_ten().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<NhanKhauBean> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(tv_nhanKhau.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tv_nhanKhau.setItems(sortedData);
 
         btn_tamVang.setVisible(false);
         btn_Xoa.setVisible(false);

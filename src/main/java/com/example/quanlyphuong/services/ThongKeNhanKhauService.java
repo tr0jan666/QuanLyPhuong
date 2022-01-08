@@ -2,6 +2,8 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
+import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
+import com.example.quanlyphuong.helper.constants.NhanKhauConstant;
 import com.example.quanlyphuong.models.*;
 
 import java.sql.Connection;
@@ -13,7 +15,7 @@ import java.util.List;
 
 
 public class ThongKeNhanKhauService {
-    //TODO @Vuong clean code: move all function to NhanKhauService
+
     /*
      * Ham lay ra 1 nhan khau trong db bang chung minh thu
      *
@@ -26,15 +28,17 @@ public class ThongKeNhanKhauService {
             String query = "SELECT * FROM nhan_khau INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau WHERE soCMT = " + cmt;
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
+
             int idNhanKhau = -1;
+
             while (rs.next()) {
                 NhanKhauModel nhanKhau = new NhanKhauModel();
-                ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
+                ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -43,57 +47,25 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setSoHoChieu(rs.getString("soHoChieu"));
                 nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
-                // con nhieu nua
-//                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-//                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
-//                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
-//                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
+
+                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
+                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
+                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
+                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
+
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
+                nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
             }
             preparedStatement.close();
-//            if (idNhanKhau > 0) {
-////                query = "SELECT * FROM tieu_su WHERE idNhanKhau = " + idNhanKhau;
-////                preparedStatement = (PreparedStatement) connection.prepareStatement(query);
-////                rs = preparedStatement.executeQuery();
-////                List<TieuSuModel> listTieuSuModels = new ArrayList<>();
-////                while (rs.next()) {
-////                    TieuSuModel tieuSuModel = new TieuSuModel();
-////                    tieuSuModel.setID(rs.getInt("ID"));
-////                    tieuSuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-////                    tieuSuModel.setTuNgay(rs.getDate("tuNgay"));
-////                    tieuSuModel.setDenNgay(rs.getDate("denNgay"));
-////                    tieuSuModel.setDiaChi(rs.getString("diaChi"));
-////                    tieuSuModel.setNgheNghiep(rs.getString("ngheNghiep"));
-////                    tieuSuModel.setNoiLamViec(rs.getString("noiLamViec"));
-////                    listTieuSuModels.add(tieuSuModel);
-////                }
-////                nhanKhauBean.setListTieuSuModels(listTieuSuModels);
-////                preparedStatement.close();
-////
-////                query = "SELECT * FROM gia_dinh WHERE idNhanKhau = " + idNhanKhau;
-////                preparedStatement = (PreparedStatement) connection.prepareStatement(query);
-////                rs = preparedStatement.executeQuery();
-////                List<GiaDinhModel> listGiaDinhModels = new ArrayList<>();
-////                while (rs.next()) {
-////                    GiaDinhModel giaDinhModel = new GiaDinhModel();
-////                    giaDinhModel.setID(rs.getInt("ID"));
-////                    giaDinhModel.setHoTen(rs.getString("hoTen"));
-////                    giaDinhModel.setNamSinh(rs.getDate("namSinh"));
-////                    giaDinhModel.setGioiTinh(rs.getString("gioiTinh"));
-////                    giaDinhModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
-////                    giaDinhModel.setDiaChiHienTai(rs.getString("diaChiHienTai"));
-////                    giaDinhModel.setNgheNghiep(rs.getString("ngheNghiep"));
-////                    giaDinhModel.setQuanHeVoiNhanKhau(rs.getString("quanHeVoiNhanKhau"));
-////                    listGiaDinhModels.add(giaDinhModel);
-////                }
-////                nhanKhauBean.setListGiaDinhModels(listGiaDinhModels);
-////                preparedStatement.close();
-//            }
             connection.close();
+
+
+
         } catch (Exception e) {
             this.exceptionHandle(e.getMessage());
         }
-        return nhanKhauBean;
+        if(nhanKhauBean.getNhanKhauModel() == null) return null;
+        return  nhanKhauBean;
     }
 
     // lay danh sach 10 nhan khau moi duoc them vao
@@ -119,14 +91,26 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
-                if(nhanKhau.getGioiTinh()==1){
+                if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
                     nhanKhau.setGioiTinhString("Nam");
-                }
-                else{
+                }else{
                     nhanKhau.setGioiTinhString("Nữ");
                 }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+                nhanKhau.setStatus(rs.getInt("status"));
+                int status = nhanKhau.getStatus();
+
+                if(status== NhanKhauConstant.THUONG_TRU_STATUS){
+                    nhanKhau.setStatusString("Thường trú");
+                }else if(status==NhanKhauConstant.TAM_TRU_STATUS){
+                    nhanKhau.setStatusString("Tạm trú");
+                }else if(status==NhanKhauConstant.TAM_VANG_STATUS){
+                    nhanKhau.setStatusString("Tạm vắng");
+                }else if(status == NhanKhauConstant.TU_VONG_STATUS){
+                    nhanKhau.setStatusString("Tử vong");
+                    continue;
+                }
 
                 chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
                 chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
@@ -139,6 +123,7 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setQuocTich(rs.getString("quocTich"));
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
+                System.out.println(nhanKhau.getHo_ten());
 
                 nhanKhauBean.setNhanKhauModel(nhanKhau);
                 nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
@@ -167,8 +152,7 @@ public class ThongKeNhanKhauService {
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
-
-         if(gender.equalsIgnoreCase("Nam")){
+        if(gender.equalsIgnoreCase("Nam")){
             int gt = 1 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
@@ -176,10 +160,10 @@ public class ThongKeNhanKhauService {
             int gt = 0 ;
             query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
-        if (Status.equalsIgnoreCase("Toan bo")) {
+     /*   if (Status.equalsIgnoreCase("Toan bo")) {
             query += " AND (tam_tru.denNgay >= CURDATE() OR tam_tru.denNgay IS NULL)"
                     + " AND (tam_vang.denNgay <= CURDATE() OR tam_vang.denNgay IS NULL)";
-        } else if (Status.equalsIgnoreCase("Thuong tru")) {
+        } else*/ if (Status.equalsIgnoreCase("Thuong tru")) {
             query += " AND tam_tru.denNgay IS NULL";
 
         } else if (Status.equalsIgnoreCase("Tam tru")) {
@@ -210,10 +194,9 @@ public class ThongKeNhanKhauService {
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
-                if(nhanKhau.getGioiTinh()==1){
+                if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
                     nhanKhau.setGioiTinhString("Nam");
-                }
-                else{
+                }else{
                     nhanKhau.setGioiTinhString("Nữ");
                 }
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
@@ -224,6 +207,19 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setSoHoChieu(rs.getString("soHoChieu"));
                 nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+                nhanKhau.setStatus(rs.getInt("status"));
+                int status = nhanKhau.getStatus();
+
+                if(status== NhanKhauConstant.THUONG_TRU_STATUS){
+                    nhanKhau.setStatusString("Thường trú");
+                }else if(status==NhanKhauConstant.TAM_TRU_STATUS){
+                    nhanKhau.setStatusString("Tạm trú");
+                }else if(status==NhanKhauConstant.TAM_VANG_STATUS){
+                    nhanKhau.setStatusString("Tạm vắng");
+                }else if(status == NhanKhauConstant.TU_VONG_STATUS){
+                    nhanKhau.setStatusString("Tử vong");
+                    continue;
+                }
                 // con nhieu nua
                 chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
                 chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
@@ -321,7 +317,7 @@ public class ThongKeNhanKhauService {
                 NhanKhauModel nhanKhau = temp.getNhanKhauModel();
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
