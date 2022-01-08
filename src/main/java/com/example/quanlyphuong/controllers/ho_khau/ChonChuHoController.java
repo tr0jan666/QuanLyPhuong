@@ -69,6 +69,7 @@ public class ChonChuHoController  implements  Initializable {
 
     @FXML
     public void huy(ActionEvent event){
+        ChuHoHolder.getInstance().setData(null);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
     }

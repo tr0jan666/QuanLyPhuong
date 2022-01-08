@@ -63,13 +63,14 @@ public class SuaController implements Initializable {
     ObservableList<NhanKhauBean> nhanKhauBeanObservableList;
     TextField quanHeText;
     NhanKhauBean chuho;
+
     @FXML
     void add(ActionEvent event) {
         NhanKhauBean selectedNhanKhau = dataTable.getSelectionModel().getSelectedItem();
         MemOfFamily memOfFamily = new MemOfFamily();
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(quanHe -> {
-            if(quanHe.equals("chuho")){
+            if (quanHe.equals("chuho")) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText("Đã có chủ hộ");
                 alert.show();
@@ -78,25 +79,33 @@ public class SuaController implements Initializable {
             ThanhVienCuaHoModel thanhVienCuaHoModel = new ThanhVienCuaHoModel();
             thanhVienCuaHoModel.setQuanHeVoiChuHo(quanHe);
             memOfFamily.setThanhVienCuaHoModel(thanhVienCuaHoModel);
+            listNhanKhauBean.remove(selectedNhanKhau);
+
         });
         memOfFamily.setNhanKhau(selectedNhanKhau);
 
         memOfFamily.getThanhVienCuaHoModel().setIdNhanKhau(selectedNhanKhau.getNhanKhauModel().getID());
         memOfFamilyObservableList.add(memOfFamily);
         quanHeText.setText("");
+        setdata();
     }
 
     @FXML
     void remove(ActionEvent event) {
         MemOfFamily selectedMemOfFamily = addedDataTable.getSelectionModel().getSelectedItem();
-        if(selectedMemOfFamily.getThanhVienCuaHoModel().getQuanHeVoiChuHo().equals("chuho")){
+        if (selectedMemOfFamily.getThanhVienCuaHoModel().getQuanHeVoiChuHo().equals("chuho")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Không thể remove chủ hộ");
             alert.show();
             return;
         }
         memOfFamilyObservableList.remove(selectedMemOfFamily);
+
+        NhanKhauBean nkbean = hoKhauService.getNhanKhau(selectedMemOfFamily.getNhanKhau().getChungMinhThuModel().getSoCMT());
+        listNhanKhauBean.add(nkbean);
+        setdata();
     }
+
 
     @FXML
     void save(ActionEvent event) {
@@ -104,27 +113,46 @@ public class SuaController implements Initializable {
         thanhVienHoHolder.setListThanhVienHo(memOfFamilyObservableList);
         huy(event);
     }
-    public void huy(ActionEvent event){
+
+    public void huy(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
+
     }
 
+    public void setdata() {
+        nhanKhauBeanObservableList = FXCollections.observableList(listNhanKhauBean);
+//        IDColumn.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(String.valueOf(nhanKhauBean.getValue().getID())));
+        hoTen.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getHo_ten()));
+        gioiTinh.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinh() == GioiTinhConstant.NAM ? "Nam" : "Nữ"));
+        ngaySinh.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNamSinh().toString()));
+        soCMT.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getChungMinhThuModel().getSoCMT()));
+        dataTable.setItems(nhanKhauBeanObservableList);
+
+        //Set data bang ben phai
+        memOfFamilyObservableList = FXCollections.observableList(listMemOfFamily);
+        hoTenAdded.setCellValueFactory(memOfFamily -> new ReadOnlyObjectWrapper<>(memOfFamily.getValue().getNhanKhau().getNhanKhauModel().getHo_ten()));
+        ngaySinhAdded.setCellValueFactory(memOfFamily -> new ReadOnlyObjectWrapper<>(memOfFamily.getValue().getNhanKhau().getNhanKhauModel().getNamSinh().toString()));
+        quanHeVoiChuHo.setCellValueFactory(memOfFamily -> new ReadOnlyObjectWrapper<>(memOfFamily.getValue().getThanhVienCuaHoModel().getQuanHeVoiChuHo()));
+        addedDataTable.setItems(memOfFamilyObservableList);
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hoKhauService = new HoKhauService();
         chuho = ChuHoHolder.getInstance().getNhanKhauBean();
-        System.out.println("chu ho hien tai" +chuho.getNhanKhauModel().getHo_ten());
+        System.out.println("chu ho hien tai" + chuho.getNhanKhauModel().getHo_ten());
 
         listMemOfFamily = new ArrayList<>();
 
         try {
             listNhanKhauBean = hoKhauService.danhSachNhanKhauCoTheLamChuHo();
             Iterator<NhanKhauBean> itr = listNhanKhauBean.iterator();
-                while(itr.hasNext()){
-                    NhanKhauBean bean = itr.next();
-                if(bean.getNhanKhauModel().getID() == chuho.getNhanKhauModel().getID()){
-                    System.out.println("chủ hộ là "+ bean.getNhanKhauModel().getHo_ten());
+            while (itr.hasNext()) {
+                NhanKhauBean bean = itr.next();
+                if (bean.getNhanKhauModel().getID() == chuho.getNhanKhauModel().getID()) {
+                    System.out.println("chủ hộ là " + bean.getNhanKhauModel().getHo_ten());
                     MemOfFamily memOfFamilyChuho = new MemOfFamily();
 
                     memOfFamilyChuho.setNhanKhau(bean);
@@ -149,7 +177,7 @@ public class SuaController implements Initializable {
         hoTen.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getHo_ten()));
         gioiTinh.setCellValueFactory(nhanKhauBean -> {
             String gioiTinhString;
-            if(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinh() == GioiTinhConstant.NAM)
+            if (nhanKhauBean.getValue().getNhanKhauModel().getGioiTinh() == GioiTinhConstant.NAM)
                 gioiTinhString = "Nam";
             else gioiTinhString = "Nữ";
             return new ReadOnlyObjectWrapper<String>(gioiTinhString);
@@ -189,7 +217,7 @@ public class SuaController implements Initializable {
         });
         dialog.getDialogPane().setContent(grid);
         dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == addButtonType){
+            if (dialogButton == addButtonType) {
                 return quanHeText.getText();
             }
             return null;

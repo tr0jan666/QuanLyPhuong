@@ -166,6 +166,7 @@ public class ThemMoiController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        resetChuHo();
         memOfFamilyList = new ArrayList<>();
         memOfFamilyObservableList = FXCollections.observableList(memOfFamilyList);
         hoTenThanhVien.setCellValueFactory(memOfFamily -> new ReadOnlyObjectWrapper<>(memOfFamily.getValue().getNhanKhau().getNhanKhauModel().getHo_ten()));
@@ -176,9 +177,16 @@ public class ThemMoiController implements Initializable {
 
     public void setDataChuHo(){
         selectedNhanKhau = ChuHoHolder.getInstance().getNhanKhauBean();
+        if(selectedNhanKhau == null) return;
         System.out.println(selectedNhanKhau.getNhanKhauModel().getHo_ten());
         tfTenChuHo.setText(selectedNhanKhau.getNhanKhauModel().getHo_ten());
         tfNgaySinhChuHo.setText(selectedNhanKhau.getNhanKhauModel().getNamSinh().toString());
         tfCMTChuHo.setText(selectedNhanKhau.getChungMinhThuModel().getSoCMT());
+    }
+
+    public void resetChuHo(){
+        tfTenChuHo.setText("");
+        tfNgaySinhChuHo.setText("");
+        tfCMTChuHo.setText("");
     }
 }

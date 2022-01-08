@@ -205,6 +205,54 @@ public class HoKhauService {
         return list;
 
     }
+    public NhanKhauBean getNhanKhau(String cmt) {
+        NhanKhauBean nhanKhauBean = new NhanKhauBean();
+        // truy cap db
+        try {
+            Connection connection = MySQLConnector.getConnection();
+            String query = "SELECT * FROM nhan_khau INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau WHERE soCMT = " + cmt;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            int idNhanKhau = -1;
+
+            while (rs.next()) {
+                NhanKhauModel nhanKhau = new NhanKhauModel();
+                ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
+                idNhanKhau = rs.getInt("idNhanKhau");
+                nhanKhau.setID(idNhanKhau);
+
+                nhanKhau.setHo_ten(rs.getString("hoTen"));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                nhanKhau.setNamSinh(rs.getDate("namSinh"));
+                nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
+                nhanKhau.setTonGiao(rs.getString("tonGiao"));
+                nhanKhau.setDanToc(rs.getString("danToc"));
+                nhanKhau.setQuocTich(rs.getString("quocTich"));
+                nhanKhau.setSoHoChieu(rs.getString("soHoChieu"));
+                nhanKhau.setNoiThuongTru(rs.getString("noiThuongTru"));
+                nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
+
+                chungMinhThuModel.setIdNhanKhau(rs.getInt("idNhanKhau"));
+                chungMinhThuModel.setSoCMT(rs.getString("soCMT"));
+                chungMinhThuModel.setNgayCap(rs.getDate("ngayCap"));
+                chungMinhThuModel.setNoiCap(rs.getString("noiCap"));
+
+                nhanKhauBean.setNhanKhauModel(nhanKhau);
+                nhanKhauBean.setChungMinhThuModel(chungMinhThuModel);
+            }
+            preparedStatement.close();
+            connection.close();
+
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        if(nhanKhauBean.getNhanKhauModel() == null) return null;
+        return  nhanKhauBean;
+    }
+
 
     public void tachHoKhau(HoKhauBean hoKhauBean) {
         /**
