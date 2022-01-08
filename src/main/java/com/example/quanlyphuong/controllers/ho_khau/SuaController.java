@@ -77,12 +77,15 @@ public class SuaController implements Initializable {
             ThanhVienCuaHoModel thanhVienCuaHoModel = new ThanhVienCuaHoModel();
             thanhVienCuaHoModel.setQuanHeVoiChuHo(quanHe);
             memOfFamily.setThanhVienCuaHoModel(thanhVienCuaHoModel);
+            listNhanKhauBean.remove(selectedNhanKhau);
+
         });
         memOfFamily.setNhanKhau(selectedNhanKhau);
 
         memOfFamily.getThanhVienCuaHoModel().setIdNhanKhau(selectedNhanKhau.getNhanKhauModel().getID());
         memOfFamilyObservableList.add(memOfFamily);
         quanHeText.setText("");
+        setdata();
     }
 
     @FXML
@@ -95,7 +98,13 @@ public class SuaController implements Initializable {
             return;
         }
         memOfFamilyObservableList.remove(selectedMemOfFamily);
+
+        NhanKhauBean nkbean = hoKhauService.getNhanKhau(selectedMemOfFamily.getNhanKhau().getChungMinhThuModel().getSoCMT());
+        listNhanKhauBean.add(nkbean);
+        setdata();
     }
+
+
 
     @FXML
     void save(ActionEvent event) {
@@ -106,8 +115,26 @@ public class SuaController implements Initializable {
     public void huy(ActionEvent event){
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
+
     }
 
+    public void setdata(){
+        nhanKhauBeanObservableList = FXCollections.observableList(listNhanKhauBean);
+//        IDColumn.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(String.valueOf(nhanKhauBean.getValue().getID())));
+        hoTen.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getHo_ten()));
+        gioiTinh.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinh()));
+        ngaySinh.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNamSinh().toString()));
+        soCMT.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getChungMinhThuModel().getSoCMT()));
+        dataTable.setItems(nhanKhauBeanObservableList);
+
+        //Set data bang ben phai
+        memOfFamilyObservableList = FXCollections.observableList(listMemOfFamily);
+        hoTenAdded.setCellValueFactory(memOfFamily -> new ReadOnlyObjectWrapper<>(memOfFamily.getValue().getNhanKhau().getNhanKhauModel().getHo_ten()));
+        ngaySinhAdded.setCellValueFactory(memOfFamily -> new ReadOnlyObjectWrapper<>(memOfFamily.getValue().getNhanKhau().getNhanKhauModel().getNamSinh().toString()));
+        quanHeVoiChuHo.setCellValueFactory(memOfFamily -> new ReadOnlyObjectWrapper<>(memOfFamily.getValue().getThanhVienCuaHoModel().getQuanHeVoiChuHo()));
+        addedDataTable.setItems(memOfFamilyObservableList);
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
