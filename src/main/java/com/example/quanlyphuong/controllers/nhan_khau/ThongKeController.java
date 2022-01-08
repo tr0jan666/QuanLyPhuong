@@ -1,6 +1,7 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,7 +103,7 @@ public class ThongKeController implements Initializable {
         int denNam = 2100;
         String gender = "Toan Bo";
         String status = "Toan Bo";
-        if (accessCount != 0){
+        if (accessCount != 0) {
 
             gender = StringService.covertToString(gioiTinhCB.getSelectionModel().getSelectedItem());
             status = StringService.covertToString(tinhTrangCB.getSelectionModel().getSelectedItem());
@@ -137,16 +138,17 @@ public class ThongKeController implements Initializable {
         listNhanKhauBeans = thongKeNhanKhauService.statisticNhanKhau(tuTuoi, denTuoi, gender, status, tuNam, denNam);
 //        System.out.println("xong init data");
 
-       setDataTable();
+        setDataTable();
     }
 
     public void setDataTable() {
         observablelistNhanKhau = FXCollections.observableList(listNhanKhauBeans);
-        ID.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getID()));
-        hoTen.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getHo_ten()));
-        namSinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNamSinh()));
-        gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
-        diaChiHienNay.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
+        ID.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getID()));
+        hoTen.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getHo_ten()));
+        namSinh.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNamSinh()));
+        gioiTinh.setCellValueFactory(nhanKhauBean ->
+                new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinh() == GioiTinhConstant.NAM ? "Nam" : "Nữ"));
+        diaChiHienNay.setCellValueFactory(nhanKhauBean -> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
         table.setItems(observablelistNhanKhau);
     }
 
@@ -161,19 +163,19 @@ public class ThongKeController implements Initializable {
         fc.setTitle("Chọn nơi để lưu");
         Stage stage = (Stage) anchorpanetk.getScene().getWindow();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
-        File filetosave =  fc.showSaveDialog(stage);
+        File filetosave = fc.showSaveDialog(stage);
         if (filetosave != null) {
             try {
                 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
                 FileWriter fw = new FileWriter(filetosave);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("ID"+"\t"+"Họ tên"+"\t"+"Năm sinh"+"\t"+"Giới tính"+"\t"+"Địa chỉ");
+                bw.write("ID" + "\t" + "Họ tên" + "\t" + "Năm sinh" + "\t" + "Giới tính" + "\t" + "Địa chỉ");
                 bw.newLine();
                 ArrayList<NhanKhauModel> listItem = new ArrayList<>();
                 for (NhanKhauBean nhanKhau : listNhanKhauBeans) {
                     listItem.add(nhanKhau.getNhanKhauModel());
                     String s = formatter.format(nhanKhau.getNhanKhauModel().getNamSinh());
-                    bw.write(String.valueOf(nhanKhau.getNhanKhauModel().getID())+"\t"+nhanKhau.getNhanKhauModel().getHo_ten()+"\t"+s+"\t"+nhanKhau.getNhanKhauModel().getGioiTinhString()+"\t"+nhanKhau.getNhanKhauModel().getDiaChiHienNay());
+                    bw.write(String.valueOf(nhanKhau.getNhanKhauModel().getID()) + "\t" + nhanKhau.getNhanKhauModel().getHo_ten() + "\t" + s + "\t" + nhanKhau.getNhanKhauModel().getGioiTinhString() + "\t" + nhanKhau.getNhanKhauModel().getDiaChiHienNay());
                     bw.newLine();
                 }
 
@@ -189,7 +191,6 @@ public class ThongKeController implements Initializable {
 
         }
     }
-
 
 
 }
