@@ -101,13 +101,22 @@ public class NhanKhauController implements Initializable {
     private Button btn_refresh;
 
     @FXML
+    private Button btn_thanhThuongTru;
+
+    @FXML
     void refreshTrang(){
         refreshScreen();
     }
 
     @FXML
     void khauTuNhanKhau(ActionEvent event){
+        UIHelper.navigateNew("nhan_khau/khai_tu.fxml", "Khai tử nhân khẩu", null,800, 800);
+    }
 
+    @FXML
+    void thanhThuongTru(ActionEvent event){
+        UIHelper.navigateNew("nhan_khau/pop_up_thanh_thuong_tru.fxml", "Thành thường trú", null,1000, 700);
+        refreshScreen();
     }
 
     @FXML
@@ -136,12 +145,12 @@ public class NhanKhauController implements Initializable {
 
     @FXML
     void tamTruNhanKhau(ActionEvent event) {
-        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Thêm tạm trú", null,650, 600);
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Thêm tạm trú", null,850, 600);
     }
 
     @FXML
     void tamVangNhanKhau(ActionEvent event) {
-        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_vang.fxml", "Thêm tạm vắng", null,850, 600);
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_vang.fxml", "Thêm tạm vắng", null,650, 600);
         btn_tamVang.setVisible(false);
         btn_xoaTamVang.setVisible(true);
     }
@@ -219,6 +228,7 @@ public class NhanKhauController implements Initializable {
         btn_chiTiet.setVisible(false);
         btn_khaiTu.setVisible(false);
         btn_xoaTamVang.setVisible(false);
+        btn_thanhThuongTru.setVisible(false);
     }
 
 
@@ -230,13 +240,16 @@ public class NhanKhauController implements Initializable {
         btn_Xoa.setVisible(false);
         btn_tamVang.setVisible(false);
         btn_xoaTamVang.setVisible(false);
+        btn_thanhThuongTru.setVisible(false);
 
         if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.TAM_TRU_STATUS){
             btn_Xoa.setVisible(true);
+            btn_thanhThuongTru.setVisible(true);
         }
 
         if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.THUONG_TRU_STATUS){
             btn_tamVang.setVisible(true);
+            btn_khaiTu.setVisible(true);
         }
 
         if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.TAM_VANG_STATUS){

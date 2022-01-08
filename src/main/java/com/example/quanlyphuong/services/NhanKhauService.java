@@ -73,13 +73,13 @@ public class NhanKhauService {
                 nhanKhau.setStatus(rs.getInt("status"));
                 int status = nhanKhau.getStatus();
 
-                if(status==1){
+                if(status==NhanKhauConstant.THUONG_TRU_STATUS){
                     nhanKhau.setStatusString("Thường trú");
-                }else if(status==2){
+                }else if(status==NhanKhauConstant.TAM_TRU_STATUS){
                     nhanKhau.setStatusString("Tạm trú");
-                }else if(status==-1){
+                }else if(status==NhanKhauConstant.TAM_VANG_STATUS){
                     nhanKhau.setStatusString("Tạm vắng");
-                }else if(status == 0){
+                }else{
                     continue;
                 }
                 nhanKhau.setNamSinh(new java.util.Date(rs.getDate("namSinh").getTime()));
@@ -451,7 +451,7 @@ public class NhanKhauService {
         try(Connection connection = MySQLConnector.getConnection()){
 
             String query = "update nhan_khau set  `hoTen`= ? , `namSinh` = ?, `gioiTinh` = ?, `quocTich`=?,`noiSinh` =?, `nguyenQuan`=?," +
-                    " `danToc` =?, `tonGiao` = ?,`tienAn` =?, `trinhDoHocVan`=?,`diaChiHienNay` = ?,`ngheNghiep` =? ,`noiLamViec`=?, `noiThuongTru`=? " +
+                    " `danToc` =?, `tonGiao` = ?,`tienAn` =?, `trinhDoHocVan`=?,`diaChiHienNay` = ?,`ngheNghiep` =? ,`noiLamViec`=?, `noiThuongTru`=?,`status`=? " +
                     "where ID = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -474,7 +474,8 @@ public class NhanKhauService {
             preparedStatement.setString(12, ngheNghiep );
             preparedStatement.setString(13, noiLamViec);
             preparedStatement.setString(14, noiThuongTru);
-            preparedStatement.setInt(15, IDNhanKhau);
+            preparedStatement.setInt(15, NhanKhauConstant.THUONG_TRU_STATUS);
+            preparedStatement.setInt(16, IDNhanKhau);
 
             preparedStatement.executeUpdate();
 
