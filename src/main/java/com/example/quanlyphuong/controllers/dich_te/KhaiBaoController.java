@@ -3,6 +3,7 @@ package com.example.quanlyphuong.controllers.dich_te;
 import com.example.quanlyphuong.beans.KhaiBaoBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController;
+import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.models.KhaiBaoModel;
 import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.KhaiBaoService;
@@ -171,14 +172,16 @@ public class KhaiBaoController implements Initializable {
             Optional<ButtonType> option = alert.showAndWait();
 
             if (option.get() == ButtonType.OK){
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-//                stage.initModality(Modality.APPLICATION_MODAL);
-//                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setTitle("Them nhan khau");
-                stage.setScene(new Scene(root1));
-                stage.show();
+                UIHelper.navigateNew("nhan_khau/pop_up_them_nhan_khau.fxml","Thêm nhân khẩu");
+
+//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/quanlyphuong/nhan_khau/pop_up_them_nhan_khau.fxml"));
+//                Parent root1 = (Parent) fxmlLoader.load();
+//                Stage stage = new Stage();
+////                stage.initModality(Modality.APPLICATION_MODAL);
+////                stage.initStyle(StageStyle.UNDECORATED);
+//                stage.setTitle("Them nhan khau");
+//                stage.setScene(new Scene(root1));
+//                stage.show();
                 return;
             } else {
                 return;

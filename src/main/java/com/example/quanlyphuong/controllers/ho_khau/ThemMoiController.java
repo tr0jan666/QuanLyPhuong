@@ -1,5 +1,6 @@
 package com.example.quanlyphuong.controllers.ho_khau;
 
+import com.example.quanlyphuong.QuanLyNhanKhauApplication;
 import com.example.quanlyphuong.beans.HoKhauBean;
 import com.example.quanlyphuong.beans.MemOfFamily;
 import com.example.quanlyphuong.beans.NhanKhauBean;
@@ -19,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -123,6 +125,7 @@ public class ThemMoiController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/com/example/quanlyphuong/ho_khau/Sua.fxml"));
         Parent parent = loader.load();
+        stage.getIcons().add(new Image(QuanLyNhanKhauApplication.class.getResourceAsStream("app_logo.png")));
         Scene scene = new Scene(parent);
         popUpStage.initModality(Modality.APPLICATION_MODAL);
         popUpStage.initOwner(stage);
@@ -155,6 +158,7 @@ public class ThemMoiController implements Initializable {
         loader.setLocation(getClass().getResource("/com/example/quanlyphuong/ho_khau/chon_chu_ho.fxml"));
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
+        stage.getIcons().add(new Image(QuanLyNhanKhauApplication.class.getResourceAsStream("app_logo.png")));
         popUpStage.initModality(Modality.APPLICATION_MODAL);
         popUpStage.initOwner(stage);
         popUpStage.setScene(scene);
