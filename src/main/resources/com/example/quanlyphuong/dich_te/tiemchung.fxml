@@ -66,11 +66,12 @@
                         <TextField fx:id="tf_loaiVaccine" focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <TextField fx:id="tf_diaDiem" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Địa điểm" GridPane.rowIndex="2" />
-                  <Button fx:id="btn_check" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Button fx:id="btn_check" mnemonicParsing="false" onAction="#btnCheckEvent" prefHeight="26.0" prefWidth="74.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="15.0" />
                      </GridPane.margin>
                   </Button>
+                  <Label fx:id="lbCheck" text="OK" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
                 <Button fx:id="btn_them" layoutX="846.0" layoutY="130.0" mnemonicParsing="false" onAction="#BtnThem" prefHeight="30.0" prefWidth="79.0" text="Thêm" />

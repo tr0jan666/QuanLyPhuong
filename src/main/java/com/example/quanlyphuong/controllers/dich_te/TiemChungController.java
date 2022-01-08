@@ -16,9 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.w3c.dom.events.MouseEvent;
 
@@ -27,10 +29,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static com.example.quanlyphuong.helper.UIHelper.DEFAULT_SCREEN_HEIGHT;
 import static com.example.quanlyphuong.helper.UIHelper.DEFAULT_SCREEN_WIDTH;
@@ -65,6 +64,9 @@ public class TiemChungController implements Initializable {
     @FXML
     private Button btn_thongKe;
 
+    @FXML
+    private Label lbCheck;
+
     private TiemChungService tiemChungService;
     private ObservableList<TiemChungBean> tiemChungBeanObservableList;
     private List<TiemChungBean> tiemChungBeanList;
@@ -86,6 +88,8 @@ public class TiemChungController implements Initializable {
         tc_tiemLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getSoLanTiem()));
         tc_loaiVaccine1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getVacxin()));
         tc_ngayLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
+        tc_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getDiaDiem()));
+
         tableTiemChung.setItems(tiemChungBeanObservableList);
     }
 
@@ -136,7 +140,7 @@ public class TiemChungController implements Initializable {
         tiemChungModelTemp.setSoLanTiem(Integer.parseInt(tf_tiemLan.getText()));
         tiemChungModelTemp.setNgayTiem(Date.from(dt_thoiGianTiem.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         tiemChungModelTemp.setVacxin(tf_loaiVaccine.getText());
-
+        tiemChungModelTemp.setDiaDiem(tf_diaDiem.getText());
         tiemChungBean.setTiemChungModel(tiemChungModelTemp);
         tiemChungBean.setNhanKhauBean(nhanKhauTiemChung);
 
@@ -219,25 +223,29 @@ public class TiemChungController implements Initializable {
 
     @FXML
     void btnCheckEvent(ActionEvent event){
-        if(tf_cccd != null){
-            try{
-                tiemChungService = new TiemChungService();
-                tiemChungBeanList = tiemChungService.getListTiemChung(tf_cccd.getText());
-                tiemChungBeanObservableList = FXCollections.observableList(tiemChungBeanList);
+        ThongKeNhanKhauService thongKeNhanKhauService = new ThongKeNhanKhauService();
+        String cmt = tf_cccd.getText();
+        lbCheck.setVisible(true);
+        NhanKhauBean nahnKhauTiemChung = thongKeNhanKhauService.getNhanKhau(cmt);
+        if(nahnKhauTiemChung == null || nahnKhauTiemChung.getNhanKhauModel() == null){
+            lbCheck.setText("CCCD không tồn tại");
+            lbCheck.setTextFill(Color.RED);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
 
-                tc_hoVaTen.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getNhanKhauModel().getHo_ten()));
-                tc_cccd.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getNhanKhauBean().getChungMinhThuModel().getSoCMT()));
-                tc_tiemLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getSoLanTiem()));
-                tc_loaiVaccine1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getVacxin()));
-                tc_ngayLan1.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getNgayTiem()));
-                tc_diaDiem.setCellValueFactory(bean -> new ReadOnlyObjectWrapper<>(bean.getValue().getTiemChungModel().getDiaDiem()));
-                tableTiemChung.setItems(tiemChungBeanObservableList);
-            }catch (Exception e){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText(String.valueOf(e));
-                alert.show();
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get() == ButtonType.OK){
+                UIHelper.navigateNew("nhan_khau/pop_up_them_nhan_khau.fxml", "Thêm nhân khẩu");
+                return;
+            } else {
                 return;
             }
-        }
-    }
+
+
+        }else{
+            lbCheck.setText("OK");
+            lbCheck.setTextFill(Color.GREEN);
+
+        }    }
 }
