@@ -16,13 +16,13 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.KhaiBaoController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.KhaiBaoController">
     <GridPane layoutX="33.0" layoutY="60.0" prefHeight="114.0" prefWidth="747.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="60.0">
         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="84.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="84.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="200.0" />
          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="72.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="151.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="151.0" />
          <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="210.0" />
         </columnConstraints>
         <rowConstraints>
@@ -33,38 +33,56 @@
          <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <TextField fx:id="tfCCCD" focusTraversable="false" prefHeight="25.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfCCCD" focusTraversable="false" prefHeight="25.0" prefWidth="148.0" promptText="12345679" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tfHoTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tfDiaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label alignment="CENTER" prefHeight="19.0" prefWidth="133.0" text="    CCCD" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="133.0" text="CCCD" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
-            </font></Label>
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
             <Label text="Địa điểm" GridPane.rowIndex="3">
             <font>
                <Font size="13.0" />
-            </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="152.0" text="Thời gian khai báo" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="19.0" prefWidth="152.0" text="Thời gian khai báo" GridPane.columnIndex="3" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
-            </font></Label>
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
             <DatePicker fx:id="tfKhaiBao" focusTraversable="false" prefHeight="26.0" prefWidth="183.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
             <GridPane.margin>
                <Insets />
             </GridPane.margin></DatePicker>
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="140.0" text="Họ và tên" textAlignment="CENTER" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
-            </font></Label>
-            <Label alignment="CENTER" prefHeight="19.0" prefWidth="147.0" text="Biểu hiện, triệu chứng" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="147.0" text="Biểu hiện, triệu chứng" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <font>
                <Font size="13.0" />
-            </font></Label>
+            </font>
+            <padding>
+               <Insets right="12.0" />
+            </padding></Label>
          <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" prefHeight="25.0" prefWidth="116.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <GridPane.margin>
                <Insets left="5.0" right="5.0" />
             </GridPane.margin></Button>
-         <TextArea fx:id="taBieuHien" prefHeight="37.0" prefWidth="199.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="3" />
+         <TextArea fx:id="taBieuHien" prefHeight="54.0" prefWidth="184.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.rowSpan="2">
+            <GridPane.margin>
+               <Insets right="26.0" />
+            </GridPane.margin></TextArea>
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="200.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">

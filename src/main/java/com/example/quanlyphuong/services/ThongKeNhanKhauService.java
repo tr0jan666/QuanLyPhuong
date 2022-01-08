@@ -2,6 +2,8 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
+import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
+import com.example.quanlyphuong.helper.constants.NhanKhauConstant;
 import com.example.quanlyphuong.models.*;
 
 import java.sql.Connection;
@@ -89,7 +91,7 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
-                if(nhanKhau.getGioiTinh() == 1){
+                if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
                     nhanKhau.setGioiTinhString("Nam");
                 }else{
                     nhanKhau.setGioiTinhString("Nữ");
@@ -99,13 +101,14 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setStatus(rs.getInt("status"));
                 int status = nhanKhau.getStatus();
 
-                if(status==1){
+                if(status== NhanKhauConstant.THUONG_TRU_STATUS){
                     nhanKhau.setStatusString("Thường trú");
-                }else if(status==2){
+                }else if(status==NhanKhauConstant.TAM_TRU_STATUS){
                     nhanKhau.setStatusString("Tạm trú");
-                }else if(status==-1){
+                }else if(status==NhanKhauConstant.TAM_VANG_STATUS){
                     nhanKhau.setStatusString("Tạm vắng");
-                }else if(status == 0){
+                }else if(status == NhanKhauConstant.TU_VONG_STATUS){
+                    nhanKhau.setStatusString("Tử vong");
                     continue;
                 }
 
@@ -191,7 +194,7 @@ public class ThongKeNhanKhauService {
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
-                if(nhanKhau.getGioiTinh() == 1){
+                if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
                     nhanKhau.setGioiTinhString("Nam");
                 }else{
                     nhanKhau.setGioiTinhString("Nữ");
@@ -207,13 +210,14 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setStatus(rs.getInt("status"));
                 int status = nhanKhau.getStatus();
 
-                if(status==1){
+                if(status== NhanKhauConstant.THUONG_TRU_STATUS){
                     nhanKhau.setStatusString("Thường trú");
-                }else if(status==2){
+                }else if(status==NhanKhauConstant.TAM_TRU_STATUS){
                     nhanKhau.setStatusString("Tạm trú");
-                }else if(status==-1){
+                }else if(status==NhanKhauConstant.TAM_VANG_STATUS){
                     nhanKhau.setStatusString("Tạm vắng");
-                }else if(status == 0){
+                }else if(status == NhanKhauConstant.TU_VONG_STATUS){
+                    nhanKhau.setStatusString("Tử vong");
                     continue;
                 }
                 // con nhieu nua
