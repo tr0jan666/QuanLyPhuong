@@ -210,15 +210,15 @@ public class KhaiBaoController implements Initializable {
             exception.printStackTrace();
             return;
         }
-        for(KhaiBaoBean cl: listNhanKhauKhaiBao){
-            if(cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tfCCCD.getText())){
-                Alert thongBaoTrung = new Alert(Alert.AlertType.WARNING);
-                thongBaoTrung.setContentText("Người này hiện đã tồn tại");
-                thongBaoTrung.show();
-                clearTf();
-                return;
-            }
-        }
+//        for(KhaiBaoBean cl: listNhanKhauKhaiBao){
+//            if(cl.getNhanKhauBean().getChungMinhThuModel().getSoCMT().equals(tfCCCD.getText())){
+//                Alert thongBaoTrung = new Alert(Alert.AlertType.WARNING);
+//                thongBaoTrung.setContentText("Người này hiện đã tồn tại");
+//                thongBaoTrung.show();
+//                clearTf();
+//                return;
+//            }
+//        }
 
         if(isMissingField()){
             Alert missingAlert = new Alert(Alert.AlertType.WARNING);
