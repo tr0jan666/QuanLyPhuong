@@ -66,11 +66,12 @@
                         <TextField fx:id="tf_loaiVaccine" focusTraversable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <TextField fx:id="tf_diaDiem" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Địa điểm" GridPane.rowIndex="2" />
-                  <Button fx:id="btn_check" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Button fx:id="btn_check" mnemonicParsing="false" onAction="#btnCheckEvent" prefHeight="26.0" prefWidth="74.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="15.0" />
                      </GridPane.margin>
                   </Button>
+                  <Label fx:id="lbCheck" text="OK" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
                 <Button fx:id="btn_them" layoutX="846.0" layoutY="130.0" mnemonicParsing="false" onAction="#BtnThem" prefHeight="30.0" prefWidth="79.0" text="Thêm" />
@@ -81,7 +82,7 @@
          <content>
               <AnchorPane prefHeight="605.0" prefWidth="998.0">
                <children>
-                    <TableView fx:id="tableTiemChung" prefHeight="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <TableView fx:id="tableTiemChung" prefHeight="625.0" AnchorPane.bottomAnchor="0.0" onMouseClicked="#setThongTin" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columns>
                             <TableColumn fx:id="tc_hoVaTen" minWidth="0.0" prefWidth="216.79999095201492" text="Họ và tên" />
                             <TableColumn fx:id="tc_cccd" prefWidth="168.00001525878906" text="CCCD" />

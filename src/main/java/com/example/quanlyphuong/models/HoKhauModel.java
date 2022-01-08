@@ -112,4 +112,5 @@ public class HoKhauModel {
     public void setListNhanKhau(ArrayList<NhanKhauModel> listNhanKhau) {
         this.listNhanKhau = listNhanKhau;
     }
+
 }

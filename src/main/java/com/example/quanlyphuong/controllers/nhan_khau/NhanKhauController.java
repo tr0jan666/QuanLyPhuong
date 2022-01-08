@@ -1,11 +1,17 @@
 package com.example.quanlyphuong.controllers.nhan_khau;
 
+import com.example.quanlyphuong.beans.HoKhauBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController;
 import com.example.quanlyphuong.helper.UIHelper;
+import com.example.quanlyphuong.helper.constants.NhanKhauConstant;
+import com.example.quanlyphuong.models.SimpleResult;
 import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -29,6 +36,19 @@ public class NhanKhauController implements Initializable {
     private Parent parent;
     private Scene scene;
 
+    public static NhanKhauController frame;
+
+    public static NhanKhauBean chosenNhanKhauBean;
+
+    public NhanKhauController() {
+        if (frame == null) {
+            frame = this;
+        } else {
+//            super
+//            return;
+//            throw new RuntimeException("Singleton FXML");
+        }
+    }
     List<NhanKhauBean> listNhanKhauBean;
     ObservableList<NhanKhauBean> observableListNhanKhauBeans;
 
@@ -75,7 +95,16 @@ public class NhanKhauController implements Initializable {
     private TableColumn<NhanKhauBean,String> col_diaChi;
 
     @FXML
+    private TableColumn<NhanKhauBean,String> col_status;
+
+    @FXML
+    private Button btn_xoaTamVang;
+
+    @FXML
     private Button btn_refresh;
+
+    @FXML
+    private TextField tfTimKiem;
 
     @FXML
     void refreshTrang(){
@@ -88,13 +117,39 @@ public class NhanKhauController implements Initializable {
     }
 
     @FXML
-    void tamTruNhanKhau(ActionEvent event) {
+    void xoaTamTru(ActionEvent event){
+        SimpleResult simpleResult = NhanKhauService.getInstance().xoaTamTru(chosenNhanKhauBean);
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
+        alert.showAndWait();
+        btn_xoaTamVang.setVisible(false);
+        btn_tamVang.setVisible(true);
+
+        refreshScreen();
+    }
+
+    @FXML
+    void xoaTamVang(ActionEvent event){
+        SimpleResult simpleResult = NhanKhauService.getInstance().xoaTamVang(chosenNhanKhauBean);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
+        alert.showAndWait();
+        btn_xoaTamVang.setVisible(false);
+        btn_tamVang.setVisible(true);
+
+        refreshScreen();
+    }
+
+    @FXML
+    void tamTruNhanKhau(ActionEvent event) {
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_tru.fxml", "Thêm tạm trú", null,650, 600);
     }
 
     @FXML
     void tamVangNhanKhau(ActionEvent event) {
-
+        UIHelper.navigateNew("nhan_khau/pop_up_dk_tam_vang.fxml", "Thêm tạm vắng", null,850, 600);
+        btn_tamVang.setVisible(false);
+        btn_xoaTamVang.setVisible(true);
     }
 
     @FXML
@@ -105,7 +160,7 @@ public class NhanKhauController implements Initializable {
 
     @FXML
     void xemChiTietNhanKhau(ActionEvent event) {
-
+        changeSceneChiTiet();
     }
 
     @FXML
@@ -133,7 +188,7 @@ public class NhanKhauController implements Initializable {
         dialog.setResultConverter(dialogButton ->{
             if(dialogButton == ButtonType.OK){
                 if(box1.isSelected()){
-                    changeSceneThuongTru(event);
+//                    changeSceneThuongTru(event);
                 }else if(box2.isSelected()){
                     changeSceneTamTru(event);
                 }else return null;
@@ -147,10 +202,6 @@ public class NhanKhauController implements Initializable {
         btn_ThemNhanKhau.getScene().getWindow().hide();
     }
 
-    public void changeSceneThuongTru(ActionEvent event) {
-        UIHelper.navigateNew("/com.example.quanlyphuong/nhankhau/pop_up_dk_thuong_tru.fxml", "Đăng ký thường trú", null);
-        btn_ThemNhanKhau.getScene().getWindow().hide();
-    }
 
     public void refreshScreen(){
 
@@ -164,8 +215,82 @@ public class NhanKhauController implements Initializable {
         col_diaChi.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getDiaChiHienNay()));
         col_ngheNghiep.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getNgheNghiep()));
         col_gioiTinh.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getGioiTinhString()));
+        col_status.setCellValueFactory(nhanKhauBean-> new ReadOnlyObjectWrapper<>(nhanKhauBean.getValue().getNhanKhauModel().getStatusString()));
+
 
         tv_nhanKhau.setItems(observableListNhanKhauBeans);
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<NhanKhauBean> filteredData = new FilteredList<>(observableListNhanKhauBeans, b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        tfTimKiem.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(_nhanKhau -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (_nhanKhau.getNhanKhauModel().getHo_ten().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<NhanKhauBean> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(tv_nhanKhau.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tv_nhanKhau.setItems(sortedData);
+
+        btn_tamVang.setVisible(false);
+        btn_Xoa.setVisible(false);
+        btn_chiTiet.setVisible(false);
+        btn_khaiTu.setVisible(false);
+        btn_xoaTamVang.setVisible(false);
+    }
+
+
+    public void chiTietNhanKhau(MouseEvent event) {
+        NhanKhauBean nhanKhauBean = tv_nhanKhau.getSelectionModel().getSelectedItem();
+        NhanKhauController.chosenNhanKhauBean = nhanKhauBean;
+        btn_chiTiet.setVisible(true);
+
+        btn_Xoa.setVisible(false);
+        btn_tamVang.setVisible(false);
+        btn_xoaTamVang.setVisible(false);
+
+        if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.TAM_TRU_STATUS){
+            btn_Xoa.setVisible(true);
+        }
+
+        if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.THUONG_TRU_STATUS){
+            btn_tamVang.setVisible(true);
+        }
+
+        if(nhanKhauBean.getNhanKhauModel().getStatus() == NhanKhauConstant.TAM_VANG_STATUS){
+            btn_xoaTamVang.setVisible(true);
+        }
+
+
+        if(event.getClickCount() ==2 && (nhanKhauBean != null)){
+            changeSceneChiTiet();
+        }
+    }
+
+    public void changeSceneChiTiet() {
+
+        UIHelper.navigateNew("nhan_khau/pop_up_thong_tin.fxml", "Chi tiết", null,1000,700);
 
     }
 }

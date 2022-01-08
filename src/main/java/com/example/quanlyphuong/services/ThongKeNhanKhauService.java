@@ -2,7 +2,6 @@ package com.example.quanlyphuong.services;
 
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.MySQLConnector;
-import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
 import com.example.quanlyphuong.models.*;
 
 import java.sql.Connection;
@@ -37,7 +36,7 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -89,12 +88,7 @@ public class ThongKeNhanKhauService {
 
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
-                if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
-                    nhanKhau.setGioiTinhString("Nam");
-                }else{
-                    nhanKhau.setGioiTinhString("Nữ");
-                }
+                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
@@ -138,16 +132,8 @@ public class ThongKeNhanKhauService {
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
                 + denTuoi;
-      /*  if (!gender.equalsIgnoreCase("Toan Bo")) {
+        if (!gender.equalsIgnoreCase("Toan Bo")) {
             query += " AND nhan_khau.gioiTinh = '" + gender + "'";
-        }*/
-         if(gender.equalsIgnoreCase("Nam")){
-            int gt = 1 ;
-            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
-        }
-        if(gender.equalsIgnoreCase("Nu")){
-            int gt = 0 ;
-            query += " AND nhan_khau.gioiTinh = '" + gt + "'";
         }
         if (Status.equalsIgnoreCase("Toan bo")) {
             query += " AND (tam_tru.denNgay >= CURDATE() OR tam_tru.denNgay IS NULL)"
@@ -182,12 +168,7 @@ public class ThongKeNhanKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
-                if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
-                    nhanKhau.setGioiTinhString("Nam");
-                }else{
-                    nhanKhau.setGioiTinhString("Nữ");
-                }
+                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
@@ -293,7 +274,7 @@ public class ThongKeNhanKhauService {
                 NhanKhauModel nhanKhau = temp.getNhanKhauModel();
                 nhanKhau.setID(rs.getInt("ID"));
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
+                nhanKhau.setGioiTinh(Integer.parseInt(rs.getString("gioiTinh")));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setDiaChiHienNay(rs.getString("diaChiHienNay"));
 
