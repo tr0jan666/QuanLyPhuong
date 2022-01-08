@@ -223,7 +223,7 @@ public class HoKhauService {
                 nhanKhau.setID(idNhanKhau);
 
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
-                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
                 nhanKhau.setNamSinh(rs.getDate("namSinh"));
                 nhanKhau.setNguyenQuan(rs.getString("nguyenQuan"));
                 nhanKhau.setTonGiao(rs.getString("tonGiao"));
