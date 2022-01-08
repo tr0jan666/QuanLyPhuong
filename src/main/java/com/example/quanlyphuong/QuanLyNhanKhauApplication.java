@@ -15,7 +15,7 @@ public class QuanLyNhanKhauApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), ScreenSizeConstant.LOGIN_WIDTH,ScreenSizeConstant.LOGIN_HEIGHT);
         stage.setTitle("Quản lý phường");
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     

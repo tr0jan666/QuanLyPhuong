@@ -107,11 +107,11 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="220.0" layoutY="70.0" prefHeight="29.0" prefWidth="244.0" />
       <Button fx:id="btnChonChuHo" layoutX="100.0" layoutY="185.0" mnemonicParsing="false" onAction="#chonChuHo" prefHeight="35.0" prefWidth="60.0" text="Chọn" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <TextField fx:id="tfMaHoKhau" layoutX="220.0" layoutY="67.0" prefHeight="34.0" prefWidth="575.0" />
    </children>
 </AnchorPane>
