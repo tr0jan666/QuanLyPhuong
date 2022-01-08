@@ -16,14 +16,14 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.KhaiBaoController">
-    <GridPane layoutX="33.0" layoutY="60.0" prefHeight="114.0" prefWidth="720.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #38466b; -fx-background-radius: 10;" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.dich_te.KhaiBaoController">
+    <GridPane layoutX="33.0" layoutY="60.0" prefHeight="114.0" prefWidth="747.0" style="-fx-background-color: #f0f2f5; -fx-background-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="60.0">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="84.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="216.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="200.0" />
          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.99999618530273" minWidth="10.0" prefWidth="72.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="161.0" />
-         <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="187.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="151.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="210.0" />
         </columnConstraints>
         <rowConstraints>
          <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -36,7 +36,7 @@
             <TextField fx:id="tfCCCD" focusTraversable="false" prefHeight="25.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tfHoTen" focusTraversable="false" layoutX="152.0" layoutY="63.0" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tfDiaDiem" focusTraversable="false" prefHeight="24.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label prefHeight="19.0" prefWidth="133.0" text="    CCCD" GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="19.0" prefWidth="133.0" text="    CCCD" GridPane.rowIndex="1">
             <font>
                <Font size="13.0" />
             </font></Label>
@@ -56,18 +56,20 @@
             <font>
                <Font size="13.0" />
             </font></Label>
-            <Label alignment="CENTER" prefHeight="19.0" prefWidth="147.0" text="Biểu hiện" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="19.0" prefWidth="147.0" text="Biểu hiện, triệu chứng" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.rowIndex="3">
             <font>
                <Font size="13.0" />
             </font></Label>
-         <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" prefHeight="25.0" prefWidth="116.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <TextArea fx:id="taBieuHien" prefHeight="37.0" prefWidth="199.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="2" />
+         <Button fx:id="btnCheckCCCD" mnemonicParsing="false" onAction="#checkCCCD" prefHeight="25.0" prefWidth="116.0" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <GridPane.margin>
+               <Insets left="5.0" right="5.0" />
+            </GridPane.margin></Button>
+         <TextArea fx:id="taBieuHien" prefHeight="37.0" prefWidth="199.0" promptText="bình thường/sốt/ ho/khó thở/ mệt mỏi ...." GridPane.columnIndex="4" GridPane.rowIndex="3" />
         </children>
     </GridPane>
     <AnchorPane layoutX="-1.0" layoutY="200.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
         <children>
-            <TableView fx:id="tbvChiTiet" layoutX="14.0" layoutY="1.0"
-                       prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.6000000000000227" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="1.0">
+            <TableView fx:id="tbvChiTiet" layoutX="14.0" layoutY="1.0" prefHeight="610.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.6000000000000227" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
                 <columns>
                     <TableColumn fx:id="ID" prefWidth="57.0" text="ID" />
                     <TableColumn fx:id="HoTen" prefWidth="225.0" text="Họ và tên" />
@@ -79,7 +81,7 @@
             </TableView>
         </children>
     </AnchorPane>
-    <Button fx:id="btnThem" graphicTextGap="11.0" layoutX="833.0" layoutY="66.0" mnemonicParsing="false" onAction="#themKhaiBao" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="66.0">
+    <Button fx:id="btnThem" graphicTextGap="11.0" layoutX="833.0" layoutY="43.0" mnemonicParsing="false" onAction="#themKhaiBao" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Thêm" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="43.0">
       <graphic>
          <Group>
             <children>
@@ -90,7 +92,7 @@
       <font>
          <Font name="Arial Bold" size="13.0" />
       </font></Button>
-      <Button fx:id="btnXoa" graphicTextGap="17.0" layoutX="833.0" layoutY="107.0" mnemonicParsing="false" onAction="#xoa" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="107.0">
+      <Button fx:id="btnXoa" graphicTextGap="17.0" layoutX="833.0" layoutY="90.0" mnemonicParsing="false" onAction="#xoa" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="Xóa" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="90.0">
       <graphic>
          <Group>
             <children>
@@ -106,7 +108,7 @@
          <Font name="Arial Bold" size="18.0" />
       </font>
    </Label>
-   <Button fx:id="btnRefresh" graphicTextGap="11.0" layoutX="833.0" layoutY="148.0" mnemonicParsing="false" onAction="#reFreshThongTin" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="   Refresh" textAlignment="JUSTIFY">
+   <Button fx:id="btnRefresh" graphicTextGap="11.0" layoutX="833.0" layoutY="140.0" mnemonicParsing="false" onAction="#reFreshThongTin" prefHeight="34.0" prefWidth="100.0" styleClass="button3" text="   Refresh" textAlignment="JUSTIFY">
       <graphic>
          <Group />
       </graphic>

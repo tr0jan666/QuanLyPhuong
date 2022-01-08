@@ -5,8 +5,9 @@ import java.util.Date;
 public class TestCovidModel {
     private int IDTest;
     private int idNhanKhau;
-    private Date thoiDiemTest;
+    private String thoiDiemTest;
     private String hinhThucTest;
+    private String diaDiemTest;
     private int ketQua;
 
     public String getKetQuaString() {
@@ -21,7 +22,7 @@ public class TestCovidModel {
     public  TestCovidModel(){
 
     }
-    public TestCovidModel(int IDTest, int idNhanKhau, Date thoiDiemTest, String hinhThucTest, int ketQua) {
+    public TestCovidModel(int IDTest, int idNhanKhau, String thoiDiemTest, String hinhThucTest, int ketQua) {
         this.IDTest = IDTest;
         this.idNhanKhau = idNhanKhau;
         this.thoiDiemTest = thoiDiemTest;
@@ -45,11 +46,11 @@ public class TestCovidModel {
         this.idNhanKhau = idNhanKhau;
     }
 
-    public Date getThoiDiemTest() {
+    public String getThoiDiemTest() {
         return thoiDiemTest;
     }
 
-    public void setThoiDiemTest(Date thoiDiemTest) {
+    public void setThoiDiemTest(String thoiDiemTest) {
         this.thoiDiemTest = thoiDiemTest;
     }
 
@@ -67,5 +68,13 @@ public class TestCovidModel {
 
     public void setKetQua(int ketQua) {
         this.ketQua = ketQua;
+    }
+
+    public String getDiaDiemTest() {
+        return diaDiemTest;
+    }
+
+    public void setDiaDiemTest(String diaDiemTest) {
+        this.diaDiemTest = diaDiemTest;
     }
 }

@@ -43,7 +43,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="104.0" prefWidth="750.0">
                      <children>
-                        <Text fx:id="txtRegister" fill="#89005a" layoutX="253.0" layoutY="54.0" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng Kí Tài Khoản Cho Cán Bộ" underline="true" wrappingWidth="264.6708984375" AnchorPane.bottomAnchor="36.482421875" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="232.3291015625" AnchorPane.topAnchor="34.576171875">
+                        <Text fx:id="txtRegister" fill="#1b74e4" layoutX="253.0" layoutY="54.0" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng Kí Tài Khoản Cho Cán Bộ" underline="true" wrappingWidth="264.6708984375" AnchorPane.bottomAnchor="36.482421875" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="232.3291015625" AnchorPane.topAnchor="34.576171875">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
