@@ -42,16 +42,6 @@ public class NhanKhauModel {
 
     private Date lastUpdate ;
 
-    public TestCovidModel getThongTinTestCovid() {
-        return thongTinTestCovid;
-    }
-
-    public void setThongTinTestCovid(TestCovidModel thongTinTestCovid) {
-        this.thongTinTestCovid = thongTinTestCovid;
-    }
-
-    private TestCovidModel thongTinTestCovid;
-
     private String gioiTinhString;
 
     //construtor

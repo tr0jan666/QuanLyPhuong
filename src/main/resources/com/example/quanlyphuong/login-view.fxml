@@ -29,7 +29,7 @@
                <font>
                   <Font name="Arial" size="13.0" />
                </font></CheckBox>
-<!--            <Text fx:id="txtRegister" fill="#03135b" layoutX="132.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />-->
+            <!--            <Text fx:id="txtRegister" fill="#03135b" layoutX="132.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản? Đăng ký tại đây" underline="true" />-->
             <Label layoutX="35.0" layoutY="194.0" text="User Name" textFill="WHITE" AnchorPane.leftAnchor="40.0">
                <font>
                   <Font name="Arial Bold" size="15.0" />
