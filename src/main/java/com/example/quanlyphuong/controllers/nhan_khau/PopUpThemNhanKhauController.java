@@ -2,6 +2,7 @@ package com.example.quanlyphuong.controllers.nhan_khau;
 
 import com.example.quanlyphuong.beans.HoKhauBean;
 import com.example.quanlyphuong.beans.NhanKhauBean;
+import com.example.quanlyphuong.helper.CommonUtils;
 import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
 import com.example.quanlyphuong.models.ChungMinhThuModel;
 import com.example.quanlyphuong.models.NhanKhauModel;
@@ -20,6 +21,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.sql.Date;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -144,7 +146,7 @@ public class PopUpThemNhanKhauController implements Initializable {
 
     private boolean checkValidForm(boolean notify){
         if(tf_ten.getText().trim().isEmpty()
-                || !dp_ngaySinh.hasProperties() ||
+                || dp_ngaySinh.getValue()==null ||
                 tf_noiSinh.getText().trim().isEmpty() ||
                 tf_danToc.getText().trim().isEmpty() ||
                 tf_cmt.getText().trim().isEmpty() ||
@@ -159,6 +161,15 @@ public class PopUpThemNhanKhauController implements Initializable {
             missingFieldAlert.setTitle("Cảnh báo!");
             missingFieldAlert.setContentText("Vui lòng nhập vào những trường bắt buộc còn thiếu");
             missingFieldAlert.show();
+            return false;
+        }
+        Calendar calendar = Calendar.getInstance();
+        Date today = new Date(calendar.getTime().getTime());
+        if(dp_ngaySinh.getValue().isAfter(CommonUtils.convertToLocalDateViaMilisecond(today))){
+            Alert ngaySinhAlert = new Alert(Alert.AlertType.ERROR);
+            ngaySinhAlert.setTitle("Cảnh báo!");
+            ngaySinhAlert.setContentText("Ngày sinh không hợp lệ");
+            ngaySinhAlert.show();
             return false;
         }
 

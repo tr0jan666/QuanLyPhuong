@@ -80,6 +80,15 @@ public class TamVangController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
         alert.showAndWait();
 
+        if (simpleResult.isSuccess()) {
+            tf_maTamVang.getScene().getWindow().hide();
+            NhanKhauController.frame.refreshScreen();
+
+            NhanKhauController.frame.refreshScreen();
+            tf_maTamVang.getScene().getWindow().hide();
+        } else {
+            // hide alert
+        }
     }
 
     private boolean checkValidForm(boolean notify){

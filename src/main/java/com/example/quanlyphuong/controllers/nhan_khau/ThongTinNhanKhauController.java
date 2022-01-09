@@ -113,8 +113,17 @@ public class ThongTinNhanKhauController  implements Initializable {
 
         SimpleResult simpleResult = NhanKhauService.getInstance().suaNhanKhau(nhanKhauBean);
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
-        alert.showAndWait();
+        Alert alert;
+
+        if(simpleResult.isSuccess()){
+            alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+            NhanKhauController.frame.refreshScreen();
+            tf_cmt.getScene().getWindow().hide();
+        }else {
+            alert = new Alert(Alert.AlertType.ERROR, simpleResult.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+        }
 
     }
 

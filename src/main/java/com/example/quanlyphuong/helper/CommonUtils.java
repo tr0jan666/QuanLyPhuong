@@ -2,6 +2,11 @@ package com.example.quanlyphuong.helper;
 
 import com.example.quanlyphuong.helper.constants.MucDoCachLyConstant;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class CommonUtils {
     public static String getMucDoString(int mucDo) {
         String mucDoString;
@@ -54,5 +59,11 @@ public class CommonUtils {
                 break;
         }
         return  mucDoInt;
+    }
+
+    public static LocalDate convertToLocalDateViaMilisecond(Date dateToConvert) {
+        return Instant.ofEpochMilli(dateToConvert.getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 }
