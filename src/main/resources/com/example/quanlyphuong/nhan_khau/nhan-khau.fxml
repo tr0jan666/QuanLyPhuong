@@ -91,7 +91,7 @@
             </Button>
             </children>
         </VBox>
-        <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="855.0" layoutY="729.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="49.0" prefWidth="134.0" text="refresh">
+        <Button id="btn_KhoiPhuc" fx:id="btn_refresh" layoutX="855.0" layoutY="729.0" mnemonicParsing="false" onAction="#refreshTrang" prefHeight="49.0" prefWidth="134.0" text="Refresh">
          <font>
             <Font size="11.0" />
          </font>
