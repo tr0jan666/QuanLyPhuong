@@ -69,25 +69,47 @@ public class SuaController implements Initializable {
         NhanKhauBean selectedNhanKhau = dataTable.getSelectionModel().getSelectedItem();
         MemOfFamily memOfFamily = new MemOfFamily();
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(quanHe -> {
-            if (quanHe.equals("chuho")) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("Đã có chủ hộ");
-                alert.show();
-                return;
-            }
-            ThanhVienCuaHoModel thanhVienCuaHoModel = new ThanhVienCuaHoModel();
-            thanhVienCuaHoModel.setQuanHeVoiChuHo(quanHe);
-            memOfFamily.setThanhVienCuaHoModel(thanhVienCuaHoModel);
-            listNhanKhauBean.remove(selectedNhanKhau);
 
-        });
+        String quanhe = result.get();
+        if(quanhe.equals("chuho")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Đã có chủ hộ");
+            alert.show();
+            return;
+        }
+        ThanhVienCuaHoModel thanhVienCuaHoModel = new ThanhVienCuaHoModel();
+        thanhVienCuaHoModel.setQuanHeVoiChuHo(quanhe);
+        memOfFamily.setThanhVienCuaHoModel(thanhVienCuaHoModel);
+        listNhanKhauBean.remove(selectedNhanKhau);
+
         memOfFamily.setNhanKhau(selectedNhanKhau);
 
         memOfFamily.getThanhVienCuaHoModel().setIdNhanKhau(selectedNhanKhau.getNhanKhauModel().getID());
         memOfFamilyObservableList.add(memOfFamily);
         quanHeText.setText("");
         setdata();
+//        NhanKhauBean selectedNhanKhau = dataTable.getSelectionModel().getSelectedItem();
+//        MemOfFamily memOfFamily = new MemOfFamily();
+//        Optional<String> result = dialog.showAndWait();
+//        result.ifPresent(quanHe -> {
+//            if (quanHe.equals("chuho")) {
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setContentText("Đã có chủ hộ");
+//                alert.show();
+//                return;
+//            }
+//            ThanhVienCuaHoModel thanhVienCuaHoModel = new ThanhVienCuaHoModel();
+//            thanhVienCuaHoModel.setQuanHeVoiChuHo(quanHe);
+//            memOfFamily.setThanhVienCuaHoModel(thanhVienCuaHoModel);
+//            listNhanKhauBean.remove(selectedNhanKhau);
+//
+//        });
+//        memOfFamily.setNhanKhau(selectedNhanKhau);
+//
+//        memOfFamily.getThanhVienCuaHoModel().setIdNhanKhau(selectedNhanKhau.getNhanKhauModel().getID());
+//        memOfFamilyObservableList.add(memOfFamily);
+//        quanHeText.setText("");
+//        setdata();
     }
 
     @FXML
