@@ -272,6 +272,10 @@ public class NhanKhauController implements Initializable {
 
     public void chiTietNhanKhau(MouseEvent event) {
         NhanKhauBean nhanKhauBean = tv_nhanKhau.getSelectionModel().getSelectedItem();
+        if(nhanKhauBean == null){
+            refreshScreen();
+            return;
+        }
         NhanKhauController.chosenNhanKhauBean = nhanKhauBean;
         btn_chiTiet.setVisible(true);
 

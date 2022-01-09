@@ -11,6 +11,11 @@ public class KhaiTuModel {
         private Date ngayChet;
         private String lyDoChet;
 
+
+    public KhaiTuModel(){
+
+    }
+
     public KhaiTuModel(int ID, String soGiayKhaiTu, int idNguoiKhai, int idNguoiChet, Date ngayKhai, Date ngayChet, String lyDoChet) {
         this.ID = ID;
         this.soGiayKhaiTu = soGiayKhaiTu;
