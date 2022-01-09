@@ -75,7 +75,7 @@ public class ThongKeDichTeController implements Initializable {
     private TableColumn<NhanKhauBean, Integer> col_tiemLan;
 
     @FXML
-    private TableColumn<NhanKhauBean, Date> col_ngayTiemLan;
+    private TableColumn<NhanKhauBean, String> col_ngayTiemLan;
 
     @FXML
     private TableColumn<NhanKhauBean, String> col_loaiVaccineLan;

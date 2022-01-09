@@ -9,14 +9,14 @@ public class TiemChungModel {
     private int idTiemChung;
     private int idNhanKhau;
     private int soLanTiem;
-    private Date ngayTiem;
+    private String ngayTiem;
     private String vacxin;
     private String diaDiem;
 
     public TiemChungModel() {
     }
 
-    public TiemChungModel(String hoTen,String CCCD,String diaDiem,int idTiemChung,int idNhanKhau,int soLanTiem,Date ngayTiem,String vacxin){
+    public TiemChungModel(String hoTen,String CCCD,String diaDiem,int idTiemChung,int idNhanKhau,int soLanTiem,String ngayTiem,String vacxin){
         this.hoTen = hoTen;
         this.CCCD = CCCD;
         this.diaDiem = diaDiem;
@@ -51,11 +51,11 @@ public class TiemChungModel {
         this.soLanTiem = soLanTiem;
     }
 
-    public Date getNgayTiem() {
+    public String getNgayTiem() {
         return ngayTiem;
     }
 
-    public void setNgayTiem(Date ngayTiem) {
+    public void setNgayTiem(String ngayTiem) {
         this.ngayTiem = ngayTiem;
     }
 

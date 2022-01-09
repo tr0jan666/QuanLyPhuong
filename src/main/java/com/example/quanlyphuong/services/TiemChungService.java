@@ -48,7 +48,7 @@ public class TiemChungService {
                 tiemChungModel.setIdTiemChung(resultSet.getInt("idTiemChung"));
                 tiemChungModel.setIdNhanKhau(resultSet.getInt("idNhanKhau"));
                 tiemChungModel.setSoLanTiem(resultSet.getInt("soLanTiem"));
-                tiemChungModel.setNgayTiem(resultSet.getDate("ngayTiem"));
+                tiemChungModel.setNgayTiem(resultSet.getString("ngayTiem"));
                 tiemChungModel.setVacxin(resultSet.getString("vacxin"));
                 tiemChungModel.setDiaDiem(resultSet.getString("diaDiem"));
 
@@ -67,8 +67,9 @@ public class TiemChungService {
         return list;
     }
 
-    public List<TiemChungBean> getListTiemChung(String cccd){
+    public int getTiemChung(String cccd){
         List<TiemChungBean> list = new ArrayList<>();
+        int sum =0 ;
         try{
             Connection connection = MySQLConnector.getConnection();
             String query = "select * from `tiem_chung` as tc join `nhan_khau` as nk on nk.`ID` = tc.`idNhanKhau`" +
@@ -78,16 +79,16 @@ public class TiemChungService {
             while (resultSet.next()){
 
                 TiemChungBean bean = new TiemChungBean();
-                TiemChungModel tiemChungModel = bean.getTiemChungModel();
-                NhanKhauBean nhanKhauBean = bean.getNhanKhauBean();
-                NhanKhauModel nhanKhauModel = nhanKhauBean.getNhanKhauModel();
-                ChungMinhThuModel chungMinhThuModel = nhanKhauBean.getChungMinhThuModel();
+                TiemChungModel tiemChungModel = new TiemChungModel();
+                NhanKhauBean nhanKhauBean = new NhanKhauBean();
+                NhanKhauModel nhanKhauModel = new NhanKhauModel();
+                ChungMinhThuModel chungMinhThuModel = new ChungMinhThuModel();
 
                 nhanKhauModel.setHo_ten(resultSet.getString("hoTen"));
                 nhanKhauModel.setNamSinh(resultSet.getDate("namSinh"));
                 nhanKhauModel.setDiaChiHienNay(resultSet.getString("diaChiHienNay"));
                 nhanKhauModel.setGioiTinh(resultSet.getInt("gioiTinh"));
-                nhanKhauModel.setID(resultSet.getInt("nhan_khau.ID"));
+                nhanKhauModel.setID(resultSet.getInt("ID"));
                 nhanKhauModel.setNguyenQuan(resultSet.getString("nguyenQuan"));
                 nhanKhauModel.setDanToc(resultSet.getString("danToc"));
                 nhanKhauModel.setTonGiao(resultSet.getString("tonGiao"));
@@ -96,13 +97,13 @@ public class TiemChungService {
 
                 chungMinhThuModel.setNoiCap(resultSet.getString("noiCap"));
                 chungMinhThuModel.setNgayCap(resultSet.getDate("ngayCap"));
-                chungMinhThuModel.setIdNhanKhau(resultSet.getInt("chung_minh_thu.idNhanKhau"));
+                chungMinhThuModel.setIdNhanKhau(resultSet.getInt("idNhanKhau"));
                 chungMinhThuModel.setSoCMT(resultSet.getString("soCMT"));
 
                 tiemChungModel.setIdTiemChung(resultSet.getInt("idTiemChung"));
                 tiemChungModel.setIdNhanKhau(resultSet.getInt("idNhanKhau"));
                 tiemChungModel.setSoLanTiem(resultSet.getInt("soLanTiem"));
-                tiemChungModel.setNgayTiem(resultSet.getDate("ngayTiem"));
+                tiemChungModel.setNgayTiem(resultSet.getString("ngayTiem"));
                 tiemChungModel.setVacxin(resultSet.getString("vacxin"));
                 tiemChungModel.setDiaDiem(resultSet.getString("diaDiem"));
 
@@ -112,13 +113,14 @@ public class TiemChungService {
                 bean.setNhanKhauBean(nhanKhauBean);
 
                 list.add(bean);
+                sum++;
             }
             statement.close();
             connection.close();
         }catch (Exception e){
             e.printStackTrace();
         }
-        return list;
+        return sum;
     }
 
     public TiemChungModel getTiemChungL1(int idNhanKhau){
@@ -131,7 +133,7 @@ public class TiemChungService {
 
             tiemChungModel.setSoLanTiem(1);
             tiemChungModel.setVacxin(resultSet.getString("vacxin"));
-            tiemChungModel.setNgayTiem(resultSet.getDate("ngayTiem"));
+            tiemChungModel.setNgayTiem(resultSet.getString("ngayTiem"));
 
             preparedStatement.close();
             connection.close();
@@ -168,7 +170,7 @@ public class TiemChungService {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1,bean.getNhanKhauBean().getNhanKhauModel().getID());
             preparedStatement.setInt(2,bean.getTiemChungModel().getSoLanTiem());
-            preparedStatement.setDate(3, new Date(bean.getTiemChungModel().getNgayTiem().getTime()) );
+            preparedStatement.setString(3,bean.getTiemChungModel().getNgayTiem() );
             preparedStatement.setString(4,bean.getTiemChungModel().getVacxin());
             preparedStatement.setString(5, bean.getTiemChungModel().getDiaDiem());
             preparedStatement.executeUpdate();
@@ -180,11 +182,11 @@ public class TiemChungService {
         }
     }
 
-    public void updateTiemChung(int idNhanKhau, String loaiVacxin, String ngayTiem,String diaDiem,String tiemLan){
+    public void updateTiemChung(int idNhanKhau, String loaiVacxin, String ngayTiem,String diaDiem,int tiemLan){
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
-            String query = "update tiem_chung set vacxin = " + loaiVacxin + ",ngayTiem = " + ngayTiem+
-                    "diaDiem = "+ diaDiem +"where idNhanKhau = " + idNhanKhau +"and soLanTiem = " + tiemLan;
+            String query = "update tiem_chung set vacxin = '" + loaiVacxin + "',ngayTiem = '" + ngayTiem+
+                    "' , diaDiem = '"+ diaDiem +"' where idNhanKhau = " + idNhanKhau +" and soLanTiem = " + tiemLan + "";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.executeUpdate();

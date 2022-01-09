@@ -89,7 +89,7 @@ public class ThongKeCovidService {
                 khaiBaoModel.setBieuHien(rs.getString("bieuHien"));
 
                 tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
-                tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
+                tiemChungModel.setNgayTiem(rs.getString("ngayTiem"));
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
                 testCovidModel.setKetQua(rs.getInt("ketQua"));
                 if(testCovidModel.getKetQua() == KetQuaTestConstant.DUONG_TINH ){
@@ -169,7 +169,7 @@ public class ThongKeCovidService {
                 nhanKhau.setMaNhanKhau(rs.getString("maNhanKhau"));
 
                 tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
-                tiemChungModel.setNgayTiem(rs.getDate("ngayTiem"));
+                tiemChungModel.setNgayTiem(rs.getString("ngayTiem"));
                 tiemChungModel.setVacxin(rs.getString("vacxin"));
                 cachLyModel.setMucDo(rs.getInt("mucDoCachLy"));
                 cachLyModel.setMucDoString(CommonUtils.getMucDoString(cachLyModel.getMucDo()));
