@@ -27,7 +27,8 @@ public class ThongKeCovidService {
                 + " WHERE ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) >= "
                 + TuTuoi
                 + " AND ROUND(DATEDIFF(CURDATE(),namSinh)/365 , 0) <= "
-                + denTuoi;
+                + denTuoi
+                + " AND nhan_khau.status != 0";
 
 
 // tim kiem theo gioi tinh
