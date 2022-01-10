@@ -168,7 +168,15 @@ public class NhanKhauController implements Initializable {
 
     @FXML
     void xemChiTietNhanKhau(ActionEvent event) {
-        changeSceneChiTiet();
+        if (chosenNhanKhauBean.getNhanKhauModel().getStatus()== NhanKhauConstant.THUONG_TRU_STATUS){
+            changeSceneChiTiet();
+        }
+        else if (chosenNhanKhauBean.getNhanKhauModel().getStatus()== NhanKhauConstant.TAM_TRU_STATUS){
+
+        }else if(chosenNhanKhauBean.getNhanKhauModel().getStatus()== NhanKhauConstant.TAM_VANG_STATUS){
+
+        }
+
     }
 
     @FXML

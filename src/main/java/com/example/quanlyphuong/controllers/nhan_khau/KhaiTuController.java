@@ -100,6 +100,8 @@ public class KhaiTuController implements Initializable {
             return false;
 
         } else {
+            tf_hoTenNguoiKhai.setText(nhanKhauBean.getNhanKhauModel().getHo_ten());
+            tf_hoTenNguoiKhai.setEditable(false);
             return true;
         }
     }
