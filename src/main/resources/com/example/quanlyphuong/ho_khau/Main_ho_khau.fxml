@@ -8,44 +8,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mhkPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController">
+<AnchorPane fx:id="mhkPane" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../nhan_khau/menu-nhan-khau.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlyphuong.controllers.ho_khau.MainHoKhauController">
     <children>
-      <TableView fx:id="tbvBangThongKe" layoutX="20.0" layoutY="160.0" prefHeight="630.0" prefWidth="820.0">
+      <TableView fx:id="tbvBangThongKe" layoutX="20.0" layoutY="160.0" prefHeight="630.0" prefWidth="820.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="140.0">
          <columns>
             <TableColumn fx:id="maHoKhau" prefWidth="160.0" text="Mã hộ khẩu" />
             <TableColumn fx:id="hoTenChuHo" minWidth="0.0" prefWidth="274.66668701171875" text="Họ tên chủ hộ" />
-            <TableColumn fx:id="diaChi" prefWidth="390.33331298828125" text="Địa chỉ" />
+            <TableColumn fx:id="diaChi" prefWidth="413.0" text="Địa chỉ" />
          </columns>
       </TableView>
-      <Button fx:id="btnThemMoi" layoutX="860.0" layoutY="160.0" mnemonicParsing="false" onAction="#changeSceneThemMoi" prefHeight="40.0" prefWidth="120.0" text="Thêm mới">
+      <Button fx:id="btnThemMoi" layoutX="867.0" layoutY="190.0" mnemonicParsing="false" onAction="#changeSceneThemMoi" prefHeight="40.0" prefWidth="116.0" text="Thêm hộ khẩu">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnTachHoKhau" layoutX="860.0" layoutY="210.0" mnemonicParsing="false" onAction="#changeSceneTachHoKhau" prefHeight="40.0" prefWidth="120.0" text="Tách hộ khẩu">
+      <Button fx:id="btnTachHoKhau" layoutX="870.0" layoutY="261.0" mnemonicParsing="false" onAction="#changeSceneTachHoKhau" prefHeight="40.0" prefWidth="110.0" text="Tách hộ khẩu">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-        <TextField fx:id="tfTimKiem" layoutX="202.0" layoutY="106.0" prefHeight="25.0" prefWidth="348.0" promptText="eg: Nguyễn Văn A" />
-        <Label layoutX="22.0" layoutY="106.0" text="Tìm kiếm theo tên chủ hộ">
+        <TextField fx:id="tfTimKiem" layoutX="217.0" layoutY="93.0" prefHeight="31.0" prefWidth="310.0" promptText="eg: Nguyễn Văn A" />
+        <Label layoutX="10.0" layoutY="95.0" text="Tìm kiếm theo tên chủ hộ :">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-      <Label layoutX="153.0" prefHeight="65.0" prefWidth="695.0" text="Thông tin hộ khẩu" textFill="#29adff">
+      <Label layoutX="336.0" layoutY="14.0" prefHeight="58.0" prefWidth="310.0" text="Thông tin hộ khẩu" textFill="#29adff">
          <font>
-            <Font name="System Bold" size="64.0" />
+            <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <Button layoutX="860.0" layoutY="650.0" mnemonicParsing="false" onAction="#deleteRowFromTable" prefHeight="30.0" prefWidth="98.0" text="Xóa">
+      <Button layoutX="870.0" layoutY="332.0" mnemonicParsing="false" onAction="#deleteRowFromTable" prefHeight="40.0" prefWidth="110.0" text="Xóa hộ khẩu">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnHoanTac" layoutX="860.0" layoutY="700.0" mnemonicParsing="false" onAction="#huy" prefHeight="30.0" prefWidth="98.0" text="Hủy">
+      <Button fx:id="btnHoanTac" layoutX="873.0" layoutY="665.0" mnemonicParsing="false" onAction="#huy" prefHeight="31.0" prefWidth="110.0" text="Hủy">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Button>
     </children>

@@ -28,7 +28,7 @@ public class MainNhanKhauController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
             Connection connection = MySQLConnector.getConnection();
-            String query = "SELECT COUNT(*) AS tong FROM nhan_khau";
+            String query = "SELECT COUNT(*) AS tong FROM nhan_khau Where status != 0";
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
