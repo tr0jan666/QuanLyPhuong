@@ -5,6 +5,7 @@ import com.example.quanlyphuong.helper.CommonUtils;
 import com.example.quanlyphuong.helper.MySQLConnector;
 import com.example.quanlyphuong.helper.constants.GioiTinhConstant;
 import com.example.quanlyphuong.helper.constants.KetQuaTestConstant;
+import com.example.quanlyphuong.helper.constants.NhanKhauConstant;
 import com.example.quanlyphuong.models.*;
 
 import java.sql.Connection;
@@ -86,6 +87,7 @@ public class ThongKeCovidService {
                 else if(cachLyModel.getMucDo()==0){
                     cachLyModel.setMucDoString("Không");
                 }*/
+
                 khaiBaoModel.setBieuHien(rs.getString("bieuHien"));
 
                 tiemChungModel.setSoLanTiem(rs.getInt("soLanTiem"));
@@ -104,6 +106,19 @@ public class ThongKeCovidService {
                 idNhanKhau = rs.getInt("idNhanKhau");
                 nhanKhau.setID(idNhanKhau);
                 nhanKhau.setHo_ten(rs.getString("hoTen"));
+                nhanKhau.setStatus(rs.getInt("status"));
+                int status1 = nhanKhau.getStatus();
+
+                if(status1== NhanKhauConstant.THUONG_TRU_STATUS){
+                    nhanKhau.setStatusString("Thường trú");
+                }else if(status1==NhanKhauConstant.TAM_TRU_STATUS){
+                    nhanKhau.setStatusString("Tạm trú");
+                }else if(status1==NhanKhauConstant.TAM_VANG_STATUS){
+                    nhanKhau.setStatusString("Tạm vắng");
+                }else if(status1 == NhanKhauConstant.TU_VONG_STATUS){
+                    nhanKhau.setStatusString("Tử vong");
+                    continue;
+                }
                 nhanKhau.setGioiTinh(rs.getInt("gioiTinh"));
                 if(nhanKhau.getGioiTinh() == GioiTinhConstant.NAM){
                     nhanKhau.setGioiTinhString("Nam");
