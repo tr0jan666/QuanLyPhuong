@@ -3,6 +3,7 @@ package com.example.quanlyphuong.controllers.nhan_khau;
 import com.example.quanlyphuong.beans.NhanKhauBean;
 import com.example.quanlyphuong.helper.UIHelper;
 import com.example.quanlyphuong.models.*;
+import com.example.quanlyphuong.services.ChungMinhThuService;
 import com.example.quanlyphuong.services.NhanKhauService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,6 +66,7 @@ public class KhaiTuController implements Initializable {
         nguoiKhaiBean = NhanKhauService.getInstance().getNhanKhau(tf_cmtNguoiKhai.getText());
         if (nguoiKhaiBean == null) {
 
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Không tồn tại CCCD! Bạn có muốn thêm nhân khẩu mới không?");
 
@@ -82,11 +84,14 @@ public class KhaiTuController implements Initializable {
 //                stage.show();
                 return;
             } else {
+
                 return;
             }
 
 
         } else {
+            tf_hoTenNguoiKhai.setText(nhanKhauBean.getNhanKhauModel().getHo_ten());
+            tf_hoTenNguoiKhai.setEditable(false);
             return;
         }
     }
@@ -100,10 +105,34 @@ public class KhaiTuController implements Initializable {
             return false;
 
         } else {
-            tf_hoTenNguoiKhai.setText(nhanKhauBean.getNhanKhauModel().getHo_ten());
-            tf_hoTenNguoiKhai.setEditable(false);
+
             return true;
         }
+    }
+
+    @FXML
+    void checkMaGiayKhaiTu(ActionEvent event){
+        checkMaGiay(true);
+    }
+
+    public boolean checkMaGiay(boolean notify){
+        SimpleResult result = NhanKhauService.getInstance().checkGiayKhaiTu(tf_maGiayKhaiTu.getText());
+        Alert alert;
+
+        if(result.isSuccess()){
+            if(notify == true){
+                alert = new Alert(Alert.AlertType.CONFIRMATION, result.getMessage(), ButtonType.CLOSE);
+                alert.showAndWait();
+            }
+            return true;
+        }
+        else {
+
+            alert = new Alert(Alert.AlertType.ERROR, result.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+
+        }
+        return false;
     }
 
     @FXML
@@ -122,6 +151,8 @@ public class KhaiTuController implements Initializable {
             KhaiTuModel khaiTuModel = new KhaiTuModel();
 
             khaiTuModel.setIdNguoiChet(cmt.getIdNhanKhau());
+            khaiTuModel.setSoGiayKhaiTu(tf_maGiayKhaiTu.getText());
+            khaiTuModel.setLyDoChet(tf_lyDoMat.getText());
             khaiTuModel.setIdNguoiKhai(nguoiKhaiBean.getChungMinhThuModel().getIdNhanKhau());
 
             khaiTuModel.setNgayChet(java.sql.Date.from(date_ngayMat.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));

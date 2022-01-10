@@ -120,12 +120,12 @@ public class MainHoKhauController implements Initializable {
 
     @FXML
     void changeSceneThemMoi(ActionEvent event) throws IOException {
-        UIHelper.navigateNew("ho_khau/them_moi.fxml", "Thêm mới hộ khẩu", null);
+        UIHelper.navigateNew("ho_khau/them_moi.fxml", "Thêm mới hộ khẩu",null, 1000, 700);
     }
 
     @FXML
     void changeSceneTachHoKhau(ActionEvent event) {
-        UIHelper.navigateNew("ho_khau/tach_HK.fxml", "Tách  hộ khẩu", null);
+        UIHelper.navigateNew("ho_khau/tach_HK.fxml", "Tách  hộ khẩu", null, 1000, 700);
 //        hoKhauService = new HoKhauService();
 //        listHoKhauBeans = hoKhauService.getListHoKhau();
 //

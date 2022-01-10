@@ -150,7 +150,7 @@
                 </GridPane>
             </children>
         </FlowPane>
-        <Button fx:id="btn_luu" layoutX="558.0" layoutY="548.0" mnemonicParsing="false" onAction="#luuData" prefWidth="57.0" text="Lưu" />
+        <Button fx:id="btn_luu" layoutX="465.0" layoutY="548.0" mnemonicParsing="false" onAction="#luuData" prefHeight="24.0" prefWidth="150.0" text="Lưu thay đổi" />
         <Label layoutX="41.0" layoutY="109.0" text="CMT/CCCD" />
         <TextField fx:id="tf_cmd" layoutX="154.0" layoutY="105.0" prefHeight="24.0" prefWidth="296.0" />
     </children>

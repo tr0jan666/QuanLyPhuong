@@ -32,6 +32,149 @@ public class NhanKhauService {
     }
 
 
+    public SimpleResult checkGiayKhaiTu(String soGiayKhaiTu){
+        String checkQuery = "select * from khai_tu where soGiayKhaiTu = ?";
+        try (Connection connection = MySQLConnector.getConnection()) {
+            PreparedStatement selectUserSM = connection.prepareStatement(checkQuery);
+            selectUserSM.setString(1, soGiayKhaiTu);
+            ResultSet SoGiayKhaiTu = selectUserSM.executeQuery();
+            if (SoGiayKhaiTu.next()) {
+                // ton tai ban ghi cmt trong he thong
+                return new SimpleResult(false, "Số giấy khai tử này đã tồn tại trong hệ thống");
+            }else  {
+                return new SimpleResult(true, "Số giấy khai tử này chưa tồn tại trong hệ thống, có thể tiếp tục!");
+            }
+
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+            return new SimpleResult(false, exception.getMessage());
+        }
+    }
+
+    public TamTruModel getTamTru(int idNhanKhau ){
+        TamTruModel tamTruModel = new TamTruModel();
+        try{
+            Connection connection = MySQLConnector.getConnection();
+            String query = "select * from tam_tru where  `idNhanKhau` = ?; " ;
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,idNhanKhau );
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                tamTruModel.setLyDo(rs.getString("lyDo"));
+                tamTruModel.setSoDienThoaiNguoiDangKy(rs.getString("soDienThoaiNguoiDangKy"));
+                tamTruModel.setIdNhanKhau(idNhanKhau);
+                tamTruModel.setMaGiayTamTru(rs.getString("maGiayTamTru"));
+                tamTruModel.setTuNgay(rs.getDate("tuNgay"));
+                tamTruModel.setDenNgay(rs.getDate("denNgay"));
+            }
+
+            return tamTruModel;
+
+
+        }catch (Exception mysqlException){
+            mysqlException.printStackTrace();
+            return null;
+        }
+    }
+
+    public TamVangModel getTamVang(int idNhanKhau ){
+        TamVangModel tamVangModel = new TamVangModel();
+        try{
+            Connection connection = MySQLConnector.getConnection();
+            String query = "select * from tam_vang where  `idNhanKhau` = ?; " ;
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,idNhanKhau );
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                tamVangModel.setLyDo(rs.getString("lyDo"));
+                tamVangModel.setMaGiayTamVang(rs.getString("maGiayTamVang"));
+                tamVangModel.setIdNhanKhau(idNhanKhau);
+                tamVangModel.setDenNgay(rs.getDate("denNgay"));
+                tamVangModel.setTuNgay(rs.getDate("tuNgay"));
+                tamVangModel.setNoiTamTru(rs.getString("noiTamTru"));
+            }
+
+            return tamVangModel;
+
+
+        }catch (Exception mysqlException){
+            mysqlException.printStackTrace();
+            return null;
+        }
+    }
+
+    public SimpleResult updateTamTru(TamTruModel tamTruModel){
+        String maGiayTamTru = tamTruModel.getMaGiayTamTru();
+        String sdt = tamTruModel.getSoDienThoaiNguoiDangKy();
+        java.sql.Date tuNgay =  new java.sql.Date(tamTruModel.getTuNgay().getTime());
+        java.sql.Date denNgay =  new java.sql.Date(tamTruModel.getDenNgay().getTime());
+        String lydo = tamTruModel.getLyDo();
+        int idNhanKhau = tamTruModel.getIdNhanKhau();
+
+        try(Connection connection = MySQLConnector.getConnection()) {
+            // ket noi voi data_base
+            String query = "update tam_tru set  `soDienThoaiNguoiDangKy` = ? , `tuNgay` = ?, `denNgay` = ?,`lyDo` = ? " +
+                    "where idNhanKhau = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+
+            preparedStatement.setString(1, sdt);
+            preparedStatement.setDate(2, tuNgay);
+            preparedStatement.setDate(3, denNgay);
+            preparedStatement.setString(4, lydo);
+            preparedStatement.setInt(5, idNhanKhau);
+
+            preparedStatement.execute();
+            connection.close();
+
+            return new SimpleResult(true, "Sửa tạm trú thành công");
+        }
+        catch (SQLException ex) {// thong bao loi
+            ex.printStackTrace();
+
+            return new SimpleResult(false, ex.getMessage());
+        }
+    }
+
+    public SimpleResult updateTamVang(TamVangModel tamVangModel){
+        String maGiayTamVang = tamVangModel.getMaGiayTamVang();
+        java.sql.Date tuNgay =  new java.sql.Date(tamVangModel.getTuNgay().getTime());
+        java.sql.Date denNgay =  new java.sql.Date(tamVangModel.getDenNgay().getTime());
+        String lydo = tamVangModel.getLyDo();
+        String noiTamTru = tamVangModel.getNoiTamTru();
+        int idNhanKhau = tamVangModel.getIdNhanKhau();
+
+        try(Connection connection = MySQLConnector.getConnection()) {
+            // ket noi voi data_base
+            String query = "update tam_vang set  `noiTamTru` = ?, `tuNgay` = ?, `denNgay`=?,`lyDo`=? " +
+                    "where `idNhanKhau` = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, noiTamTru);
+            preparedStatement.setDate(2, tuNgay);
+            preparedStatement.setDate(3, denNgay);
+            preparedStatement.setString(4, lydo);
+            preparedStatement.setInt(5, idNhanKhau);
+
+            preparedStatement.execute();
+
+
+
+            connection.close();
+
+            return new SimpleResult(true, "Sửa tạm vắng thành công ");
+        }
+        catch (SQLException ex) {// thong bao loi
+            ex.printStackTrace();
+
+            return new SimpleResult(false, ex.getMessage());
+        }
+    }
+
     public NhanKhauBean getNhanKhau(String cmt) {
         NhanKhauBean nhanKhauBean = new NhanKhauBean();
         // truy cap db
@@ -219,30 +362,7 @@ public class NhanKhauService {
         return null;
     }
 
-    public SimpleResult khaiTuNhanKhau(int idNhanKhau) {
-//        try {
-//
-//            NhanKhauModel nguoiChet = getDetail(idNhanKhau);
-//
-//
-//
-//            int ID = .getID();
-//            String soCMTnguoiChet = .getSoCMTnguoiMat();
-//            String soCMTnguoiKhai = .getSoCMTnguoiKhai();
-//            String tenNguoiKhai = .getTenNguoiKhai();
-//            String soGiayKhaiTu = .getSoGiayKhaiTu();
-//            String ngayKhai = .getNgayKhai();
-//            String ngayMat = .getNgayMat();
-//            String lyDoChet = nguoiChet.getLyDoChet();
-//            Connection connection = MysqlConnection.getMysqlConnection();
-//            Statement statement = connection.createStatement();
-//            String query = "INSERT INTO `QuanLyNhanKhau`.`khai_tu` (`ID`, `soCMTnguoiChet`, `soCMTnguoiKhai`, `tenNguoiKhai`, `soGiayKhaiTu`, `ngayKhai`, `ngayMat`, `lyDoChet`) VALUES (null, '" + soCMTnguoiChet + "', '" + soCMTnguoiKhai + "', '" + tenNguoiKhai + "', '" + soGiayKhaiTu + "', '" + ngayKhai + "', '" + ngayMat + "', '" + lyDoChet + "');";
-//            statement.executeUpdate(query);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return null;
-    }
+
 
     public SimpleResult khaiTuNhanKhau(NhanKhauBean nhanKhauBean, KhaiTuModel khaiTuModel) {
         try{

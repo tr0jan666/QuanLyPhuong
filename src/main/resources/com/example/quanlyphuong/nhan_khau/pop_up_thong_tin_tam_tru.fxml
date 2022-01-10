@@ -55,11 +55,11 @@
                 <TextField fx:id="tf_sdt" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                 <Label text="Số điện thoại" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <Label text="Mã Nhân Khẩu" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                <TextField fx:id="tf_maNhanKhau" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <TextField fx:id="tf_maNhanKhau" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                 <Label text="Họ và tên" GridPane.rowIndex="1" />
                 <TextField fx:id="tf_ten" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
         </GridPane>
-        <Button fx:id="btn_save" layoutX="388.0" layoutY="541.0" mnemonicParsing="false" onAction="#LuuThongTin" prefHeight="30.0" prefWidth="94.0" text="Lưu" />
+        <Button fx:id="btn_save" layoutX="388.0" layoutY="541.0" mnemonicParsing="false" onAction="#luuThongTin" prefHeight="30.0" prefWidth="94.0" text="Lưu" />
     </children>
 </AnchorPane>

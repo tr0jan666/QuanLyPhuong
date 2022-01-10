@@ -172,9 +172,9 @@ public class NhanKhauController implements Initializable {
             changeSceneChiTiet();
         }
         else if (chosenNhanKhauBean.getNhanKhauModel().getStatus()== NhanKhauConstant.TAM_TRU_STATUS){
-
+            UIHelper.navigateNew("nhan_khau/pop_up_thong_tin_tam_tru.fxml", "Chi tiết tạm trú", null,850,600);
         }else if(chosenNhanKhauBean.getNhanKhauModel().getStatus()== NhanKhauConstant.TAM_VANG_STATUS){
-
+            UIHelper.navigateNew("nhan_khau/pop_up_thong_tin_tam_vang.fxml", "Chi tiết tạm vắng", null,650,600);
         }
 
     }

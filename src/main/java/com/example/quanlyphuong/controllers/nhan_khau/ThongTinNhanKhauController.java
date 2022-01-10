@@ -79,7 +79,12 @@ public class ThongTinNhanKhauController  implements Initializable {
 
     @FXML
     void checkNhanKhau(ActionEvent event) {
-
+        if(checkValidForm(true)){
+            Alert missingFieldAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            missingFieldAlert.setTitle("Thông báo");
+            missingFieldAlert.setContentText("Có thể lưu");
+            missingFieldAlert.show();
+        }
     }
 
     @FXML
@@ -179,7 +184,6 @@ public class ThongTinNhanKhauController  implements Initializable {
         tf_noiLamViec.setText(nhanKhauModel.getNoiLamViec());
         tf_thuongTru.setText(nhanKhauModel.getNoiThuongTru());
         tf_maNhanKhau.setText(nhanKhauModel.getMaNhanKhau());
-
     }
 
     public LocalDate convertToLocalDateViaMilisecond(Date dateToConvert) {
