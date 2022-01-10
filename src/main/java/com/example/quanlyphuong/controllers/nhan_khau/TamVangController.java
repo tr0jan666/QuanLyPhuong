@@ -84,7 +84,7 @@ public class TamVangController implements Initializable {
             tf_maTamVang.getScene().getWindow().hide();
             NhanKhauController.frame.refreshScreen();
 
-            NhanKhauController.frame.refreshScreen();
+
             tf_maTamVang.getScene().getWindow().hide();
         } else {
             // hide alert

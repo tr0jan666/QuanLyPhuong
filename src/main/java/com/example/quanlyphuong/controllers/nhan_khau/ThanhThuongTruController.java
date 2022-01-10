@@ -116,6 +116,11 @@ public class ThanhThuongTruController  implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, simpleResult.getMessage(), ButtonType.CLOSE);
         alert.showAndWait();
+
+        NhanKhauController.frame.refreshScreen();
+
+
+        tf_cmt.getScene().getWindow().hide();
     }
 
     private boolean checkValidForm(boolean notify){
